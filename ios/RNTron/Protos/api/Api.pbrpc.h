@@ -44,9 +44,9 @@
 @class WitnessUpdateContract;
 
 #if !defined(GPB_GRPC_FORWARD_DECLARE_MESSAGE_PROTO) || !GPB_GRPC_FORWARD_DECLARE_MESSAGE_PROTO
-  #import "core/Tron.pbobjc.h"
-  #import "core/Contract.pbobjc.h"
-  #import "google/api/Annotations.pbobjc.h"
+  #import "Tron.pbobjc.h"
+  #import "Contract.pbobjc.h"
+  #import "Annotations.pbobjc.h"
 #endif
 
 @class GRPCProtoCall;
