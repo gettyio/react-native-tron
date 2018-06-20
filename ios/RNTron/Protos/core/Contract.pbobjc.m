@@ -13,8 +13,8 @@
  #import "GPBProtocolBuffers_RuntimeSupport.h"
 #endif
 
- #import "core/Contract.pbobjc.h"
- #import "core/Tron.pbobjc.h"
+ #import "Contract.pbobjc.h"
+ #import "Tron.pbobjc.h"
 // @@protoc_insertion_point(imports)
 
 #pragma clang diagnostic push

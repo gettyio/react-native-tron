@@ -1,12 +1,12 @@
 #if !defined(GPB_GRPC_PROTOCOL_ONLY) || !GPB_GRPC_PROTOCOL_ONLY
-#import "api/Api.pbrpc.h"
-#import "api/Api.pbobjc.h"
+#import "Api.pbrpc.h"
+#import "Api.pbobjc.h"
 #import <ProtoRPC/ProtoRPC.h>
 #import <RxLibrary/GRXWriter+Immediate.h>
 
-#import "core/Tron.pbobjc.h"
-#import "core/Contract.pbobjc.h"
-#import "google/api/Annotations.pbobjc.h"
+#import "Tron.pbobjc.h"
+#import "Contract.pbobjc.h"
+#import "Annotations.pbobjc.h"
 
 @implementation Wallet
 

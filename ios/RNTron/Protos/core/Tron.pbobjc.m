@@ -16,11 +16,11 @@
 #if GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS
  #import <Protobuf/Any.pbobjc.h>
 #else
- #import "google/protobuf/Any.pbobjc.h"
+ #import "Any.pbobjc.h"
 #endif
 
- #import "core/Tron.pbobjc.h"
- #import "core/Discover.pbobjc.h"
+ #import "Tron.pbobjc.h"
+ #import "Discover.pbobjc.h"
 // @@protoc_insertion_point(imports)
 
 #pragma clang diagnostic push

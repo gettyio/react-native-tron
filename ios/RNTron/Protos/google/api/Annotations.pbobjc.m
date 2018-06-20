@@ -13,8 +13,8 @@
  #import "GPBProtocolBuffers_RuntimeSupport.h"
 #endif
 
- #import "google/api/Annotations.pbobjc.h"
- #import "google/api/HTTP.pbobjc.h"
+ #import "Annotations.pbobjc.h"
+ #import "HTTP.pbobjc.h"
  #import <Protobuf/GPBDescriptor.h>
 // @@protoc_insertion_point(imports)
 

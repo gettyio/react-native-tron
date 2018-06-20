@@ -8,8 +8,8 @@ Pod::Spec.new do |s|
   s.license      = "MIT"
   s.author       = { "Brandon Holland" => "bholland@brandon-holland.com" }
   s.platform     = :ios, "9.0"
-  s.source       = "https://github.com/gettyio/react-native-tron.git"
-  s.source_files = "RNTron/**/*.{h,m}"
+  s.source       = { :git => "https://github.com/gettyio/react-native-tron.git" }
+  s.source_files = "ios/RNTron/**/*.{h,m}"
   s.requires_arc = true
 
   s.dependency "TrezorCrypto"
