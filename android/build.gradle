@@ -32,5 +32,11 @@ repositories {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
+    provided 'org.glassfish:javax.annotation:3.1.1'
+    compile group: 'io.grpc', name: 'grpc-netty', version: '1.9.0'
+    compile group: 'io.grpc', name: 'grpc-protobuf', version: '1.9.0'
+    compile group: 'io.grpc', name: 'grpc-stub', version: '1.9.0'
+    compile "com.madgag.spongycastle:core:1.58.0.0"
+    compile "com.madgag.spongycastle:prov:1.58.0.0"
+    compile "io.github.novacrypto:BIP39:0.1.9"
 }
-  
