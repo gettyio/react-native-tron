@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.author       = { "Brandon Holland" => "bholland@brandon-holland.com" }
   s.platform     = :ios, "9.0"
   s.source       = { :git => "https://github.com/gettyio/react-native-tron.git" }
-  s.source_files = "RNTron/*.{h,m}"
+  s.source_files = "RNTron/*.{h,m}", "RNTron/Categories/*.{h,m}"
   s.requires_arc = true
   
   s.dependency "React"
