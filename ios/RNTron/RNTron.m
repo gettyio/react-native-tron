@@ -39,19 +39,24 @@ RCT_EXPORT_MODULE();
 #pragma mark Public Native Methods
 #pragma mark
 
-RCT_REMAP_METHOD(generateAccount,
-                 password:(NSString *)password
+RCT_REMAP_METHOD(generateKeypair,
+                 mnemonics:(NSString *)mnemonics
+                 vaultNumber:(NSNumber * _Nonnull)vaultNumber
+                 testnet:(NSNumber * _Nonnull)testnet
                  generateAccountWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
     @try
     {
-        //Generate new tron signature then verify it is valid
-        TronSignature *tronSignature = [TronSignature generatedSignatureWithSecret: password];
+        //Create tron signature for mnemonics and vault number, then verify it is valid
+        TronSignature *tronSignature = [TronSignature signatureWithMnemonics: mnemonics
+                                                                      secret: nil
+                                                                  derivePath: [vaultNumber intValue]
+                                                                     testnet: [testnet boolValue]];
         if(!tronSignature.valid)
         {
             //Signature is invalid, reject and return
-            reject(@"Failed to generate account", @"Mnemonics invalid", nil);
+            reject(@"Failed to restore account from mnemonics", @"Mnemonics invalid", nil);
             return;
         }
         
@@ -59,11 +64,10 @@ RCT_REMAP_METHOD(generateAccount,
         NSDictionary *returnGeneratedAccount =
         @{
             @"address": tronSignature.address,
-            @"privateKey": tronSignature.privateKey,
-            @"mnemonics": tronSignature.mnemonics
+            @"privateKey": tronSignature.privateKey
         };
         
-        //Return the generated account dictionary
+        //Return the restored account dictionary
         resolve(returnGeneratedAccount);
     }
     @catch(NSException *e)
@@ -71,20 +75,22 @@ RCT_REMAP_METHOD(generateAccount,
         //Exception, reject
         NSDictionary *userInfo = @{ @"name": e.name, @"reason": e.reason };
         NSError *error = [NSError errorWithDomain: @"io.getty.rntron" code: 0 userInfo: userInfo];
-        reject(@"Failed to generate account", @"Native exception thrown", error);
+        reject(@"Failed to generate keypair from mnemonics", @"Native exception thrown", error);
     }
 }
 
 RCT_REMAP_METHOD(signTransaction,
                  ownerPrivateKey: (NSString *) ownerPrivateKey
                  encodedTransaction:(NSString *)encodedTransaction
+                 testnet:(NSNumber * _Nonnull)testnet
                  signTransactionWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
     @try
     {
         //Create tron signature for private key, then verify it is valid
-        TronSignature *tronSignature = [TronSignature signatureWithPrivateKey: ownerPrivateKey];
+        TronSignature *tronSignature = [TronSignature signatureWithPrivateKey: ownerPrivateKey
+                                                                      testnet: [testnet boolValue]];
         if(!tronSignature.valid)
         {
             //Signature is invalid, reject and return

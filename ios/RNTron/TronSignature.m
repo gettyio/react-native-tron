@@ -20,7 +20,8 @@ size_t const kTronSignaturePublicKeyHashSize = 20;
 size_t const kTronSignaturePrivateKeyLength = 32;
 size_t const kTronSignatureHashLength = 32;
 size_t const kTronSignatureDataSignatureLength = 65;
-uint8_t const kTronSignaturePrefixByte = 0x41; //0xa0 for testnet
+uint8_t const kTronSignaturePrefixByteMainnet = 0x41;
+uint8_t const kTronSignaturePrefixByteTestnet = 0xa0;
 
 #pragma mark -
 #pragma mark Private Functions
@@ -59,12 +60,14 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
 #pragma mark
 
 + (BOOL) validatePublicKey: (NSString *) publicKey
+                   testnet: (BOOL) testnet
 {
+    uint8_t prefixByte = testnet ? kTronSignaturePrefixByteTestnet : kTronSignaturePrefixByteMainnet;
     NSData *decodedBase58Data = [publicKey decodedBase58Data];
     uint8_t *decodedBase58Bytes = (uint8_t *)[decodedBase58Data bytes];
     return (decodedBase58Data != nil &&
             decodedBase58Data.length == kTronSignaturePublicKeySize &&
-            decodedBase58Bytes[0] == kTronSignaturePrefixByte);
+            decodedBase58Bytes[0] == prefixByte);
 }
 
 + (NSString *) generateNewMnemonics
@@ -75,13 +78,31 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
 
 + (id) signatureWithMnemonics: (NSString *) mnemonics
                        secret: (NSString *) secret
-{ return [[TronSignature alloc] initWithMnemonics: mnemonics secret: secret]; }
+                   derivePath: (int) derivePath
+                      testnet: (BOOL) testnet
+{
+    return [[TronSignature alloc] initWithMnemonics: mnemonics
+                                             secret: secret
+                                         derivePath: derivePath
+                                            testnet: testnet];
+}
 
 + (id) signatureWithPrivateKey: (NSString *) privateKey
-{ return [[TronSignature alloc] initWithPrivateKey: privateKey]; }
+                       testnet: (BOOL) testnet
+{
+    return [[TronSignature alloc] initWithPrivateKey: privateKey
+                                             testnet: testnet];
+}
 
 + (id) generatedSignatureWithSecret: (NSString *) secret
-{ return [[TronSignature alloc] initWithMnemonics: [TronSignature generateNewMnemonics] secret: secret]; }
+                         derivePath: (int) derivePath
+                            testnet: (BOOL) testnet
+{
+    return [[TronSignature alloc] initWithMnemonics: [TronSignature generateNewMnemonics]
+                                             secret: secret
+                                         derivePath: derivePath
+                                            testnet: testnet];
+}
 
 #pragma mark -
 #pragma mark Creation + Destruction
@@ -95,6 +116,8 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
         _address = nil;
         _privateKey = nil;
         _secret = nil;
+        _derivePath = 0;
+        _testnet = NO;
         _valid = NO;
         _fromWords = NO;
     }
@@ -103,11 +126,15 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
 
 - (id) initWithMnemonics: (NSString *) mnemonics
                   secret: (NSString *) secret
+              derivePath: (int) derivePath
+                 testnet: (BOOL) testnet
 {
     if (self = [self init])
     {
         _mnemonics = mnemonics;
         _secret = secret;
+        _derivePath = derivePath;
+        _testnet = testnet;
         _fromWords = YES;
         
         [self _updateFromMnemonics];
@@ -116,10 +143,12 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
 }
 
 - (id) initWithPrivateKey: (NSString *) privateKey
+                  testnet: (BOOL) testnet
 {
     if(self = [self init])
     {
         _privateKey = privateKey;
+        _testnet = testnet;
         _fromWords = NO;
         
         [self _updateFromPrivateKey];
@@ -160,12 +189,18 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
     //Generate seed from mnemonics and populate keys
     mnemonic_to_seed(words, scrt, seed, NULL);
     hdnode_from_seed_tron(seed, kTronSignatureSeedSize, &node);
+    hdnode_private_ckd(&node, 0x80000000 | 44);
+    hdnode_private_ckd(&node, 0x80000000 | 195);
+    hdnode_private_ckd(&node, 0x80000000 | _derivePath);
+    hdnode_private_ckd(&node, 0);
+    hdnode_private_ckd(&node, 0);
     hdnode_fill_public_key(&node);
     hdnode_get_ethereum_pubkeyhash(&node, publicKeyHash);
     
     //Get public address from seed
+    uint8_t prefixByte = _testnet ? kTronSignaturePrefixByteTestnet : kTronSignaturePrefixByteMainnet;
     memcpy(addr + 1, publicKeyHash, kTronSignaturePublicKeyHashSize);
-    addr[0] = kTronSignaturePrefixByte;
+    addr[0] = prefixByte;
     NSData *addressData = [NSData dataWithBytes: &addr length: kTronSignaturePublicKeyHashSize + 1];
     _address = [NSString encodedBase58StringWithData: addressData];
     
@@ -197,8 +232,9 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
     hdnode_get_ethereum_pubkeyhash(&node, publicKeyHash);
     
     //Get public address
+    uint8_t prefixByte = _testnet ? kTronSignaturePrefixByteTestnet : kTronSignaturePrefixByteMainnet;
     memcpy(addr + 1, publicKeyHash, kTronSignaturePublicKeyHashSize);
-    addr[0] = kTronSignaturePrefixByte;
+    addr[0] = prefixByte;
     NSData *addressData = [NSData dataWithBytes: &addr length: kTronSignaturePublicKeyHashSize + 1];
     _address = [NSString encodedBase58StringWithData: addressData];
     
@@ -250,6 +286,9 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
 
 - (BOOL) fromWords
 { return _fromWords; }
+
+- (BOOL) testnet
+{ return _testnet; }
 
 - (NSString *) mnemonics
 { return _mnemonics; }
