@@ -168,8 +168,8 @@ public class RNTronModule extends ReactContextBaseJavaModule {
           byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
           ECKey ownerKey = ECKey.fromPrivate(ownerPrivateKeyBytes);
 
-          //Parse transaction
-          byte[] transactionBytes = org.spongycastle.util.encoders.Base64.decode(encodedTransaction);
+          //Parse from hex encoded transaction
+          byte[] transactionBytes = ByteArray.fromHexString(encodedTransaction);
           Transaction transaction = Transaction.parseFrom(transactionBytes);
           if(transaction == null)
           {
@@ -182,12 +182,12 @@ public class RNTronModule extends ReactContextBaseJavaModule {
           transaction = TransactionUtils.setTimestamp(transaction);
           transaction = TransactionUtils.sign(transaction, ownerKey);
 
-          //Get base64 encoded string of signed transaction
+          //Get hex encoded string of signed transaction
           byte[] signedTransactionBytes = transaction.toByteArray();
-          String base64EncodedTransaction = new String(org.spongycastle.util.encoders.Base64.encode(signedTransactionBytes));
+          String encodedSignedTransaction = ByteArray.toHexString(signedTransactionBytes).toUpperCase();
 
           //Return result
-          promise.resolve(base64EncodedTransaction);
+          promise.resolve(encodedSignedTransaction);
         }
         catch(Exception e)
         {

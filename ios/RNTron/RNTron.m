@@ -104,8 +104,8 @@ RCT_REMAP_METHOD(signTransaction,
             return;
         }
         
-        //Decode base64 encoded string to data
-        NSData *transactionData = [[NSData alloc] initWithBase64EncodedString: encodedTransaction options: NSDataBase64DecodingIgnoreUnknownCharacters];
+        //Decode hex encoded string to data
+        NSData *transactionData = [NSData dataWithHexString: encodedTransaction];
         
         //Attempt to parse transaction from data
         NSError *transactionParseError = nil;
@@ -125,11 +125,11 @@ RCT_REMAP_METHOD(signTransaction,
         for(int i = 0; i < transaction.rawData.contractArray_Count; i++)
         { [transaction.signatureArray addObject: signatureData]; }
         
-        //Get base64 encoded string of signed transaction
-        NSString *base64EncodedTransaction = [transaction.data base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength];
+        //Get hex encoded string of signed transaction
+        NSString *encodedSignedTransaction = [transaction.data hexStringRepresentationUppercase: YES];
         
         //Return result
-        resolve(base64EncodedTransaction);
+        resolve(encodedSignedTransaction);
     }
     @catch(NSException *e)
     {
