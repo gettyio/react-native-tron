@@ -60,11 +60,17 @@ RCT_REMAP_METHOD(generateKeypair,
             return;
         }
         
+        //Get password using base64 encoded private key data
+        NSData *privateKeyData = [NSData dataWithHexString: tronSignature.privateKey];
+        NSString *password = [privateKeyData base64EncodedStringWithOptions: NSDataBase64Encoding64CharacterLineLength];
+        
         //Create generated account dictionary
         NSDictionary *returnGeneratedAccount =
         @{
             @"address": tronSignature.address,
-            @"privateKey": tronSignature.privateKey
+            @"privateKey": tronSignature.privateKey,
+            @"publicKey": tronSignature.publicKey,
+            @"password": password
         };
         
         //Return the restored account dictionary

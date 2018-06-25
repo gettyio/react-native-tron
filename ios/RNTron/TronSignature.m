@@ -15,7 +15,8 @@
 
 size_t const kTronSignatureMnemonicStrength = 128;
 size_t const kTronSignatureSeedSize = 64;
-size_t const kTronSignaturePublicKeySize = 21;
+size_t const kTronSignatureAddressSize = 21;
+size_t const kTronSignaturePublicKeySize = 65;
 size_t const kTronSignaturePublicKeyHashSize = 20;
 size_t const kTronSignaturePrivateKeyLength = 32;
 size_t const kTronSignatureHashLength = 32;
@@ -27,29 +28,23 @@ uint8_t const kTronSignaturePrefixByteTestnet = 0xa0;
 #pragma mark Private Functions
 #pragma mark
 
-const curve_info secp256k1_tron_info = {
-    .bip32_name = "Tron seed",
-    .params = &secp256k1,
-    .hasher_type = HASHER_SHA2,
-};
-
-int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
+int hdnode_get_tron_pubkeyhash(const HDNode *node, uint8_t *pubkeyhash)
 {
-    static CONFIDENTIAL uint8_t I[32 + 32];
-    memset(out, 0, sizeof(HDNode));
-    out->depth = 0;
-    out->child_num = 0;
-    out->curve = &secp256k1_tron_info;
+    uint8_t buf[65];
+    SHA3_CTX ctx;
     
-    static CONFIDENTIAL HMAC_SHA512_CTX ctx;
-    hmac_sha512_Init(&ctx, (const uint8_t*) out->curve->bip32_name, strlen(out->curve->bip32_name));
-    hmac_sha512_Update(&ctx, seed, seed_len);
-    hmac_sha512_Final(&ctx, I);
+    /* get uncompressed public key */
+    ecdsa_get_public_key65(node->curve->params, node->private_key, buf);
     
-    memcpy(out->private_key, I, 32);
-    memcpy(out->chain_code, I + 32, 32);
-    memzero(out->public_key, sizeof(out->public_key));
-    memzero(I, sizeof(I));
+    /* compute sha3 of x and y coordinate without 04 prefix */
+    
+    sha3_256_Init(&ctx);
+    sha3_Update(&ctx, buf + 1, 64);
+    keccak_Final(&ctx, buf);
+    
+    /* result are the least significant 160 bits */
+    memcpy(pubkeyhash, buf + 12, 20);
+    
     return 1;
 }
 
@@ -59,14 +54,14 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
 #pragma mark Class Methods
 #pragma mark
 
-+ (BOOL) validatePublicKey: (NSString *) publicKey
-                   testnet: (BOOL) testnet
++ (BOOL) validateAddress: (NSString *) address
+                 testnet: (BOOL) testnet
 {
     uint8_t prefixByte = testnet ? kTronSignaturePrefixByteTestnet : kTronSignaturePrefixByteMainnet;
-    NSData *decodedBase58Data = [publicKey decodedBase58Data];
+    NSData *decodedBase58Data = [address decodedBase58Data];
     uint8_t *decodedBase58Bytes = (uint8_t *)[decodedBase58Data bytes];
     return (decodedBase58Data != nil &&
-            decodedBase58Data.length == kTronSignaturePublicKeySize &&
+            decodedBase58Data.length == kTronSignatureAddressSize &&
             decodedBase58Bytes[0] == prefixByte);
 }
 
@@ -119,7 +114,6 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
         _derivePath = 0;
         _testnet = NO;
         _valid = NO;
-        _fromWords = NO;
     }
     return self;
 }
@@ -135,7 +129,6 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
         _secret = secret;
         _derivePath = derivePath;
         _testnet = testnet;
-        _fromWords = YES;
         
         [self _updateFromMnemonics];
     }
@@ -149,7 +142,6 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
     {
         _privateKey = privateKey;
         _testnet = testnet;
-        _fromWords = NO;
         
         [self _updateFromPrivateKey];
     }
@@ -184,29 +176,33 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
     uint8_t seed[kTronSignatureSeedSize];
     uint8_t publicKeyHash[kTronSignaturePublicKeyHashSize];
     uint8_t addr[kTronSignaturePublicKeyHashSize + 1];
+    uint8_t publicKeyBytes[kTronSignaturePublicKeySize];
     const char *scrt = _secret ? [_secret cStringUsingEncoding: NSUTF8StringEncoding] : "";
     
     //Generate seed from mnemonics and populate keys
     mnemonic_to_seed(words, scrt, seed, NULL);
-    hdnode_from_seed_tron(seed, kTronSignatureSeedSize, &node);
+    hdnode_from_seed(seed, kTronSignatureSeedSize, SECP256K1_NAME, &node);
     hdnode_private_ckd(&node, 0x80000000 | 44);
     hdnode_private_ckd(&node, 0x80000000 | 195);
     hdnode_private_ckd(&node, 0x80000000 | _derivePath);
-    hdnode_private_ckd(&node, 0);
-    hdnode_private_ckd(&node, 0);
     hdnode_fill_public_key(&node);
-    hdnode_get_ethereum_pubkeyhash(&node, publicKeyHash);
+    hdnode_get_tron_pubkeyhash(&node, publicKeyHash);
     
-    //Get public address from seed
+    //Get public address
     uint8_t prefixByte = _testnet ? kTronSignaturePrefixByteTestnet : kTronSignaturePrefixByteMainnet;
     memcpy(addr + 1, publicKeyHash, kTronSignaturePublicKeyHashSize);
     addr[0] = prefixByte;
     NSData *addressData = [NSData dataWithBytes: &addr length: kTronSignaturePublicKeyHashSize + 1];
     _address = [NSString encodedBase58StringWithData: addressData];
     
-    //Get private key from seed
+    //Get private key
     NSData *privateKeyData = [NSData dataWithBytes: &node.private_key length: kTronSignaturePrivateKeyLength];
     _privateKey = [privateKeyData hexStringRepresentationUppercase: YES];
+    
+    //Get public key
+    ecdsa_get_public_key65(node.curve->params, node.private_key, publicKeyBytes);
+    NSData *publicKeyData = [NSData dataWithBytes: &publicKeyBytes length: kTronSignaturePublicKeySize];
+    _publicKey = [publicKeyData hexStringRepresentationUppercase: YES];
     
     //Signature is valid if we made it this far
     _valid = YES;
@@ -224,12 +220,13 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
     HDNode node;
     uint8_t publicKeyHash[kTronSignaturePublicKeyHashSize];
     uint8_t addr[kTronSignaturePublicKeyHashSize + 1];
+    uint8_t publicKeyBytes[kTronSignaturePublicKeySize];
     const uint8_t *privateKeyBytes = (uint8_t *)[[NSData dataWithHexString: _privateKey] bytes];
     
     //Populate keys
     hdnode_from_xprv(0, 0, privateKeyBytes, privateKeyBytes, SECP256K1_NAME, &node);
     hdnode_fill_public_key(&node);
-    hdnode_get_ethereum_pubkeyhash(&node, publicKeyHash);
+    hdnode_get_tron_pubkeyhash(&node, publicKeyHash);
     
     //Get public address
     uint8_t prefixByte = _testnet ? kTronSignaturePrefixByteTestnet : kTronSignaturePrefixByteMainnet;
@@ -237,6 +234,11 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
     addr[0] = prefixByte;
     NSData *addressData = [NSData dataWithBytes: &addr length: kTronSignaturePublicKeyHashSize + 1];
     _address = [NSString encodedBase58StringWithData: addressData];
+    
+    //Get public key
+    ecdsa_get_public_key65(node.curve->params, node.private_key, publicKeyBytes);
+    NSData *publicKeyData = [NSData dataWithBytes: &publicKeyBytes length: kTronSignaturePublicKeySize];
+    _publicKey = [publicKeyData hexStringRepresentationUppercase: YES];
     
     //Signature is valid if we made it this far
     _valid = YES;
@@ -284,9 +286,6 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
 - (BOOL) valid
 { return _valid; }
 
-- (BOOL) fromWords
-{ return _fromWords; }
-
 - (BOOL) testnet
 { return _testnet; }
 
@@ -298,6 +297,9 @@ int hdnode_from_seed_tron(const uint8_t *seed, int seed_len, HDNode *out)
 
 - (NSString *) privateKey
 { return _privateKey; }
+
+- (NSString *) publicKey
+{ return _publicKey; }
 
 @end
 

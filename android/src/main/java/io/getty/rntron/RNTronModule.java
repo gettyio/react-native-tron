@@ -36,6 +36,12 @@ import io.github.novacrypto.bip39.SeedCalculator;
 import io.github.novacrypto.bip39.Words;
 import io.github.novacrypto.bip39.wordlists.English;
 
+import io.github.novacrypto.bip32.ExtendedPrivateKey;
+import io.github.novacrypto.bip32.CKDpriv;
+import io.github.novacrypto.bip32.Network;
+import io.github.novacrypto.bip32.networks.Bitcoin;
+import static io.github.novacrypto.bip32.Index.hard;
+
 import java.security.SecureRandom;
 import java.math.BigInteger;
 import java.util.*;
@@ -44,7 +50,8 @@ import java.lang.*;
 public class RNTronModule extends ReactContextBaseJavaModule {
 
   private static final int DECODED_PUBKEY_LENGTH = 21;
-  private static final int DECODED_PREFIX_BYTE = 0x41; //0xa0 for testnet
+  private static final int MAINNET_PREFIX_BYTE = 0x41;
+  private static final int TESTNET_PREFIX_BYTE = 0xa0;
   private static final int PRIVATE_KEY_LENGTH = 64;
 
   private final ReactApplicationContext reactContext;
@@ -89,7 +96,10 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void generateAccount(final String password, final Promise promise)
+  public void generateKeypair(final String mnemonics,
+                              final int vaultNumber,
+                              final boolean testnet,
+                              final Promise promise)
   {
     new Thread(new Runnable()
     {
@@ -97,36 +107,41 @@ public class RNTronModule extends ReactContextBaseJavaModule {
       {
         try
         {
-          //Create mnemonics
-          final StringBuilder sb = new StringBuilder();
-          byte[] entropy = new byte[Words.TWELVE.byteLength()];
-          new SecureRandom().nextBytes(entropy);
-          new MnemonicGenerator(English.INSTANCE)
-          .createMnemonic(entropy, new MnemonicGenerator.Target()
-          {
-            @Override
-            public void append(final CharSequence string)
-            { sb.append(string); }
-          });
-
           //Create ECKey from mnemonics seed
-          String mnemonics = sb.toString();
-          byte[] mnemonicSeedBytes = new SeedCalculator().calculateSeed(mnemonics, password);
-          ECKey key = ECKey.fromSeed(mnemonicSeedBytes);
+          byte[] mnemonicSeedBytes = new SeedCalculator().calculateSeed(mnemonics, "");
+
+          //Derive private key
+          ExtendedPrivateKey rootKey = ExtendedPrivateKey.fromSeed(mnemonicSeedBytes, Bitcoin.MAIN_NET);
+          byte[] derivedKeyBytes = rootKey
+            .cKDpriv(hard(44))
+            .cKDpriv(hard(195))
+            .cKDpriv(hard(vaultNumber))
+            .extendedKeyByteArray();
+
+          int keyOffset = derivedKeyBytes.length - 36;
+          byte[] privateKeyBytes = Arrays.copyOfRange(derivedKeyBytes, keyOffset, keyOffset + 32);
+          ECKey key = ECKey.fromPrivate(privateKeyBytes);
 
           //Get public address
           byte[] addressBytes = key.getAddress();
           String address = _encode58Check(addressBytes);
 
           //Get private key
-          byte[] privateKeyBytes = key.getPrivKeyBytes();
           String privateKey = ByteArray.toHexString(privateKeyBytes).toUpperCase();
+
+          //Get public key
+          byte[] publicKeyBytes = key.getPubKey();
+          String publicKey = ByteArray.toHexString(publicKeyBytes).toUpperCase();
+
+          //Get password
+          String password = new String(org.spongycastle.util.encoders.Base64.encode(privateKeyBytes));
 
           //Create generated account map
           WritableMap returnGeneratedAccount = Arguments.createMap();
           returnGeneratedAccount.putString("address", address);
           returnGeneratedAccount.putString("privateKey", privateKey);
-          returnGeneratedAccount.putString("mnemonics", mnemonics);
+          returnGeneratedAccount.putString("publicKey", publicKey);
+          returnGeneratedAccount.putString("password", password);
 
           //Return generated account map
           promise.resolve(returnGeneratedAccount);

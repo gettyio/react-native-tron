@@ -13,14 +13,14 @@
     NSString *_mnemonics;
     NSString *_address;
     NSString *_privateKey;
+    NSString *_publicKey;
     NSString *_secret;
     int _derivePath;
     BOOL _testnet;
     BOOL _valid;
-    BOOL _fromWords;
 }
-+ (BOOL) validatePublicKey: (NSString *) publicKey
-                   testnet: (BOOL) testnet;
++ (BOOL) validateAddress: (NSString *) address
+                 testnet: (BOOL) testnet;
 + (NSString *) generateNewMnemonics;
 + (id) signatureWithMnemonics: (NSString *) mnemonics
                        secret: (NSString *) secret
@@ -39,9 +39,9 @@
                   testnet: (BOOL) testnet;
 - (NSData *) sign: (NSData *) data;
 - (BOOL) valid;
-- (BOOL) fromWords;
 - (BOOL) testnet;
 - (NSString *) mnemonics;
 - (NSString *) address;
 - (NSString *) privateKey;
+- (NSString *) publicKey;
 @end

@@ -95,7 +95,6 @@ public class ECKey implements Serializable {
       ("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", 16);
   private static final SecureRandom secureRandom;
   private static final long serialVersionUID = -728224901792295832L;
-  private static final String tronSeed = "Tron seed";
 
   static {
     // All clients must agree on the curve to use by agreement.
@@ -275,23 +274,6 @@ public class ECKey implements Serializable {
    */
   public static ECKey fromPrivate(BigInteger privKey) {
     return new ECKey(privKey, CURVE.getG().multiply(privKey));
-  }
-
-  /**
-   * Creates an ECKey given the seed only.
-   *
-   * @param privKey -
-   * @return -
-   */
-  public static ECKey fromSeed(byte[] seed) {
-    HMac hmac = new HMac(new SHA512Digest());
-    hmac.init(new KeyParameter(tronSeed.getBytes()));
-    hmac.update(seed, 0, seed.length);
-    byte[] out = new byte[64];
-    hmac.doFinal(out, 0);
-
-    byte[] privKeyBytes = Arrays.copyOfRange(out, 0, 32);
-    return fromPrivate(new BigInteger(1, privKeyBytes));
   }
 
   /**
