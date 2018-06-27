@@ -131,9 +131,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
       public void run()
       {
 
-        try () {
-
-
+        try {
           //Return result
           promise.resolve("Validated");
 
