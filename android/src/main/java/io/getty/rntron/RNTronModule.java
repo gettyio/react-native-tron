@@ -30,7 +30,6 @@ import org.tron.common.utils.*;
 
 import org.spongycastle.util.encoders.*;
 
-import io.github.novacrypto.SecureCharBuffer;
 import io.github.novacrypto.bip39.MnemonicGenerator;
 import io.github.novacrypto.bip39.MnemonicValidator;
 import io.github.novacrypto.bip39.SeedCalculator;
@@ -108,7 +107,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
           StringBuilder mnemonic = new StringBuilder();
           byte[] entropy = new byte[Words.TWELVE.byteLength()];
           new SecureRandom().nextBytes(entropy);
-          new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, sb::append);
+          new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, mnemonic::append);
           System.out.println(mnemonic.toString());
           promise.resolve(mnemonic.toString());
 
