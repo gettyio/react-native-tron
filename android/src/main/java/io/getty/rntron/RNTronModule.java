@@ -104,12 +104,14 @@ public class RNTronModule extends ReactContextBaseJavaModule {
       {
 
         try {
+
           StringBuilder mnemonic = new StringBuilder();
           byte[] entropy = new byte[Words.TWELVE.byteLength()];
-          new SecureRandom().nextBytes(entropy);
-          new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, mnemonic::append);
-          System.out.println(mnemonic.toString());
-          promise.resolve(mnemonic.toString());
+//          new SecureRandom().nextBytes(entropy);
+//          MnemonicGenerator generator = new MnemonicGenerator(English.INSTANCE);
+//          generator.createMnemonic(entropy, mnemonic::append);
+         // System.out.println(mnemonic.toString());
+          promise.resolve(entropy);
 
         } catch(Exception e) {
           //Exception, reject
