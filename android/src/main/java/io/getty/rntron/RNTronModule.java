@@ -104,21 +104,34 @@ public class RNTronModule extends ReactContextBaseJavaModule {
       public void run()
       {
 
-        try (SecureCharBuffer secure = new SecureCharBuffer()) {
+        try {
+          StringBuilder mnemonic = new StringBuilder();
           byte[] entropy = new byte[Words.TWELVE.byteLength()];
           new SecureRandom().nextBytes(entropy);
-          new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, secure::append);
-          Arrays.fill(entropy, (byte) 0); // empty entropy
-
-          CharSequence mnemonic = secureBuffer.toStringAble();
-
-          //Return result
+          new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, sb::append);
+          System.out.println(mnemonic.toString());
           promise.resolve(mnemonic.toString());
 
         } catch(Exception e) {
           //Exception, reject
           promise.reject("Failed to sign transaction", "Native exception thrown", e);
         }
+
+//        try (SecureCharBuffer secure = new SecureCharBuffer()) {
+//          byte[] entropy = new byte[Words.TWELVE.byteLength()];
+//          new SecureRandom().nextBytes(entropy);
+//          new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, secure::append);
+//          Arrays.fill(entropy, (byte) 0); // empty entropy
+//
+//          CharSequence mnemonic = secureBuffer.toStringAble();
+//
+//          //Return result
+//          promise.resolve(mnemonic.toString());
+//
+//        } catch(Exception e) {
+//          //Exception, reject
+//          promise.reject("Failed to sign transaction", "Native exception thrown", e);
+//        }
       }
     }).start();
   }
