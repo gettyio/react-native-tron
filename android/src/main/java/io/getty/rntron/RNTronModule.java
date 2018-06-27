@@ -30,12 +30,12 @@ import org.tron.common.utils.*;
 
 import org.spongycastle.util.encoders.*;
 
+import io.github.novacrypto.SecureCharBuffer;
 import io.github.novacrypto.bip39.MnemonicGenerator;
 import io.github.novacrypto.bip39.MnemonicValidator;
 import io.github.novacrypto.bip39.SeedCalculator;
 import io.github.novacrypto.bip39.Words;
 import io.github.novacrypto.bip39.wordlists.English;
-
 import io.github.novacrypto.bip32.ExtendedPrivateKey;
 import io.github.novacrypto.bip32.CKDpriv;
 import io.github.novacrypto.bip32.Network;
@@ -93,6 +93,63 @@ public class RNTronModule extends ReactContextBaseJavaModule {
     System.arraycopy(input, 0, inputCheck, 0, input.length);
     System.arraycopy(hash1, 0, inputCheck, input.length, 4);
     return Base58.encode(inputCheck);
+  }
+  
+
+  @ReactMethod
+  public void generateMnemonic(final Promise promise)
+  {
+    new Thread(new Runnable()
+    {
+      public void run()
+      {
+
+        try (SecureCharBuffer secure = new SecureCharBuffer()) {
+        byte[] entropy = new byte[Words.TWELVE.byteLength()];
+        new SecureRandom().nextBytes(entropy);
+        new MnemonicGenerator(English.INSTANCE).createMnemonic(entropy, secure::append);
+        Arrays.fill(entropy, (byte) 0); // empty entropy
+
+        CharSequence mnemonic = secureBuffer.toStringAble();
+
+        //Return result
+        promise.resolve(mnemonic.toString();
+
+      } catch(Exception e)
+        {
+          //Exception, reject
+          promise.reject("Failed to sign transaction", "Native exception thrown", e);
+        }
+      }
+    }).start();
+  }
+
+  @ReactMethod
+  public void validateMnemonic(final Promise promise)
+  {
+    new Thread(new Runnable()
+    {
+      public void run()
+      {
+
+        // try (SecureCharBuffer secure = new SecureCharBuffer()) {
+        // byte[] entropy = new byte[Words.TWELVE.byteLength()];
+        // new SecureRandom().nextBytes(entropy);
+        // new MnemonicGenerator(English.INSTANCE)
+        //     .createMnemonic(entropy, secure::append);
+        // Arrays.fill(entropy, (byte) 0); //empty entropy
+        // //do something with your secure mnemonic
+
+        //Return result
+        promise.resolve("");
+
+      } catch(Exception e)
+        {
+          //Exception, reject
+          promise.reject("Failed to sign transaction", "Native exception thrown", e);
+        }
+      }
+    }).start();
   }
 
   @ReactMethod
