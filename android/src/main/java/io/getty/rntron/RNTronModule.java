@@ -35,12 +35,12 @@ import io.github.novacrypto.bip39.MnemonicValidator;
 import io.github.novacrypto.bip39.SeedCalculator;
 import io.github.novacrypto.bip39.Words;
 import io.github.novacrypto.bip39.wordlists.English;
-
 import io.github.novacrypto.bip32.ExtendedPrivateKey;
 import io.github.novacrypto.bip32.CKDpriv;
 import io.github.novacrypto.bip32.Network;
 import io.github.novacrypto.bip32.networks.Bitcoin;
 import static io.github.novacrypto.bip32.Index.hard;
+import io.github.novacrypto.bip39.Validation.*;
 
 import java.security.SecureRandom;
 import java.math.BigInteger;
@@ -77,9 +77,9 @@ public class RNTronModule extends ReactContextBaseJavaModule {
     byte[] hash0 = Hash.sha256(decodeData);
     byte[] hash1 = Hash.sha256(hash0);
     if (hash1[0] == decodeCheck[decodeData.length] &&
-        hash1[1] == decodeCheck[decodeData.length + 1] &&
-        hash1[2] == decodeCheck[decodeData.length + 2] &&
-        hash1[3] == decodeCheck[decodeData.length + 3])
+            hash1[1] == decodeCheck[decodeData.length + 1] &&
+            hash1[2] == decodeCheck[decodeData.length + 2] &&
+            hash1[3] == decodeCheck[decodeData.length + 3])
     { return decodeData; }
 
     return null;
@@ -93,6 +93,58 @@ public class RNTronModule extends ReactContextBaseJavaModule {
     System.arraycopy(input, 0, inputCheck, 0, input.length);
     System.arraycopy(hash1, 0, inputCheck, input.length, 4);
     return Base58.encode(inputCheck);
+  }
+
+
+  @ReactMethod
+  public void generateMnemonic(final Promise promise)
+  {
+    new Thread(new Runnable()
+    {
+      public void run()
+      {
+        try {
+          StringBuilder mnemonic = new StringBuilder();
+          byte[] entropy = new byte[Words.TWELVE.byteLength()];
+          new SecureRandom().nextBytes(entropy);
+          MnemonicGenerator generator = new MnemonicGenerator(English.INSTANCE);
+          generator.createMnemonic(entropy, mnemonic::append);
+          // System.out.println(mnemonic.toString());
+          promise.resolve(mnemonic.toString());
+
+        } catch(Exception e) {
+          //Exception, reject
+          promise.reject("Failed to generate mnemonic seed", "Native exception thrown", e);
+        }
+      }
+    }).start();
+  }
+
+  @ReactMethod
+  public void validateMnemonic(final String mnemonic, final Promise promise)
+  {
+    new Thread(new Runnable()
+    {
+      public void run()
+      {
+        try {
+          MnemonicValidator
+                  .ofWordList(English.INSTANCE)
+                  .validate(mnemonic);
+          promise.resolve("VALID");
+        } catch (UnexpectedWhiteSpaceException e) {
+          promise.reject("UnexpectedWhiteSpaceException", "UnexpectedWhiteSpaceException", e);
+        } catch (InvalidWordCountException e) {
+          promise.reject("InvalidWordCountException", "InvalidWordCountException", e);
+        } catch (InvalidChecksumException e) {
+          promise.reject("InvalidChecksumException", "InvalidChecksumException", e);
+        } catch (WordNotFoundException e) {
+          promise.reject("WordNotFoundException", "WordNotFoundException", e);
+        } catch(Exception e) {
+          promise.reject("Failed to validate mnemonic", "Native exception thrown", e);
+        }
+      }
+    }).start();
   }
 
   @ReactMethod
@@ -113,10 +165,10 @@ public class RNTronModule extends ReactContextBaseJavaModule {
           //Derive private key
           ExtendedPrivateKey rootKey = ExtendedPrivateKey.fromSeed(mnemonicSeedBytes, Bitcoin.MAIN_NET);
           byte[] derivedKeyBytes = rootKey
-            .cKDpriv(hard(44))
-            .cKDpriv(hard(195))
-            .cKDpriv(hard(vaultNumber))
-            .extendedKeyByteArray();
+                  .cKDpriv(hard(44))
+                  .cKDpriv(hard(195))
+                  .cKDpriv(hard(vaultNumber))
+                  .extendedKeyByteArray();
 
           int keyOffset = derivedKeyBytes.length - 36;
           byte[] privateKeyBytes = Arrays.copyOfRange(derivedKeyBytes, keyOffset, keyOffset + 32);
