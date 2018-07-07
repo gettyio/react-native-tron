@@ -21,6 +21,9 @@
 }
 + (BOOL) validateAddress: (NSString *) address
                  testnet: (BOOL) testnet;
+    
++ (int) validateMnemonic: (NSString *) mnemonic;
+    
 + (NSString *) generateNewMnemonics;
 + (id) signatureWithMnemonics: (NSString *) mnemonics
                        secret: (NSString *) secret
