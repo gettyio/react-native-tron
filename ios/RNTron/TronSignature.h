@@ -22,7 +22,7 @@
 + (BOOL) validateAddress: (NSString *) address
                  testnet: (BOOL) testnet;
     
-+ (int) validateMnemonic: (NSString *) mnemonic;
++ (BOOL) validateMnemonic: (NSString *) mnemonic;
     
 + (NSString *) generateNewMnemonics;
 + (id) signatureWithMnemonics: (NSString *) mnemonics
