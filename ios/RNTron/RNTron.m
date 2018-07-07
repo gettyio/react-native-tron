@@ -84,6 +84,54 @@ RCT_REMAP_METHOD(generateKeypair,
         reject(@"Failed to generate keypair from mnemonics", @"Native exception thrown", error);
     }
 }
+    
+    
+RCT_REMAP_METHOD(generateMnemonic,
+                 generateMnemonicWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    @try
+    {
+        //Create tron signature for mnemonics and vault number, then verify it is valid
+        NSString *mnemonic = [TronSignature generateNewMnemonics];
+        
+        //Return the restored account dictionary
+        resolve(mnemonic);
+    }
+    @catch(NSException *e)
+    {
+        //Exception, reject
+        NSDictionary *userInfo = @{ @"name": e.name, @"reason": e.reason };
+        NSError *error = [NSError errorWithDomain: @"io.getty.rntron" code: 0 userInfo: userInfo];
+        reject(@"Failed to generate keypair from mnemonics", @"Native exception thrown", error);
+    }
+}
+    
+
+    
+RCT_REMAP_METHOD(validateMnemonic,
+                 mnemonics:(NSString * _Nonnull)mnemonic
+                 validateMnemonicWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    @try
+    {
+        int res = [TronSignature validateMnemonic:mnemonic];
+        if (res == 1) {
+            resolve(@"VALID");
+        } else {
+            resolve(@"INVALID");
+        }
+        
+    }
+    @catch(NSException *e)
+    {
+        //Exception, reject
+        NSDictionary *userInfo = @{ @"name": e.name, @"reason": e.reason };
+        NSError *error = [NSError errorWithDomain: @"io.getty.rntron" code: 0 userInfo: userInfo];
+        reject(@"Failed to validate mnemonic", @"Native exception thrown", error);
+    }
+}
 
 RCT_REMAP_METHOD(signTransaction,
                  ownerPrivateKey: (NSString *) ownerPrivateKey
