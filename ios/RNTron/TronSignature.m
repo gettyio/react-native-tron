@@ -70,6 +70,12 @@ int hdnode_get_tron_pubkeyhash(const HDNode *node, uint8_t *pubkeyhash)
     const char *mnemonics = mnemonic_generate(kTronSignatureMnemonicStrength);
     return [NSString stringWithCString: mnemonics encoding: NSUTF8StringEncoding];
 }
+    
++ (int) validateMnemonic: (NSString *) mnemonic
+{
+    const char *c = [mnemonic cStringUsingEncoding:NSUTF8StringEncoding];
+    return mnemonic_check(c);
+}
 
 + (id) signatureWithMnemonics: (NSString *) mnemonics
                        secret: (NSString *) secret
@@ -302,5 +308,3 @@ int hdnode_get_tron_pubkeyhash(const HDNode *node, uint8_t *pubkeyhash)
 { return _publicKey; }
 
 @end
-
-
