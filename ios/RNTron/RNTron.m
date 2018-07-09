@@ -136,7 +136,6 @@ RCT_REMAP_METHOD(validateMnemonic,
 RCT_REMAP_METHOD(signTransaction,
                  ownerPrivateKey: (NSString *) ownerPrivateKey
                  encodedTransaction:(NSString *)encodedTransaction
-                 testnet:(NSNumber * _Nonnull)testnet
                  signTransactionWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -144,7 +143,7 @@ RCT_REMAP_METHOD(signTransaction,
     {
         //Create tron signature for private key, then verify it is valid
         TronSignature *tronSignature = [TronSignature signatureWithPrivateKey: ownerPrivateKey
-                                                                      testnet: [testnet boolValue]];
+                                                                      testnet: false];
         if(!tronSignature.valid)
         {
             //Signature is invalid, reject and return
