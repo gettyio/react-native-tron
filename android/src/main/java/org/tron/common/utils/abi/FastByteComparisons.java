@@ -1,4 +1,4 @@
-package org.tron.common.utils;
+package org.tron.common.utils.abi;
 
 /*
  * Copyright (c) [2016] [ <ether.camp> ]
@@ -73,7 +73,7 @@ public abstract class FastByteComparisons {
 
   private interface Comparer<T> {
     int compareTo(T buffer1, int offset1, int length1,
-        T buffer2, int offset2, int length2);
+                  T buffer2, int offset2, int length2);
   }
 
   /**

@@ -1,4 +1,4 @@
-package org.tron.common.utils;
+package org.tron.common.utils.abi;
 /*
  * Copyright (c) [2016] [ <ether.camp> ]
  * This file is part of the ethereumJ library.
@@ -18,10 +18,10 @@ package org.tron.common.utils;
  */
 
 
+import org.spongycastle.util.encoders.Hex;
+
 import java.io.Serializable;
 import java.util.Arrays;
-import org.spongycastle.util.encoders.Hex;
-import org.tron.common.utils.FastByteComparisons;
 
 
 public class ByteArrayWrapper implements Comparable<ByteArrayWrapper>, Serializable {

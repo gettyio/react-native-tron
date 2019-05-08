@@ -16,31 +16,38 @@
  * along with the ethereumJ library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.tron.common.crypto.jce;
+package org.tron.common.utils;
 
-import org.spongycastle.jce.provider.BouncyCastleProvider;
 
-import java.security.Provider;
-import java.security.Security;
+import org.tron.common.crypto.LinuxSecureRandom;
 
-public final class TronCastleProvider {
+import java.security.SecureRandom;
 
-    public static Provider getInstance() {
-        return Holder.INSTANCE;
+public class Utils {
+
+    private static SecureRandom random;
+
+
+    static {
+        if (isAndroidRuntime()) {
+            new LinuxSecureRandom();
+        }
+        random = new SecureRandom();
     }
 
-    private static class Holder {
-        private static final Provider INSTANCE;
 
-        static {
-            Provider p = Security.getProvider("SC");
+    public static SecureRandom getRandom() {
+        return random;
+    }
 
-            INSTANCE = (p != null) ? p : new BouncyCastleProvider();
+    private static int isAndroid = -1;
 
-            INSTANCE.put("MessageDigest.TRON-KECCAK-256", "org.tron.common.crypto" +
-                    ".cryptohash.Keccak256");
-            INSTANCE.put("MessageDigest.TRON-KECCAK-512", "org.tron.common.crypto" +
-                    ".cryptohash.Keccak512");
+    static boolean isAndroidRuntime() {
+        if (isAndroid == -1) {
+            final String runtime = System.getProperty("java.runtime.name");
+            isAndroid = (runtime != null && runtime.equals("Android Runtime")) ? 1 : 0;
         }
+        return isAndroid == 1;
     }
 }
+

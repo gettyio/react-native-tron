@@ -1,52 +1,38 @@
 
 package io.getty.rntron;
 
-import android.content.Context;
-import android.util.Log;
-
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.Promise;
-import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
-import com.facebook.react.bridge.WritableArray;
-import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.ReadableArray;
+import com.google.protobuf.ByteString;
 
-
-import org.tron.protos.Contract;
-import org.tron.protos.Protocol.Account;
-import org.tron.protos.Protocol.Account.Frozen;
-import org.tron.protos.Protocol.Vote;
-import org.tron.protos.Protocol.Block;
-import org.tron.protos.Protocol.Transaction;
-import org.tron.protos.Protocol.Witness;
 import org.tron.common.crypto.ECKey;
-import org.tron.common.crypto.Hash;
-import org.tron.common.crypto.Sha256Hash;
-import org.tron.common.crypto.SymmEncoder;
-import org.tron.common.utils.*;
+import org.tron.common.utils.Base58;
+import org.tron.common.utils.ByteArray;
+import org.tron.common.utils.Sha256Hash;
+import org.tron.common.utils.TransactionUtils;
+import org.tron.protos.Contract;
+import org.tron.protos.Protocol.Transaction;
 
-import org.spongycastle.util.encoders.*;
+import java.security.SecureRandom;
+import java.util.Arrays;
 
+import io.github.novacrypto.bip32.ExtendedPrivateKey;
+import io.github.novacrypto.bip32.networks.Bitcoin;
 import io.github.novacrypto.bip39.MnemonicGenerator;
 import io.github.novacrypto.bip39.MnemonicValidator;
 import io.github.novacrypto.bip39.SeedCalculator;
+import io.github.novacrypto.bip39.Validation.InvalidChecksumException;
+import io.github.novacrypto.bip39.Validation.InvalidWordCountException;
+import io.github.novacrypto.bip39.Validation.UnexpectedWhiteSpaceException;
+import io.github.novacrypto.bip39.Validation.WordNotFoundException;
 import io.github.novacrypto.bip39.Words;
 import io.github.novacrypto.bip39.wordlists.English;
-import io.github.novacrypto.bip32.ExtendedPrivateKey;
-import io.github.novacrypto.bip32.CKDpriv;
-import io.github.novacrypto.bip32.Network;
-import io.github.novacrypto.bip32.networks.Bitcoin;
-import static io.github.novacrypto.bip32.Index.hard;
-import io.github.novacrypto.bip39.Validation.*;
 
-import java.security.SecureRandom;
-import java.math.BigInteger;
-import java.util.*;
-import java.lang.*;
+import static io.github.novacrypto.bip32.Index.hard;
 
 public class RNTronModule extends ReactContextBaseJavaModule {
 
@@ -209,6 +195,69 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
+  public void abstractSign(final String ownerPrivateKey, final String transaction, final Promise promise)
+  {
+    new Thread(new Runnable() {
+      public void run() {
+        try {
+          System.out.println("Hello test from abstractSign");
+        } catch(Exception e) {
+          promise.reject("Failed to sign transaction", e.getMessage(), e);
+        }
+      }
+    }).start();
+  }
+
+  public static Contract.TriggerSmartContract triggerCallContractWalletCli(byte[] address,
+                                                                  byte[] contractAddress,
+                                                                  long callValue, byte[] data, long tokenValue, String tokenId) {
+    Contract.TriggerSmartContract.Builder builder = Contract.TriggerSmartContract.newBuilder();
+    builder.setOwnerAddress(ByteString.copyFrom(address));
+    builder.setContractAddress(ByteString.copyFrom(contractAddress));
+    builder.setData(ByteString.copyFrom(data));
+    builder.setCallValue(callValue);
+    if (tokenId != null && tokenId != "") {
+        builder.setCallTokenValue(tokenValue);
+        builder.setTokenId(Long.parseLong(tokenId));
+    }
+
+    return builder.build();
+
+  }
+
+  @ReactMethod
+  public static String triggerCallContract(String address,
+                                          String contractAddress,
+                                          String callValueStr, String data, String tokenValueStr, String tokenId) {
+
+    byte[] addressBytes = _decode58Check(address);
+    byte[] contractAddressBytes = _decode58Check(contractAddress);
+    byte[] dataBytes = ByteArray.fromHexString(data);
+
+    Long callValue = Long.parseLong(callValueStr);
+    Long tokenValue = Long.parseLong(tokenValueStr);
+
+    Contract.TriggerSmartContract.Builder builder = Contract.TriggerSmartContract.newBuilder();
+
+    builder.setOwnerAddress(ByteString.copyFrom(addressBytes));
+    builder.setContractAddress(ByteString.copyFrom(contractAddressBytes));
+    builder.setData(ByteString.copyFrom(dataBytes));
+    builder.setCallValue(callValue);
+
+    if (tokenId != null && tokenId != "") {
+      builder.setCallTokenValue(tokenValue);
+      builder.setTokenId(Long.parseLong(tokenId));
+    }
+
+    Contract.TriggerSmartContract response = builder.build();
+
+    System.out.println(response);
+
+    return ByteArray.toHexString(response.toByteArray());
+
+  }
+
+  @ReactMethod
   public void signTransaction(final String ownerPrivateKey, final String encodedTransaction, final Promise promise)
   {
     new Thread(new Runnable()
@@ -250,4 +299,5 @@ public class RNTronModule extends ReactContextBaseJavaModule {
       }
     }).start();
   }
+
 }
