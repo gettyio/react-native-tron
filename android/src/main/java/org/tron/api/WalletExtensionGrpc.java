@@ -18,7 +18,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.9.0)",
+    value = "by gRPC proto compiler (version 1.12.0)",
     comments = "Source: api/api.proto")
 public final class WalletExtensionGrpc {
 
@@ -30,7 +30,7 @@ public final class WalletExtensionGrpc {
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getGetTransactionsFromThisMethod()} instead. 
   public static final io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
-      org.tron.api.GrpcAPI.TransactionList> METHOD_GET_TRANSACTIONS_FROM_THIS = getGetTransactionsFromThisMethod();
+      org.tron.api.GrpcAPI.TransactionList> METHOD_GET_TRANSACTIONS_FROM_THIS = getGetTransactionsFromThisMethodHelper();
 
   private static volatile io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
       org.tron.api.GrpcAPI.TransactionList> getGetTransactionsFromThisMethod;
@@ -38,6 +38,11 @@ public final class WalletExtensionGrpc {
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
       org.tron.api.GrpcAPI.TransactionList> getGetTransactionsFromThisMethod() {
+    return getGetTransactionsFromThisMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
+      org.tron.api.GrpcAPI.TransactionList> getGetTransactionsFromThisMethodHelper() {
     io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated, org.tron.api.GrpcAPI.TransactionList> getGetTransactionsFromThisMethod;
     if ((getGetTransactionsFromThisMethod = WalletExtensionGrpc.getGetTransactionsFromThisMethod) == null) {
       synchronized (WalletExtensionGrpc.class) {
@@ -60,41 +65,9 @@ public final class WalletExtensionGrpc {
      return getGetTransactionsFromThisMethod;
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  @java.lang.Deprecated // Use {@link #getGetTransactionsFromThis2Method()} instead. 
-  public static final io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
-      org.tron.api.GrpcAPI.TransactionListExtention> METHOD_GET_TRANSACTIONS_FROM_THIS2 = getGetTransactionsFromThis2Method();
-
-  private static volatile io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
-      org.tron.api.GrpcAPI.TransactionListExtention> getGetTransactionsFromThis2Method;
-
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
-      org.tron.api.GrpcAPI.TransactionListExtention> getGetTransactionsFromThis2Method() {
-    io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated, org.tron.api.GrpcAPI.TransactionListExtention> getGetTransactionsFromThis2Method;
-    if ((getGetTransactionsFromThis2Method = WalletExtensionGrpc.getGetTransactionsFromThis2Method) == null) {
-      synchronized (WalletExtensionGrpc.class) {
-        if ((getGetTransactionsFromThis2Method = WalletExtensionGrpc.getGetTransactionsFromThis2Method) == null) {
-          WalletExtensionGrpc.getGetTransactionsFromThis2Method = getGetTransactionsFromThis2Method = 
-              io.grpc.MethodDescriptor.<org.tron.api.GrpcAPI.AccountPaginated, org.tron.api.GrpcAPI.TransactionListExtention>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "protocol.WalletExtension", "GetTransactionsFromThis2"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.tron.api.GrpcAPI.AccountPaginated.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.tron.api.GrpcAPI.TransactionListExtention.getDefaultInstance()))
-                  .setSchemaDescriptor(new WalletExtensionMethodDescriptorSupplier("GetTransactionsFromThis2"))
-                  .build();
-          }
-        }
-     }
-     return getGetTransactionsFromThis2Method;
-  }
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getGetTransactionsToThisMethod()} instead. 
   public static final io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
-      org.tron.api.GrpcAPI.TransactionList> METHOD_GET_TRANSACTIONS_TO_THIS = getGetTransactionsToThisMethod();
+      org.tron.api.GrpcAPI.TransactionList> METHOD_GET_TRANSACTIONS_TO_THIS = getGetTransactionsToThisMethodHelper();
 
   private static volatile io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
       org.tron.api.GrpcAPI.TransactionList> getGetTransactionsToThisMethod;
@@ -102,6 +75,11 @@ public final class WalletExtensionGrpc {
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
       org.tron.api.GrpcAPI.TransactionList> getGetTransactionsToThisMethod() {
+    return getGetTransactionsToThisMethodHelper();
+  }
+
+  private static io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
+      org.tron.api.GrpcAPI.TransactionList> getGetTransactionsToThisMethodHelper() {
     io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated, org.tron.api.GrpcAPI.TransactionList> getGetTransactionsToThisMethod;
     if ((getGetTransactionsToThisMethod = WalletExtensionGrpc.getGetTransactionsToThisMethod) == null) {
       synchronized (WalletExtensionGrpc.class) {
@@ -122,38 +100,6 @@ public final class WalletExtensionGrpc {
         }
      }
      return getGetTransactionsToThisMethod;
-  }
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  @java.lang.Deprecated // Use {@link #getGetTransactionsToThis2Method()} instead. 
-  public static final io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
-      org.tron.api.GrpcAPI.TransactionListExtention> METHOD_GET_TRANSACTIONS_TO_THIS2 = getGetTransactionsToThis2Method();
-
-  private static volatile io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
-      org.tron.api.GrpcAPI.TransactionListExtention> getGetTransactionsToThis2Method;
-
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated,
-      org.tron.api.GrpcAPI.TransactionListExtention> getGetTransactionsToThis2Method() {
-    io.grpc.MethodDescriptor<org.tron.api.GrpcAPI.AccountPaginated, org.tron.api.GrpcAPI.TransactionListExtention> getGetTransactionsToThis2Method;
-    if ((getGetTransactionsToThis2Method = WalletExtensionGrpc.getGetTransactionsToThis2Method) == null) {
-      synchronized (WalletExtensionGrpc.class) {
-        if ((getGetTransactionsToThis2Method = WalletExtensionGrpc.getGetTransactionsToThis2Method) == null) {
-          WalletExtensionGrpc.getGetTransactionsToThis2Method = getGetTransactionsToThis2Method = 
-              io.grpc.MethodDescriptor.<org.tron.api.GrpcAPI.AccountPaginated, org.tron.api.GrpcAPI.TransactionListExtention>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "protocol.WalletExtension", "GetTransactionsToThis2"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.tron.api.GrpcAPI.AccountPaginated.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.tron.api.GrpcAPI.TransactionListExtention.getDefaultInstance()))
-                  .setSchemaDescriptor(new WalletExtensionMethodDescriptorSupplier("GetTransactionsToThis2"))
-                  .build();
-          }
-        }
-     }
-     return getGetTransactionsToThis2Method;
   }
 
   /**
@@ -184,75 +130,35 @@ public final class WalletExtensionGrpc {
   public static abstract class WalletExtensionImplBase implements io.grpc.BindableService {
 
     /**
-     * <pre>
-     *Please use GetTransactionsFromThis2 instead of this function.
-     * </pre>
      */
     public void getTransactionsFromThis(org.tron.api.GrpcAPI.AccountPaginated request,
         io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionList> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetTransactionsFromThisMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getGetTransactionsFromThisMethodHelper(), responseObserver);
     }
 
     /**
-     * <pre>
-     *Use this function instead of GetTransactionsFromThis.
-     * </pre>
-     */
-    public void getTransactionsFromThis2(org.tron.api.GrpcAPI.AccountPaginated request,
-        io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionListExtention> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetTransactionsFromThis2Method(), responseObserver);
-    }
-
-    /**
-     * <pre>
-     *Please use GetTransactionsToThis2 instead of this function.
-     * </pre>
      */
     public void getTransactionsToThis(org.tron.api.GrpcAPI.AccountPaginated request,
         io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionList> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetTransactionsToThisMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
-     *Use this function instead of GetTransactionsToThis.
-     * </pre>
-     */
-    public void getTransactionsToThis2(org.tron.api.GrpcAPI.AccountPaginated request,
-        io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionListExtention> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetTransactionsToThis2Method(), responseObserver);
+      asyncUnimplementedUnaryCall(getGetTransactionsToThisMethodHelper(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getGetTransactionsFromThisMethod(),
+            getGetTransactionsFromThisMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 org.tron.api.GrpcAPI.AccountPaginated,
                 org.tron.api.GrpcAPI.TransactionList>(
                   this, METHODID_GET_TRANSACTIONS_FROM_THIS)))
           .addMethod(
-            getGetTransactionsFromThis2Method(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                org.tron.api.GrpcAPI.AccountPaginated,
-                org.tron.api.GrpcAPI.TransactionListExtention>(
-                  this, METHODID_GET_TRANSACTIONS_FROM_THIS2)))
-          .addMethod(
-            getGetTransactionsToThisMethod(),
+            getGetTransactionsToThisMethodHelper(),
             asyncUnaryCall(
               new MethodHandlers<
                 org.tron.api.GrpcAPI.AccountPaginated,
                 org.tron.api.GrpcAPI.TransactionList>(
                   this, METHODID_GET_TRANSACTIONS_TO_THIS)))
-          .addMethod(
-            getGetTransactionsToThis2Method(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                org.tron.api.GrpcAPI.AccountPaginated,
-                org.tron.api.GrpcAPI.TransactionListExtention>(
-                  this, METHODID_GET_TRANSACTIONS_TO_THIS2)))
           .build();
     }
   }
@@ -276,47 +182,19 @@ public final class WalletExtensionGrpc {
     }
 
     /**
-     * <pre>
-     *Please use GetTransactionsFromThis2 instead of this function.
-     * </pre>
      */
     public void getTransactionsFromThis(org.tron.api.GrpcAPI.AccountPaginated request,
         io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionList> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetTransactionsFromThisMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetTransactionsFromThisMethodHelper(), getCallOptions()), request, responseObserver);
     }
 
     /**
-     * <pre>
-     *Use this function instead of GetTransactionsFromThis.
-     * </pre>
-     */
-    public void getTransactionsFromThis2(org.tron.api.GrpcAPI.AccountPaginated request,
-        io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionListExtention> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getGetTransactionsFromThis2Method(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     *Please use GetTransactionsToThis2 instead of this function.
-     * </pre>
      */
     public void getTransactionsToThis(org.tron.api.GrpcAPI.AccountPaginated request,
         io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionList> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetTransactionsToThisMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     *Use this function instead of GetTransactionsToThis.
-     * </pre>
-     */
-    public void getTransactionsToThis2(org.tron.api.GrpcAPI.AccountPaginated request,
-        io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionListExtention> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getGetTransactionsToThis2Method(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getGetTransactionsToThisMethodHelper(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -339,43 +217,17 @@ public final class WalletExtensionGrpc {
     }
 
     /**
-     * <pre>
-     *Please use GetTransactionsFromThis2 instead of this function.
-     * </pre>
      */
     public org.tron.api.GrpcAPI.TransactionList getTransactionsFromThis(org.tron.api.GrpcAPI.AccountPaginated request) {
       return blockingUnaryCall(
-          getChannel(), getGetTransactionsFromThisMethod(), getCallOptions(), request);
+          getChannel(), getGetTransactionsFromThisMethodHelper(), getCallOptions(), request);
     }
 
     /**
-     * <pre>
-     *Use this function instead of GetTransactionsFromThis.
-     * </pre>
-     */
-    public org.tron.api.GrpcAPI.TransactionListExtention getTransactionsFromThis2(org.tron.api.GrpcAPI.AccountPaginated request) {
-      return blockingUnaryCall(
-          getChannel(), getGetTransactionsFromThis2Method(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     *Please use GetTransactionsToThis2 instead of this function.
-     * </pre>
      */
     public org.tron.api.GrpcAPI.TransactionList getTransactionsToThis(org.tron.api.GrpcAPI.AccountPaginated request) {
       return blockingUnaryCall(
-          getChannel(), getGetTransactionsToThisMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     *Use this function instead of GetTransactionsToThis.
-     * </pre>
-     */
-    public org.tron.api.GrpcAPI.TransactionListExtention getTransactionsToThis2(org.tron.api.GrpcAPI.AccountPaginated request) {
-      return blockingUnaryCall(
-          getChannel(), getGetTransactionsToThis2Method(), getCallOptions(), request);
+          getChannel(), getGetTransactionsToThisMethodHelper(), getCallOptions(), request);
     }
   }
 
@@ -398,54 +250,24 @@ public final class WalletExtensionGrpc {
     }
 
     /**
-     * <pre>
-     *Please use GetTransactionsFromThis2 instead of this function.
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<org.tron.api.GrpcAPI.TransactionList> getTransactionsFromThis(
         org.tron.api.GrpcAPI.AccountPaginated request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetTransactionsFromThisMethod(), getCallOptions()), request);
+          getChannel().newCall(getGetTransactionsFromThisMethodHelper(), getCallOptions()), request);
     }
 
     /**
-     * <pre>
-     *Use this function instead of GetTransactionsFromThis.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<org.tron.api.GrpcAPI.TransactionListExtention> getTransactionsFromThis2(
-        org.tron.api.GrpcAPI.AccountPaginated request) {
-      return futureUnaryCall(
-          getChannel().newCall(getGetTransactionsFromThis2Method(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     *Please use GetTransactionsToThis2 instead of this function.
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<org.tron.api.GrpcAPI.TransactionList> getTransactionsToThis(
         org.tron.api.GrpcAPI.AccountPaginated request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetTransactionsToThisMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     *Use this function instead of GetTransactionsToThis.
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<org.tron.api.GrpcAPI.TransactionListExtention> getTransactionsToThis2(
-        org.tron.api.GrpcAPI.AccountPaginated request) {
-      return futureUnaryCall(
-          getChannel().newCall(getGetTransactionsToThis2Method(), getCallOptions()), request);
+          getChannel().newCall(getGetTransactionsToThisMethodHelper(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_GET_TRANSACTIONS_FROM_THIS = 0;
-  private static final int METHODID_GET_TRANSACTIONS_FROM_THIS2 = 1;
-  private static final int METHODID_GET_TRANSACTIONS_TO_THIS = 2;
-  private static final int METHODID_GET_TRANSACTIONS_TO_THIS2 = 3;
+  private static final int METHODID_GET_TRANSACTIONS_TO_THIS = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -468,17 +290,9 @@ public final class WalletExtensionGrpc {
           serviceImpl.getTransactionsFromThis((org.tron.api.GrpcAPI.AccountPaginated) request,
               (io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionList>) responseObserver);
           break;
-        case METHODID_GET_TRANSACTIONS_FROM_THIS2:
-          serviceImpl.getTransactionsFromThis2((org.tron.api.GrpcAPI.AccountPaginated) request,
-              (io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionListExtention>) responseObserver);
-          break;
         case METHODID_GET_TRANSACTIONS_TO_THIS:
           serviceImpl.getTransactionsToThis((org.tron.api.GrpcAPI.AccountPaginated) request,
               (io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionList>) responseObserver);
-          break;
-        case METHODID_GET_TRANSACTIONS_TO_THIS2:
-          serviceImpl.getTransactionsToThis2((org.tron.api.GrpcAPI.AccountPaginated) request,
-              (io.grpc.stub.StreamObserver<org.tron.api.GrpcAPI.TransactionListExtention>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -541,10 +355,8 @@ public final class WalletExtensionGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new WalletExtensionFileDescriptorSupplier())
-              .addMethod(getGetTransactionsFromThisMethod())
-              .addMethod(getGetTransactionsFromThis2Method())
-              .addMethod(getGetTransactionsToThisMethod())
-              .addMethod(getGetTransactionsToThis2Method())
+              .addMethod(getGetTransactionsFromThisMethodHelper())
+              .addMethod(getGetTransactionsToThisMethodHelper())
               .build();
         }
       }

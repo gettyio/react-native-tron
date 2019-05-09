@@ -1,21 +1,17 @@
 
 {
-  "name": "@gettyio/react-native-tron",
-  "version": "1.0.1",
+  "name": "react-native-tron",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native", "tron","java","objective-c"
+    "react-native"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gettyio/react-native-tron.git"
-  },
   "author": "",
-  "license": "LGPL-3.0",
+  "license": "",
   "peerDependencies": {
     "react-native": "^0.55.4"
   }
