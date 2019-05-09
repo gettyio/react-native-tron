@@ -1,1 +1,0 @@
-../../../TrezorCrypto/trezor-crypto/ed25519-donna/curve25519-donna-scalarmult-base.h

@@ -1,1 +1,0 @@
-../../../TrezorCrypto/trezor-crypto/base32.h

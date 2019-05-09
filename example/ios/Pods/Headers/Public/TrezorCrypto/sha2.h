@@ -1,1 +1,0 @@
-../../../TrezorCrypto/trezor-crypto/sha2.h

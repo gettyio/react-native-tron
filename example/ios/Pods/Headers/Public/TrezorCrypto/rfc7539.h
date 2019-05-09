@@ -1,1 +1,0 @@
-../../../TrezorCrypto/trezor-crypto/chacha20poly1305/rfc7539.h

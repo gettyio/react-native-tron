@@ -1,1 +1,0 @@
-../../../../../../../../ios/RNTron/Protos/core/TronInventoryItems.pbobjc.h

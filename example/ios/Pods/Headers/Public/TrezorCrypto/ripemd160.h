@@ -1,1 +1,0 @@
-../../../TrezorCrypto/trezor-crypto/ripemd160.h
