@@ -38,5 +38,21 @@ target 'example' do
 
   # Pods for test
   pod "RNTron",
-    :path => "../node_modules/react-native-tron/ios/"
+    :path => "../../ios/"
+end
+
+
+target 'Tests' do
+  pod 'DoubleConversion',
+    :podspec => "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec",
+    :inhibit_warnings => true
+  pod 'Folly',
+    :podspec => "../node_modules/react-native/third-party-podspecs/Folly.podspec",
+    :inhibit_warnings => true
+  pod 'glog',
+    :podspec => "../node_modules/react-native/third-party-podspecs/glog.podspec",
+    :inhibit_warnings => true
+  # Pods for test
+  pod "RNTron",
+    :path => "../../ios/"
 end
