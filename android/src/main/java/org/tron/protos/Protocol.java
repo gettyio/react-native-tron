@@ -5587,6 +5587,56 @@ public final class Protocol {
      * <code>bytes codeHash = 30;</code>
      */
     com.google.protobuf.ByteString getCodeHash();
+
+    /**
+     * <code>.protocol.Permission owner_permission = 31;</code>
+     */
+    boolean hasOwnerPermission();
+    /**
+     * <code>.protocol.Permission owner_permission = 31;</code>
+     */
+    org.tron.protos.Protocol.Permission getOwnerPermission();
+    /**
+     * <code>.protocol.Permission owner_permission = 31;</code>
+     */
+    org.tron.protos.Protocol.PermissionOrBuilder getOwnerPermissionOrBuilder();
+
+    /**
+     * <code>.protocol.Permission witness_permission = 32;</code>
+     */
+    boolean hasWitnessPermission();
+    /**
+     * <code>.protocol.Permission witness_permission = 32;</code>
+     */
+    org.tron.protos.Protocol.Permission getWitnessPermission();
+    /**
+     * <code>.protocol.Permission witness_permission = 32;</code>
+     */
+    org.tron.protos.Protocol.PermissionOrBuilder getWitnessPermissionOrBuilder();
+
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    java.util.List<org.tron.protos.Protocol.Permission> 
+        getActivePermissionList();
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    org.tron.protos.Protocol.Permission getActivePermission(int index);
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    int getActivePermissionCount();
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    java.util.List<? extends org.tron.protos.Protocol.PermissionOrBuilder> 
+        getActivePermissionOrBuilderList();
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    org.tron.protos.Protocol.PermissionOrBuilder getActivePermissionOrBuilder(
+        int index);
   }
   /**
    * <pre>
@@ -5629,6 +5679,7 @@ public final class Protocol {
       latestConsumeFreeTime_ = 0L;
       accountId_ = com.google.protobuf.ByteString.EMPTY;
       codeHash_ = com.google.protobuf.ByteString.EMPTY;
+      activePermission_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -5645,6 +5696,7 @@ public final class Protocol {
         throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
+      int mutable_bitField1_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -5832,6 +5884,41 @@ public final class Protocol {
               codeHash_ = input.readBytes();
               break;
             }
+            case 250: {
+              org.tron.protos.Protocol.Permission.Builder subBuilder = null;
+              if (ownerPermission_ != null) {
+                subBuilder = ownerPermission_.toBuilder();
+              }
+              ownerPermission_ = input.readMessage(org.tron.protos.Protocol.Permission.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ownerPermission_);
+                ownerPermission_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 258: {
+              org.tron.protos.Protocol.Permission.Builder subBuilder = null;
+              if (witnessPermission_ != null) {
+                subBuilder = witnessPermission_.toBuilder();
+              }
+              witnessPermission_ = input.readMessage(org.tron.protos.Protocol.Permission.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(witnessPermission_);
+                witnessPermission_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 266: {
+              if (!((mutable_bitField1_ & 0x00000002) == 0x00000002)) {
+                activePermission_ = new java.util.ArrayList<org.tron.protos.Protocol.Permission>();
+                mutable_bitField1_ |= 0x00000002;
+              }
+              activePermission_.add(
+                  input.readMessage(org.tron.protos.Protocol.Permission.parser(), extensionRegistry));
+              break;
+            }
             case 328: {
 
               acquiredDelegatedFrozenBalanceForBandwidth_ = input.readInt64();
@@ -5902,6 +5989,9 @@ public final class Protocol {
         }
         if (((mutable_bitField0_ & 0x00040000) == 0x00040000)) {
           frozenSupply_ = java.util.Collections.unmodifiableList(frozenSupply_);
+        }
+        if (((mutable_bitField1_ & 0x00000002) == 0x00000002)) {
+          activePermission_ = java.util.Collections.unmodifiableList(activePermission_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -8597,6 +8687,83 @@ public final class Protocol {
       return codeHash_;
     }
 
+    public static final int OWNER_PERMISSION_FIELD_NUMBER = 31;
+    private org.tron.protos.Protocol.Permission ownerPermission_;
+    /**
+     * <code>.protocol.Permission owner_permission = 31;</code>
+     */
+    public boolean hasOwnerPermission() {
+      return ownerPermission_ != null;
+    }
+    /**
+     * <code>.protocol.Permission owner_permission = 31;</code>
+     */
+    public org.tron.protos.Protocol.Permission getOwnerPermission() {
+      return ownerPermission_ == null ? org.tron.protos.Protocol.Permission.getDefaultInstance() : ownerPermission_;
+    }
+    /**
+     * <code>.protocol.Permission owner_permission = 31;</code>
+     */
+    public org.tron.protos.Protocol.PermissionOrBuilder getOwnerPermissionOrBuilder() {
+      return getOwnerPermission();
+    }
+
+    public static final int WITNESS_PERMISSION_FIELD_NUMBER = 32;
+    private org.tron.protos.Protocol.Permission witnessPermission_;
+    /**
+     * <code>.protocol.Permission witness_permission = 32;</code>
+     */
+    public boolean hasWitnessPermission() {
+      return witnessPermission_ != null;
+    }
+    /**
+     * <code>.protocol.Permission witness_permission = 32;</code>
+     */
+    public org.tron.protos.Protocol.Permission getWitnessPermission() {
+      return witnessPermission_ == null ? org.tron.protos.Protocol.Permission.getDefaultInstance() : witnessPermission_;
+    }
+    /**
+     * <code>.protocol.Permission witness_permission = 32;</code>
+     */
+    public org.tron.protos.Protocol.PermissionOrBuilder getWitnessPermissionOrBuilder() {
+      return getWitnessPermission();
+    }
+
+    public static final int ACTIVE_PERMISSION_FIELD_NUMBER = 33;
+    private java.util.List<org.tron.protos.Protocol.Permission> activePermission_;
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    public java.util.List<org.tron.protos.Protocol.Permission> getActivePermissionList() {
+      return activePermission_;
+    }
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    public java.util.List<? extends org.tron.protos.Protocol.PermissionOrBuilder> 
+        getActivePermissionOrBuilderList() {
+      return activePermission_;
+    }
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    public int getActivePermissionCount() {
+      return activePermission_.size();
+    }
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    public org.tron.protos.Protocol.Permission getActivePermission(int index) {
+      return activePermission_.get(index);
+    }
+    /**
+     * <code>repeated .protocol.Permission active_permission = 33;</code>
+     */
+    public org.tron.protos.Protocol.PermissionOrBuilder getActivePermissionOrBuilder(
+        int index) {
+      return activePermission_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -8692,6 +8859,15 @@ public final class Protocol {
       }
       if (!codeHash_.isEmpty()) {
         output.writeBytes(30, codeHash_);
+      }
+      if (ownerPermission_ != null) {
+        output.writeMessage(31, getOwnerPermission());
+      }
+      if (witnessPermission_ != null) {
+        output.writeMessage(32, getWitnessPermission());
+      }
+      for (int i = 0; i < activePermission_.size(); i++) {
+        output.writeMessage(33, activePermission_.get(i));
       }
       if (acquiredDelegatedFrozenBalanceForBandwidth_ != 0L) {
         output.writeInt64(41, acquiredDelegatedFrozenBalanceForBandwidth_);
@@ -8846,6 +9022,18 @@ public final class Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(30, codeHash_);
       }
+      if (ownerPermission_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(31, getOwnerPermission());
+      }
+      if (witnessPermission_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(32, getWitnessPermission());
+      }
+      for (int i = 0; i < activePermission_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(33, activePermission_.get(i));
+      }
       if (acquiredDelegatedFrozenBalanceForBandwidth_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(41, acquiredDelegatedFrozenBalanceForBandwidth_);
@@ -8968,6 +9156,18 @@ public final class Protocol {
       }
       result = result && getCodeHash()
           .equals(other.getCodeHash());
+      result = result && (hasOwnerPermission() == other.hasOwnerPermission());
+      if (hasOwnerPermission()) {
+        result = result && getOwnerPermission()
+            .equals(other.getOwnerPermission());
+      }
+      result = result && (hasWitnessPermission() == other.hasWitnessPermission());
+      if (hasWitnessPermission()) {
+        result = result && getWitnessPermission()
+            .equals(other.getWitnessPermission());
+      }
+      result = result && getActivePermissionList()
+          .equals(other.getActivePermissionList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -9074,6 +9274,18 @@ public final class Protocol {
       }
       hash = (37 * hash) + CODEHASH_FIELD_NUMBER;
       hash = (53 * hash) + getCodeHash().hashCode();
+      if (hasOwnerPermission()) {
+        hash = (37 * hash) + OWNER_PERMISSION_FIELD_NUMBER;
+        hash = (53 * hash) + getOwnerPermission().hashCode();
+      }
+      if (hasWitnessPermission()) {
+        hash = (37 * hash) + WITNESS_PERMISSION_FIELD_NUMBER;
+        hash = (53 * hash) + getWitnessPermission().hashCode();
+      }
+      if (getActivePermissionCount() > 0) {
+        hash = (37 * hash) + ACTIVE_PERMISSION_FIELD_NUMBER;
+        hash = (53 * hash) + getActivePermissionList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -9248,6 +9460,7 @@ public final class Protocol {
           getVotesFieldBuilder();
           getFrozenFieldBuilder();
           getFrozenSupplyFieldBuilder();
+          getActivePermissionFieldBuilder();
         }
       }
       public Builder clear() {
@@ -9324,6 +9537,24 @@ public final class Protocol {
         }
         codeHash_ = com.google.protobuf.ByteString.EMPTY;
 
+        if (ownerPermissionBuilder_ == null) {
+          ownerPermission_ = null;
+        } else {
+          ownerPermission_ = null;
+          ownerPermissionBuilder_ = null;
+        }
+        if (witnessPermissionBuilder_ == null) {
+          witnessPermission_ = null;
+        } else {
+          witnessPermission_ = null;
+          witnessPermissionBuilder_ = null;
+        }
+        if (activePermissionBuilder_ == null) {
+          activePermission_ = java.util.Collections.emptyList();
+          bitField1_ = (bitField1_ & ~0x00000002);
+        } else {
+          activePermissionBuilder_.clear();
+        }
         return this;
       }
 
@@ -9347,6 +9578,7 @@ public final class Protocol {
       public org.tron.protos.Protocol.Account buildPartial() {
         org.tron.protos.Protocol.Account result = new org.tron.protos.Protocol.Account(this);
         int from_bitField0_ = bitField0_;
+        int from_bitField1_ = bitField1_;
         int to_bitField0_ = 0;
         result.accountName_ = accountName_;
         result.type_ = type_;
@@ -9413,6 +9645,25 @@ public final class Protocol {
           result.accountResource_ = accountResourceBuilder_.build();
         }
         result.codeHash_ = codeHash_;
+        if (ownerPermissionBuilder_ == null) {
+          result.ownerPermission_ = ownerPermission_;
+        } else {
+          result.ownerPermission_ = ownerPermissionBuilder_.build();
+        }
+        if (witnessPermissionBuilder_ == null) {
+          result.witnessPermission_ = witnessPermission_;
+        } else {
+          result.witnessPermission_ = witnessPermissionBuilder_.build();
+        }
+        if (activePermissionBuilder_ == null) {
+          if (((bitField1_ & 0x00000002) == 0x00000002)) {
+            activePermission_ = java.util.Collections.unmodifiableList(activePermission_);
+            bitField1_ = (bitField1_ & ~0x00000002);
+          }
+          result.activePermission_ = activePermission_;
+        } else {
+          result.activePermission_ = activePermissionBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -9611,6 +9862,38 @@ public final class Protocol {
         if (other.getCodeHash() != com.google.protobuf.ByteString.EMPTY) {
           setCodeHash(other.getCodeHash());
         }
+        if (other.hasOwnerPermission()) {
+          mergeOwnerPermission(other.getOwnerPermission());
+        }
+        if (other.hasWitnessPermission()) {
+          mergeWitnessPermission(other.getWitnessPermission());
+        }
+        if (activePermissionBuilder_ == null) {
+          if (!other.activePermission_.isEmpty()) {
+            if (activePermission_.isEmpty()) {
+              activePermission_ = other.activePermission_;
+              bitField1_ = (bitField1_ & ~0x00000002);
+            } else {
+              ensureActivePermissionIsMutable();
+              activePermission_.addAll(other.activePermission_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.activePermission_.isEmpty()) {
+            if (activePermissionBuilder_.isEmpty()) {
+              activePermissionBuilder_.dispose();
+              activePermissionBuilder_ = null;
+              activePermission_ = other.activePermission_;
+              bitField1_ = (bitField1_ & ~0x00000002);
+              activePermissionBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getActivePermissionFieldBuilder() : null;
+            } else {
+              activePermissionBuilder_.addAllMessages(other.activePermission_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -9638,6 +9921,7 @@ public final class Protocol {
         return this;
       }
       private int bitField0_;
+      private int bitField1_;
 
       private com.google.protobuf.ByteString accountName_ = com.google.protobuf.ByteString.EMPTY;
       /**
@@ -12226,6 +12510,480 @@ public final class Protocol {
         onChanged();
         return this;
       }
+
+      private org.tron.protos.Protocol.Permission ownerPermission_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder> ownerPermissionBuilder_;
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      public boolean hasOwnerPermission() {
+        return ownerPermissionBuilder_ != null || ownerPermission_ != null;
+      }
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      public org.tron.protos.Protocol.Permission getOwnerPermission() {
+        if (ownerPermissionBuilder_ == null) {
+          return ownerPermission_ == null ? org.tron.protos.Protocol.Permission.getDefaultInstance() : ownerPermission_;
+        } else {
+          return ownerPermissionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      public Builder setOwnerPermission(org.tron.protos.Protocol.Permission value) {
+        if (ownerPermissionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ownerPermission_ = value;
+          onChanged();
+        } else {
+          ownerPermissionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      public Builder setOwnerPermission(
+          org.tron.protos.Protocol.Permission.Builder builderForValue) {
+        if (ownerPermissionBuilder_ == null) {
+          ownerPermission_ = builderForValue.build();
+          onChanged();
+        } else {
+          ownerPermissionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      public Builder mergeOwnerPermission(org.tron.protos.Protocol.Permission value) {
+        if (ownerPermissionBuilder_ == null) {
+          if (ownerPermission_ != null) {
+            ownerPermission_ =
+              org.tron.protos.Protocol.Permission.newBuilder(ownerPermission_).mergeFrom(value).buildPartial();
+          } else {
+            ownerPermission_ = value;
+          }
+          onChanged();
+        } else {
+          ownerPermissionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      public Builder clearOwnerPermission() {
+        if (ownerPermissionBuilder_ == null) {
+          ownerPermission_ = null;
+          onChanged();
+        } else {
+          ownerPermission_ = null;
+          ownerPermissionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      public org.tron.protos.Protocol.Permission.Builder getOwnerPermissionBuilder() {
+        
+        onChanged();
+        return getOwnerPermissionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      public org.tron.protos.Protocol.PermissionOrBuilder getOwnerPermissionOrBuilder() {
+        if (ownerPermissionBuilder_ != null) {
+          return ownerPermissionBuilder_.getMessageOrBuilder();
+        } else {
+          return ownerPermission_ == null ?
+              org.tron.protos.Protocol.Permission.getDefaultInstance() : ownerPermission_;
+        }
+      }
+      /**
+       * <code>.protocol.Permission owner_permission = 31;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder> 
+          getOwnerPermissionFieldBuilder() {
+        if (ownerPermissionBuilder_ == null) {
+          ownerPermissionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder>(
+                  getOwnerPermission(),
+                  getParentForChildren(),
+                  isClean());
+          ownerPermission_ = null;
+        }
+        return ownerPermissionBuilder_;
+      }
+
+      private org.tron.protos.Protocol.Permission witnessPermission_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder> witnessPermissionBuilder_;
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      public boolean hasWitnessPermission() {
+        return witnessPermissionBuilder_ != null || witnessPermission_ != null;
+      }
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      public org.tron.protos.Protocol.Permission getWitnessPermission() {
+        if (witnessPermissionBuilder_ == null) {
+          return witnessPermission_ == null ? org.tron.protos.Protocol.Permission.getDefaultInstance() : witnessPermission_;
+        } else {
+          return witnessPermissionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      public Builder setWitnessPermission(org.tron.protos.Protocol.Permission value) {
+        if (witnessPermissionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          witnessPermission_ = value;
+          onChanged();
+        } else {
+          witnessPermissionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      public Builder setWitnessPermission(
+          org.tron.protos.Protocol.Permission.Builder builderForValue) {
+        if (witnessPermissionBuilder_ == null) {
+          witnessPermission_ = builderForValue.build();
+          onChanged();
+        } else {
+          witnessPermissionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      public Builder mergeWitnessPermission(org.tron.protos.Protocol.Permission value) {
+        if (witnessPermissionBuilder_ == null) {
+          if (witnessPermission_ != null) {
+            witnessPermission_ =
+              org.tron.protos.Protocol.Permission.newBuilder(witnessPermission_).mergeFrom(value).buildPartial();
+          } else {
+            witnessPermission_ = value;
+          }
+          onChanged();
+        } else {
+          witnessPermissionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      public Builder clearWitnessPermission() {
+        if (witnessPermissionBuilder_ == null) {
+          witnessPermission_ = null;
+          onChanged();
+        } else {
+          witnessPermission_ = null;
+          witnessPermissionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      public org.tron.protos.Protocol.Permission.Builder getWitnessPermissionBuilder() {
+        
+        onChanged();
+        return getWitnessPermissionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      public org.tron.protos.Protocol.PermissionOrBuilder getWitnessPermissionOrBuilder() {
+        if (witnessPermissionBuilder_ != null) {
+          return witnessPermissionBuilder_.getMessageOrBuilder();
+        } else {
+          return witnessPermission_ == null ?
+              org.tron.protos.Protocol.Permission.getDefaultInstance() : witnessPermission_;
+        }
+      }
+      /**
+       * <code>.protocol.Permission witness_permission = 32;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder> 
+          getWitnessPermissionFieldBuilder() {
+        if (witnessPermissionBuilder_ == null) {
+          witnessPermissionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder>(
+                  getWitnessPermission(),
+                  getParentForChildren(),
+                  isClean());
+          witnessPermission_ = null;
+        }
+        return witnessPermissionBuilder_;
+      }
+
+      private java.util.List<org.tron.protos.Protocol.Permission> activePermission_ =
+        java.util.Collections.emptyList();
+      private void ensureActivePermissionIsMutable() {
+        if (!((bitField1_ & 0x00000002) == 0x00000002)) {
+          activePermission_ = new java.util.ArrayList<org.tron.protos.Protocol.Permission>(activePermission_);
+          bitField1_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder> activePermissionBuilder_;
+
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public java.util.List<org.tron.protos.Protocol.Permission> getActivePermissionList() {
+        if (activePermissionBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(activePermission_);
+        } else {
+          return activePermissionBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public int getActivePermissionCount() {
+        if (activePermissionBuilder_ == null) {
+          return activePermission_.size();
+        } else {
+          return activePermissionBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public org.tron.protos.Protocol.Permission getActivePermission(int index) {
+        if (activePermissionBuilder_ == null) {
+          return activePermission_.get(index);
+        } else {
+          return activePermissionBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder setActivePermission(
+          int index, org.tron.protos.Protocol.Permission value) {
+        if (activePermissionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureActivePermissionIsMutable();
+          activePermission_.set(index, value);
+          onChanged();
+        } else {
+          activePermissionBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder setActivePermission(
+          int index, org.tron.protos.Protocol.Permission.Builder builderForValue) {
+        if (activePermissionBuilder_ == null) {
+          ensureActivePermissionIsMutable();
+          activePermission_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          activePermissionBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder addActivePermission(org.tron.protos.Protocol.Permission value) {
+        if (activePermissionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureActivePermissionIsMutable();
+          activePermission_.add(value);
+          onChanged();
+        } else {
+          activePermissionBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder addActivePermission(
+          int index, org.tron.protos.Protocol.Permission value) {
+        if (activePermissionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureActivePermissionIsMutable();
+          activePermission_.add(index, value);
+          onChanged();
+        } else {
+          activePermissionBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder addActivePermission(
+          org.tron.protos.Protocol.Permission.Builder builderForValue) {
+        if (activePermissionBuilder_ == null) {
+          ensureActivePermissionIsMutable();
+          activePermission_.add(builderForValue.build());
+          onChanged();
+        } else {
+          activePermissionBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder addActivePermission(
+          int index, org.tron.protos.Protocol.Permission.Builder builderForValue) {
+        if (activePermissionBuilder_ == null) {
+          ensureActivePermissionIsMutable();
+          activePermission_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          activePermissionBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder addAllActivePermission(
+          java.lang.Iterable<? extends org.tron.protos.Protocol.Permission> values) {
+        if (activePermissionBuilder_ == null) {
+          ensureActivePermissionIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, activePermission_);
+          onChanged();
+        } else {
+          activePermissionBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder clearActivePermission() {
+        if (activePermissionBuilder_ == null) {
+          activePermission_ = java.util.Collections.emptyList();
+          bitField1_ = (bitField1_ & ~0x00000002);
+          onChanged();
+        } else {
+          activePermissionBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public Builder removeActivePermission(int index) {
+        if (activePermissionBuilder_ == null) {
+          ensureActivePermissionIsMutable();
+          activePermission_.remove(index);
+          onChanged();
+        } else {
+          activePermissionBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public org.tron.protos.Protocol.Permission.Builder getActivePermissionBuilder(
+          int index) {
+        return getActivePermissionFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public org.tron.protos.Protocol.PermissionOrBuilder getActivePermissionOrBuilder(
+          int index) {
+        if (activePermissionBuilder_ == null) {
+          return activePermission_.get(index);  } else {
+          return activePermissionBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public java.util.List<? extends org.tron.protos.Protocol.PermissionOrBuilder> 
+           getActivePermissionOrBuilderList() {
+        if (activePermissionBuilder_ != null) {
+          return activePermissionBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(activePermission_);
+        }
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public org.tron.protos.Protocol.Permission.Builder addActivePermissionBuilder() {
+        return getActivePermissionFieldBuilder().addBuilder(
+            org.tron.protos.Protocol.Permission.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public org.tron.protos.Protocol.Permission.Builder addActivePermissionBuilder(
+          int index) {
+        return getActivePermissionFieldBuilder().addBuilder(
+            index, org.tron.protos.Protocol.Permission.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protocol.Permission active_permission = 33;</code>
+       */
+      public java.util.List<org.tron.protos.Protocol.Permission.Builder> 
+           getActivePermissionBuilderList() {
+        return getActivePermissionFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder> 
+          getActivePermissionFieldBuilder() {
+        if (activePermissionBuilder_ == null) {
+          activePermissionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              org.tron.protos.Protocol.Permission, org.tron.protos.Protocol.Permission.Builder, org.tron.protos.Protocol.PermissionOrBuilder>(
+                  activePermission_,
+                  ((bitField1_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          activePermission_ = null;
+        }
+        return activePermissionBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
@@ -12270,6 +13028,524 @@ public final class Protocol {
     }
 
     public org.tron.protos.Protocol.Account getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface KeyOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:protocol.Key)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes address = 1;</code>
+     */
+    com.google.protobuf.ByteString getAddress();
+
+    /**
+     * <code>int64 weight = 2;</code>
+     */
+    long getWeight();
+  }
+  /**
+   * Protobuf type {@code protocol.Key}
+   */
+  public  static final class Key extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:protocol.Key)
+      KeyOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Key.newBuilder() to construct.
+    private Key(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Key() {
+      address_ = com.google.protobuf.ByteString.EMPTY;
+      weight_ = 0L;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Key(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+
+              address_ = input.readBytes();
+              break;
+            }
+            case 16: {
+
+              weight_ = input.readInt64();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.tron.protos.Protocol.internal_static_protocol_Key_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.tron.protos.Protocol.internal_static_protocol_Key_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.tron.protos.Protocol.Key.class, org.tron.protos.Protocol.Key.Builder.class);
+    }
+
+    public static final int ADDRESS_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString address_;
+    /**
+     * <code>bytes address = 1;</code>
+     */
+    public com.google.protobuf.ByteString getAddress() {
+      return address_;
+    }
+
+    public static final int WEIGHT_FIELD_NUMBER = 2;
+    private long weight_;
+    /**
+     * <code>int64 weight = 2;</code>
+     */
+    public long getWeight() {
+      return weight_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!address_.isEmpty()) {
+        output.writeBytes(1, address_);
+      }
+      if (weight_ != 0L) {
+        output.writeInt64(2, weight_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!address_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, address_);
+      }
+      if (weight_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, weight_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.tron.protos.Protocol.Key)) {
+        return super.equals(obj);
+      }
+      org.tron.protos.Protocol.Key other = (org.tron.protos.Protocol.Key) obj;
+
+      boolean result = true;
+      result = result && getAddress()
+          .equals(other.getAddress());
+      result = result && (getWeight()
+          == other.getWeight());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getAddress().hashCode();
+      hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getWeight());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.tron.protos.Protocol.Key parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.Key parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.Key parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.Key parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.tron.protos.Protocol.Key prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code protocol.Key}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:protocol.Key)
+        org.tron.protos.Protocol.KeyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.tron.protos.Protocol.internal_static_protocol_Key_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.tron.protos.Protocol.internal_static_protocol_Key_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.tron.protos.Protocol.Key.class, org.tron.protos.Protocol.Key.Builder.class);
+      }
+
+      // Construct using org.tron.protos.Protocol.Key.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        address_ = com.google.protobuf.ByteString.EMPTY;
+
+        weight_ = 0L;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.tron.protos.Protocol.internal_static_protocol_Key_descriptor;
+      }
+
+      public org.tron.protos.Protocol.Key getDefaultInstanceForType() {
+        return org.tron.protos.Protocol.Key.getDefaultInstance();
+      }
+
+      public org.tron.protos.Protocol.Key build() {
+        org.tron.protos.Protocol.Key result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.tron.protos.Protocol.Key buildPartial() {
+        org.tron.protos.Protocol.Key result = new org.tron.protos.Protocol.Key(this);
+        result.address_ = address_;
+        result.weight_ = weight_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.tron.protos.Protocol.Key) {
+          return mergeFrom((org.tron.protos.Protocol.Key)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.tron.protos.Protocol.Key other) {
+        if (other == org.tron.protos.Protocol.Key.getDefaultInstance()) return this;
+        if (other.getAddress() != com.google.protobuf.ByteString.EMPTY) {
+          setAddress(other.getAddress());
+        }
+        if (other.getWeight() != 0L) {
+          setWeight(other.getWeight());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.tron.protos.Protocol.Key parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.tron.protos.Protocol.Key) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString address_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes address = 1;</code>
+       */
+      public com.google.protobuf.ByteString getAddress() {
+        return address_;
+      }
+      /**
+       * <code>bytes address = 1;</code>
+       */
+      public Builder setAddress(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        address_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes address = 1;</code>
+       */
+      public Builder clearAddress() {
+        
+        address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+
+      private long weight_ ;
+      /**
+       * <code>int64 weight = 2;</code>
+       */
+      public long getWeight() {
+        return weight_;
+      }
+      /**
+       * <code>int64 weight = 2;</code>
+       */
+      public Builder setWeight(long value) {
+        
+        weight_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 weight = 2;</code>
+       */
+      public Builder clearWeight() {
+        
+        weight_ = 0L;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:protocol.Key)
+    }
+
+    // @@protoc_insertion_point(class_scope:protocol.Key)
+    private static final org.tron.protos.Protocol.Key DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.tron.protos.Protocol.Key();
+    }
+
+    public static org.tron.protos.Protocol.Key getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Key>
+        PARSER = new com.google.protobuf.AbstractParser<Key>() {
+      public Key parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Key(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Key> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Key> getParserForType() {
+      return PARSER;
+    }
+
+    public org.tron.protos.Protocol.Key getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -13699,36 +14975,101 @@ public final class Protocol {
 
   }
 
-  public interface permissionOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:protocol.permission)
+  public interface PermissionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:protocol.Permission)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.protocol.AccountId account = 1;</code>
+     * <code>.protocol.Permission.PermissionType type = 1;</code>
      */
-    boolean hasAccount();
+    int getTypeValue();
     /**
-     * <code>.protocol.AccountId account = 1;</code>
+     * <code>.protocol.Permission.PermissionType type = 1;</code>
      */
-    org.tron.protos.Protocol.AccountId getAccount();
+    org.tron.protos.Protocol.Permission.PermissionType getType();
+
     /**
-     * <code>.protocol.AccountId account = 1;</code>
+     * <pre>
+     *Owner id=0, Witness id=1, Active id start by 2
+     * </pre>
+     *
+     * <code>int32 id = 2;</code>
      */
-    org.tron.protos.Protocol.AccountIdOrBuilder getAccountOrBuilder();
+    int getId();
+
+    /**
+     * <code>string permission_name = 3;</code>
+     */
+    java.lang.String getPermissionName();
+    /**
+     * <code>string permission_name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPermissionNameBytes();
+
+    /**
+     * <code>int64 threshold = 4;</code>
+     */
+    long getThreshold();
+
+    /**
+     * <code>int32 parent_id = 5;</code>
+     */
+    int getParentId();
+
+    /**
+     * <pre>
+     *1 bit 1 contract
+     * </pre>
+     *
+     * <code>bytes operations = 6;</code>
+     */
+    com.google.protobuf.ByteString getOperations();
+
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    java.util.List<org.tron.protos.Protocol.Key> 
+        getKeysList();
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    org.tron.protos.Protocol.Key getKeys(int index);
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    int getKeysCount();
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    java.util.List<? extends org.tron.protos.Protocol.KeyOrBuilder> 
+        getKeysOrBuilderList();
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    org.tron.protos.Protocol.KeyOrBuilder getKeysOrBuilder(
+        int index);
   }
   /**
-   * Protobuf type {@code protocol.permission}
+   * Protobuf type {@code protocol.Permission}
    */
-  public  static final class permission extends
+  public  static final class Permission extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:protocol.permission)
-      permissionOrBuilder {
+      // @@protoc_insertion_point(message_implements:protocol.Permission)
+      PermissionOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use permission.newBuilder() to construct.
-    private permission(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use Permission.newBuilder() to construct.
+    private Permission(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private permission() {
+    private Permission() {
+      type_ = 0;
+      id_ = 0;
+      permissionName_ = "";
+      threshold_ = 0L;
+      parentId_ = 0;
+      operations_ = com.google.protobuf.ByteString.EMPTY;
+      keys_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -13736,7 +15077,7 @@ public final class Protocol {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private permission(
+    private Permission(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -13762,17 +15103,45 @@ public final class Protocol {
               }
               break;
             }
-            case 10: {
-              org.tron.protos.Protocol.AccountId.Builder subBuilder = null;
-              if (account_ != null) {
-                subBuilder = account_.toBuilder();
-              }
-              account_ = input.readMessage(org.tron.protos.Protocol.AccountId.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(account_);
-                account_ = subBuilder.buildPartial();
-              }
+            case 8: {
+              int rawValue = input.readEnum();
 
+              type_ = rawValue;
+              break;
+            }
+            case 16: {
+
+              id_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              permissionName_ = s;
+              break;
+            }
+            case 32: {
+
+              threshold_ = input.readInt64();
+              break;
+            }
+            case 40: {
+
+              parentId_ = input.readInt32();
+              break;
+            }
+            case 50: {
+
+              operations_ = input.readBytes();
+              break;
+            }
+            case 58: {
+              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+                keys_ = new java.util.ArrayList<org.tron.protos.Protocol.Key>();
+                mutable_bitField0_ |= 0x00000040;
+              }
+              keys_.add(
+                  input.readMessage(org.tron.protos.Protocol.Key.parser(), extensionRegistry));
               break;
             }
           }
@@ -13783,41 +15152,260 @@ public final class Protocol {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+          keys_ = java.util.Collections.unmodifiableList(keys_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.tron.protos.Protocol.internal_static_protocol_permission_descriptor;
+      return org.tron.protos.Protocol.internal_static_protocol_Permission_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.tron.protos.Protocol.internal_static_protocol_permission_fieldAccessorTable
+      return org.tron.protos.Protocol.internal_static_protocol_Permission_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              org.tron.protos.Protocol.permission.class, org.tron.protos.Protocol.permission.Builder.class);
+              org.tron.protos.Protocol.Permission.class, org.tron.protos.Protocol.Permission.Builder.class);
     }
 
-    public static final int ACCOUNT_FIELD_NUMBER = 1;
-    private org.tron.protos.Protocol.AccountId account_;
     /**
-     * <code>.protocol.AccountId account = 1;</code>
+     * Protobuf enum {@code protocol.Permission.PermissionType}
      */
-    public boolean hasAccount() {
-      return account_ != null;
+    public enum PermissionType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>Owner = 0;</code>
+       */
+      Owner(0),
+      /**
+       * <code>Witness = 1;</code>
+       */
+      Witness(1),
+      /**
+       * <code>Active = 2;</code>
+       */
+      Active(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>Owner = 0;</code>
+       */
+      public static final int Owner_VALUE = 0;
+      /**
+       * <code>Witness = 1;</code>
+       */
+      public static final int Witness_VALUE = 1;
+      /**
+       * <code>Active = 2;</code>
+       */
+      public static final int Active_VALUE = 2;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static PermissionType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static PermissionType forNumber(int value) {
+        switch (value) {
+          case 0: return Owner;
+          case 1: return Witness;
+          case 2: return Active;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<PermissionType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          PermissionType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<PermissionType>() {
+              public PermissionType findValueByNumber(int number) {
+                return PermissionType.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return org.tron.protos.Protocol.Permission.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final PermissionType[] VALUES = values();
+
+      public static PermissionType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private PermissionType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:protocol.Permission.PermissionType)
+    }
+
+    private int bitField0_;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+    /**
+     * <code>.protocol.Permission.PermissionType type = 1;</code>
+     */
+    public int getTypeValue() {
+      return type_;
     }
     /**
-     * <code>.protocol.AccountId account = 1;</code>
+     * <code>.protocol.Permission.PermissionType type = 1;</code>
      */
-    public org.tron.protos.Protocol.AccountId getAccount() {
-      return account_ == null ? org.tron.protos.Protocol.AccountId.getDefaultInstance() : account_;
+    public org.tron.protos.Protocol.Permission.PermissionType getType() {
+      org.tron.protos.Protocol.Permission.PermissionType result = org.tron.protos.Protocol.Permission.PermissionType.valueOf(type_);
+      return result == null ? org.tron.protos.Protocol.Permission.PermissionType.UNRECOGNIZED : result;
+    }
+
+    public static final int ID_FIELD_NUMBER = 2;
+    private int id_;
+    /**
+     * <pre>
+     *Owner id=0, Witness id=1, Active id start by 2
+     * </pre>
+     *
+     * <code>int32 id = 2;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
+    public static final int PERMISSION_NAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object permissionName_;
+    /**
+     * <code>string permission_name = 3;</code>
+     */
+    public java.lang.String getPermissionName() {
+      java.lang.Object ref = permissionName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        permissionName_ = s;
+        return s;
+      }
     }
     /**
-     * <code>.protocol.AccountId account = 1;</code>
+     * <code>string permission_name = 3;</code>
      */
-    public org.tron.protos.Protocol.AccountIdOrBuilder getAccountOrBuilder() {
-      return getAccount();
+    public com.google.protobuf.ByteString
+        getPermissionNameBytes() {
+      java.lang.Object ref = permissionName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        permissionName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int THRESHOLD_FIELD_NUMBER = 4;
+    private long threshold_;
+    /**
+     * <code>int64 threshold = 4;</code>
+     */
+    public long getThreshold() {
+      return threshold_;
+    }
+
+    public static final int PARENT_ID_FIELD_NUMBER = 5;
+    private int parentId_;
+    /**
+     * <code>int32 parent_id = 5;</code>
+     */
+    public int getParentId() {
+      return parentId_;
+    }
+
+    public static final int OPERATIONS_FIELD_NUMBER = 6;
+    private com.google.protobuf.ByteString operations_;
+    /**
+     * <pre>
+     *1 bit 1 contract
+     * </pre>
+     *
+     * <code>bytes operations = 6;</code>
+     */
+    public com.google.protobuf.ByteString getOperations() {
+      return operations_;
+    }
+
+    public static final int KEYS_FIELD_NUMBER = 7;
+    private java.util.List<org.tron.protos.Protocol.Key> keys_;
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    public java.util.List<org.tron.protos.Protocol.Key> getKeysList() {
+      return keys_;
+    }
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    public java.util.List<? extends org.tron.protos.Protocol.KeyOrBuilder> 
+        getKeysOrBuilderList() {
+      return keys_;
+    }
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    public int getKeysCount() {
+      return keys_.size();
+    }
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    public org.tron.protos.Protocol.Key getKeys(int index) {
+      return keys_.get(index);
+    }
+    /**
+     * <code>repeated .protocol.Key keys = 7;</code>
+     */
+    public org.tron.protos.Protocol.KeyOrBuilder getKeysOrBuilder(
+        int index) {
+      return keys_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -13832,8 +15420,26 @@ public final class Protocol {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (account_ != null) {
-        output.writeMessage(1, getAccount());
+      if (type_ != org.tron.protos.Protocol.Permission.PermissionType.Owner.getNumber()) {
+        output.writeEnum(1, type_);
+      }
+      if (id_ != 0) {
+        output.writeInt32(2, id_);
+      }
+      if (!getPermissionNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, permissionName_);
+      }
+      if (threshold_ != 0L) {
+        output.writeInt64(4, threshold_);
+      }
+      if (parentId_ != 0) {
+        output.writeInt32(5, parentId_);
+      }
+      if (!operations_.isEmpty()) {
+        output.writeBytes(6, operations_);
+      }
+      for (int i = 0; i < keys_.size(); i++) {
+        output.writeMessage(7, keys_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -13843,9 +15449,32 @@ public final class Protocol {
       if (size != -1) return size;
 
       size = 0;
-      if (account_ != null) {
+      if (type_ != org.tron.protos.Protocol.Permission.PermissionType.Owner.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getAccount());
+          .computeEnumSize(1, type_);
+      }
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, id_);
+      }
+      if (!getPermissionNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, permissionName_);
+      }
+      if (threshold_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, threshold_);
+      }
+      if (parentId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, parentId_);
+      }
+      if (!operations_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, operations_);
+      }
+      for (int i = 0; i < keys_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, keys_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -13857,17 +15486,25 @@ public final class Protocol {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof org.tron.protos.Protocol.permission)) {
+      if (!(obj instanceof org.tron.protos.Protocol.Permission)) {
         return super.equals(obj);
       }
-      org.tron.protos.Protocol.permission other = (org.tron.protos.Protocol.permission) obj;
+      org.tron.protos.Protocol.Permission other = (org.tron.protos.Protocol.Permission) obj;
 
       boolean result = true;
-      result = result && (hasAccount() == other.hasAccount());
-      if (hasAccount()) {
-        result = result && getAccount()
-            .equals(other.getAccount());
-      }
+      result = result && type_ == other.type_;
+      result = result && (getId()
+          == other.getId());
+      result = result && getPermissionName()
+          .equals(other.getPermissionName());
+      result = result && (getThreshold()
+          == other.getThreshold());
+      result = result && (getParentId()
+          == other.getParentId());
+      result = result && getOperations()
+          .equals(other.getOperations());
+      result = result && getKeysList()
+          .equals(other.getKeysList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -13879,78 +15516,91 @@ public final class Protocol {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasAccount()) {
-        hash = (37 * hash) + ACCOUNT_FIELD_NUMBER;
-        hash = (53 * hash) + getAccount().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + PERMISSION_NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getPermissionName().hashCode();
+      hash = (37 * hash) + THRESHOLD_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getThreshold());
+      hash = (37 * hash) + PARENT_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getParentId();
+      hash = (37 * hash) + OPERATIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getOperations().hashCode();
+      if (getKeysCount() > 0) {
+        hash = (37 * hash) + KEYS_FIELD_NUMBER;
+        hash = (53 * hash) + getKeysList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static org.tron.protos.Protocol.permission parseFrom(
+    public static org.tron.protos.Protocol.Permission parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(
+    public static org.tron.protos.Protocol.Permission parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(
+    public static org.tron.protos.Protocol.Permission parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(
+    public static org.tron.protos.Protocol.Permission parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(byte[] data)
+    public static org.tron.protos.Protocol.Permission parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(
+    public static org.tron.protos.Protocol.Permission parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(java.io.InputStream input)
+    public static org.tron.protos.Protocol.Permission parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(
+    public static org.tron.protos.Protocol.Permission parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static org.tron.protos.Protocol.permission parseDelimitedFrom(java.io.InputStream input)
+    public static org.tron.protos.Protocol.Permission parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static org.tron.protos.Protocol.permission parseDelimitedFrom(
+    public static org.tron.protos.Protocol.Permission parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(
+    public static org.tron.protos.Protocol.Permission parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static org.tron.protos.Protocol.permission parseFrom(
+    public static org.tron.protos.Protocol.Permission parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -13962,7 +15612,7 @@ public final class Protocol {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(org.tron.protos.Protocol.permission prototype) {
+    public static Builder newBuilder(org.tron.protos.Protocol.Permission prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
@@ -13977,25 +15627,25 @@ public final class Protocol {
       return builder;
     }
     /**
-     * Protobuf type {@code protocol.permission}
+     * Protobuf type {@code protocol.Permission}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:protocol.permission)
-        org.tron.protos.Protocol.permissionOrBuilder {
+        // @@protoc_insertion_point(builder_implements:protocol.Permission)
+        org.tron.protos.Protocol.PermissionOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return org.tron.protos.Protocol.internal_static_protocol_permission_descriptor;
+        return org.tron.protos.Protocol.internal_static_protocol_Permission_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return org.tron.protos.Protocol.internal_static_protocol_permission_fieldAccessorTable
+        return org.tron.protos.Protocol.internal_static_protocol_Permission_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                org.tron.protos.Protocol.permission.class, org.tron.protos.Protocol.permission.Builder.class);
+                org.tron.protos.Protocol.Permission.class, org.tron.protos.Protocol.Permission.Builder.class);
       }
 
-      // Construct using org.tron.protos.Protocol.permission.newBuilder()
+      // Construct using org.tron.protos.Protocol.Permission.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -14008,43 +15658,69 @@ public final class Protocol {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getKeysFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        if (accountBuilder_ == null) {
-          account_ = null;
+        type_ = 0;
+
+        id_ = 0;
+
+        permissionName_ = "";
+
+        threshold_ = 0L;
+
+        parentId_ = 0;
+
+        operations_ = com.google.protobuf.ByteString.EMPTY;
+
+        if (keysBuilder_ == null) {
+          keys_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
         } else {
-          account_ = null;
-          accountBuilder_ = null;
+          keysBuilder_.clear();
         }
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return org.tron.protos.Protocol.internal_static_protocol_permission_descriptor;
+        return org.tron.protos.Protocol.internal_static_protocol_Permission_descriptor;
       }
 
-      public org.tron.protos.Protocol.permission getDefaultInstanceForType() {
-        return org.tron.protos.Protocol.permission.getDefaultInstance();
+      public org.tron.protos.Protocol.Permission getDefaultInstanceForType() {
+        return org.tron.protos.Protocol.Permission.getDefaultInstance();
       }
 
-      public org.tron.protos.Protocol.permission build() {
-        org.tron.protos.Protocol.permission result = buildPartial();
+      public org.tron.protos.Protocol.Permission build() {
+        org.tron.protos.Protocol.Permission result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public org.tron.protos.Protocol.permission buildPartial() {
-        org.tron.protos.Protocol.permission result = new org.tron.protos.Protocol.permission(this);
-        if (accountBuilder_ == null) {
-          result.account_ = account_;
+      public org.tron.protos.Protocol.Permission buildPartial() {
+        org.tron.protos.Protocol.Permission result = new org.tron.protos.Protocol.Permission(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.type_ = type_;
+        result.id_ = id_;
+        result.permissionName_ = permissionName_;
+        result.threshold_ = threshold_;
+        result.parentId_ = parentId_;
+        result.operations_ = operations_;
+        if (keysBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
+            keys_ = java.util.Collections.unmodifiableList(keys_);
+            bitField0_ = (bitField0_ & ~0x00000040);
+          }
+          result.keys_ = keys_;
         } else {
-          result.account_ = accountBuilder_.build();
+          result.keys_ = keysBuilder_.build();
         }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -14076,18 +15752,60 @@ public final class Protocol {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.tron.protos.Protocol.permission) {
-          return mergeFrom((org.tron.protos.Protocol.permission)other);
+        if (other instanceof org.tron.protos.Protocol.Permission) {
+          return mergeFrom((org.tron.protos.Protocol.Permission)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(org.tron.protos.Protocol.permission other) {
-        if (other == org.tron.protos.Protocol.permission.getDefaultInstance()) return this;
-        if (other.hasAccount()) {
-          mergeAccount(other.getAccount());
+      public Builder mergeFrom(org.tron.protos.Protocol.Permission other) {
+        if (other == org.tron.protos.Protocol.Permission.getDefaultInstance()) return this;
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
+        }
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (!other.getPermissionName().isEmpty()) {
+          permissionName_ = other.permissionName_;
+          onChanged();
+        }
+        if (other.getThreshold() != 0L) {
+          setThreshold(other.getThreshold());
+        }
+        if (other.getParentId() != 0) {
+          setParentId(other.getParentId());
+        }
+        if (other.getOperations() != com.google.protobuf.ByteString.EMPTY) {
+          setOperations(other.getOperations());
+        }
+        if (keysBuilder_ == null) {
+          if (!other.keys_.isEmpty()) {
+            if (keys_.isEmpty()) {
+              keys_ = other.keys_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+            } else {
+              ensureKeysIsMutable();
+              keys_.addAll(other.keys_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.keys_.isEmpty()) {
+            if (keysBuilder_.isEmpty()) {
+              keysBuilder_.dispose();
+              keysBuilder_ = null;
+              keys_ = other.keys_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+              keysBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getKeysFieldBuilder() : null;
+            } else {
+              keysBuilder_.addAllMessages(other.keys_);
+            }
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -14102,11 +15820,11 @@ public final class Protocol {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        org.tron.protos.Protocol.permission parsedMessage = null;
+        org.tron.protos.Protocol.Permission parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.tron.protos.Protocol.permission) e.getUnfinishedMessage();
+          parsedMessage = (org.tron.protos.Protocol.Permission) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -14115,122 +15833,490 @@ public final class Protocol {
         }
         return this;
       }
+      private int bitField0_;
 
-      private org.tron.protos.Protocol.AccountId account_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          org.tron.protos.Protocol.AccountId, org.tron.protos.Protocol.AccountId.Builder, org.tron.protos.Protocol.AccountIdOrBuilder> accountBuilder_;
+      private int type_ = 0;
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>.protocol.Permission.PermissionType type = 1;</code>
        */
-      public boolean hasAccount() {
-        return accountBuilder_ != null || account_ != null;
+      public int getTypeValue() {
+        return type_;
       }
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>.protocol.Permission.PermissionType type = 1;</code>
        */
-      public org.tron.protos.Protocol.AccountId getAccount() {
-        if (accountBuilder_ == null) {
-          return account_ == null ? org.tron.protos.Protocol.AccountId.getDefaultInstance() : account_;
+      public Builder setTypeValue(int value) {
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission.PermissionType type = 1;</code>
+       */
+      public org.tron.protos.Protocol.Permission.PermissionType getType() {
+        org.tron.protos.Protocol.Permission.PermissionType result = org.tron.protos.Protocol.Permission.PermissionType.valueOf(type_);
+        return result == null ? org.tron.protos.Protocol.Permission.PermissionType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.protocol.Permission.PermissionType type = 1;</code>
+       */
+      public Builder setType(org.tron.protos.Protocol.Permission.PermissionType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.protocol.Permission.PermissionType type = 1;</code>
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int id_ ;
+      /**
+       * <pre>
+       *Owner id=0, Witness id=1, Active id start by 2
+       * </pre>
+       *
+       * <code>int32 id = 2;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <pre>
+       *Owner id=0, Witness id=1, Active id start by 2
+       * </pre>
+       *
+       * <code>int32 id = 2;</code>
+       */
+      public Builder setId(int value) {
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *Owner id=0, Witness id=1, Active id start by 2
+       * </pre>
+       *
+       * <code>int32 id = 2;</code>
+       */
+      public Builder clearId() {
+        
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object permissionName_ = "";
+      /**
+       * <code>string permission_name = 3;</code>
+       */
+      public java.lang.String getPermissionName() {
+        java.lang.Object ref = permissionName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          permissionName_ = s;
+          return s;
         } else {
-          return accountBuilder_.getMessage();
+          return (java.lang.String) ref;
         }
       }
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>string permission_name = 3;</code>
        */
-      public Builder setAccount(org.tron.protos.Protocol.AccountId value) {
-        if (accountBuilder_ == null) {
+      public com.google.protobuf.ByteString
+          getPermissionNameBytes() {
+        java.lang.Object ref = permissionName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          permissionName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string permission_name = 3;</code>
+       */
+      public Builder setPermissionName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        permissionName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string permission_name = 3;</code>
+       */
+      public Builder clearPermissionName() {
+        
+        permissionName_ = getDefaultInstance().getPermissionName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string permission_name = 3;</code>
+       */
+      public Builder setPermissionNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        permissionName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long threshold_ ;
+      /**
+       * <code>int64 threshold = 4;</code>
+       */
+      public long getThreshold() {
+        return threshold_;
+      }
+      /**
+       * <code>int64 threshold = 4;</code>
+       */
+      public Builder setThreshold(long value) {
+        
+        threshold_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 threshold = 4;</code>
+       */
+      public Builder clearThreshold() {
+        
+        threshold_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int parentId_ ;
+      /**
+       * <code>int32 parent_id = 5;</code>
+       */
+      public int getParentId() {
+        return parentId_;
+      }
+      /**
+       * <code>int32 parent_id = 5;</code>
+       */
+      public Builder setParentId(int value) {
+        
+        parentId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 parent_id = 5;</code>
+       */
+      public Builder clearParentId() {
+        
+        parentId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString operations_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <pre>
+       *1 bit 1 contract
+       * </pre>
+       *
+       * <code>bytes operations = 6;</code>
+       */
+      public com.google.protobuf.ByteString getOperations() {
+        return operations_;
+      }
+      /**
+       * <pre>
+       *1 bit 1 contract
+       * </pre>
+       *
+       * <code>bytes operations = 6;</code>
+       */
+      public Builder setOperations(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        operations_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *1 bit 1 contract
+       * </pre>
+       *
+       * <code>bytes operations = 6;</code>
+       */
+      public Builder clearOperations() {
+        
+        operations_ = getDefaultInstance().getOperations();
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<org.tron.protos.Protocol.Key> keys_ =
+        java.util.Collections.emptyList();
+      private void ensureKeysIsMutable() {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+          keys_ = new java.util.ArrayList<org.tron.protos.Protocol.Key>(keys_);
+          bitField0_ |= 0x00000040;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.tron.protos.Protocol.Key, org.tron.protos.Protocol.Key.Builder, org.tron.protos.Protocol.KeyOrBuilder> keysBuilder_;
+
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public java.util.List<org.tron.protos.Protocol.Key> getKeysList() {
+        if (keysBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(keys_);
+        } else {
+          return keysBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public int getKeysCount() {
+        if (keysBuilder_ == null) {
+          return keys_.size();
+        } else {
+          return keysBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public org.tron.protos.Protocol.Key getKeys(int index) {
+        if (keysBuilder_ == null) {
+          return keys_.get(index);
+        } else {
+          return keysBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public Builder setKeys(
+          int index, org.tron.protos.Protocol.Key value) {
+        if (keysBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          account_ = value;
+          ensureKeysIsMutable();
+          keys_.set(index, value);
           onChanged();
         } else {
-          accountBuilder_.setMessage(value);
+          keysBuilder_.setMessage(index, value);
         }
-
         return this;
       }
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>repeated .protocol.Key keys = 7;</code>
        */
-      public Builder setAccount(
-          org.tron.protos.Protocol.AccountId.Builder builderForValue) {
-        if (accountBuilder_ == null) {
-          account_ = builderForValue.build();
+      public Builder setKeys(
+          int index, org.tron.protos.Protocol.Key.Builder builderForValue) {
+        if (keysBuilder_ == null) {
+          ensureKeysIsMutable();
+          keys_.set(index, builderForValue.build());
           onChanged();
         } else {
-          accountBuilder_.setMessage(builderForValue.build());
+          keysBuilder_.setMessage(index, builderForValue.build());
         }
-
         return this;
       }
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>repeated .protocol.Key keys = 7;</code>
        */
-      public Builder mergeAccount(org.tron.protos.Protocol.AccountId value) {
-        if (accountBuilder_ == null) {
-          if (account_ != null) {
-            account_ =
-              org.tron.protos.Protocol.AccountId.newBuilder(account_).mergeFrom(value).buildPartial();
-          } else {
-            account_ = value;
+      public Builder addKeys(org.tron.protos.Protocol.Key value) {
+        if (keysBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
           }
+          ensureKeysIsMutable();
+          keys_.add(value);
           onChanged();
         } else {
-          accountBuilder_.mergeFrom(value);
+          keysBuilder_.addMessage(value);
         }
-
         return this;
       }
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>repeated .protocol.Key keys = 7;</code>
        */
-      public Builder clearAccount() {
-        if (accountBuilder_ == null) {
-          account_ = null;
+      public Builder addKeys(
+          int index, org.tron.protos.Protocol.Key value) {
+        if (keysBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureKeysIsMutable();
+          keys_.add(index, value);
           onChanged();
         } else {
-          account_ = null;
-          accountBuilder_ = null;
+          keysBuilder_.addMessage(index, value);
         }
-
         return this;
       }
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>repeated .protocol.Key keys = 7;</code>
        */
-      public org.tron.protos.Protocol.AccountId.Builder getAccountBuilder() {
-        
-        onChanged();
-        return getAccountFieldBuilder().getBuilder();
+      public Builder addKeys(
+          org.tron.protos.Protocol.Key.Builder builderForValue) {
+        if (keysBuilder_ == null) {
+          ensureKeysIsMutable();
+          keys_.add(builderForValue.build());
+          onChanged();
+        } else {
+          keysBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
       }
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>repeated .protocol.Key keys = 7;</code>
        */
-      public org.tron.protos.Protocol.AccountIdOrBuilder getAccountOrBuilder() {
-        if (accountBuilder_ != null) {
-          return accountBuilder_.getMessageOrBuilder();
+      public Builder addKeys(
+          int index, org.tron.protos.Protocol.Key.Builder builderForValue) {
+        if (keysBuilder_ == null) {
+          ensureKeysIsMutable();
+          keys_.add(index, builderForValue.build());
+          onChanged();
         } else {
-          return account_ == null ?
-              org.tron.protos.Protocol.AccountId.getDefaultInstance() : account_;
+          keysBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public Builder addAllKeys(
+          java.lang.Iterable<? extends org.tron.protos.Protocol.Key> values) {
+        if (keysBuilder_ == null) {
+          ensureKeysIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, keys_);
+          onChanged();
+        } else {
+          keysBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public Builder clearKeys() {
+        if (keysBuilder_ == null) {
+          keys_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+          onChanged();
+        } else {
+          keysBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public Builder removeKeys(int index) {
+        if (keysBuilder_ == null) {
+          ensureKeysIsMutable();
+          keys_.remove(index);
+          onChanged();
+        } else {
+          keysBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public org.tron.protos.Protocol.Key.Builder getKeysBuilder(
+          int index) {
+        return getKeysFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public org.tron.protos.Protocol.KeyOrBuilder getKeysOrBuilder(
+          int index) {
+        if (keysBuilder_ == null) {
+          return keys_.get(index);  } else {
+          return keysBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>.protocol.AccountId account = 1;</code>
+       * <code>repeated .protocol.Key keys = 7;</code>
        */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          org.tron.protos.Protocol.AccountId, org.tron.protos.Protocol.AccountId.Builder, org.tron.protos.Protocol.AccountIdOrBuilder> 
-          getAccountFieldBuilder() {
-        if (accountBuilder_ == null) {
-          accountBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              org.tron.protos.Protocol.AccountId, org.tron.protos.Protocol.AccountId.Builder, org.tron.protos.Protocol.AccountIdOrBuilder>(
-                  getAccount(),
+      public java.util.List<? extends org.tron.protos.Protocol.KeyOrBuilder> 
+           getKeysOrBuilderList() {
+        if (keysBuilder_ != null) {
+          return keysBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(keys_);
+        }
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public org.tron.protos.Protocol.Key.Builder addKeysBuilder() {
+        return getKeysFieldBuilder().addBuilder(
+            org.tron.protos.Protocol.Key.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public org.tron.protos.Protocol.Key.Builder addKeysBuilder(
+          int index) {
+        return getKeysFieldBuilder().addBuilder(
+            index, org.tron.protos.Protocol.Key.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protocol.Key keys = 7;</code>
+       */
+      public java.util.List<org.tron.protos.Protocol.Key.Builder> 
+           getKeysBuilderList() {
+        return getKeysFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.tron.protos.Protocol.Key, org.tron.protos.Protocol.Key.Builder, org.tron.protos.Protocol.KeyOrBuilder> 
+          getKeysFieldBuilder() {
+        if (keysBuilder_ == null) {
+          keysBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              org.tron.protos.Protocol.Key, org.tron.protos.Protocol.Key.Builder, org.tron.protos.Protocol.KeyOrBuilder>(
+                  keys_,
+                  ((bitField0_ & 0x00000040) == 0x00000040),
                   getParentForChildren(),
                   isClean());
-          account_ = null;
+          keys_ = null;
         }
-        return accountBuilder_;
+        return keysBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -14243,39 +16329,39 @@ public final class Protocol {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:protocol.permission)
+      // @@protoc_insertion_point(builder_scope:protocol.Permission)
     }
 
-    // @@protoc_insertion_point(class_scope:protocol.permission)
-    private static final org.tron.protos.Protocol.permission DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:protocol.Permission)
+    private static final org.tron.protos.Protocol.Permission DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new org.tron.protos.Protocol.permission();
+      DEFAULT_INSTANCE = new org.tron.protos.Protocol.Permission();
     }
 
-    public static org.tron.protos.Protocol.permission getDefaultInstance() {
+    public static org.tron.protos.Protocol.Permission getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<permission>
-        PARSER = new com.google.protobuf.AbstractParser<permission>() {
-      public permission parsePartialFrom(
+    private static final com.google.protobuf.Parser<Permission>
+        PARSER = new com.google.protobuf.AbstractParser<Permission>() {
+      public Permission parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new permission(input, extensionRegistry);
+        return new Permission(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<permission> parser() {
+    public static com.google.protobuf.Parser<Permission> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<permission> getParserForType() {
+    public com.google.protobuf.Parser<Permission> getParserForType() {
       return PARSER;
     }
 
-    public org.tron.protos.Protocol.permission getDefaultInstanceForType() {
+    public org.tron.protos.Protocol.Permission getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -19902,6 +21988,521 @@ public final class Protocol {
 
   }
 
+  public interface DeferredStageOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:protocol.DeferredStage)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 delaySeconds = 1;</code>
+     */
+    long getDelaySeconds();
+
+    /**
+     * <code>int32 stage = 2;</code>
+     */
+    int getStage();
+  }
+  /**
+   * Protobuf type {@code protocol.DeferredStage}
+   */
+  public  static final class DeferredStage extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:protocol.DeferredStage)
+      DeferredStageOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DeferredStage.newBuilder() to construct.
+    private DeferredStage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DeferredStage() {
+      delaySeconds_ = 0L;
+      stage_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DeferredStage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              delaySeconds_ = input.readInt64();
+              break;
+            }
+            case 16: {
+
+              stage_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.tron.protos.Protocol.DeferredStage.class, org.tron.protos.Protocol.DeferredStage.Builder.class);
+    }
+
+    public static final int DELAYSECONDS_FIELD_NUMBER = 1;
+    private long delaySeconds_;
+    /**
+     * <code>int64 delaySeconds = 1;</code>
+     */
+    public long getDelaySeconds() {
+      return delaySeconds_;
+    }
+
+    public static final int STAGE_FIELD_NUMBER = 2;
+    private int stage_;
+    /**
+     * <code>int32 stage = 2;</code>
+     */
+    public int getStage() {
+      return stage_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (delaySeconds_ != 0L) {
+        output.writeInt64(1, delaySeconds_);
+      }
+      if (stage_ != 0) {
+        output.writeInt32(2, stage_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (delaySeconds_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, delaySeconds_);
+      }
+      if (stage_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, stage_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.tron.protos.Protocol.DeferredStage)) {
+        return super.equals(obj);
+      }
+      org.tron.protos.Protocol.DeferredStage other = (org.tron.protos.Protocol.DeferredStage) obj;
+
+      boolean result = true;
+      result = result && (getDelaySeconds()
+          == other.getDelaySeconds());
+      result = result && (getStage()
+          == other.getStage());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DELAYSECONDS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDelaySeconds());
+      hash = (37 * hash) + STAGE_FIELD_NUMBER;
+      hash = (53 * hash) + getStage();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.DeferredStage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.tron.protos.Protocol.DeferredStage prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code protocol.DeferredStage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:protocol.DeferredStage)
+        org.tron.protos.Protocol.DeferredStageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.tron.protos.Protocol.DeferredStage.class, org.tron.protos.Protocol.DeferredStage.Builder.class);
+      }
+
+      // Construct using org.tron.protos.Protocol.DeferredStage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        delaySeconds_ = 0L;
+
+        stage_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_descriptor;
+      }
+
+      public org.tron.protos.Protocol.DeferredStage getDefaultInstanceForType() {
+        return org.tron.protos.Protocol.DeferredStage.getDefaultInstance();
+      }
+
+      public org.tron.protos.Protocol.DeferredStage build() {
+        org.tron.protos.Protocol.DeferredStage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.tron.protos.Protocol.DeferredStage buildPartial() {
+        org.tron.protos.Protocol.DeferredStage result = new org.tron.protos.Protocol.DeferredStage(this);
+        result.delaySeconds_ = delaySeconds_;
+        result.stage_ = stage_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.tron.protos.Protocol.DeferredStage) {
+          return mergeFrom((org.tron.protos.Protocol.DeferredStage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.tron.protos.Protocol.DeferredStage other) {
+        if (other == org.tron.protos.Protocol.DeferredStage.getDefaultInstance()) return this;
+        if (other.getDelaySeconds() != 0L) {
+          setDelaySeconds(other.getDelaySeconds());
+        }
+        if (other.getStage() != 0) {
+          setStage(other.getStage());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.tron.protos.Protocol.DeferredStage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.tron.protos.Protocol.DeferredStage) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long delaySeconds_ ;
+      /**
+       * <code>int64 delaySeconds = 1;</code>
+       */
+      public long getDelaySeconds() {
+        return delaySeconds_;
+      }
+      /**
+       * <code>int64 delaySeconds = 1;</code>
+       */
+      public Builder setDelaySeconds(long value) {
+        
+        delaySeconds_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 delaySeconds = 1;</code>
+       */
+      public Builder clearDelaySeconds() {
+        
+        delaySeconds_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int stage_ ;
+      /**
+       * <code>int32 stage = 2;</code>
+       */
+      public int getStage() {
+        return stage_;
+      }
+      /**
+       * <code>int32 stage = 2;</code>
+       */
+      public Builder setStage(int value) {
+        
+        stage_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 stage = 2;</code>
+       */
+      public Builder clearStage() {
+        
+        stage_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:protocol.DeferredStage)
+    }
+
+    // @@protoc_insertion_point(class_scope:protocol.DeferredStage)
+    private static final org.tron.protos.Protocol.DeferredStage DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.tron.protos.Protocol.DeferredStage();
+    }
+
+    public static org.tron.protos.Protocol.DeferredStage getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DeferredStage>
+        PARSER = new com.google.protobuf.AbstractParser<DeferredStage>() {
+      public DeferredStage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DeferredStage(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DeferredStage> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeferredStage> getParserForType() {
+      return PARSER;
+    }
+
+    public org.tron.protos.Protocol.DeferredStage getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface TransactionOrBuilder extends
       // @@protoc_insertion_point(interface_extends:protocol.Transaction)
       com.google.protobuf.MessageOrBuilder {
@@ -20111,6 +22712,11 @@ public final class Protocol {
        * <code>bytes ContractName = 4;</code>
        */
       com.google.protobuf.ByteString getContractName();
+
+      /**
+       * <code>int32 Permission_id = 5;</code>
+       */
+      int getPermissionId();
     }
     /**
      * Protobuf type {@code protocol.Transaction.Contract}
@@ -20128,6 +22734,7 @@ public final class Protocol {
         type_ = 0;
         provider_ = com.google.protobuf.ByteString.EMPTY;
         contractName_ = com.google.protobuf.ByteString.EMPTY;
+        permissionId_ = 0;
       }
 
       @java.lang.Override
@@ -20188,6 +22795,11 @@ public final class Protocol {
               case 34: {
 
                 contractName_ = input.readBytes();
+                break;
+              }
+              case 40: {
+
+                permissionId_ = input.readInt32();
                 break;
               }
             }
@@ -20341,6 +22953,18 @@ public final class Protocol {
          * <code>UpdateEnergyLimitContract = 45;</code>
          */
         UpdateEnergyLimitContract(45),
+        /**
+         * <code>AccountPermissionUpdateContract = 46;</code>
+         */
+        AccountPermissionUpdateContract(46),
+        /**
+         * <code>CancelDeferredTransactionContract = 47;</code>
+         */
+        CancelDeferredTransactionContract(47),
+        /**
+         * <code>ClearABIContract = 48;</code>
+         */
+        ClearABIContract(48),
         UNRECOGNIZED(-1),
         ;
 
@@ -20466,6 +23090,18 @@ public final class Protocol {
          * <code>UpdateEnergyLimitContract = 45;</code>
          */
         public static final int UpdateEnergyLimitContract_VALUE = 45;
+        /**
+         * <code>AccountPermissionUpdateContract = 46;</code>
+         */
+        public static final int AccountPermissionUpdateContract_VALUE = 46;
+        /**
+         * <code>CancelDeferredTransactionContract = 47;</code>
+         */
+        public static final int CancelDeferredTransactionContract_VALUE = 47;
+        /**
+         * <code>ClearABIContract = 48;</code>
+         */
+        public static final int ClearABIContract_VALUE = 48;
 
 
         public final int getNumber() {
@@ -20515,6 +23151,9 @@ public final class Protocol {
             case 43: return ExchangeWithdrawContract;
             case 44: return ExchangeTransactionContract;
             case 45: return UpdateEnergyLimitContract;
+            case 46: return AccountPermissionUpdateContract;
+            case 47: return CancelDeferredTransactionContract;
+            case 48: return ClearABIContract;
             default: return null;
           }
         }
@@ -20622,6 +23261,15 @@ public final class Protocol {
         return contractName_;
       }
 
+      public static final int PERMISSION_ID_FIELD_NUMBER = 5;
+      private int permissionId_;
+      /**
+       * <code>int32 Permission_id = 5;</code>
+       */
+      public int getPermissionId() {
+        return permissionId_;
+      }
+
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -20646,6 +23294,9 @@ public final class Protocol {
         if (!contractName_.isEmpty()) {
           output.writeBytes(4, contractName_);
         }
+        if (permissionId_ != 0) {
+          output.writeInt32(5, permissionId_);
+        }
         unknownFields.writeTo(output);
       }
 
@@ -20669,6 +23320,10 @@ public final class Protocol {
         if (!contractName_.isEmpty()) {
           size += com.google.protobuf.CodedOutputStream
             .computeBytesSize(4, contractName_);
+        }
+        if (permissionId_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(5, permissionId_);
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
@@ -20696,6 +23351,8 @@ public final class Protocol {
             .equals(other.getProvider());
         result = result && getContractName()
             .equals(other.getContractName());
+        result = result && (getPermissionId()
+            == other.getPermissionId());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -20717,6 +23374,8 @@ public final class Protocol {
         hash = (53 * hash) + getProvider().hashCode();
         hash = (37 * hash) + CONTRACTNAME_FIELD_NUMBER;
         hash = (53 * hash) + getContractName().hashCode();
+        hash = (37 * hash) + PERMISSION_ID_FIELD_NUMBER;
+        hash = (53 * hash) + getPermissionId();
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -20858,6 +23517,8 @@ public final class Protocol {
 
           contractName_ = com.google.protobuf.ByteString.EMPTY;
 
+          permissionId_ = 0;
+
           return this;
         }
 
@@ -20888,6 +23549,7 @@ public final class Protocol {
           }
           result.provider_ = provider_;
           result.contractName_ = contractName_;
+          result.permissionId_ = permissionId_;
           onBuilt();
           return result;
         }
@@ -20940,6 +23602,9 @@ public final class Protocol {
           }
           if (other.getContractName() != com.google.protobuf.ByteString.EMPTY) {
             setContractName(other.getContractName());
+          }
+          if (other.getPermissionId() != 0) {
+            setPermissionId(other.getPermissionId());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -21183,6 +23848,32 @@ public final class Protocol {
         public Builder clearContractName() {
           
           contractName_ = getDefaultInstance().getContractName();
+          onChanged();
+          return this;
+        }
+
+        private int permissionId_ ;
+        /**
+         * <code>int32 Permission_id = 5;</code>
+         */
+        public int getPermissionId() {
+          return permissionId_;
+        }
+        /**
+         * <code>int32 Permission_id = 5;</code>
+         */
+        public Builder setPermissionId(int value) {
+          
+          permissionId_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 Permission_id = 5;</code>
+         */
+        public Builder clearPermissionId() {
+          
+          permissionId_ = 0;
           onChanged();
           return this;
         }
@@ -21594,6 +24285,10 @@ public final class Protocol {
          * <code>UNKNOWN = 13;</code>
          */
         UNKNOWN(13),
+        /**
+         * <code>TRANSFER_FAILED = 14;</code>
+         */
+        TRANSFER_FAILED(14),
         UNRECOGNIZED(-1),
         ;
 
@@ -21653,6 +24348,10 @@ public final class Protocol {
          * <code>UNKNOWN = 13;</code>
          */
         public static final int UNKNOWN_VALUE = 13;
+        /**
+         * <code>TRANSFER_FAILED = 14;</code>
+         */
+        public static final int TRANSFER_FAILED_VALUE = 14;
 
 
         public final int getNumber() {
@@ -21687,6 +24386,7 @@ public final class Protocol {
             case 11: return OUT_OF_TIME;
             case 12: return JVM_STACK_OVER_FLOW;
             case 13: return UNKNOWN;
+            case 14: return TRANSFER_FAILED;
             default: return null;
           }
         }
@@ -22815,6 +25515,19 @@ public final class Protocol {
        * <code>int64 fee_limit = 18;</code>
        */
       long getFeeLimit();
+
+      /**
+       * <code>.protocol.DeferredStage deferredStage = 19;</code>
+       */
+      boolean hasDeferredStage();
+      /**
+       * <code>.protocol.DeferredStage deferredStage = 19;</code>
+       */
+      org.tron.protos.Protocol.DeferredStage getDeferredStage();
+      /**
+       * <code>.protocol.DeferredStage deferredStage = 19;</code>
+       */
+      org.tron.protos.Protocol.DeferredStageOrBuilder getDeferredStageOrBuilder();
     }
     /**
      * Protobuf type {@code protocol.Transaction.raw}
@@ -22928,6 +25641,19 @@ public final class Protocol {
               case 144: {
 
                 feeLimit_ = input.readInt64();
+                break;
+              }
+              case 154: {
+                org.tron.protos.Protocol.DeferredStage.Builder subBuilder = null;
+                if (deferredStage_ != null) {
+                  subBuilder = deferredStage_.toBuilder();
+                }
+                deferredStage_ = input.readMessage(org.tron.protos.Protocol.DeferredStage.parser(), extensionRegistry);
+                if (subBuilder != null) {
+                  subBuilder.mergeFrom(deferredStage_);
+                  deferredStage_ = subBuilder.buildPartial();
+                }
+
                 break;
               }
             }
@@ -23131,6 +25857,27 @@ public final class Protocol {
         return feeLimit_;
       }
 
+      public static final int DEFERREDSTAGE_FIELD_NUMBER = 19;
+      private org.tron.protos.Protocol.DeferredStage deferredStage_;
+      /**
+       * <code>.protocol.DeferredStage deferredStage = 19;</code>
+       */
+      public boolean hasDeferredStage() {
+        return deferredStage_ != null;
+      }
+      /**
+       * <code>.protocol.DeferredStage deferredStage = 19;</code>
+       */
+      public org.tron.protos.Protocol.DeferredStage getDeferredStage() {
+        return deferredStage_ == null ? org.tron.protos.Protocol.DeferredStage.getDefaultInstance() : deferredStage_;
+      }
+      /**
+       * <code>.protocol.DeferredStage deferredStage = 19;</code>
+       */
+      public org.tron.protos.Protocol.DeferredStageOrBuilder getDeferredStageOrBuilder() {
+        return getDeferredStage();
+      }
+
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -23172,6 +25919,9 @@ public final class Protocol {
         }
         if (feeLimit_ != 0L) {
           output.writeInt64(18, feeLimit_);
+        }
+        if (deferredStage_ != null) {
+          output.writeMessage(19, getDeferredStage());
         }
         unknownFields.writeTo(output);
       }
@@ -23221,6 +25971,10 @@ public final class Protocol {
           size += com.google.protobuf.CodedOutputStream
             .computeInt64Size(18, feeLimit_);
         }
+        if (deferredStage_ != null) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(19, getDeferredStage());
+        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -23257,6 +26011,11 @@ public final class Protocol {
             == other.getTimestamp());
         result = result && (getFeeLimit()
             == other.getFeeLimit());
+        result = result && (hasDeferredStage() == other.hasDeferredStage());
+        if (hasDeferredStage()) {
+          result = result && getDeferredStage()
+              .equals(other.getDeferredStage());
+        }
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -23296,6 +26055,10 @@ public final class Protocol {
         hash = (37 * hash) + FEE_LIMIT_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
             getFeeLimit());
+        if (hasDeferredStage()) {
+          hash = (37 * hash) + DEFERREDSTAGE_FIELD_NUMBER;
+          hash = (53 * hash) + getDeferredStage().hashCode();
+        }
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -23455,6 +26218,12 @@ public final class Protocol {
 
           feeLimit_ = 0L;
 
+          if (deferredStageBuilder_ == null) {
+            deferredStage_ = null;
+          } else {
+            deferredStage_ = null;
+            deferredStageBuilder_ = null;
+          }
           return this;
         }
 
@@ -23505,6 +26274,11 @@ public final class Protocol {
           result.scripts_ = scripts_;
           result.timestamp_ = timestamp_;
           result.feeLimit_ = feeLimit_;
+          if (deferredStageBuilder_ == null) {
+            result.deferredStage_ = deferredStage_;
+          } else {
+            result.deferredStage_ = deferredStageBuilder_.build();
+          }
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -23622,6 +26396,9 @@ public final class Protocol {
           }
           if (other.getFeeLimit() != 0L) {
             setFeeLimit(other.getFeeLimit());
+          }
+          if (other.hasDeferredStage()) {
+            mergeDeferredStage(other.getDeferredStage());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -24445,6 +27222,123 @@ public final class Protocol {
           feeLimit_ = 0L;
           onChanged();
           return this;
+        }
+
+        private org.tron.protos.Protocol.DeferredStage deferredStage_ = null;
+        private com.google.protobuf.SingleFieldBuilderV3<
+            org.tron.protos.Protocol.DeferredStage, org.tron.protos.Protocol.DeferredStage.Builder, org.tron.protos.Protocol.DeferredStageOrBuilder> deferredStageBuilder_;
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        public boolean hasDeferredStage() {
+          return deferredStageBuilder_ != null || deferredStage_ != null;
+        }
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        public org.tron.protos.Protocol.DeferredStage getDeferredStage() {
+          if (deferredStageBuilder_ == null) {
+            return deferredStage_ == null ? org.tron.protos.Protocol.DeferredStage.getDefaultInstance() : deferredStage_;
+          } else {
+            return deferredStageBuilder_.getMessage();
+          }
+        }
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        public Builder setDeferredStage(org.tron.protos.Protocol.DeferredStage value) {
+          if (deferredStageBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            deferredStage_ = value;
+            onChanged();
+          } else {
+            deferredStageBuilder_.setMessage(value);
+          }
+
+          return this;
+        }
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        public Builder setDeferredStage(
+            org.tron.protos.Protocol.DeferredStage.Builder builderForValue) {
+          if (deferredStageBuilder_ == null) {
+            deferredStage_ = builderForValue.build();
+            onChanged();
+          } else {
+            deferredStageBuilder_.setMessage(builderForValue.build());
+          }
+
+          return this;
+        }
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        public Builder mergeDeferredStage(org.tron.protos.Protocol.DeferredStage value) {
+          if (deferredStageBuilder_ == null) {
+            if (deferredStage_ != null) {
+              deferredStage_ =
+                org.tron.protos.Protocol.DeferredStage.newBuilder(deferredStage_).mergeFrom(value).buildPartial();
+            } else {
+              deferredStage_ = value;
+            }
+            onChanged();
+          } else {
+            deferredStageBuilder_.mergeFrom(value);
+          }
+
+          return this;
+        }
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        public Builder clearDeferredStage() {
+          if (deferredStageBuilder_ == null) {
+            deferredStage_ = null;
+            onChanged();
+          } else {
+            deferredStage_ = null;
+            deferredStageBuilder_ = null;
+          }
+
+          return this;
+        }
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        public org.tron.protos.Protocol.DeferredStage.Builder getDeferredStageBuilder() {
+          
+          onChanged();
+          return getDeferredStageFieldBuilder().getBuilder();
+        }
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        public org.tron.protos.Protocol.DeferredStageOrBuilder getDeferredStageOrBuilder() {
+          if (deferredStageBuilder_ != null) {
+            return deferredStageBuilder_.getMessageOrBuilder();
+          } else {
+            return deferredStage_ == null ?
+                org.tron.protos.Protocol.DeferredStage.getDefaultInstance() : deferredStage_;
+          }
+        }
+        /**
+         * <code>.protocol.DeferredStage deferredStage = 19;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+            org.tron.protos.Protocol.DeferredStage, org.tron.protos.Protocol.DeferredStage.Builder, org.tron.protos.Protocol.DeferredStageOrBuilder> 
+            getDeferredStageFieldBuilder() {
+          if (deferredStageBuilder_ == null) {
+            deferredStageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                org.tron.protos.Protocol.DeferredStage, org.tron.protos.Protocol.DeferredStage.Builder, org.tron.protos.Protocol.DeferredStageOrBuilder>(
+                    getDeferredStage(),
+                    getParentForChildren(),
+                    isClean());
+            deferredStage_ = null;
+          }
+          return deferredStageBuilder_;
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -28736,6 +31630,1042 @@ public final class Protocol {
 
   }
 
+  public interface DeferredTransactionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:protocol.DeferredTransaction)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bytes transactionId = 1;</code>
+     */
+    com.google.protobuf.ByteString getTransactionId();
+
+    /**
+     * <code>int64 publishTime = 2;</code>
+     */
+    long getPublishTime();
+
+    /**
+     * <code>int64 delaySeconds = 3;</code>
+     */
+    long getDelaySeconds();
+
+    /**
+     * <code>int64 delayUntil = 4;</code>
+     */
+    long getDelayUntil();
+
+    /**
+     * <code>int64 expiration = 5;</code>
+     */
+    long getExpiration();
+
+    /**
+     * <code>bytes senderAddress = 6;</code>
+     */
+    com.google.protobuf.ByteString getSenderAddress();
+
+    /**
+     * <code>bytes receiverAddress = 7;</code>
+     */
+    com.google.protobuf.ByteString getReceiverAddress();
+
+    /**
+     * <code>.protocol.Transaction transaction = 8;</code>
+     */
+    boolean hasTransaction();
+    /**
+     * <code>.protocol.Transaction transaction = 8;</code>
+     */
+    org.tron.protos.Protocol.Transaction getTransaction();
+    /**
+     * <code>.protocol.Transaction transaction = 8;</code>
+     */
+    org.tron.protos.Protocol.TransactionOrBuilder getTransactionOrBuilder();
+  }
+  /**
+   * Protobuf type {@code protocol.DeferredTransaction}
+   */
+  public  static final class DeferredTransaction extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:protocol.DeferredTransaction)
+      DeferredTransactionOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DeferredTransaction.newBuilder() to construct.
+    private DeferredTransaction(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DeferredTransaction() {
+      transactionId_ = com.google.protobuf.ByteString.EMPTY;
+      publishTime_ = 0L;
+      delaySeconds_ = 0L;
+      delayUntil_ = 0L;
+      expiration_ = 0L;
+      senderAddress_ = com.google.protobuf.ByteString.EMPTY;
+      receiverAddress_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DeferredTransaction(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+
+              transactionId_ = input.readBytes();
+              break;
+            }
+            case 16: {
+
+              publishTime_ = input.readInt64();
+              break;
+            }
+            case 24: {
+
+              delaySeconds_ = input.readInt64();
+              break;
+            }
+            case 32: {
+
+              delayUntil_ = input.readInt64();
+              break;
+            }
+            case 40: {
+
+              expiration_ = input.readInt64();
+              break;
+            }
+            case 50: {
+
+              senderAddress_ = input.readBytes();
+              break;
+            }
+            case 58: {
+
+              receiverAddress_ = input.readBytes();
+              break;
+            }
+            case 66: {
+              org.tron.protos.Protocol.Transaction.Builder subBuilder = null;
+              if (transaction_ != null) {
+                subBuilder = transaction_.toBuilder();
+              }
+              transaction_ = input.readMessage(org.tron.protos.Protocol.Transaction.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(transaction_);
+                transaction_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.tron.protos.Protocol.DeferredTransaction.class, org.tron.protos.Protocol.DeferredTransaction.Builder.class);
+    }
+
+    public static final int TRANSACTIONID_FIELD_NUMBER = 1;
+    private com.google.protobuf.ByteString transactionId_;
+    /**
+     * <code>bytes transactionId = 1;</code>
+     */
+    public com.google.protobuf.ByteString getTransactionId() {
+      return transactionId_;
+    }
+
+    public static final int PUBLISHTIME_FIELD_NUMBER = 2;
+    private long publishTime_;
+    /**
+     * <code>int64 publishTime = 2;</code>
+     */
+    public long getPublishTime() {
+      return publishTime_;
+    }
+
+    public static final int DELAYSECONDS_FIELD_NUMBER = 3;
+    private long delaySeconds_;
+    /**
+     * <code>int64 delaySeconds = 3;</code>
+     */
+    public long getDelaySeconds() {
+      return delaySeconds_;
+    }
+
+    public static final int DELAYUNTIL_FIELD_NUMBER = 4;
+    private long delayUntil_;
+    /**
+     * <code>int64 delayUntil = 4;</code>
+     */
+    public long getDelayUntil() {
+      return delayUntil_;
+    }
+
+    public static final int EXPIRATION_FIELD_NUMBER = 5;
+    private long expiration_;
+    /**
+     * <code>int64 expiration = 5;</code>
+     */
+    public long getExpiration() {
+      return expiration_;
+    }
+
+    public static final int SENDERADDRESS_FIELD_NUMBER = 6;
+    private com.google.protobuf.ByteString senderAddress_;
+    /**
+     * <code>bytes senderAddress = 6;</code>
+     */
+    public com.google.protobuf.ByteString getSenderAddress() {
+      return senderAddress_;
+    }
+
+    public static final int RECEIVERADDRESS_FIELD_NUMBER = 7;
+    private com.google.protobuf.ByteString receiverAddress_;
+    /**
+     * <code>bytes receiverAddress = 7;</code>
+     */
+    public com.google.protobuf.ByteString getReceiverAddress() {
+      return receiverAddress_;
+    }
+
+    public static final int TRANSACTION_FIELD_NUMBER = 8;
+    private org.tron.protos.Protocol.Transaction transaction_;
+    /**
+     * <code>.protocol.Transaction transaction = 8;</code>
+     */
+    public boolean hasTransaction() {
+      return transaction_ != null;
+    }
+    /**
+     * <code>.protocol.Transaction transaction = 8;</code>
+     */
+    public org.tron.protos.Protocol.Transaction getTransaction() {
+      return transaction_ == null ? org.tron.protos.Protocol.Transaction.getDefaultInstance() : transaction_;
+    }
+    /**
+     * <code>.protocol.Transaction transaction = 8;</code>
+     */
+    public org.tron.protos.Protocol.TransactionOrBuilder getTransactionOrBuilder() {
+      return getTransaction();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!transactionId_.isEmpty()) {
+        output.writeBytes(1, transactionId_);
+      }
+      if (publishTime_ != 0L) {
+        output.writeInt64(2, publishTime_);
+      }
+      if (delaySeconds_ != 0L) {
+        output.writeInt64(3, delaySeconds_);
+      }
+      if (delayUntil_ != 0L) {
+        output.writeInt64(4, delayUntil_);
+      }
+      if (expiration_ != 0L) {
+        output.writeInt64(5, expiration_);
+      }
+      if (!senderAddress_.isEmpty()) {
+        output.writeBytes(6, senderAddress_);
+      }
+      if (!receiverAddress_.isEmpty()) {
+        output.writeBytes(7, receiverAddress_);
+      }
+      if (transaction_ != null) {
+        output.writeMessage(8, getTransaction());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!transactionId_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, transactionId_);
+      }
+      if (publishTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, publishTime_);
+      }
+      if (delaySeconds_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, delaySeconds_);
+      }
+      if (delayUntil_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, delayUntil_);
+      }
+      if (expiration_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, expiration_);
+      }
+      if (!senderAddress_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, senderAddress_);
+      }
+      if (!receiverAddress_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, receiverAddress_);
+      }
+      if (transaction_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getTransaction());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.tron.protos.Protocol.DeferredTransaction)) {
+        return super.equals(obj);
+      }
+      org.tron.protos.Protocol.DeferredTransaction other = (org.tron.protos.Protocol.DeferredTransaction) obj;
+
+      boolean result = true;
+      result = result && getTransactionId()
+          .equals(other.getTransactionId());
+      result = result && (getPublishTime()
+          == other.getPublishTime());
+      result = result && (getDelaySeconds()
+          == other.getDelaySeconds());
+      result = result && (getDelayUntil()
+          == other.getDelayUntil());
+      result = result && (getExpiration()
+          == other.getExpiration());
+      result = result && getSenderAddress()
+          .equals(other.getSenderAddress());
+      result = result && getReceiverAddress()
+          .equals(other.getReceiverAddress());
+      result = result && (hasTransaction() == other.hasTransaction());
+      if (hasTransaction()) {
+        result = result && getTransaction()
+            .equals(other.getTransaction());
+      }
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TRANSACTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getTransactionId().hashCode();
+      hash = (37 * hash) + PUBLISHTIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getPublishTime());
+      hash = (37 * hash) + DELAYSECONDS_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDelaySeconds());
+      hash = (37 * hash) + DELAYUNTIL_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getDelayUntil());
+      hash = (37 * hash) + EXPIRATION_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getExpiration());
+      hash = (37 * hash) + SENDERADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getSenderAddress().hashCode();
+      hash = (37 * hash) + RECEIVERADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getReceiverAddress().hashCode();
+      if (hasTransaction()) {
+        hash = (37 * hash) + TRANSACTION_FIELD_NUMBER;
+        hash = (53 * hash) + getTransaction().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.tron.protos.Protocol.DeferredTransaction prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code protocol.DeferredTransaction}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:protocol.DeferredTransaction)
+        org.tron.protos.Protocol.DeferredTransactionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.tron.protos.Protocol.DeferredTransaction.class, org.tron.protos.Protocol.DeferredTransaction.Builder.class);
+      }
+
+      // Construct using org.tron.protos.Protocol.DeferredTransaction.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        transactionId_ = com.google.protobuf.ByteString.EMPTY;
+
+        publishTime_ = 0L;
+
+        delaySeconds_ = 0L;
+
+        delayUntil_ = 0L;
+
+        expiration_ = 0L;
+
+        senderAddress_ = com.google.protobuf.ByteString.EMPTY;
+
+        receiverAddress_ = com.google.protobuf.ByteString.EMPTY;
+
+        if (transactionBuilder_ == null) {
+          transaction_ = null;
+        } else {
+          transaction_ = null;
+          transactionBuilder_ = null;
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_descriptor;
+      }
+
+      public org.tron.protos.Protocol.DeferredTransaction getDefaultInstanceForType() {
+        return org.tron.protos.Protocol.DeferredTransaction.getDefaultInstance();
+      }
+
+      public org.tron.protos.Protocol.DeferredTransaction build() {
+        org.tron.protos.Protocol.DeferredTransaction result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.tron.protos.Protocol.DeferredTransaction buildPartial() {
+        org.tron.protos.Protocol.DeferredTransaction result = new org.tron.protos.Protocol.DeferredTransaction(this);
+        result.transactionId_ = transactionId_;
+        result.publishTime_ = publishTime_;
+        result.delaySeconds_ = delaySeconds_;
+        result.delayUntil_ = delayUntil_;
+        result.expiration_ = expiration_;
+        result.senderAddress_ = senderAddress_;
+        result.receiverAddress_ = receiverAddress_;
+        if (transactionBuilder_ == null) {
+          result.transaction_ = transaction_;
+        } else {
+          result.transaction_ = transactionBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.tron.protos.Protocol.DeferredTransaction) {
+          return mergeFrom((org.tron.protos.Protocol.DeferredTransaction)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.tron.protos.Protocol.DeferredTransaction other) {
+        if (other == org.tron.protos.Protocol.DeferredTransaction.getDefaultInstance()) return this;
+        if (other.getTransactionId() != com.google.protobuf.ByteString.EMPTY) {
+          setTransactionId(other.getTransactionId());
+        }
+        if (other.getPublishTime() != 0L) {
+          setPublishTime(other.getPublishTime());
+        }
+        if (other.getDelaySeconds() != 0L) {
+          setDelaySeconds(other.getDelaySeconds());
+        }
+        if (other.getDelayUntil() != 0L) {
+          setDelayUntil(other.getDelayUntil());
+        }
+        if (other.getExpiration() != 0L) {
+          setExpiration(other.getExpiration());
+        }
+        if (other.getSenderAddress() != com.google.protobuf.ByteString.EMPTY) {
+          setSenderAddress(other.getSenderAddress());
+        }
+        if (other.getReceiverAddress() != com.google.protobuf.ByteString.EMPTY) {
+          setReceiverAddress(other.getReceiverAddress());
+        }
+        if (other.hasTransaction()) {
+          mergeTransaction(other.getTransaction());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.tron.protos.Protocol.DeferredTransaction parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.tron.protos.Protocol.DeferredTransaction) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.google.protobuf.ByteString transactionId_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes transactionId = 1;</code>
+       */
+      public com.google.protobuf.ByteString getTransactionId() {
+        return transactionId_;
+      }
+      /**
+       * <code>bytes transactionId = 1;</code>
+       */
+      public Builder setTransactionId(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        transactionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes transactionId = 1;</code>
+       */
+      public Builder clearTransactionId() {
+        
+        transactionId_ = getDefaultInstance().getTransactionId();
+        onChanged();
+        return this;
+      }
+
+      private long publishTime_ ;
+      /**
+       * <code>int64 publishTime = 2;</code>
+       */
+      public long getPublishTime() {
+        return publishTime_;
+      }
+      /**
+       * <code>int64 publishTime = 2;</code>
+       */
+      public Builder setPublishTime(long value) {
+        
+        publishTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 publishTime = 2;</code>
+       */
+      public Builder clearPublishTime() {
+        
+        publishTime_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long delaySeconds_ ;
+      /**
+       * <code>int64 delaySeconds = 3;</code>
+       */
+      public long getDelaySeconds() {
+        return delaySeconds_;
+      }
+      /**
+       * <code>int64 delaySeconds = 3;</code>
+       */
+      public Builder setDelaySeconds(long value) {
+        
+        delaySeconds_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 delaySeconds = 3;</code>
+       */
+      public Builder clearDelaySeconds() {
+        
+        delaySeconds_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long delayUntil_ ;
+      /**
+       * <code>int64 delayUntil = 4;</code>
+       */
+      public long getDelayUntil() {
+        return delayUntil_;
+      }
+      /**
+       * <code>int64 delayUntil = 4;</code>
+       */
+      public Builder setDelayUntil(long value) {
+        
+        delayUntil_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 delayUntil = 4;</code>
+       */
+      public Builder clearDelayUntil() {
+        
+        delayUntil_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long expiration_ ;
+      /**
+       * <code>int64 expiration = 5;</code>
+       */
+      public long getExpiration() {
+        return expiration_;
+      }
+      /**
+       * <code>int64 expiration = 5;</code>
+       */
+      public Builder setExpiration(long value) {
+        
+        expiration_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 expiration = 5;</code>
+       */
+      public Builder clearExpiration() {
+        
+        expiration_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString senderAddress_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes senderAddress = 6;</code>
+       */
+      public com.google.protobuf.ByteString getSenderAddress() {
+        return senderAddress_;
+      }
+      /**
+       * <code>bytes senderAddress = 6;</code>
+       */
+      public Builder setSenderAddress(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        senderAddress_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes senderAddress = 6;</code>
+       */
+      public Builder clearSenderAddress() {
+        
+        senderAddress_ = getDefaultInstance().getSenderAddress();
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString receiverAddress_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes receiverAddress = 7;</code>
+       */
+      public com.google.protobuf.ByteString getReceiverAddress() {
+        return receiverAddress_;
+      }
+      /**
+       * <code>bytes receiverAddress = 7;</code>
+       */
+      public Builder setReceiverAddress(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        receiverAddress_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes receiverAddress = 7;</code>
+       */
+      public Builder clearReceiverAddress() {
+        
+        receiverAddress_ = getDefaultInstance().getReceiverAddress();
+        onChanged();
+        return this;
+      }
+
+      private org.tron.protos.Protocol.Transaction transaction_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.Transaction, org.tron.protos.Protocol.Transaction.Builder, org.tron.protos.Protocol.TransactionOrBuilder> transactionBuilder_;
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      public boolean hasTransaction() {
+        return transactionBuilder_ != null || transaction_ != null;
+      }
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      public org.tron.protos.Protocol.Transaction getTransaction() {
+        if (transactionBuilder_ == null) {
+          return transaction_ == null ? org.tron.protos.Protocol.Transaction.getDefaultInstance() : transaction_;
+        } else {
+          return transactionBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      public Builder setTransaction(org.tron.protos.Protocol.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          transaction_ = value;
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      public Builder setTransaction(
+          org.tron.protos.Protocol.Transaction.Builder builderForValue) {
+        if (transactionBuilder_ == null) {
+          transaction_ = builderForValue.build();
+          onChanged();
+        } else {
+          transactionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      public Builder mergeTransaction(org.tron.protos.Protocol.Transaction value) {
+        if (transactionBuilder_ == null) {
+          if (transaction_ != null) {
+            transaction_ =
+              org.tron.protos.Protocol.Transaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
+          } else {
+            transaction_ = value;
+          }
+          onChanged();
+        } else {
+          transactionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      public Builder clearTransaction() {
+        if (transactionBuilder_ == null) {
+          transaction_ = null;
+          onChanged();
+        } else {
+          transaction_ = null;
+          transactionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      public org.tron.protos.Protocol.Transaction.Builder getTransactionBuilder() {
+        
+        onChanged();
+        return getTransactionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      public org.tron.protos.Protocol.TransactionOrBuilder getTransactionOrBuilder() {
+        if (transactionBuilder_ != null) {
+          return transactionBuilder_.getMessageOrBuilder();
+        } else {
+          return transaction_ == null ?
+              org.tron.protos.Protocol.Transaction.getDefaultInstance() : transaction_;
+        }
+      }
+      /**
+       * <code>.protocol.Transaction transaction = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.Transaction, org.tron.protos.Protocol.Transaction.Builder, org.tron.protos.Protocol.TransactionOrBuilder> 
+          getTransactionFieldBuilder() {
+        if (transactionBuilder_ == null) {
+          transactionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.tron.protos.Protocol.Transaction, org.tron.protos.Protocol.Transaction.Builder, org.tron.protos.Protocol.TransactionOrBuilder>(
+                  getTransaction(),
+                  getParentForChildren(),
+                  isClean());
+          transaction_ = null;
+        }
+        return transactionBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:protocol.DeferredTransaction)
+    }
+
+    // @@protoc_insertion_point(class_scope:protocol.DeferredTransaction)
+    private static final org.tron.protos.Protocol.DeferredTransaction DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.tron.protos.Protocol.DeferredTransaction();
+    }
+
+    public static org.tron.protos.Protocol.DeferredTransaction getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DeferredTransaction>
+        PARSER = new com.google.protobuf.AbstractParser<DeferredTransaction>() {
+      public DeferredTransaction parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DeferredTransaction(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DeferredTransaction> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DeferredTransaction> getParserForType() {
+      return PARSER;
+    }
+
+    public org.tron.protos.Protocol.DeferredTransaction getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface TransactionsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:protocol.Transactions)
       com.google.protobuf.MessageOrBuilder {
@@ -30295,6 +34225,11 @@ public final class Protocol {
        * <code>int32 version = 10;</code>
        */
       int getVersion();
+
+      /**
+       * <code>bytes accountStateRoot = 11;</code>
+       */
+      com.google.protobuf.ByteString getAccountStateRoot();
     }
     /**
      * Protobuf type {@code protocol.BlockHeader.raw}
@@ -30316,6 +34251,7 @@ public final class Protocol {
         witnessId_ = 0L;
         witnessAddress_ = com.google.protobuf.ByteString.EMPTY;
         version_ = 0;
+        accountStateRoot_ = com.google.protobuf.ByteString.EMPTY;
       }
 
       @java.lang.Override
@@ -30382,6 +34318,11 @@ public final class Protocol {
               case 80: {
 
                 version_ = input.readInt32();
+                break;
+              }
+              case 90: {
+
+                accountStateRoot_ = input.readBytes();
                 break;
               }
             }
@@ -30476,6 +34417,15 @@ public final class Protocol {
         return version_;
       }
 
+      public static final int ACCOUNTSTATEROOT_FIELD_NUMBER = 11;
+      private com.google.protobuf.ByteString accountStateRoot_;
+      /**
+       * <code>bytes accountStateRoot = 11;</code>
+       */
+      public com.google.protobuf.ByteString getAccountStateRoot() {
+        return accountStateRoot_;
+      }
+
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -30508,6 +34458,9 @@ public final class Protocol {
         }
         if (version_ != 0) {
           output.writeInt32(10, version_);
+        }
+        if (!accountStateRoot_.isEmpty()) {
+          output.writeBytes(11, accountStateRoot_);
         }
         unknownFields.writeTo(output);
       }
@@ -30545,6 +34498,10 @@ public final class Protocol {
           size += com.google.protobuf.CodedOutputStream
             .computeInt32Size(10, version_);
         }
+        if (!accountStateRoot_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(11, accountStateRoot_);
+        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -30575,6 +34532,8 @@ public final class Protocol {
             .equals(other.getWitnessAddress());
         result = result && (getVersion()
             == other.getVersion());
+        result = result && getAccountStateRoot()
+            .equals(other.getAccountStateRoot());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -30603,6 +34562,8 @@ public final class Protocol {
         hash = (53 * hash) + getWitnessAddress().hashCode();
         hash = (37 * hash) + VERSION_FIELD_NUMBER;
         hash = (53 * hash) + getVersion();
+        hash = (37 * hash) + ACCOUNTSTATEROOT_FIELD_NUMBER;
+        hash = (53 * hash) + getAccountStateRoot().hashCode();
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -30746,6 +34707,8 @@ public final class Protocol {
 
           version_ = 0;
 
+          accountStateRoot_ = com.google.protobuf.ByteString.EMPTY;
+
           return this;
         }
 
@@ -30775,6 +34738,7 @@ public final class Protocol {
           result.witnessId_ = witnessId_;
           result.witnessAddress_ = witnessAddress_;
           result.version_ = version_;
+          result.accountStateRoot_ = accountStateRoot_;
           onBuilt();
           return result;
         }
@@ -30836,6 +34800,9 @@ public final class Protocol {
           }
           if (other.getVersion() != 0) {
             setVersion(other.getVersion());
+          }
+          if (other.getAccountStateRoot() != com.google.protobuf.ByteString.EMPTY) {
+            setAccountStateRoot(other.getAccountStateRoot());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -31066,6 +35033,35 @@ public final class Protocol {
         public Builder clearVersion() {
           
           version_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private com.google.protobuf.ByteString accountStateRoot_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>bytes accountStateRoot = 11;</code>
+         */
+        public com.google.protobuf.ByteString getAccountStateRoot() {
+          return accountStateRoot_;
+        }
+        /**
+         * <code>bytes accountStateRoot = 11;</code>
+         */
+        public Builder setAccountStateRoot(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          accountStateRoot_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bytes accountStateRoot = 11;</code>
+         */
+        public Builder clearAccountStateRoot() {
+          
+          accountStateRoot_ = getDefaultInstance().getAccountStateRoot();
           onChanged();
           return this;
         }
@@ -40688,6 +44684,11 @@ public final class Protocol {
      * <code>int64 origin_energy_limit = 8;</code>
      */
     long getOriginEnergyLimit();
+
+    /**
+     * <code>bytes code_hash = 9;</code>
+     */
+    com.google.protobuf.ByteString getCodeHash();
   }
   /**
    * Protobuf type {@code protocol.SmartContract}
@@ -40709,6 +44710,7 @@ public final class Protocol {
       consumeUserResourcePercent_ = 0L;
       name_ = "";
       originEnergyLimit_ = 0L;
+      codeHash_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -40789,6 +44791,11 @@ public final class Protocol {
             case 64: {
 
               originEnergyLimit_ = input.readInt64();
+              break;
+            }
+            case 74: {
+
+              codeHash_ = input.readBytes();
               break;
             }
           }
@@ -44333,6 +48340,15 @@ public final class Protocol {
       return originEnergyLimit_;
     }
 
+    public static final int CODE_HASH_FIELD_NUMBER = 9;
+    private com.google.protobuf.ByteString codeHash_;
+    /**
+     * <code>bytes code_hash = 9;</code>
+     */
+    public com.google.protobuf.ByteString getCodeHash() {
+      return codeHash_;
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -44368,6 +48384,9 @@ public final class Protocol {
       }
       if (originEnergyLimit_ != 0L) {
         output.writeInt64(8, originEnergyLimit_);
+      }
+      if (!codeHash_.isEmpty()) {
+        output.writeBytes(9, codeHash_);
       }
       unknownFields.writeTo(output);
     }
@@ -44408,6 +48427,10 @@ public final class Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(8, originEnergyLimit_);
       }
+      if (!codeHash_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(9, codeHash_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -44443,6 +48466,8 @@ public final class Protocol {
           .equals(other.getName());
       result = result && (getOriginEnergyLimit()
           == other.getOriginEnergyLimit());
+      result = result && getCodeHash()
+          .equals(other.getCodeHash());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -44475,6 +48500,8 @@ public final class Protocol {
       hash = (37 * hash) + ORIGIN_ENERGY_LIMIT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getOriginEnergyLimit());
+      hash = (37 * hash) + CODE_HASH_FIELD_NUMBER;
+      hash = (53 * hash) + getCodeHash().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -44624,6 +48651,8 @@ public final class Protocol {
 
         originEnergyLimit_ = 0L;
 
+        codeHash_ = com.google.protobuf.ByteString.EMPTY;
+
         return this;
       }
 
@@ -44658,6 +48687,7 @@ public final class Protocol {
         result.consumeUserResourcePercent_ = consumeUserResourcePercent_;
         result.name_ = name_;
         result.originEnergyLimit_ = originEnergyLimit_;
+        result.codeHash_ = codeHash_;
         onBuilt();
         return result;
       }
@@ -44723,6 +48753,9 @@ public final class Protocol {
         }
         if (other.getOriginEnergyLimit() != 0L) {
           setOriginEnergyLimit(other.getOriginEnergyLimit());
+        }
+        if (other.getCodeHash() != com.google.protobuf.ByteString.EMPTY) {
+          setCodeHash(other.getCodeHash());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -45098,6 +49131,35 @@ public final class Protocol {
       public Builder clearOriginEnergyLimit() {
         
         originEnergyLimit_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString codeHash_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes code_hash = 9;</code>
+       */
+      public com.google.protobuf.ByteString getCodeHash() {
+        return codeHash_;
+      }
+      /**
+       * <code>bytes code_hash = 9;</code>
+       */
+      public Builder setCodeHash(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        codeHash_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes code_hash = 9;</code>
+       */
+      public Builder clearCodeHash() {
+        
+        codeHash_ = getDefaultInstance().getCodeHash();
         onChanged();
         return this;
       }
@@ -47715,6 +51777,10197 @@ public final class Protocol {
 
   }
 
+  public interface NodeInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:protocol.NodeInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int64 beginSyncNum = 1;</code>
+     */
+    long getBeginSyncNum();
+
+    /**
+     * <code>string block = 2;</code>
+     */
+    java.lang.String getBlock();
+    /**
+     * <code>string block = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getBlockBytes();
+
+    /**
+     * <code>string solidityBlock = 3;</code>
+     */
+    java.lang.String getSolidityBlock();
+    /**
+     * <code>string solidityBlock = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getSolidityBlockBytes();
+
+    /**
+     * <pre>
+     *connect information
+     * </pre>
+     *
+     * <code>int32 currentConnectCount = 4;</code>
+     */
+    int getCurrentConnectCount();
+
+    /**
+     * <code>int32 activeConnectCount = 5;</code>
+     */
+    int getActiveConnectCount();
+
+    /**
+     * <code>int32 passiveConnectCount = 6;</code>
+     */
+    int getPassiveConnectCount();
+
+    /**
+     * <code>int64 totalFlow = 7;</code>
+     */
+    long getTotalFlow();
+
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    java.util.List<org.tron.protos.Protocol.NodeInfo.PeerInfo> 
+        getPeerInfoListList();
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    org.tron.protos.Protocol.NodeInfo.PeerInfo getPeerInfoList(int index);
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    int getPeerInfoListCount();
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    java.util.List<? extends org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder> 
+        getPeerInfoListOrBuilderList();
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder getPeerInfoListOrBuilder(
+        int index);
+
+    /**
+     * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+     */
+    boolean hasConfigNodeInfo();
+    /**
+     * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+     */
+    org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo getConfigNodeInfo();
+    /**
+     * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+     */
+    org.tron.protos.Protocol.NodeInfo.ConfigNodeInfoOrBuilder getConfigNodeInfoOrBuilder();
+
+    /**
+     * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+     */
+    boolean hasMachineInfo();
+    /**
+     * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+     */
+    org.tron.protos.Protocol.NodeInfo.MachineInfo getMachineInfo();
+    /**
+     * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+     */
+    org.tron.protos.Protocol.NodeInfo.MachineInfoOrBuilder getMachineInfoOrBuilder();
+
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+    int getCheatWitnessInfoMapCount();
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+    boolean containsCheatWitnessInfoMap(
+        java.lang.String key);
+    /**
+     * Use {@link #getCheatWitnessInfoMapMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.String, java.lang.String>
+    getCheatWitnessInfoMap();
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+    java.util.Map<java.lang.String, java.lang.String>
+    getCheatWitnessInfoMapMap();
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+
+    java.lang.String getCheatWitnessInfoMapOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue);
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+
+    java.lang.String getCheatWitnessInfoMapOrThrow(
+        java.lang.String key);
+  }
+  /**
+   * Protobuf type {@code protocol.NodeInfo}
+   */
+  public  static final class NodeInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:protocol.NodeInfo)
+      NodeInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use NodeInfo.newBuilder() to construct.
+    private NodeInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private NodeInfo() {
+      beginSyncNum_ = 0L;
+      block_ = "";
+      solidityBlock_ = "";
+      currentConnectCount_ = 0;
+      activeConnectCount_ = 0;
+      passiveConnectCount_ = 0;
+      totalFlow_ = 0L;
+      peerInfoList_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private NodeInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              beginSyncNum_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              block_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              solidityBlock_ = s;
+              break;
+            }
+            case 32: {
+
+              currentConnectCount_ = input.readInt32();
+              break;
+            }
+            case 40: {
+
+              activeConnectCount_ = input.readInt32();
+              break;
+            }
+            case 48: {
+
+              passiveConnectCount_ = input.readInt32();
+              break;
+            }
+            case 56: {
+
+              totalFlow_ = input.readInt64();
+              break;
+            }
+            case 66: {
+              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+                peerInfoList_ = new java.util.ArrayList<org.tron.protos.Protocol.NodeInfo.PeerInfo>();
+                mutable_bitField0_ |= 0x00000080;
+              }
+              peerInfoList_.add(
+                  input.readMessage(org.tron.protos.Protocol.NodeInfo.PeerInfo.parser(), extensionRegistry));
+              break;
+            }
+            case 74: {
+              org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.Builder subBuilder = null;
+              if (configNodeInfo_ != null) {
+                subBuilder = configNodeInfo_.toBuilder();
+              }
+              configNodeInfo_ = input.readMessage(org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(configNodeInfo_);
+                configNodeInfo_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 82: {
+              org.tron.protos.Protocol.NodeInfo.MachineInfo.Builder subBuilder = null;
+              if (machineInfo_ != null) {
+                subBuilder = machineInfo_.toBuilder();
+              }
+              machineInfo_ = input.readMessage(org.tron.protos.Protocol.NodeInfo.MachineInfo.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(machineInfo_);
+                machineInfo_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 90: {
+              if (!((mutable_bitField0_ & 0x00000400) == 0x00000400)) {
+                cheatWitnessInfoMap_ = com.google.protobuf.MapField.newMapField(
+                    CheatWitnessInfoMapDefaultEntryHolder.defaultEntry);
+                mutable_bitField0_ |= 0x00000400;
+              }
+              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+              cheatWitnessInfoMap__ = input.readMessage(
+                  CheatWitnessInfoMapDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+              cheatWitnessInfoMap_.getMutableMap().put(
+                  cheatWitnessInfoMap__.getKey(), cheatWitnessInfoMap__.getValue());
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+          peerInfoList_ = java.util.Collections.unmodifiableList(peerInfoList_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_descriptor;
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    protected com.google.protobuf.MapField internalGetMapField(
+        int number) {
+      switch (number) {
+        case 11:
+          return internalGetCheatWitnessInfoMap();
+        default:
+          throw new RuntimeException(
+              "Invalid map field number: " + number);
+      }
+    }
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.tron.protos.Protocol.NodeInfo.class, org.tron.protos.Protocol.NodeInfo.Builder.class);
+    }
+
+    public interface PeerInfoOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:protocol.NodeInfo.PeerInfo)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>string lastSyncBlock = 1;</code>
+       */
+      java.lang.String getLastSyncBlock();
+      /**
+       * <code>string lastSyncBlock = 1;</code>
+       */
+      com.google.protobuf.ByteString
+          getLastSyncBlockBytes();
+
+      /**
+       * <code>int64 remainNum = 2;</code>
+       */
+      long getRemainNum();
+
+      /**
+       * <code>int64 lastBlockUpdateTime = 3;</code>
+       */
+      long getLastBlockUpdateTime();
+
+      /**
+       * <code>bool syncFlag = 4;</code>
+       */
+      boolean getSyncFlag();
+
+      /**
+       * <code>int64 headBlockTimeWeBothHave = 5;</code>
+       */
+      long getHeadBlockTimeWeBothHave();
+
+      /**
+       * <code>bool needSyncFromPeer = 6;</code>
+       */
+      boolean getNeedSyncFromPeer();
+
+      /**
+       * <code>bool needSyncFromUs = 7;</code>
+       */
+      boolean getNeedSyncFromUs();
+
+      /**
+       * <code>string host = 8;</code>
+       */
+      java.lang.String getHost();
+      /**
+       * <code>string host = 8;</code>
+       */
+      com.google.protobuf.ByteString
+          getHostBytes();
+
+      /**
+       * <code>int32 port = 9;</code>
+       */
+      int getPort();
+
+      /**
+       * <code>string nodeId = 10;</code>
+       */
+      java.lang.String getNodeId();
+      /**
+       * <code>string nodeId = 10;</code>
+       */
+      com.google.protobuf.ByteString
+          getNodeIdBytes();
+
+      /**
+       * <code>int64 connectTime = 11;</code>
+       */
+      long getConnectTime();
+
+      /**
+       * <code>double avgLatency = 12;</code>
+       */
+      double getAvgLatency();
+
+      /**
+       * <code>int32 syncToFetchSize = 13;</code>
+       */
+      int getSyncToFetchSize();
+
+      /**
+       * <code>int64 syncToFetchSizePeekNum = 14;</code>
+       */
+      long getSyncToFetchSizePeekNum();
+
+      /**
+       * <code>int32 syncBlockRequestedSize = 15;</code>
+       */
+      int getSyncBlockRequestedSize();
+
+      /**
+       * <code>int64 unFetchSynNum = 16;</code>
+       */
+      long getUnFetchSynNum();
+
+      /**
+       * <code>int32 blockInPorcSize = 17;</code>
+       */
+      int getBlockInPorcSize();
+
+      /**
+       * <code>string headBlockWeBothHave = 18;</code>
+       */
+      java.lang.String getHeadBlockWeBothHave();
+      /**
+       * <code>string headBlockWeBothHave = 18;</code>
+       */
+      com.google.protobuf.ByteString
+          getHeadBlockWeBothHaveBytes();
+
+      /**
+       * <code>bool isActive = 19;</code>
+       */
+      boolean getIsActive();
+
+      /**
+       * <code>int32 score = 20;</code>
+       */
+      int getScore();
+
+      /**
+       * <code>int32 nodeCount = 21;</code>
+       */
+      int getNodeCount();
+
+      /**
+       * <code>int64 inFlow = 22;</code>
+       */
+      long getInFlow();
+
+      /**
+       * <code>int32 disconnectTimes = 23;</code>
+       */
+      int getDisconnectTimes();
+
+      /**
+       * <code>string localDisconnectReason = 24;</code>
+       */
+      java.lang.String getLocalDisconnectReason();
+      /**
+       * <code>string localDisconnectReason = 24;</code>
+       */
+      com.google.protobuf.ByteString
+          getLocalDisconnectReasonBytes();
+
+      /**
+       * <code>string remoteDisconnectReason = 25;</code>
+       */
+      java.lang.String getRemoteDisconnectReason();
+      /**
+       * <code>string remoteDisconnectReason = 25;</code>
+       */
+      com.google.protobuf.ByteString
+          getRemoteDisconnectReasonBytes();
+    }
+    /**
+     * Protobuf type {@code protocol.NodeInfo.PeerInfo}
+     */
+    public  static final class PeerInfo extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:protocol.NodeInfo.PeerInfo)
+        PeerInfoOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use PeerInfo.newBuilder() to construct.
+      private PeerInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private PeerInfo() {
+        lastSyncBlock_ = "";
+        remainNum_ = 0L;
+        lastBlockUpdateTime_ = 0L;
+        syncFlag_ = false;
+        headBlockTimeWeBothHave_ = 0L;
+        needSyncFromPeer_ = false;
+        needSyncFromUs_ = false;
+        host_ = "";
+        port_ = 0;
+        nodeId_ = "";
+        connectTime_ = 0L;
+        avgLatency_ = 0D;
+        syncToFetchSize_ = 0;
+        syncToFetchSizePeekNum_ = 0L;
+        syncBlockRequestedSize_ = 0;
+        unFetchSynNum_ = 0L;
+        blockInPorcSize_ = 0;
+        headBlockWeBothHave_ = "";
+        isActive_ = false;
+        score_ = 0;
+        nodeCount_ = 0;
+        inFlow_ = 0L;
+        disconnectTimes_ = 0;
+        localDisconnectReason_ = "";
+        remoteDisconnectReason_ = "";
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private PeerInfo(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                lastSyncBlock_ = s;
+                break;
+              }
+              case 16: {
+
+                remainNum_ = input.readInt64();
+                break;
+              }
+              case 24: {
+
+                lastBlockUpdateTime_ = input.readInt64();
+                break;
+              }
+              case 32: {
+
+                syncFlag_ = input.readBool();
+                break;
+              }
+              case 40: {
+
+                headBlockTimeWeBothHave_ = input.readInt64();
+                break;
+              }
+              case 48: {
+
+                needSyncFromPeer_ = input.readBool();
+                break;
+              }
+              case 56: {
+
+                needSyncFromUs_ = input.readBool();
+                break;
+              }
+              case 66: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                host_ = s;
+                break;
+              }
+              case 72: {
+
+                port_ = input.readInt32();
+                break;
+              }
+              case 82: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                nodeId_ = s;
+                break;
+              }
+              case 88: {
+
+                connectTime_ = input.readInt64();
+                break;
+              }
+              case 97: {
+
+                avgLatency_ = input.readDouble();
+                break;
+              }
+              case 104: {
+
+                syncToFetchSize_ = input.readInt32();
+                break;
+              }
+              case 112: {
+
+                syncToFetchSizePeekNum_ = input.readInt64();
+                break;
+              }
+              case 120: {
+
+                syncBlockRequestedSize_ = input.readInt32();
+                break;
+              }
+              case 128: {
+
+                unFetchSynNum_ = input.readInt64();
+                break;
+              }
+              case 136: {
+
+                blockInPorcSize_ = input.readInt32();
+                break;
+              }
+              case 146: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                headBlockWeBothHave_ = s;
+                break;
+              }
+              case 152: {
+
+                isActive_ = input.readBool();
+                break;
+              }
+              case 160: {
+
+                score_ = input.readInt32();
+                break;
+              }
+              case 168: {
+
+                nodeCount_ = input.readInt32();
+                break;
+              }
+              case 176: {
+
+                inFlow_ = input.readInt64();
+                break;
+              }
+              case 184: {
+
+                disconnectTimes_ = input.readInt32();
+                break;
+              }
+              case 194: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                localDisconnectReason_ = s;
+                break;
+              }
+              case 202: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                remoteDisconnectReason_ = s;
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_PeerInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_PeerInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.tron.protos.Protocol.NodeInfo.PeerInfo.class, org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder.class);
+      }
+
+      public static final int LASTSYNCBLOCK_FIELD_NUMBER = 1;
+      private volatile java.lang.Object lastSyncBlock_;
+      /**
+       * <code>string lastSyncBlock = 1;</code>
+       */
+      public java.lang.String getLastSyncBlock() {
+        java.lang.Object ref = lastSyncBlock_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          lastSyncBlock_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string lastSyncBlock = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLastSyncBlockBytes() {
+        java.lang.Object ref = lastSyncBlock_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          lastSyncBlock_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int REMAINNUM_FIELD_NUMBER = 2;
+      private long remainNum_;
+      /**
+       * <code>int64 remainNum = 2;</code>
+       */
+      public long getRemainNum() {
+        return remainNum_;
+      }
+
+      public static final int LASTBLOCKUPDATETIME_FIELD_NUMBER = 3;
+      private long lastBlockUpdateTime_;
+      /**
+       * <code>int64 lastBlockUpdateTime = 3;</code>
+       */
+      public long getLastBlockUpdateTime() {
+        return lastBlockUpdateTime_;
+      }
+
+      public static final int SYNCFLAG_FIELD_NUMBER = 4;
+      private boolean syncFlag_;
+      /**
+       * <code>bool syncFlag = 4;</code>
+       */
+      public boolean getSyncFlag() {
+        return syncFlag_;
+      }
+
+      public static final int HEADBLOCKTIMEWEBOTHHAVE_FIELD_NUMBER = 5;
+      private long headBlockTimeWeBothHave_;
+      /**
+       * <code>int64 headBlockTimeWeBothHave = 5;</code>
+       */
+      public long getHeadBlockTimeWeBothHave() {
+        return headBlockTimeWeBothHave_;
+      }
+
+      public static final int NEEDSYNCFROMPEER_FIELD_NUMBER = 6;
+      private boolean needSyncFromPeer_;
+      /**
+       * <code>bool needSyncFromPeer = 6;</code>
+       */
+      public boolean getNeedSyncFromPeer() {
+        return needSyncFromPeer_;
+      }
+
+      public static final int NEEDSYNCFROMUS_FIELD_NUMBER = 7;
+      private boolean needSyncFromUs_;
+      /**
+       * <code>bool needSyncFromUs = 7;</code>
+       */
+      public boolean getNeedSyncFromUs() {
+        return needSyncFromUs_;
+      }
+
+      public static final int HOST_FIELD_NUMBER = 8;
+      private volatile java.lang.Object host_;
+      /**
+       * <code>string host = 8;</code>
+       */
+      public java.lang.String getHost() {
+        java.lang.Object ref = host_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          host_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string host = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHostBytes() {
+        java.lang.Object ref = host_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          host_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int PORT_FIELD_NUMBER = 9;
+      private int port_;
+      /**
+       * <code>int32 port = 9;</code>
+       */
+      public int getPort() {
+        return port_;
+      }
+
+      public static final int NODEID_FIELD_NUMBER = 10;
+      private volatile java.lang.Object nodeId_;
+      /**
+       * <code>string nodeId = 10;</code>
+       */
+      public java.lang.String getNodeId() {
+        java.lang.Object ref = nodeId_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          nodeId_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string nodeId = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNodeIdBytes() {
+        java.lang.Object ref = nodeId_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          nodeId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int CONNECTTIME_FIELD_NUMBER = 11;
+      private long connectTime_;
+      /**
+       * <code>int64 connectTime = 11;</code>
+       */
+      public long getConnectTime() {
+        return connectTime_;
+      }
+
+      public static final int AVGLATENCY_FIELD_NUMBER = 12;
+      private double avgLatency_;
+      /**
+       * <code>double avgLatency = 12;</code>
+       */
+      public double getAvgLatency() {
+        return avgLatency_;
+      }
+
+      public static final int SYNCTOFETCHSIZE_FIELD_NUMBER = 13;
+      private int syncToFetchSize_;
+      /**
+       * <code>int32 syncToFetchSize = 13;</code>
+       */
+      public int getSyncToFetchSize() {
+        return syncToFetchSize_;
+      }
+
+      public static final int SYNCTOFETCHSIZEPEEKNUM_FIELD_NUMBER = 14;
+      private long syncToFetchSizePeekNum_;
+      /**
+       * <code>int64 syncToFetchSizePeekNum = 14;</code>
+       */
+      public long getSyncToFetchSizePeekNum() {
+        return syncToFetchSizePeekNum_;
+      }
+
+      public static final int SYNCBLOCKREQUESTEDSIZE_FIELD_NUMBER = 15;
+      private int syncBlockRequestedSize_;
+      /**
+       * <code>int32 syncBlockRequestedSize = 15;</code>
+       */
+      public int getSyncBlockRequestedSize() {
+        return syncBlockRequestedSize_;
+      }
+
+      public static final int UNFETCHSYNNUM_FIELD_NUMBER = 16;
+      private long unFetchSynNum_;
+      /**
+       * <code>int64 unFetchSynNum = 16;</code>
+       */
+      public long getUnFetchSynNum() {
+        return unFetchSynNum_;
+      }
+
+      public static final int BLOCKINPORCSIZE_FIELD_NUMBER = 17;
+      private int blockInPorcSize_;
+      /**
+       * <code>int32 blockInPorcSize = 17;</code>
+       */
+      public int getBlockInPorcSize() {
+        return blockInPorcSize_;
+      }
+
+      public static final int HEADBLOCKWEBOTHHAVE_FIELD_NUMBER = 18;
+      private volatile java.lang.Object headBlockWeBothHave_;
+      /**
+       * <code>string headBlockWeBothHave = 18;</code>
+       */
+      public java.lang.String getHeadBlockWeBothHave() {
+        java.lang.Object ref = headBlockWeBothHave_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          headBlockWeBothHave_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string headBlockWeBothHave = 18;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHeadBlockWeBothHaveBytes() {
+        java.lang.Object ref = headBlockWeBothHave_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          headBlockWeBothHave_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int ISACTIVE_FIELD_NUMBER = 19;
+      private boolean isActive_;
+      /**
+       * <code>bool isActive = 19;</code>
+       */
+      public boolean getIsActive() {
+        return isActive_;
+      }
+
+      public static final int SCORE_FIELD_NUMBER = 20;
+      private int score_;
+      /**
+       * <code>int32 score = 20;</code>
+       */
+      public int getScore() {
+        return score_;
+      }
+
+      public static final int NODECOUNT_FIELD_NUMBER = 21;
+      private int nodeCount_;
+      /**
+       * <code>int32 nodeCount = 21;</code>
+       */
+      public int getNodeCount() {
+        return nodeCount_;
+      }
+
+      public static final int INFLOW_FIELD_NUMBER = 22;
+      private long inFlow_;
+      /**
+       * <code>int64 inFlow = 22;</code>
+       */
+      public long getInFlow() {
+        return inFlow_;
+      }
+
+      public static final int DISCONNECTTIMES_FIELD_NUMBER = 23;
+      private int disconnectTimes_;
+      /**
+       * <code>int32 disconnectTimes = 23;</code>
+       */
+      public int getDisconnectTimes() {
+        return disconnectTimes_;
+      }
+
+      public static final int LOCALDISCONNECTREASON_FIELD_NUMBER = 24;
+      private volatile java.lang.Object localDisconnectReason_;
+      /**
+       * <code>string localDisconnectReason = 24;</code>
+       */
+      public java.lang.String getLocalDisconnectReason() {
+        java.lang.Object ref = localDisconnectReason_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          localDisconnectReason_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string localDisconnectReason = 24;</code>
+       */
+      public com.google.protobuf.ByteString
+          getLocalDisconnectReasonBytes() {
+        java.lang.Object ref = localDisconnectReason_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          localDisconnectReason_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int REMOTEDISCONNECTREASON_FIELD_NUMBER = 25;
+      private volatile java.lang.Object remoteDisconnectReason_;
+      /**
+       * <code>string remoteDisconnectReason = 25;</code>
+       */
+      public java.lang.String getRemoteDisconnectReason() {
+        java.lang.Object ref = remoteDisconnectReason_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          remoteDisconnectReason_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string remoteDisconnectReason = 25;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRemoteDisconnectReasonBytes() {
+        java.lang.Object ref = remoteDisconnectReason_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          remoteDisconnectReason_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!getLastSyncBlockBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, lastSyncBlock_);
+        }
+        if (remainNum_ != 0L) {
+          output.writeInt64(2, remainNum_);
+        }
+        if (lastBlockUpdateTime_ != 0L) {
+          output.writeInt64(3, lastBlockUpdateTime_);
+        }
+        if (syncFlag_ != false) {
+          output.writeBool(4, syncFlag_);
+        }
+        if (headBlockTimeWeBothHave_ != 0L) {
+          output.writeInt64(5, headBlockTimeWeBothHave_);
+        }
+        if (needSyncFromPeer_ != false) {
+          output.writeBool(6, needSyncFromPeer_);
+        }
+        if (needSyncFromUs_ != false) {
+          output.writeBool(7, needSyncFromUs_);
+        }
+        if (!getHostBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 8, host_);
+        }
+        if (port_ != 0) {
+          output.writeInt32(9, port_);
+        }
+        if (!getNodeIdBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 10, nodeId_);
+        }
+        if (connectTime_ != 0L) {
+          output.writeInt64(11, connectTime_);
+        }
+        if (avgLatency_ != 0D) {
+          output.writeDouble(12, avgLatency_);
+        }
+        if (syncToFetchSize_ != 0) {
+          output.writeInt32(13, syncToFetchSize_);
+        }
+        if (syncToFetchSizePeekNum_ != 0L) {
+          output.writeInt64(14, syncToFetchSizePeekNum_);
+        }
+        if (syncBlockRequestedSize_ != 0) {
+          output.writeInt32(15, syncBlockRequestedSize_);
+        }
+        if (unFetchSynNum_ != 0L) {
+          output.writeInt64(16, unFetchSynNum_);
+        }
+        if (blockInPorcSize_ != 0) {
+          output.writeInt32(17, blockInPorcSize_);
+        }
+        if (!getHeadBlockWeBothHaveBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 18, headBlockWeBothHave_);
+        }
+        if (isActive_ != false) {
+          output.writeBool(19, isActive_);
+        }
+        if (score_ != 0) {
+          output.writeInt32(20, score_);
+        }
+        if (nodeCount_ != 0) {
+          output.writeInt32(21, nodeCount_);
+        }
+        if (inFlow_ != 0L) {
+          output.writeInt64(22, inFlow_);
+        }
+        if (disconnectTimes_ != 0) {
+          output.writeInt32(23, disconnectTimes_);
+        }
+        if (!getLocalDisconnectReasonBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 24, localDisconnectReason_);
+        }
+        if (!getRemoteDisconnectReasonBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 25, remoteDisconnectReason_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!getLastSyncBlockBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, lastSyncBlock_);
+        }
+        if (remainNum_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(2, remainNum_);
+        }
+        if (lastBlockUpdateTime_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(3, lastBlockUpdateTime_);
+        }
+        if (syncFlag_ != false) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(4, syncFlag_);
+        }
+        if (headBlockTimeWeBothHave_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(5, headBlockTimeWeBothHave_);
+        }
+        if (needSyncFromPeer_ != false) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(6, needSyncFromPeer_);
+        }
+        if (needSyncFromUs_ != false) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(7, needSyncFromUs_);
+        }
+        if (!getHostBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, host_);
+        }
+        if (port_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(9, port_);
+        }
+        if (!getNodeIdBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, nodeId_);
+        }
+        if (connectTime_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(11, connectTime_);
+        }
+        if (avgLatency_ != 0D) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(12, avgLatency_);
+        }
+        if (syncToFetchSize_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(13, syncToFetchSize_);
+        }
+        if (syncToFetchSizePeekNum_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(14, syncToFetchSizePeekNum_);
+        }
+        if (syncBlockRequestedSize_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(15, syncBlockRequestedSize_);
+        }
+        if (unFetchSynNum_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(16, unFetchSynNum_);
+        }
+        if (blockInPorcSize_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(17, blockInPorcSize_);
+        }
+        if (!getHeadBlockWeBothHaveBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(18, headBlockWeBothHave_);
+        }
+        if (isActive_ != false) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(19, isActive_);
+        }
+        if (score_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(20, score_);
+        }
+        if (nodeCount_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(21, nodeCount_);
+        }
+        if (inFlow_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(22, inFlow_);
+        }
+        if (disconnectTimes_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(23, disconnectTimes_);
+        }
+        if (!getLocalDisconnectReasonBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(24, localDisconnectReason_);
+        }
+        if (!getRemoteDisconnectReasonBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(25, remoteDisconnectReason_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof org.tron.protos.Protocol.NodeInfo.PeerInfo)) {
+          return super.equals(obj);
+        }
+        org.tron.protos.Protocol.NodeInfo.PeerInfo other = (org.tron.protos.Protocol.NodeInfo.PeerInfo) obj;
+
+        boolean result = true;
+        result = result && getLastSyncBlock()
+            .equals(other.getLastSyncBlock());
+        result = result && (getRemainNum()
+            == other.getRemainNum());
+        result = result && (getLastBlockUpdateTime()
+            == other.getLastBlockUpdateTime());
+        result = result && (getSyncFlag()
+            == other.getSyncFlag());
+        result = result && (getHeadBlockTimeWeBothHave()
+            == other.getHeadBlockTimeWeBothHave());
+        result = result && (getNeedSyncFromPeer()
+            == other.getNeedSyncFromPeer());
+        result = result && (getNeedSyncFromUs()
+            == other.getNeedSyncFromUs());
+        result = result && getHost()
+            .equals(other.getHost());
+        result = result && (getPort()
+            == other.getPort());
+        result = result && getNodeId()
+            .equals(other.getNodeId());
+        result = result && (getConnectTime()
+            == other.getConnectTime());
+        result = result && (
+            java.lang.Double.doubleToLongBits(getAvgLatency())
+            == java.lang.Double.doubleToLongBits(
+                other.getAvgLatency()));
+        result = result && (getSyncToFetchSize()
+            == other.getSyncToFetchSize());
+        result = result && (getSyncToFetchSizePeekNum()
+            == other.getSyncToFetchSizePeekNum());
+        result = result && (getSyncBlockRequestedSize()
+            == other.getSyncBlockRequestedSize());
+        result = result && (getUnFetchSynNum()
+            == other.getUnFetchSynNum());
+        result = result && (getBlockInPorcSize()
+            == other.getBlockInPorcSize());
+        result = result && getHeadBlockWeBothHave()
+            .equals(other.getHeadBlockWeBothHave());
+        result = result && (getIsActive()
+            == other.getIsActive());
+        result = result && (getScore()
+            == other.getScore());
+        result = result && (getNodeCount()
+            == other.getNodeCount());
+        result = result && (getInFlow()
+            == other.getInFlow());
+        result = result && (getDisconnectTimes()
+            == other.getDisconnectTimes());
+        result = result && getLocalDisconnectReason()
+            .equals(other.getLocalDisconnectReason());
+        result = result && getRemoteDisconnectReason()
+            .equals(other.getRemoteDisconnectReason());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + LASTSYNCBLOCK_FIELD_NUMBER;
+        hash = (53 * hash) + getLastSyncBlock().hashCode();
+        hash = (37 * hash) + REMAINNUM_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getRemainNum());
+        hash = (37 * hash) + LASTBLOCKUPDATETIME_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getLastBlockUpdateTime());
+        hash = (37 * hash) + SYNCFLAG_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getSyncFlag());
+        hash = (37 * hash) + HEADBLOCKTIMEWEBOTHHAVE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getHeadBlockTimeWeBothHave());
+        hash = (37 * hash) + NEEDSYNCFROMPEER_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getNeedSyncFromPeer());
+        hash = (37 * hash) + NEEDSYNCFROMUS_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getNeedSyncFromUs());
+        hash = (37 * hash) + HOST_FIELD_NUMBER;
+        hash = (53 * hash) + getHost().hashCode();
+        hash = (37 * hash) + PORT_FIELD_NUMBER;
+        hash = (53 * hash) + getPort();
+        hash = (37 * hash) + NODEID_FIELD_NUMBER;
+        hash = (53 * hash) + getNodeId().hashCode();
+        hash = (37 * hash) + CONNECTTIME_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getConnectTime());
+        hash = (37 * hash) + AVGLATENCY_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            java.lang.Double.doubleToLongBits(getAvgLatency()));
+        hash = (37 * hash) + SYNCTOFETCHSIZE_FIELD_NUMBER;
+        hash = (53 * hash) + getSyncToFetchSize();
+        hash = (37 * hash) + SYNCTOFETCHSIZEPEEKNUM_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getSyncToFetchSizePeekNum());
+        hash = (37 * hash) + SYNCBLOCKREQUESTEDSIZE_FIELD_NUMBER;
+        hash = (53 * hash) + getSyncBlockRequestedSize();
+        hash = (37 * hash) + UNFETCHSYNNUM_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getUnFetchSynNum());
+        hash = (37 * hash) + BLOCKINPORCSIZE_FIELD_NUMBER;
+        hash = (53 * hash) + getBlockInPorcSize();
+        hash = (37 * hash) + HEADBLOCKWEBOTHHAVE_FIELD_NUMBER;
+        hash = (53 * hash) + getHeadBlockWeBothHave().hashCode();
+        hash = (37 * hash) + ISACTIVE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getIsActive());
+        hash = (37 * hash) + SCORE_FIELD_NUMBER;
+        hash = (53 * hash) + getScore();
+        hash = (37 * hash) + NODECOUNT_FIELD_NUMBER;
+        hash = (53 * hash) + getNodeCount();
+        hash = (37 * hash) + INFLOW_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getInFlow());
+        hash = (37 * hash) + DISCONNECTTIMES_FIELD_NUMBER;
+        hash = (53 * hash) + getDisconnectTimes();
+        hash = (37 * hash) + LOCALDISCONNECTREASON_FIELD_NUMBER;
+        hash = (53 * hash) + getLocalDisconnectReason().hashCode();
+        hash = (37 * hash) + REMOTEDISCONNECTREASON_FIELD_NUMBER;
+        hash = (53 * hash) + getRemoteDisconnectReason().hashCode();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(org.tron.protos.Protocol.NodeInfo.PeerInfo prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code protocol.NodeInfo.PeerInfo}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:protocol.NodeInfo.PeerInfo)
+          org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_PeerInfo_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_PeerInfo_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.tron.protos.Protocol.NodeInfo.PeerInfo.class, org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder.class);
+        }
+
+        // Construct using org.tron.protos.Protocol.NodeInfo.PeerInfo.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          lastSyncBlock_ = "";
+
+          remainNum_ = 0L;
+
+          lastBlockUpdateTime_ = 0L;
+
+          syncFlag_ = false;
+
+          headBlockTimeWeBothHave_ = 0L;
+
+          needSyncFromPeer_ = false;
+
+          needSyncFromUs_ = false;
+
+          host_ = "";
+
+          port_ = 0;
+
+          nodeId_ = "";
+
+          connectTime_ = 0L;
+
+          avgLatency_ = 0D;
+
+          syncToFetchSize_ = 0;
+
+          syncToFetchSizePeekNum_ = 0L;
+
+          syncBlockRequestedSize_ = 0;
+
+          unFetchSynNum_ = 0L;
+
+          blockInPorcSize_ = 0;
+
+          headBlockWeBothHave_ = "";
+
+          isActive_ = false;
+
+          score_ = 0;
+
+          nodeCount_ = 0;
+
+          inFlow_ = 0L;
+
+          disconnectTimes_ = 0;
+
+          localDisconnectReason_ = "";
+
+          remoteDisconnectReason_ = "";
+
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_PeerInfo_descriptor;
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.PeerInfo getDefaultInstanceForType() {
+          return org.tron.protos.Protocol.NodeInfo.PeerInfo.getDefaultInstance();
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.PeerInfo build() {
+          org.tron.protos.Protocol.NodeInfo.PeerInfo result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.PeerInfo buildPartial() {
+          org.tron.protos.Protocol.NodeInfo.PeerInfo result = new org.tron.protos.Protocol.NodeInfo.PeerInfo(this);
+          result.lastSyncBlock_ = lastSyncBlock_;
+          result.remainNum_ = remainNum_;
+          result.lastBlockUpdateTime_ = lastBlockUpdateTime_;
+          result.syncFlag_ = syncFlag_;
+          result.headBlockTimeWeBothHave_ = headBlockTimeWeBothHave_;
+          result.needSyncFromPeer_ = needSyncFromPeer_;
+          result.needSyncFromUs_ = needSyncFromUs_;
+          result.host_ = host_;
+          result.port_ = port_;
+          result.nodeId_ = nodeId_;
+          result.connectTime_ = connectTime_;
+          result.avgLatency_ = avgLatency_;
+          result.syncToFetchSize_ = syncToFetchSize_;
+          result.syncToFetchSizePeekNum_ = syncToFetchSizePeekNum_;
+          result.syncBlockRequestedSize_ = syncBlockRequestedSize_;
+          result.unFetchSynNum_ = unFetchSynNum_;
+          result.blockInPorcSize_ = blockInPorcSize_;
+          result.headBlockWeBothHave_ = headBlockWeBothHave_;
+          result.isActive_ = isActive_;
+          result.score_ = score_;
+          result.nodeCount_ = nodeCount_;
+          result.inFlow_ = inFlow_;
+          result.disconnectTimes_ = disconnectTimes_;
+          result.localDisconnectReason_ = localDisconnectReason_;
+          result.remoteDisconnectReason_ = remoteDisconnectReason_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.tron.protos.Protocol.NodeInfo.PeerInfo) {
+            return mergeFrom((org.tron.protos.Protocol.NodeInfo.PeerInfo)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.tron.protos.Protocol.NodeInfo.PeerInfo other) {
+          if (other == org.tron.protos.Protocol.NodeInfo.PeerInfo.getDefaultInstance()) return this;
+          if (!other.getLastSyncBlock().isEmpty()) {
+            lastSyncBlock_ = other.lastSyncBlock_;
+            onChanged();
+          }
+          if (other.getRemainNum() != 0L) {
+            setRemainNum(other.getRemainNum());
+          }
+          if (other.getLastBlockUpdateTime() != 0L) {
+            setLastBlockUpdateTime(other.getLastBlockUpdateTime());
+          }
+          if (other.getSyncFlag() != false) {
+            setSyncFlag(other.getSyncFlag());
+          }
+          if (other.getHeadBlockTimeWeBothHave() != 0L) {
+            setHeadBlockTimeWeBothHave(other.getHeadBlockTimeWeBothHave());
+          }
+          if (other.getNeedSyncFromPeer() != false) {
+            setNeedSyncFromPeer(other.getNeedSyncFromPeer());
+          }
+          if (other.getNeedSyncFromUs() != false) {
+            setNeedSyncFromUs(other.getNeedSyncFromUs());
+          }
+          if (!other.getHost().isEmpty()) {
+            host_ = other.host_;
+            onChanged();
+          }
+          if (other.getPort() != 0) {
+            setPort(other.getPort());
+          }
+          if (!other.getNodeId().isEmpty()) {
+            nodeId_ = other.nodeId_;
+            onChanged();
+          }
+          if (other.getConnectTime() != 0L) {
+            setConnectTime(other.getConnectTime());
+          }
+          if (other.getAvgLatency() != 0D) {
+            setAvgLatency(other.getAvgLatency());
+          }
+          if (other.getSyncToFetchSize() != 0) {
+            setSyncToFetchSize(other.getSyncToFetchSize());
+          }
+          if (other.getSyncToFetchSizePeekNum() != 0L) {
+            setSyncToFetchSizePeekNum(other.getSyncToFetchSizePeekNum());
+          }
+          if (other.getSyncBlockRequestedSize() != 0) {
+            setSyncBlockRequestedSize(other.getSyncBlockRequestedSize());
+          }
+          if (other.getUnFetchSynNum() != 0L) {
+            setUnFetchSynNum(other.getUnFetchSynNum());
+          }
+          if (other.getBlockInPorcSize() != 0) {
+            setBlockInPorcSize(other.getBlockInPorcSize());
+          }
+          if (!other.getHeadBlockWeBothHave().isEmpty()) {
+            headBlockWeBothHave_ = other.headBlockWeBothHave_;
+            onChanged();
+          }
+          if (other.getIsActive() != false) {
+            setIsActive(other.getIsActive());
+          }
+          if (other.getScore() != 0) {
+            setScore(other.getScore());
+          }
+          if (other.getNodeCount() != 0) {
+            setNodeCount(other.getNodeCount());
+          }
+          if (other.getInFlow() != 0L) {
+            setInFlow(other.getInFlow());
+          }
+          if (other.getDisconnectTimes() != 0) {
+            setDisconnectTimes(other.getDisconnectTimes());
+          }
+          if (!other.getLocalDisconnectReason().isEmpty()) {
+            localDisconnectReason_ = other.localDisconnectReason_;
+            onChanged();
+          }
+          if (!other.getRemoteDisconnectReason().isEmpty()) {
+            remoteDisconnectReason_ = other.remoteDisconnectReason_;
+            onChanged();
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.tron.protos.Protocol.NodeInfo.PeerInfo parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.tron.protos.Protocol.NodeInfo.PeerInfo) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private java.lang.Object lastSyncBlock_ = "";
+        /**
+         * <code>string lastSyncBlock = 1;</code>
+         */
+        public java.lang.String getLastSyncBlock() {
+          java.lang.Object ref = lastSyncBlock_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            lastSyncBlock_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string lastSyncBlock = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getLastSyncBlockBytes() {
+          java.lang.Object ref = lastSyncBlock_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            lastSyncBlock_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string lastSyncBlock = 1;</code>
+         */
+        public Builder setLastSyncBlock(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          lastSyncBlock_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string lastSyncBlock = 1;</code>
+         */
+        public Builder clearLastSyncBlock() {
+          
+          lastSyncBlock_ = getDefaultInstance().getLastSyncBlock();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string lastSyncBlock = 1;</code>
+         */
+        public Builder setLastSyncBlockBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          lastSyncBlock_ = value;
+          onChanged();
+          return this;
+        }
+
+        private long remainNum_ ;
+        /**
+         * <code>int64 remainNum = 2;</code>
+         */
+        public long getRemainNum() {
+          return remainNum_;
+        }
+        /**
+         * <code>int64 remainNum = 2;</code>
+         */
+        public Builder setRemainNum(long value) {
+          
+          remainNum_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 remainNum = 2;</code>
+         */
+        public Builder clearRemainNum() {
+          
+          remainNum_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long lastBlockUpdateTime_ ;
+        /**
+         * <code>int64 lastBlockUpdateTime = 3;</code>
+         */
+        public long getLastBlockUpdateTime() {
+          return lastBlockUpdateTime_;
+        }
+        /**
+         * <code>int64 lastBlockUpdateTime = 3;</code>
+         */
+        public Builder setLastBlockUpdateTime(long value) {
+          
+          lastBlockUpdateTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 lastBlockUpdateTime = 3;</code>
+         */
+        public Builder clearLastBlockUpdateTime() {
+          
+          lastBlockUpdateTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private boolean syncFlag_ ;
+        /**
+         * <code>bool syncFlag = 4;</code>
+         */
+        public boolean getSyncFlag() {
+          return syncFlag_;
+        }
+        /**
+         * <code>bool syncFlag = 4;</code>
+         */
+        public Builder setSyncFlag(boolean value) {
+          
+          syncFlag_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bool syncFlag = 4;</code>
+         */
+        public Builder clearSyncFlag() {
+          
+          syncFlag_ = false;
+          onChanged();
+          return this;
+        }
+
+        private long headBlockTimeWeBothHave_ ;
+        /**
+         * <code>int64 headBlockTimeWeBothHave = 5;</code>
+         */
+        public long getHeadBlockTimeWeBothHave() {
+          return headBlockTimeWeBothHave_;
+        }
+        /**
+         * <code>int64 headBlockTimeWeBothHave = 5;</code>
+         */
+        public Builder setHeadBlockTimeWeBothHave(long value) {
+          
+          headBlockTimeWeBothHave_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 headBlockTimeWeBothHave = 5;</code>
+         */
+        public Builder clearHeadBlockTimeWeBothHave() {
+          
+          headBlockTimeWeBothHave_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private boolean needSyncFromPeer_ ;
+        /**
+         * <code>bool needSyncFromPeer = 6;</code>
+         */
+        public boolean getNeedSyncFromPeer() {
+          return needSyncFromPeer_;
+        }
+        /**
+         * <code>bool needSyncFromPeer = 6;</code>
+         */
+        public Builder setNeedSyncFromPeer(boolean value) {
+          
+          needSyncFromPeer_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bool needSyncFromPeer = 6;</code>
+         */
+        public Builder clearNeedSyncFromPeer() {
+          
+          needSyncFromPeer_ = false;
+          onChanged();
+          return this;
+        }
+
+        private boolean needSyncFromUs_ ;
+        /**
+         * <code>bool needSyncFromUs = 7;</code>
+         */
+        public boolean getNeedSyncFromUs() {
+          return needSyncFromUs_;
+        }
+        /**
+         * <code>bool needSyncFromUs = 7;</code>
+         */
+        public Builder setNeedSyncFromUs(boolean value) {
+          
+          needSyncFromUs_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bool needSyncFromUs = 7;</code>
+         */
+        public Builder clearNeedSyncFromUs() {
+          
+          needSyncFromUs_ = false;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object host_ = "";
+        /**
+         * <code>string host = 8;</code>
+         */
+        public java.lang.String getHost() {
+          java.lang.Object ref = host_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            host_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string host = 8;</code>
+         */
+        public com.google.protobuf.ByteString
+            getHostBytes() {
+          java.lang.Object ref = host_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            host_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string host = 8;</code>
+         */
+        public Builder setHost(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          host_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string host = 8;</code>
+         */
+        public Builder clearHost() {
+          
+          host_ = getDefaultInstance().getHost();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string host = 8;</code>
+         */
+        public Builder setHostBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          host_ = value;
+          onChanged();
+          return this;
+        }
+
+        private int port_ ;
+        /**
+         * <code>int32 port = 9;</code>
+         */
+        public int getPort() {
+          return port_;
+        }
+        /**
+         * <code>int32 port = 9;</code>
+         */
+        public Builder setPort(int value) {
+          
+          port_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 port = 9;</code>
+         */
+        public Builder clearPort() {
+          
+          port_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object nodeId_ = "";
+        /**
+         * <code>string nodeId = 10;</code>
+         */
+        public java.lang.String getNodeId() {
+          java.lang.Object ref = nodeId_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            nodeId_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string nodeId = 10;</code>
+         */
+        public com.google.protobuf.ByteString
+            getNodeIdBytes() {
+          java.lang.Object ref = nodeId_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            nodeId_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string nodeId = 10;</code>
+         */
+        public Builder setNodeId(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          nodeId_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string nodeId = 10;</code>
+         */
+        public Builder clearNodeId() {
+          
+          nodeId_ = getDefaultInstance().getNodeId();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string nodeId = 10;</code>
+         */
+        public Builder setNodeIdBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          nodeId_ = value;
+          onChanged();
+          return this;
+        }
+
+        private long connectTime_ ;
+        /**
+         * <code>int64 connectTime = 11;</code>
+         */
+        public long getConnectTime() {
+          return connectTime_;
+        }
+        /**
+         * <code>int64 connectTime = 11;</code>
+         */
+        public Builder setConnectTime(long value) {
+          
+          connectTime_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 connectTime = 11;</code>
+         */
+        public Builder clearConnectTime() {
+          
+          connectTime_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private double avgLatency_ ;
+        /**
+         * <code>double avgLatency = 12;</code>
+         */
+        public double getAvgLatency() {
+          return avgLatency_;
+        }
+        /**
+         * <code>double avgLatency = 12;</code>
+         */
+        public Builder setAvgLatency(double value) {
+          
+          avgLatency_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>double avgLatency = 12;</code>
+         */
+        public Builder clearAvgLatency() {
+          
+          avgLatency_ = 0D;
+          onChanged();
+          return this;
+        }
+
+        private int syncToFetchSize_ ;
+        /**
+         * <code>int32 syncToFetchSize = 13;</code>
+         */
+        public int getSyncToFetchSize() {
+          return syncToFetchSize_;
+        }
+        /**
+         * <code>int32 syncToFetchSize = 13;</code>
+         */
+        public Builder setSyncToFetchSize(int value) {
+          
+          syncToFetchSize_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 syncToFetchSize = 13;</code>
+         */
+        public Builder clearSyncToFetchSize() {
+          
+          syncToFetchSize_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private long syncToFetchSizePeekNum_ ;
+        /**
+         * <code>int64 syncToFetchSizePeekNum = 14;</code>
+         */
+        public long getSyncToFetchSizePeekNum() {
+          return syncToFetchSizePeekNum_;
+        }
+        /**
+         * <code>int64 syncToFetchSizePeekNum = 14;</code>
+         */
+        public Builder setSyncToFetchSizePeekNum(long value) {
+          
+          syncToFetchSizePeekNum_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 syncToFetchSizePeekNum = 14;</code>
+         */
+        public Builder clearSyncToFetchSizePeekNum() {
+          
+          syncToFetchSizePeekNum_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private int syncBlockRequestedSize_ ;
+        /**
+         * <code>int32 syncBlockRequestedSize = 15;</code>
+         */
+        public int getSyncBlockRequestedSize() {
+          return syncBlockRequestedSize_;
+        }
+        /**
+         * <code>int32 syncBlockRequestedSize = 15;</code>
+         */
+        public Builder setSyncBlockRequestedSize(int value) {
+          
+          syncBlockRequestedSize_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 syncBlockRequestedSize = 15;</code>
+         */
+        public Builder clearSyncBlockRequestedSize() {
+          
+          syncBlockRequestedSize_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private long unFetchSynNum_ ;
+        /**
+         * <code>int64 unFetchSynNum = 16;</code>
+         */
+        public long getUnFetchSynNum() {
+          return unFetchSynNum_;
+        }
+        /**
+         * <code>int64 unFetchSynNum = 16;</code>
+         */
+        public Builder setUnFetchSynNum(long value) {
+          
+          unFetchSynNum_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 unFetchSynNum = 16;</code>
+         */
+        public Builder clearUnFetchSynNum() {
+          
+          unFetchSynNum_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private int blockInPorcSize_ ;
+        /**
+         * <code>int32 blockInPorcSize = 17;</code>
+         */
+        public int getBlockInPorcSize() {
+          return blockInPorcSize_;
+        }
+        /**
+         * <code>int32 blockInPorcSize = 17;</code>
+         */
+        public Builder setBlockInPorcSize(int value) {
+          
+          blockInPorcSize_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 blockInPorcSize = 17;</code>
+         */
+        public Builder clearBlockInPorcSize() {
+          
+          blockInPorcSize_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object headBlockWeBothHave_ = "";
+        /**
+         * <code>string headBlockWeBothHave = 18;</code>
+         */
+        public java.lang.String getHeadBlockWeBothHave() {
+          java.lang.Object ref = headBlockWeBothHave_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            headBlockWeBothHave_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string headBlockWeBothHave = 18;</code>
+         */
+        public com.google.protobuf.ByteString
+            getHeadBlockWeBothHaveBytes() {
+          java.lang.Object ref = headBlockWeBothHave_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            headBlockWeBothHave_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string headBlockWeBothHave = 18;</code>
+         */
+        public Builder setHeadBlockWeBothHave(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          headBlockWeBothHave_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string headBlockWeBothHave = 18;</code>
+         */
+        public Builder clearHeadBlockWeBothHave() {
+          
+          headBlockWeBothHave_ = getDefaultInstance().getHeadBlockWeBothHave();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string headBlockWeBothHave = 18;</code>
+         */
+        public Builder setHeadBlockWeBothHaveBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          headBlockWeBothHave_ = value;
+          onChanged();
+          return this;
+        }
+
+        private boolean isActive_ ;
+        /**
+         * <code>bool isActive = 19;</code>
+         */
+        public boolean getIsActive() {
+          return isActive_;
+        }
+        /**
+         * <code>bool isActive = 19;</code>
+         */
+        public Builder setIsActive(boolean value) {
+          
+          isActive_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bool isActive = 19;</code>
+         */
+        public Builder clearIsActive() {
+          
+          isActive_ = false;
+          onChanged();
+          return this;
+        }
+
+        private int score_ ;
+        /**
+         * <code>int32 score = 20;</code>
+         */
+        public int getScore() {
+          return score_;
+        }
+        /**
+         * <code>int32 score = 20;</code>
+         */
+        public Builder setScore(int value) {
+          
+          score_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 score = 20;</code>
+         */
+        public Builder clearScore() {
+          
+          score_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int nodeCount_ ;
+        /**
+         * <code>int32 nodeCount = 21;</code>
+         */
+        public int getNodeCount() {
+          return nodeCount_;
+        }
+        /**
+         * <code>int32 nodeCount = 21;</code>
+         */
+        public Builder setNodeCount(int value) {
+          
+          nodeCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 nodeCount = 21;</code>
+         */
+        public Builder clearNodeCount() {
+          
+          nodeCount_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private long inFlow_ ;
+        /**
+         * <code>int64 inFlow = 22;</code>
+         */
+        public long getInFlow() {
+          return inFlow_;
+        }
+        /**
+         * <code>int64 inFlow = 22;</code>
+         */
+        public Builder setInFlow(long value) {
+          
+          inFlow_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 inFlow = 22;</code>
+         */
+        public Builder clearInFlow() {
+          
+          inFlow_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private int disconnectTimes_ ;
+        /**
+         * <code>int32 disconnectTimes = 23;</code>
+         */
+        public int getDisconnectTimes() {
+          return disconnectTimes_;
+        }
+        /**
+         * <code>int32 disconnectTimes = 23;</code>
+         */
+        public Builder setDisconnectTimes(int value) {
+          
+          disconnectTimes_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 disconnectTimes = 23;</code>
+         */
+        public Builder clearDisconnectTimes() {
+          
+          disconnectTimes_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object localDisconnectReason_ = "";
+        /**
+         * <code>string localDisconnectReason = 24;</code>
+         */
+        public java.lang.String getLocalDisconnectReason() {
+          java.lang.Object ref = localDisconnectReason_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            localDisconnectReason_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string localDisconnectReason = 24;</code>
+         */
+        public com.google.protobuf.ByteString
+            getLocalDisconnectReasonBytes() {
+          java.lang.Object ref = localDisconnectReason_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            localDisconnectReason_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string localDisconnectReason = 24;</code>
+         */
+        public Builder setLocalDisconnectReason(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          localDisconnectReason_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string localDisconnectReason = 24;</code>
+         */
+        public Builder clearLocalDisconnectReason() {
+          
+          localDisconnectReason_ = getDefaultInstance().getLocalDisconnectReason();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string localDisconnectReason = 24;</code>
+         */
+        public Builder setLocalDisconnectReasonBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          localDisconnectReason_ = value;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object remoteDisconnectReason_ = "";
+        /**
+         * <code>string remoteDisconnectReason = 25;</code>
+         */
+        public java.lang.String getRemoteDisconnectReason() {
+          java.lang.Object ref = remoteDisconnectReason_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            remoteDisconnectReason_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string remoteDisconnectReason = 25;</code>
+         */
+        public com.google.protobuf.ByteString
+            getRemoteDisconnectReasonBytes() {
+          java.lang.Object ref = remoteDisconnectReason_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            remoteDisconnectReason_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string remoteDisconnectReason = 25;</code>
+         */
+        public Builder setRemoteDisconnectReason(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          remoteDisconnectReason_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string remoteDisconnectReason = 25;</code>
+         */
+        public Builder clearRemoteDisconnectReason() {
+          
+          remoteDisconnectReason_ = getDefaultInstance().getRemoteDisconnectReason();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string remoteDisconnectReason = 25;</code>
+         */
+        public Builder setRemoteDisconnectReasonBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          remoteDisconnectReason_ = value;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:protocol.NodeInfo.PeerInfo)
+      }
+
+      // @@protoc_insertion_point(class_scope:protocol.NodeInfo.PeerInfo)
+      private static final org.tron.protos.Protocol.NodeInfo.PeerInfo DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new org.tron.protos.Protocol.NodeInfo.PeerInfo();
+      }
+
+      public static org.tron.protos.Protocol.NodeInfo.PeerInfo getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<PeerInfo>
+          PARSER = new com.google.protobuf.AbstractParser<PeerInfo>() {
+        public PeerInfo parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new PeerInfo(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<PeerInfo> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<PeerInfo> getParserForType() {
+        return PARSER;
+      }
+
+      public org.tron.protos.Protocol.NodeInfo.PeerInfo getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface ConfigNodeInfoOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:protocol.NodeInfo.ConfigNodeInfo)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>string codeVersion = 1;</code>
+       */
+      java.lang.String getCodeVersion();
+      /**
+       * <code>string codeVersion = 1;</code>
+       */
+      com.google.protobuf.ByteString
+          getCodeVersionBytes();
+
+      /**
+       * <code>string p2pVersion = 2;</code>
+       */
+      java.lang.String getP2PVersion();
+      /**
+       * <code>string p2pVersion = 2;</code>
+       */
+      com.google.protobuf.ByteString
+          getP2PVersionBytes();
+
+      /**
+       * <code>int32 listenPort = 3;</code>
+       */
+      int getListenPort();
+
+      /**
+       * <code>bool discoverEnable = 4;</code>
+       */
+      boolean getDiscoverEnable();
+
+      /**
+       * <code>int32 activeNodeSize = 5;</code>
+       */
+      int getActiveNodeSize();
+
+      /**
+       * <code>int32 passiveNodeSize = 6;</code>
+       */
+      int getPassiveNodeSize();
+
+      /**
+       * <code>int32 sendNodeSize = 7;</code>
+       */
+      int getSendNodeSize();
+
+      /**
+       * <code>int32 maxConnectCount = 8;</code>
+       */
+      int getMaxConnectCount();
+
+      /**
+       * <code>int32 sameIpMaxConnectCount = 9;</code>
+       */
+      int getSameIpMaxConnectCount();
+
+      /**
+       * <code>int32 backupListenPort = 10;</code>
+       */
+      int getBackupListenPort();
+
+      /**
+       * <code>int32 backupMemberSize = 11;</code>
+       */
+      int getBackupMemberSize();
+
+      /**
+       * <code>int32 backupPriority = 12;</code>
+       */
+      int getBackupPriority();
+
+      /**
+       * <code>int32 dbVersion = 13;</code>
+       */
+      int getDbVersion();
+
+      /**
+       * <code>int32 minParticipationRate = 14;</code>
+       */
+      int getMinParticipationRate();
+
+      /**
+       * <code>bool supportConstant = 15;</code>
+       */
+      boolean getSupportConstant();
+
+      /**
+       * <code>double minTimeRatio = 16;</code>
+       */
+      double getMinTimeRatio();
+
+      /**
+       * <code>double maxTimeRatio = 17;</code>
+       */
+      double getMaxTimeRatio();
+
+      /**
+       * <code>int64 allowCreationOfContracts = 18;</code>
+       */
+      long getAllowCreationOfContracts();
+
+      /**
+       * <code>int64 allowAdaptiveEnergy = 19;</code>
+       */
+      long getAllowAdaptiveEnergy();
+    }
+    /**
+     * Protobuf type {@code protocol.NodeInfo.ConfigNodeInfo}
+     */
+    public  static final class ConfigNodeInfo extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:protocol.NodeInfo.ConfigNodeInfo)
+        ConfigNodeInfoOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use ConfigNodeInfo.newBuilder() to construct.
+      private ConfigNodeInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private ConfigNodeInfo() {
+        codeVersion_ = "";
+        p2PVersion_ = "";
+        listenPort_ = 0;
+        discoverEnable_ = false;
+        activeNodeSize_ = 0;
+        passiveNodeSize_ = 0;
+        sendNodeSize_ = 0;
+        maxConnectCount_ = 0;
+        sameIpMaxConnectCount_ = 0;
+        backupListenPort_ = 0;
+        backupMemberSize_ = 0;
+        backupPriority_ = 0;
+        dbVersion_ = 0;
+        minParticipationRate_ = 0;
+        supportConstant_ = false;
+        minTimeRatio_ = 0D;
+        maxTimeRatio_ = 0D;
+        allowCreationOfContracts_ = 0L;
+        allowAdaptiveEnergy_ = 0L;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private ConfigNodeInfo(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                codeVersion_ = s;
+                break;
+              }
+              case 18: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                p2PVersion_ = s;
+                break;
+              }
+              case 24: {
+
+                listenPort_ = input.readInt32();
+                break;
+              }
+              case 32: {
+
+                discoverEnable_ = input.readBool();
+                break;
+              }
+              case 40: {
+
+                activeNodeSize_ = input.readInt32();
+                break;
+              }
+              case 48: {
+
+                passiveNodeSize_ = input.readInt32();
+                break;
+              }
+              case 56: {
+
+                sendNodeSize_ = input.readInt32();
+                break;
+              }
+              case 64: {
+
+                maxConnectCount_ = input.readInt32();
+                break;
+              }
+              case 72: {
+
+                sameIpMaxConnectCount_ = input.readInt32();
+                break;
+              }
+              case 80: {
+
+                backupListenPort_ = input.readInt32();
+                break;
+              }
+              case 88: {
+
+                backupMemberSize_ = input.readInt32();
+                break;
+              }
+              case 96: {
+
+                backupPriority_ = input.readInt32();
+                break;
+              }
+              case 104: {
+
+                dbVersion_ = input.readInt32();
+                break;
+              }
+              case 112: {
+
+                minParticipationRate_ = input.readInt32();
+                break;
+              }
+              case 120: {
+
+                supportConstant_ = input.readBool();
+                break;
+              }
+              case 129: {
+
+                minTimeRatio_ = input.readDouble();
+                break;
+              }
+              case 137: {
+
+                maxTimeRatio_ = input.readDouble();
+                break;
+              }
+              case 144: {
+
+                allowCreationOfContracts_ = input.readInt64();
+                break;
+              }
+              case 152: {
+
+                allowAdaptiveEnergy_ = input.readInt64();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_ConfigNodeInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_ConfigNodeInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.class, org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.Builder.class);
+      }
+
+      public static final int CODEVERSION_FIELD_NUMBER = 1;
+      private volatile java.lang.Object codeVersion_;
+      /**
+       * <code>string codeVersion = 1;</code>
+       */
+      public java.lang.String getCodeVersion() {
+        java.lang.Object ref = codeVersion_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          codeVersion_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string codeVersion = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCodeVersionBytes() {
+        java.lang.Object ref = codeVersion_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          codeVersion_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int P2PVERSION_FIELD_NUMBER = 2;
+      private volatile java.lang.Object p2PVersion_;
+      /**
+       * <code>string p2pVersion = 2;</code>
+       */
+      public java.lang.String getP2PVersion() {
+        java.lang.Object ref = p2PVersion_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          p2PVersion_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string p2pVersion = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getP2PVersionBytes() {
+        java.lang.Object ref = p2PVersion_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          p2PVersion_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int LISTENPORT_FIELD_NUMBER = 3;
+      private int listenPort_;
+      /**
+       * <code>int32 listenPort = 3;</code>
+       */
+      public int getListenPort() {
+        return listenPort_;
+      }
+
+      public static final int DISCOVERENABLE_FIELD_NUMBER = 4;
+      private boolean discoverEnable_;
+      /**
+       * <code>bool discoverEnable = 4;</code>
+       */
+      public boolean getDiscoverEnable() {
+        return discoverEnable_;
+      }
+
+      public static final int ACTIVENODESIZE_FIELD_NUMBER = 5;
+      private int activeNodeSize_;
+      /**
+       * <code>int32 activeNodeSize = 5;</code>
+       */
+      public int getActiveNodeSize() {
+        return activeNodeSize_;
+      }
+
+      public static final int PASSIVENODESIZE_FIELD_NUMBER = 6;
+      private int passiveNodeSize_;
+      /**
+       * <code>int32 passiveNodeSize = 6;</code>
+       */
+      public int getPassiveNodeSize() {
+        return passiveNodeSize_;
+      }
+
+      public static final int SENDNODESIZE_FIELD_NUMBER = 7;
+      private int sendNodeSize_;
+      /**
+       * <code>int32 sendNodeSize = 7;</code>
+       */
+      public int getSendNodeSize() {
+        return sendNodeSize_;
+      }
+
+      public static final int MAXCONNECTCOUNT_FIELD_NUMBER = 8;
+      private int maxConnectCount_;
+      /**
+       * <code>int32 maxConnectCount = 8;</code>
+       */
+      public int getMaxConnectCount() {
+        return maxConnectCount_;
+      }
+
+      public static final int SAMEIPMAXCONNECTCOUNT_FIELD_NUMBER = 9;
+      private int sameIpMaxConnectCount_;
+      /**
+       * <code>int32 sameIpMaxConnectCount = 9;</code>
+       */
+      public int getSameIpMaxConnectCount() {
+        return sameIpMaxConnectCount_;
+      }
+
+      public static final int BACKUPLISTENPORT_FIELD_NUMBER = 10;
+      private int backupListenPort_;
+      /**
+       * <code>int32 backupListenPort = 10;</code>
+       */
+      public int getBackupListenPort() {
+        return backupListenPort_;
+      }
+
+      public static final int BACKUPMEMBERSIZE_FIELD_NUMBER = 11;
+      private int backupMemberSize_;
+      /**
+       * <code>int32 backupMemberSize = 11;</code>
+       */
+      public int getBackupMemberSize() {
+        return backupMemberSize_;
+      }
+
+      public static final int BACKUPPRIORITY_FIELD_NUMBER = 12;
+      private int backupPriority_;
+      /**
+       * <code>int32 backupPriority = 12;</code>
+       */
+      public int getBackupPriority() {
+        return backupPriority_;
+      }
+
+      public static final int DBVERSION_FIELD_NUMBER = 13;
+      private int dbVersion_;
+      /**
+       * <code>int32 dbVersion = 13;</code>
+       */
+      public int getDbVersion() {
+        return dbVersion_;
+      }
+
+      public static final int MINPARTICIPATIONRATE_FIELD_NUMBER = 14;
+      private int minParticipationRate_;
+      /**
+       * <code>int32 minParticipationRate = 14;</code>
+       */
+      public int getMinParticipationRate() {
+        return minParticipationRate_;
+      }
+
+      public static final int SUPPORTCONSTANT_FIELD_NUMBER = 15;
+      private boolean supportConstant_;
+      /**
+       * <code>bool supportConstant = 15;</code>
+       */
+      public boolean getSupportConstant() {
+        return supportConstant_;
+      }
+
+      public static final int MINTIMERATIO_FIELD_NUMBER = 16;
+      private double minTimeRatio_;
+      /**
+       * <code>double minTimeRatio = 16;</code>
+       */
+      public double getMinTimeRatio() {
+        return minTimeRatio_;
+      }
+
+      public static final int MAXTIMERATIO_FIELD_NUMBER = 17;
+      private double maxTimeRatio_;
+      /**
+       * <code>double maxTimeRatio = 17;</code>
+       */
+      public double getMaxTimeRatio() {
+        return maxTimeRatio_;
+      }
+
+      public static final int ALLOWCREATIONOFCONTRACTS_FIELD_NUMBER = 18;
+      private long allowCreationOfContracts_;
+      /**
+       * <code>int64 allowCreationOfContracts = 18;</code>
+       */
+      public long getAllowCreationOfContracts() {
+        return allowCreationOfContracts_;
+      }
+
+      public static final int ALLOWADAPTIVEENERGY_FIELD_NUMBER = 19;
+      private long allowAdaptiveEnergy_;
+      /**
+       * <code>int64 allowAdaptiveEnergy = 19;</code>
+       */
+      public long getAllowAdaptiveEnergy() {
+        return allowAdaptiveEnergy_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!getCodeVersionBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, codeVersion_);
+        }
+        if (!getP2PVersionBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 2, p2PVersion_);
+        }
+        if (listenPort_ != 0) {
+          output.writeInt32(3, listenPort_);
+        }
+        if (discoverEnable_ != false) {
+          output.writeBool(4, discoverEnable_);
+        }
+        if (activeNodeSize_ != 0) {
+          output.writeInt32(5, activeNodeSize_);
+        }
+        if (passiveNodeSize_ != 0) {
+          output.writeInt32(6, passiveNodeSize_);
+        }
+        if (sendNodeSize_ != 0) {
+          output.writeInt32(7, sendNodeSize_);
+        }
+        if (maxConnectCount_ != 0) {
+          output.writeInt32(8, maxConnectCount_);
+        }
+        if (sameIpMaxConnectCount_ != 0) {
+          output.writeInt32(9, sameIpMaxConnectCount_);
+        }
+        if (backupListenPort_ != 0) {
+          output.writeInt32(10, backupListenPort_);
+        }
+        if (backupMemberSize_ != 0) {
+          output.writeInt32(11, backupMemberSize_);
+        }
+        if (backupPriority_ != 0) {
+          output.writeInt32(12, backupPriority_);
+        }
+        if (dbVersion_ != 0) {
+          output.writeInt32(13, dbVersion_);
+        }
+        if (minParticipationRate_ != 0) {
+          output.writeInt32(14, minParticipationRate_);
+        }
+        if (supportConstant_ != false) {
+          output.writeBool(15, supportConstant_);
+        }
+        if (minTimeRatio_ != 0D) {
+          output.writeDouble(16, minTimeRatio_);
+        }
+        if (maxTimeRatio_ != 0D) {
+          output.writeDouble(17, maxTimeRatio_);
+        }
+        if (allowCreationOfContracts_ != 0L) {
+          output.writeInt64(18, allowCreationOfContracts_);
+        }
+        if (allowAdaptiveEnergy_ != 0L) {
+          output.writeInt64(19, allowAdaptiveEnergy_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!getCodeVersionBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, codeVersion_);
+        }
+        if (!getP2PVersionBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, p2PVersion_);
+        }
+        if (listenPort_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(3, listenPort_);
+        }
+        if (discoverEnable_ != false) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(4, discoverEnable_);
+        }
+        if (activeNodeSize_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(5, activeNodeSize_);
+        }
+        if (passiveNodeSize_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(6, passiveNodeSize_);
+        }
+        if (sendNodeSize_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(7, sendNodeSize_);
+        }
+        if (maxConnectCount_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(8, maxConnectCount_);
+        }
+        if (sameIpMaxConnectCount_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(9, sameIpMaxConnectCount_);
+        }
+        if (backupListenPort_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(10, backupListenPort_);
+        }
+        if (backupMemberSize_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(11, backupMemberSize_);
+        }
+        if (backupPriority_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(12, backupPriority_);
+        }
+        if (dbVersion_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(13, dbVersion_);
+        }
+        if (minParticipationRate_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(14, minParticipationRate_);
+        }
+        if (supportConstant_ != false) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBoolSize(15, supportConstant_);
+        }
+        if (minTimeRatio_ != 0D) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(16, minTimeRatio_);
+        }
+        if (maxTimeRatio_ != 0D) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(17, maxTimeRatio_);
+        }
+        if (allowCreationOfContracts_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(18, allowCreationOfContracts_);
+        }
+        if (allowAdaptiveEnergy_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(19, allowAdaptiveEnergy_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo)) {
+          return super.equals(obj);
+        }
+        org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo other = (org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo) obj;
+
+        boolean result = true;
+        result = result && getCodeVersion()
+            .equals(other.getCodeVersion());
+        result = result && getP2PVersion()
+            .equals(other.getP2PVersion());
+        result = result && (getListenPort()
+            == other.getListenPort());
+        result = result && (getDiscoverEnable()
+            == other.getDiscoverEnable());
+        result = result && (getActiveNodeSize()
+            == other.getActiveNodeSize());
+        result = result && (getPassiveNodeSize()
+            == other.getPassiveNodeSize());
+        result = result && (getSendNodeSize()
+            == other.getSendNodeSize());
+        result = result && (getMaxConnectCount()
+            == other.getMaxConnectCount());
+        result = result && (getSameIpMaxConnectCount()
+            == other.getSameIpMaxConnectCount());
+        result = result && (getBackupListenPort()
+            == other.getBackupListenPort());
+        result = result && (getBackupMemberSize()
+            == other.getBackupMemberSize());
+        result = result && (getBackupPriority()
+            == other.getBackupPriority());
+        result = result && (getDbVersion()
+            == other.getDbVersion());
+        result = result && (getMinParticipationRate()
+            == other.getMinParticipationRate());
+        result = result && (getSupportConstant()
+            == other.getSupportConstant());
+        result = result && (
+            java.lang.Double.doubleToLongBits(getMinTimeRatio())
+            == java.lang.Double.doubleToLongBits(
+                other.getMinTimeRatio()));
+        result = result && (
+            java.lang.Double.doubleToLongBits(getMaxTimeRatio())
+            == java.lang.Double.doubleToLongBits(
+                other.getMaxTimeRatio()));
+        result = result && (getAllowCreationOfContracts()
+            == other.getAllowCreationOfContracts());
+        result = result && (getAllowAdaptiveEnergy()
+            == other.getAllowAdaptiveEnergy());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + CODEVERSION_FIELD_NUMBER;
+        hash = (53 * hash) + getCodeVersion().hashCode();
+        hash = (37 * hash) + P2PVERSION_FIELD_NUMBER;
+        hash = (53 * hash) + getP2PVersion().hashCode();
+        hash = (37 * hash) + LISTENPORT_FIELD_NUMBER;
+        hash = (53 * hash) + getListenPort();
+        hash = (37 * hash) + DISCOVERENABLE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getDiscoverEnable());
+        hash = (37 * hash) + ACTIVENODESIZE_FIELD_NUMBER;
+        hash = (53 * hash) + getActiveNodeSize();
+        hash = (37 * hash) + PASSIVENODESIZE_FIELD_NUMBER;
+        hash = (53 * hash) + getPassiveNodeSize();
+        hash = (37 * hash) + SENDNODESIZE_FIELD_NUMBER;
+        hash = (53 * hash) + getSendNodeSize();
+        hash = (37 * hash) + MAXCONNECTCOUNT_FIELD_NUMBER;
+        hash = (53 * hash) + getMaxConnectCount();
+        hash = (37 * hash) + SAMEIPMAXCONNECTCOUNT_FIELD_NUMBER;
+        hash = (53 * hash) + getSameIpMaxConnectCount();
+        hash = (37 * hash) + BACKUPLISTENPORT_FIELD_NUMBER;
+        hash = (53 * hash) + getBackupListenPort();
+        hash = (37 * hash) + BACKUPMEMBERSIZE_FIELD_NUMBER;
+        hash = (53 * hash) + getBackupMemberSize();
+        hash = (37 * hash) + BACKUPPRIORITY_FIELD_NUMBER;
+        hash = (53 * hash) + getBackupPriority();
+        hash = (37 * hash) + DBVERSION_FIELD_NUMBER;
+        hash = (53 * hash) + getDbVersion();
+        hash = (37 * hash) + MINPARTICIPATIONRATE_FIELD_NUMBER;
+        hash = (53 * hash) + getMinParticipationRate();
+        hash = (37 * hash) + SUPPORTCONSTANT_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getSupportConstant());
+        hash = (37 * hash) + MINTIMERATIO_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            java.lang.Double.doubleToLongBits(getMinTimeRatio()));
+        hash = (37 * hash) + MAXTIMERATIO_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            java.lang.Double.doubleToLongBits(getMaxTimeRatio()));
+        hash = (37 * hash) + ALLOWCREATIONOFCONTRACTS_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getAllowCreationOfContracts());
+        hash = (37 * hash) + ALLOWADAPTIVEENERGY_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getAllowAdaptiveEnergy());
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code protocol.NodeInfo.ConfigNodeInfo}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:protocol.NodeInfo.ConfigNodeInfo)
+          org.tron.protos.Protocol.NodeInfo.ConfigNodeInfoOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_ConfigNodeInfo_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_ConfigNodeInfo_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.class, org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.Builder.class);
+        }
+
+        // Construct using org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          codeVersion_ = "";
+
+          p2PVersion_ = "";
+
+          listenPort_ = 0;
+
+          discoverEnable_ = false;
+
+          activeNodeSize_ = 0;
+
+          passiveNodeSize_ = 0;
+
+          sendNodeSize_ = 0;
+
+          maxConnectCount_ = 0;
+
+          sameIpMaxConnectCount_ = 0;
+
+          backupListenPort_ = 0;
+
+          backupMemberSize_ = 0;
+
+          backupPriority_ = 0;
+
+          dbVersion_ = 0;
+
+          minParticipationRate_ = 0;
+
+          supportConstant_ = false;
+
+          minTimeRatio_ = 0D;
+
+          maxTimeRatio_ = 0D;
+
+          allowCreationOfContracts_ = 0L;
+
+          allowAdaptiveEnergy_ = 0L;
+
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_ConfigNodeInfo_descriptor;
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo getDefaultInstanceForType() {
+          return org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.getDefaultInstance();
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo build() {
+          org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo buildPartial() {
+          org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo result = new org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo(this);
+          result.codeVersion_ = codeVersion_;
+          result.p2PVersion_ = p2PVersion_;
+          result.listenPort_ = listenPort_;
+          result.discoverEnable_ = discoverEnable_;
+          result.activeNodeSize_ = activeNodeSize_;
+          result.passiveNodeSize_ = passiveNodeSize_;
+          result.sendNodeSize_ = sendNodeSize_;
+          result.maxConnectCount_ = maxConnectCount_;
+          result.sameIpMaxConnectCount_ = sameIpMaxConnectCount_;
+          result.backupListenPort_ = backupListenPort_;
+          result.backupMemberSize_ = backupMemberSize_;
+          result.backupPriority_ = backupPriority_;
+          result.dbVersion_ = dbVersion_;
+          result.minParticipationRate_ = minParticipationRate_;
+          result.supportConstant_ = supportConstant_;
+          result.minTimeRatio_ = minTimeRatio_;
+          result.maxTimeRatio_ = maxTimeRatio_;
+          result.allowCreationOfContracts_ = allowCreationOfContracts_;
+          result.allowAdaptiveEnergy_ = allowAdaptiveEnergy_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo) {
+            return mergeFrom((org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo other) {
+          if (other == org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.getDefaultInstance()) return this;
+          if (!other.getCodeVersion().isEmpty()) {
+            codeVersion_ = other.codeVersion_;
+            onChanged();
+          }
+          if (!other.getP2PVersion().isEmpty()) {
+            p2PVersion_ = other.p2PVersion_;
+            onChanged();
+          }
+          if (other.getListenPort() != 0) {
+            setListenPort(other.getListenPort());
+          }
+          if (other.getDiscoverEnable() != false) {
+            setDiscoverEnable(other.getDiscoverEnable());
+          }
+          if (other.getActiveNodeSize() != 0) {
+            setActiveNodeSize(other.getActiveNodeSize());
+          }
+          if (other.getPassiveNodeSize() != 0) {
+            setPassiveNodeSize(other.getPassiveNodeSize());
+          }
+          if (other.getSendNodeSize() != 0) {
+            setSendNodeSize(other.getSendNodeSize());
+          }
+          if (other.getMaxConnectCount() != 0) {
+            setMaxConnectCount(other.getMaxConnectCount());
+          }
+          if (other.getSameIpMaxConnectCount() != 0) {
+            setSameIpMaxConnectCount(other.getSameIpMaxConnectCount());
+          }
+          if (other.getBackupListenPort() != 0) {
+            setBackupListenPort(other.getBackupListenPort());
+          }
+          if (other.getBackupMemberSize() != 0) {
+            setBackupMemberSize(other.getBackupMemberSize());
+          }
+          if (other.getBackupPriority() != 0) {
+            setBackupPriority(other.getBackupPriority());
+          }
+          if (other.getDbVersion() != 0) {
+            setDbVersion(other.getDbVersion());
+          }
+          if (other.getMinParticipationRate() != 0) {
+            setMinParticipationRate(other.getMinParticipationRate());
+          }
+          if (other.getSupportConstant() != false) {
+            setSupportConstant(other.getSupportConstant());
+          }
+          if (other.getMinTimeRatio() != 0D) {
+            setMinTimeRatio(other.getMinTimeRatio());
+          }
+          if (other.getMaxTimeRatio() != 0D) {
+            setMaxTimeRatio(other.getMaxTimeRatio());
+          }
+          if (other.getAllowCreationOfContracts() != 0L) {
+            setAllowCreationOfContracts(other.getAllowCreationOfContracts());
+          }
+          if (other.getAllowAdaptiveEnergy() != 0L) {
+            setAllowAdaptiveEnergy(other.getAllowAdaptiveEnergy());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private java.lang.Object codeVersion_ = "";
+        /**
+         * <code>string codeVersion = 1;</code>
+         */
+        public java.lang.String getCodeVersion() {
+          java.lang.Object ref = codeVersion_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            codeVersion_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string codeVersion = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getCodeVersionBytes() {
+          java.lang.Object ref = codeVersion_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            codeVersion_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string codeVersion = 1;</code>
+         */
+        public Builder setCodeVersion(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          codeVersion_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string codeVersion = 1;</code>
+         */
+        public Builder clearCodeVersion() {
+          
+          codeVersion_ = getDefaultInstance().getCodeVersion();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string codeVersion = 1;</code>
+         */
+        public Builder setCodeVersionBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          codeVersion_ = value;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object p2PVersion_ = "";
+        /**
+         * <code>string p2pVersion = 2;</code>
+         */
+        public java.lang.String getP2PVersion() {
+          java.lang.Object ref = p2PVersion_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            p2PVersion_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string p2pVersion = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+            getP2PVersionBytes() {
+          java.lang.Object ref = p2PVersion_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            p2PVersion_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string p2pVersion = 2;</code>
+         */
+        public Builder setP2PVersion(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          p2PVersion_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string p2pVersion = 2;</code>
+         */
+        public Builder clearP2PVersion() {
+          
+          p2PVersion_ = getDefaultInstance().getP2PVersion();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string p2pVersion = 2;</code>
+         */
+        public Builder setP2PVersionBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          p2PVersion_ = value;
+          onChanged();
+          return this;
+        }
+
+        private int listenPort_ ;
+        /**
+         * <code>int32 listenPort = 3;</code>
+         */
+        public int getListenPort() {
+          return listenPort_;
+        }
+        /**
+         * <code>int32 listenPort = 3;</code>
+         */
+        public Builder setListenPort(int value) {
+          
+          listenPort_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 listenPort = 3;</code>
+         */
+        public Builder clearListenPort() {
+          
+          listenPort_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private boolean discoverEnable_ ;
+        /**
+         * <code>bool discoverEnable = 4;</code>
+         */
+        public boolean getDiscoverEnable() {
+          return discoverEnable_;
+        }
+        /**
+         * <code>bool discoverEnable = 4;</code>
+         */
+        public Builder setDiscoverEnable(boolean value) {
+          
+          discoverEnable_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bool discoverEnable = 4;</code>
+         */
+        public Builder clearDiscoverEnable() {
+          
+          discoverEnable_ = false;
+          onChanged();
+          return this;
+        }
+
+        private int activeNodeSize_ ;
+        /**
+         * <code>int32 activeNodeSize = 5;</code>
+         */
+        public int getActiveNodeSize() {
+          return activeNodeSize_;
+        }
+        /**
+         * <code>int32 activeNodeSize = 5;</code>
+         */
+        public Builder setActiveNodeSize(int value) {
+          
+          activeNodeSize_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 activeNodeSize = 5;</code>
+         */
+        public Builder clearActiveNodeSize() {
+          
+          activeNodeSize_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int passiveNodeSize_ ;
+        /**
+         * <code>int32 passiveNodeSize = 6;</code>
+         */
+        public int getPassiveNodeSize() {
+          return passiveNodeSize_;
+        }
+        /**
+         * <code>int32 passiveNodeSize = 6;</code>
+         */
+        public Builder setPassiveNodeSize(int value) {
+          
+          passiveNodeSize_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 passiveNodeSize = 6;</code>
+         */
+        public Builder clearPassiveNodeSize() {
+          
+          passiveNodeSize_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int sendNodeSize_ ;
+        /**
+         * <code>int32 sendNodeSize = 7;</code>
+         */
+        public int getSendNodeSize() {
+          return sendNodeSize_;
+        }
+        /**
+         * <code>int32 sendNodeSize = 7;</code>
+         */
+        public Builder setSendNodeSize(int value) {
+          
+          sendNodeSize_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 sendNodeSize = 7;</code>
+         */
+        public Builder clearSendNodeSize() {
+          
+          sendNodeSize_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int maxConnectCount_ ;
+        /**
+         * <code>int32 maxConnectCount = 8;</code>
+         */
+        public int getMaxConnectCount() {
+          return maxConnectCount_;
+        }
+        /**
+         * <code>int32 maxConnectCount = 8;</code>
+         */
+        public Builder setMaxConnectCount(int value) {
+          
+          maxConnectCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 maxConnectCount = 8;</code>
+         */
+        public Builder clearMaxConnectCount() {
+          
+          maxConnectCount_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int sameIpMaxConnectCount_ ;
+        /**
+         * <code>int32 sameIpMaxConnectCount = 9;</code>
+         */
+        public int getSameIpMaxConnectCount() {
+          return sameIpMaxConnectCount_;
+        }
+        /**
+         * <code>int32 sameIpMaxConnectCount = 9;</code>
+         */
+        public Builder setSameIpMaxConnectCount(int value) {
+          
+          sameIpMaxConnectCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 sameIpMaxConnectCount = 9;</code>
+         */
+        public Builder clearSameIpMaxConnectCount() {
+          
+          sameIpMaxConnectCount_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int backupListenPort_ ;
+        /**
+         * <code>int32 backupListenPort = 10;</code>
+         */
+        public int getBackupListenPort() {
+          return backupListenPort_;
+        }
+        /**
+         * <code>int32 backupListenPort = 10;</code>
+         */
+        public Builder setBackupListenPort(int value) {
+          
+          backupListenPort_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 backupListenPort = 10;</code>
+         */
+        public Builder clearBackupListenPort() {
+          
+          backupListenPort_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int backupMemberSize_ ;
+        /**
+         * <code>int32 backupMemberSize = 11;</code>
+         */
+        public int getBackupMemberSize() {
+          return backupMemberSize_;
+        }
+        /**
+         * <code>int32 backupMemberSize = 11;</code>
+         */
+        public Builder setBackupMemberSize(int value) {
+          
+          backupMemberSize_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 backupMemberSize = 11;</code>
+         */
+        public Builder clearBackupMemberSize() {
+          
+          backupMemberSize_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int backupPriority_ ;
+        /**
+         * <code>int32 backupPriority = 12;</code>
+         */
+        public int getBackupPriority() {
+          return backupPriority_;
+        }
+        /**
+         * <code>int32 backupPriority = 12;</code>
+         */
+        public Builder setBackupPriority(int value) {
+          
+          backupPriority_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 backupPriority = 12;</code>
+         */
+        public Builder clearBackupPriority() {
+          
+          backupPriority_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int dbVersion_ ;
+        /**
+         * <code>int32 dbVersion = 13;</code>
+         */
+        public int getDbVersion() {
+          return dbVersion_;
+        }
+        /**
+         * <code>int32 dbVersion = 13;</code>
+         */
+        public Builder setDbVersion(int value) {
+          
+          dbVersion_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 dbVersion = 13;</code>
+         */
+        public Builder clearDbVersion() {
+          
+          dbVersion_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int minParticipationRate_ ;
+        /**
+         * <code>int32 minParticipationRate = 14;</code>
+         */
+        public int getMinParticipationRate() {
+          return minParticipationRate_;
+        }
+        /**
+         * <code>int32 minParticipationRate = 14;</code>
+         */
+        public Builder setMinParticipationRate(int value) {
+          
+          minParticipationRate_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 minParticipationRate = 14;</code>
+         */
+        public Builder clearMinParticipationRate() {
+          
+          minParticipationRate_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private boolean supportConstant_ ;
+        /**
+         * <code>bool supportConstant = 15;</code>
+         */
+        public boolean getSupportConstant() {
+          return supportConstant_;
+        }
+        /**
+         * <code>bool supportConstant = 15;</code>
+         */
+        public Builder setSupportConstant(boolean value) {
+          
+          supportConstant_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bool supportConstant = 15;</code>
+         */
+        public Builder clearSupportConstant() {
+          
+          supportConstant_ = false;
+          onChanged();
+          return this;
+        }
+
+        private double minTimeRatio_ ;
+        /**
+         * <code>double minTimeRatio = 16;</code>
+         */
+        public double getMinTimeRatio() {
+          return minTimeRatio_;
+        }
+        /**
+         * <code>double minTimeRatio = 16;</code>
+         */
+        public Builder setMinTimeRatio(double value) {
+          
+          minTimeRatio_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>double minTimeRatio = 16;</code>
+         */
+        public Builder clearMinTimeRatio() {
+          
+          minTimeRatio_ = 0D;
+          onChanged();
+          return this;
+        }
+
+        private double maxTimeRatio_ ;
+        /**
+         * <code>double maxTimeRatio = 17;</code>
+         */
+        public double getMaxTimeRatio() {
+          return maxTimeRatio_;
+        }
+        /**
+         * <code>double maxTimeRatio = 17;</code>
+         */
+        public Builder setMaxTimeRatio(double value) {
+          
+          maxTimeRatio_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>double maxTimeRatio = 17;</code>
+         */
+        public Builder clearMaxTimeRatio() {
+          
+          maxTimeRatio_ = 0D;
+          onChanged();
+          return this;
+        }
+
+        private long allowCreationOfContracts_ ;
+        /**
+         * <code>int64 allowCreationOfContracts = 18;</code>
+         */
+        public long getAllowCreationOfContracts() {
+          return allowCreationOfContracts_;
+        }
+        /**
+         * <code>int64 allowCreationOfContracts = 18;</code>
+         */
+        public Builder setAllowCreationOfContracts(long value) {
+          
+          allowCreationOfContracts_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 allowCreationOfContracts = 18;</code>
+         */
+        public Builder clearAllowCreationOfContracts() {
+          
+          allowCreationOfContracts_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long allowAdaptiveEnergy_ ;
+        /**
+         * <code>int64 allowAdaptiveEnergy = 19;</code>
+         */
+        public long getAllowAdaptiveEnergy() {
+          return allowAdaptiveEnergy_;
+        }
+        /**
+         * <code>int64 allowAdaptiveEnergy = 19;</code>
+         */
+        public Builder setAllowAdaptiveEnergy(long value) {
+          
+          allowAdaptiveEnergy_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 allowAdaptiveEnergy = 19;</code>
+         */
+        public Builder clearAllowAdaptiveEnergy() {
+          
+          allowAdaptiveEnergy_ = 0L;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:protocol.NodeInfo.ConfigNodeInfo)
+      }
+
+      // @@protoc_insertion_point(class_scope:protocol.NodeInfo.ConfigNodeInfo)
+      private static final org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo();
+      }
+
+      public static org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<ConfigNodeInfo>
+          PARSER = new com.google.protobuf.AbstractParser<ConfigNodeInfo>() {
+        public ConfigNodeInfo parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new ConfigNodeInfo(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<ConfigNodeInfo> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<ConfigNodeInfo> getParserForType() {
+        return PARSER;
+      }
+
+      public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public interface MachineInfoOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:protocol.NodeInfo.MachineInfo)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>int32 threadCount = 1;</code>
+       */
+      int getThreadCount();
+
+      /**
+       * <code>int32 deadLockThreadCount = 2;</code>
+       */
+      int getDeadLockThreadCount();
+
+      /**
+       * <code>int32 cpuCount = 3;</code>
+       */
+      int getCpuCount();
+
+      /**
+       * <code>int64 totalMemory = 4;</code>
+       */
+      long getTotalMemory();
+
+      /**
+       * <code>int64 freeMemory = 5;</code>
+       */
+      long getFreeMemory();
+
+      /**
+       * <code>double cpuRate = 6;</code>
+       */
+      double getCpuRate();
+
+      /**
+       * <code>string javaVersion = 7;</code>
+       */
+      java.lang.String getJavaVersion();
+      /**
+       * <code>string javaVersion = 7;</code>
+       */
+      com.google.protobuf.ByteString
+          getJavaVersionBytes();
+
+      /**
+       * <code>string osName = 8;</code>
+       */
+      java.lang.String getOsName();
+      /**
+       * <code>string osName = 8;</code>
+       */
+      com.google.protobuf.ByteString
+          getOsNameBytes();
+
+      /**
+       * <code>int64 jvmTotalMemoery = 9;</code>
+       */
+      long getJvmTotalMemoery();
+
+      /**
+       * <code>int64 jvmFreeMemory = 10;</code>
+       */
+      long getJvmFreeMemory();
+
+      /**
+       * <code>double processCpuRate = 11;</code>
+       */
+      double getProcessCpuRate();
+
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo> 
+          getMemoryDescInfoListList();
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo getMemoryDescInfoList(int index);
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      int getMemoryDescInfoListCount();
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      java.util.List<? extends org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder> 
+          getMemoryDescInfoListOrBuilderList();
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder getMemoryDescInfoListOrBuilder(
+          int index);
+
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo> 
+          getDeadLockThreadInfoListList();
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo getDeadLockThreadInfoList(int index);
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      int getDeadLockThreadInfoListCount();
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      java.util.List<? extends org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder> 
+          getDeadLockThreadInfoListOrBuilderList();
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder getDeadLockThreadInfoListOrBuilder(
+          int index);
+    }
+    /**
+     * Protobuf type {@code protocol.NodeInfo.MachineInfo}
+     */
+    public  static final class MachineInfo extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:protocol.NodeInfo.MachineInfo)
+        MachineInfoOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use MachineInfo.newBuilder() to construct.
+      private MachineInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private MachineInfo() {
+        threadCount_ = 0;
+        deadLockThreadCount_ = 0;
+        cpuCount_ = 0;
+        totalMemory_ = 0L;
+        freeMemory_ = 0L;
+        cpuRate_ = 0D;
+        javaVersion_ = "";
+        osName_ = "";
+        jvmTotalMemoery_ = 0L;
+        jvmFreeMemory_ = 0L;
+        processCpuRate_ = 0D;
+        memoryDescInfoList_ = java.util.Collections.emptyList();
+        deadLockThreadInfoList_ = java.util.Collections.emptyList();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private MachineInfo(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownFieldProto3(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+
+                threadCount_ = input.readInt32();
+                break;
+              }
+              case 16: {
+
+                deadLockThreadCount_ = input.readInt32();
+                break;
+              }
+              case 24: {
+
+                cpuCount_ = input.readInt32();
+                break;
+              }
+              case 32: {
+
+                totalMemory_ = input.readInt64();
+                break;
+              }
+              case 40: {
+
+                freeMemory_ = input.readInt64();
+                break;
+              }
+              case 49: {
+
+                cpuRate_ = input.readDouble();
+                break;
+              }
+              case 58: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                javaVersion_ = s;
+                break;
+              }
+              case 66: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                osName_ = s;
+                break;
+              }
+              case 72: {
+
+                jvmTotalMemoery_ = input.readInt64();
+                break;
+              }
+              case 80: {
+
+                jvmFreeMemory_ = input.readInt64();
+                break;
+              }
+              case 89: {
+
+                processCpuRate_ = input.readDouble();
+                break;
+              }
+              case 98: {
+                if (!((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
+                  memoryDescInfoList_ = new java.util.ArrayList<org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo>();
+                  mutable_bitField0_ |= 0x00000800;
+                }
+                memoryDescInfoList_.add(
+                    input.readMessage(org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.parser(), extensionRegistry));
+                break;
+              }
+              case 106: {
+                if (!((mutable_bitField0_ & 0x00001000) == 0x00001000)) {
+                  deadLockThreadInfoList_ = new java.util.ArrayList<org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo>();
+                  mutable_bitField0_ |= 0x00001000;
+                }
+                deadLockThreadInfoList_.add(
+                    input.readMessage(org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.parser(), extensionRegistry));
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
+            memoryDescInfoList_ = java.util.Collections.unmodifiableList(memoryDescInfoList_);
+          }
+          if (((mutable_bitField0_ & 0x00001000) == 0x00001000)) {
+            deadLockThreadInfoList_ = java.util.Collections.unmodifiableList(deadLockThreadInfoList_);
+          }
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.tron.protos.Protocol.NodeInfo.MachineInfo.class, org.tron.protos.Protocol.NodeInfo.MachineInfo.Builder.class);
+      }
+
+      public interface MemoryDescInfoOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:protocol.NodeInfo.MachineInfo.MemoryDescInfo)
+          com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>string name = 1;</code>
+         */
+        java.lang.String getName();
+        /**
+         * <code>string name = 1;</code>
+         */
+        com.google.protobuf.ByteString
+            getNameBytes();
+
+        /**
+         * <code>int64 initSize = 2;</code>
+         */
+        long getInitSize();
+
+        /**
+         * <code>int64 useSize = 3;</code>
+         */
+        long getUseSize();
+
+        /**
+         * <code>int64 maxSize = 4;</code>
+         */
+        long getMaxSize();
+
+        /**
+         * <code>double useRate = 5;</code>
+         */
+        double getUseRate();
+      }
+      /**
+       * Protobuf type {@code protocol.NodeInfo.MachineInfo.MemoryDescInfo}
+       */
+      public  static final class MemoryDescInfo extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:protocol.NodeInfo.MachineInfo.MemoryDescInfo)
+          MemoryDescInfoOrBuilder {
+      private static final long serialVersionUID = 0L;
+        // Use MemoryDescInfo.newBuilder() to construct.
+        private MemoryDescInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+          super(builder);
+        }
+        private MemoryDescInfo() {
+          name_ = "";
+          initSize_ = 0L;
+          useSize_ = 0L;
+          maxSize_ = 0L;
+          useRate_ = 0D;
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+          return this.unknownFields;
+        }
+        private MemoryDescInfo(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          this();
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  java.lang.String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+                case 16: {
+
+                  initSize_ = input.readInt64();
+                  break;
+                }
+                case 24: {
+
+                  useSize_ = input.readInt64();
+                  break;
+                }
+                case 32: {
+
+                  maxSize_ = input.readInt64();
+                  break;
+                }
+                case 41: {
+
+                  useRate_ = input.readDouble();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+          } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+          }
+        }
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.class, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder.class);
+        }
+
+        public static final int NAME_FIELD_NUMBER = 1;
+        private volatile java.lang.Object name_;
+        /**
+         * <code>string name = 1;</code>
+         */
+        public java.lang.String getName() {
+          java.lang.Object ref = name_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
+          } else {
+            com.google.protobuf.ByteString bs = 
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            name_ = s;
+            return s;
+          }
+        }
+        /**
+         * <code>string name = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getNameBytes() {
+          java.lang.Object ref = name_;
+          if (ref instanceof java.lang.String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            name_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+
+        public static final int INITSIZE_FIELD_NUMBER = 2;
+        private long initSize_;
+        /**
+         * <code>int64 initSize = 2;</code>
+         */
+        public long getInitSize() {
+          return initSize_;
+        }
+
+        public static final int USESIZE_FIELD_NUMBER = 3;
+        private long useSize_;
+        /**
+         * <code>int64 useSize = 3;</code>
+         */
+        public long getUseSize() {
+          return useSize_;
+        }
+
+        public static final int MAXSIZE_FIELD_NUMBER = 4;
+        private long maxSize_;
+        /**
+         * <code>int64 maxSize = 4;</code>
+         */
+        public long getMaxSize() {
+          return maxSize_;
+        }
+
+        public static final int USERATE_FIELD_NUMBER = 5;
+        private double useRate_;
+        /**
+         * <code>double useRate = 5;</code>
+         */
+        public double getUseRate() {
+          return useRate_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+        public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return true;
+          if (isInitialized == 0) return false;
+
+          memoizedIsInitialized = 1;
+          return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                            throws java.io.IOException {
+          if (!getNameBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+          }
+          if (initSize_ != 0L) {
+            output.writeInt64(2, initSize_);
+          }
+          if (useSize_ != 0L) {
+            output.writeInt64(3, useSize_);
+          }
+          if (maxSize_ != 0L) {
+            output.writeInt64(4, maxSize_);
+          }
+          if (useRate_ != 0D) {
+            output.writeDouble(5, useRate_);
+          }
+          unknownFields.writeTo(output);
+        }
+
+        public int getSerializedSize() {
+          int size = memoizedSize;
+          if (size != -1) return size;
+
+          size = 0;
+          if (!getNameBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+          }
+          if (initSize_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt64Size(2, initSize_);
+          }
+          if (useSize_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt64Size(3, useSize_);
+          }
+          if (maxSize_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt64Size(4, maxSize_);
+          }
+          if (useRate_ != 0D) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeDoubleSize(5, useRate_);
+          }
+          size += unknownFields.getSerializedSize();
+          memoizedSize = size;
+          return size;
+        }
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+          if (obj == this) {
+           return true;
+          }
+          if (!(obj instanceof org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo)) {
+            return super.equals(obj);
+          }
+          org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo other = (org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo) obj;
+
+          boolean result = true;
+          result = result && getName()
+              .equals(other.getName());
+          result = result && (getInitSize()
+              == other.getInitSize());
+          result = result && (getUseSize()
+              == other.getUseSize());
+          result = result && (getMaxSize()
+              == other.getMaxSize());
+          result = result && (
+              java.lang.Double.doubleToLongBits(getUseRate())
+              == java.lang.Double.doubleToLongBits(
+                  other.getUseRate()));
+          result = result && unknownFields.equals(other.unknownFields);
+          return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+          if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+          }
+          int hash = 41;
+          hash = (19 * hash) + getDescriptor().hashCode();
+          hash = (37 * hash) + NAME_FIELD_NUMBER;
+          hash = (53 * hash) + getName().hashCode();
+          hash = (37 * hash) + INITSIZE_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getInitSize());
+          hash = (37 * hash) + USESIZE_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getUseSize());
+          hash = (37 * hash) + MAXSIZE_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getMaxSize());
+          hash = (37 * hash) + USERATE_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              java.lang.Double.doubleToLongBits(getUseRate()));
+          hash = (29 * hash) + unknownFields.hashCode();
+          memoizedHashCode = hash;
+          return hash;
+        }
+
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+          return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo prototype) {
+          return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        public Builder toBuilder() {
+          return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          Builder builder = new Builder(parent);
+          return builder;
+        }
+        /**
+         * Protobuf type {@code protocol.NodeInfo.MachineInfo.MemoryDescInfo}
+         */
+        public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:protocol.NodeInfo.MachineInfo.MemoryDescInfo)
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder {
+          public static final com.google.protobuf.Descriptors.Descriptor
+              getDescriptor() {
+            return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_descriptor;
+          }
+
+          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+              internalGetFieldAccessorTable() {
+            return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                    org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.class, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder.class);
+          }
+
+          // Construct using org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.newBuilder()
+          private Builder() {
+            maybeForceBuilderInitialization();
+          }
+
+          private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+          }
+          public Builder clear() {
+            super.clear();
+            name_ = "";
+
+            initSize_ = 0L;
+
+            useSize_ = 0L;
+
+            maxSize_ = 0L;
+
+            useRate_ = 0D;
+
+            return this;
+          }
+
+          public com.google.protobuf.Descriptors.Descriptor
+              getDescriptorForType() {
+            return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_descriptor;
+          }
+
+          public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo getDefaultInstanceForType() {
+            return org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.getDefaultInstance();
+          }
+
+          public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo build() {
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+            }
+            return result;
+          }
+
+          public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo buildPartial() {
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo result = new org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo(this);
+            result.name_ = name_;
+            result.initSize_ = initSize_;
+            result.useSize_ = useSize_;
+            result.maxSize_ = maxSize_;
+            result.useRate_ = useRate_;
+            onBuilt();
+            return result;
+          }
+
+          public Builder clone() {
+            return (Builder) super.clone();
+          }
+          public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return (Builder) super.setField(field, value);
+          }
+          public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return (Builder) super.clearField(field);
+          }
+          public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return (Builder) super.clearOneof(oneof);
+          }
+          public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
+            return (Builder) super.setRepeatedField(field, index, value);
+          }
+          public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return (Builder) super.addRepeatedField(field, value);
+          }
+          public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo) {
+              return mergeFrom((org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo)other);
+            } else {
+              super.mergeFrom(other);
+              return this;
+            }
+          }
+
+          public Builder mergeFrom(org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo other) {
+            if (other == org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.getDefaultInstance()) return this;
+            if (!other.getName().isEmpty()) {
+              name_ = other.name_;
+              onChanged();
+            }
+            if (other.getInitSize() != 0L) {
+              setInitSize(other.getInitSize());
+            }
+            if (other.getUseSize() != 0L) {
+              setUseSize(other.getUseSize());
+            }
+            if (other.getMaxSize() != 0L) {
+              setMaxSize(other.getMaxSize());
+            }
+            if (other.getUseRate() != 0D) {
+              setUseRate(other.getUseRate());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+          }
+
+          public final boolean isInitialized() {
+            return true;
+          }
+
+          public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo parsedMessage = null;
+            try {
+              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              parsedMessage = (org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo) e.getUnfinishedMessage();
+              throw e.unwrapIOException();
+            } finally {
+              if (parsedMessage != null) {
+                mergeFrom(parsedMessage);
+              }
+            }
+            return this;
+          }
+
+          private java.lang.Object name_ = "";
+          /**
+           * <code>string name = 1;</code>
+           */
+          public java.lang.String getName() {
+            java.lang.Object ref = name_;
+            if (!(ref instanceof java.lang.String)) {
+              com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
+              java.lang.String s = bs.toStringUtf8();
+              name_ = s;
+              return s;
+            } else {
+              return (java.lang.String) ref;
+            }
+          }
+          /**
+           * <code>string name = 1;</code>
+           */
+          public com.google.protobuf.ByteString
+              getNameBytes() {
+            java.lang.Object ref = name_;
+            if (ref instanceof String) {
+              com.google.protobuf.ByteString b = 
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                      (java.lang.String) ref);
+              name_ = b;
+              return b;
+            } else {
+              return (com.google.protobuf.ByteString) ref;
+            }
+          }
+          /**
+           * <code>string name = 1;</code>
+           */
+          public Builder setName(
+              java.lang.String value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  
+            name_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string name = 1;</code>
+           */
+          public Builder clearName() {
+            
+            name_ = getDefaultInstance().getName();
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string name = 1;</code>
+           */
+          public Builder setNameBytes(
+              com.google.protobuf.ByteString value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+            
+            name_ = value;
+            onChanged();
+            return this;
+          }
+
+          private long initSize_ ;
+          /**
+           * <code>int64 initSize = 2;</code>
+           */
+          public long getInitSize() {
+            return initSize_;
+          }
+          /**
+           * <code>int64 initSize = 2;</code>
+           */
+          public Builder setInitSize(long value) {
+            
+            initSize_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>int64 initSize = 2;</code>
+           */
+          public Builder clearInitSize() {
+            
+            initSize_ = 0L;
+            onChanged();
+            return this;
+          }
+
+          private long useSize_ ;
+          /**
+           * <code>int64 useSize = 3;</code>
+           */
+          public long getUseSize() {
+            return useSize_;
+          }
+          /**
+           * <code>int64 useSize = 3;</code>
+           */
+          public Builder setUseSize(long value) {
+            
+            useSize_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>int64 useSize = 3;</code>
+           */
+          public Builder clearUseSize() {
+            
+            useSize_ = 0L;
+            onChanged();
+            return this;
+          }
+
+          private long maxSize_ ;
+          /**
+           * <code>int64 maxSize = 4;</code>
+           */
+          public long getMaxSize() {
+            return maxSize_;
+          }
+          /**
+           * <code>int64 maxSize = 4;</code>
+           */
+          public Builder setMaxSize(long value) {
+            
+            maxSize_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>int64 maxSize = 4;</code>
+           */
+          public Builder clearMaxSize() {
+            
+            maxSize_ = 0L;
+            onChanged();
+            return this;
+          }
+
+          private double useRate_ ;
+          /**
+           * <code>double useRate = 5;</code>
+           */
+          public double getUseRate() {
+            return useRate_;
+          }
+          /**
+           * <code>double useRate = 5;</code>
+           */
+          public Builder setUseRate(double value) {
+            
+            useRate_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>double useRate = 5;</code>
+           */
+          public Builder clearUseRate() {
+            
+            useRate_ = 0D;
+            onChanged();
+            return this;
+          }
+          public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFieldsProto3(unknownFields);
+          }
+
+          public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+          }
+
+
+          // @@protoc_insertion_point(builder_scope:protocol.NodeInfo.MachineInfo.MemoryDescInfo)
+        }
+
+        // @@protoc_insertion_point(class_scope:protocol.NodeInfo.MachineInfo.MemoryDescInfo)
+        private static final org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo DEFAULT_INSTANCE;
+        static {
+          DEFAULT_INSTANCE = new org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo();
+        }
+
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo getDefaultInstance() {
+          return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<MemoryDescInfo>
+            PARSER = new com.google.protobuf.AbstractParser<MemoryDescInfo>() {
+          public MemoryDescInfo parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            return new MemoryDescInfo(input, extensionRegistry);
+          }
+        };
+
+        public static com.google.protobuf.Parser<MemoryDescInfo> parser() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<MemoryDescInfo> getParserForType() {
+          return PARSER;
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo getDefaultInstanceForType() {
+          return DEFAULT_INSTANCE;
+        }
+
+      }
+
+      public interface DeadLockThreadInfoOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:protocol.NodeInfo.MachineInfo.DeadLockThreadInfo)
+          com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>string name = 1;</code>
+         */
+        java.lang.String getName();
+        /**
+         * <code>string name = 1;</code>
+         */
+        com.google.protobuf.ByteString
+            getNameBytes();
+
+        /**
+         * <code>string lockName = 2;</code>
+         */
+        java.lang.String getLockName();
+        /**
+         * <code>string lockName = 2;</code>
+         */
+        com.google.protobuf.ByteString
+            getLockNameBytes();
+
+        /**
+         * <code>string lockOwner = 3;</code>
+         */
+        java.lang.String getLockOwner();
+        /**
+         * <code>string lockOwner = 3;</code>
+         */
+        com.google.protobuf.ByteString
+            getLockOwnerBytes();
+
+        /**
+         * <code>string state = 4;</code>
+         */
+        java.lang.String getState();
+        /**
+         * <code>string state = 4;</code>
+         */
+        com.google.protobuf.ByteString
+            getStateBytes();
+
+        /**
+         * <code>int64 blockTime = 5;</code>
+         */
+        long getBlockTime();
+
+        /**
+         * <code>int64 waitTime = 6;</code>
+         */
+        long getWaitTime();
+
+        /**
+         * <code>string stackTrace = 7;</code>
+         */
+        java.lang.String getStackTrace();
+        /**
+         * <code>string stackTrace = 7;</code>
+         */
+        com.google.protobuf.ByteString
+            getStackTraceBytes();
+      }
+      /**
+       * Protobuf type {@code protocol.NodeInfo.MachineInfo.DeadLockThreadInfo}
+       */
+      public  static final class DeadLockThreadInfo extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:protocol.NodeInfo.MachineInfo.DeadLockThreadInfo)
+          DeadLockThreadInfoOrBuilder {
+      private static final long serialVersionUID = 0L;
+        // Use DeadLockThreadInfo.newBuilder() to construct.
+        private DeadLockThreadInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+          super(builder);
+        }
+        private DeadLockThreadInfo() {
+          name_ = "";
+          lockName_ = "";
+          lockOwner_ = "";
+          state_ = "";
+          blockTime_ = 0L;
+          waitTime_ = 0L;
+          stackTrace_ = "";
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+          return this.unknownFields;
+        }
+        private DeadLockThreadInfo(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          this();
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          int mutable_bitField0_ = 0;
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  java.lang.String s = input.readStringRequireUtf8();
+
+                  name_ = s;
+                  break;
+                }
+                case 18: {
+                  java.lang.String s = input.readStringRequireUtf8();
+
+                  lockName_ = s;
+                  break;
+                }
+                case 26: {
+                  java.lang.String s = input.readStringRequireUtf8();
+
+                  lockOwner_ = s;
+                  break;
+                }
+                case 34: {
+                  java.lang.String s = input.readStringRequireUtf8();
+
+                  state_ = s;
+                  break;
+                }
+                case 40: {
+
+                  blockTime_ = input.readInt64();
+                  break;
+                }
+                case 48: {
+
+                  waitTime_ = input.readInt64();
+                  break;
+                }
+                case 58: {
+                  java.lang.String s = input.readStringRequireUtf8();
+
+                  stackTrace_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+          } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+          }
+        }
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.class, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder.class);
+        }
+
+        public static final int NAME_FIELD_NUMBER = 1;
+        private volatile java.lang.Object name_;
+        /**
+         * <code>string name = 1;</code>
+         */
+        public java.lang.String getName() {
+          java.lang.Object ref = name_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
+          } else {
+            com.google.protobuf.ByteString bs = 
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            name_ = s;
+            return s;
+          }
+        }
+        /**
+         * <code>string name = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getNameBytes() {
+          java.lang.Object ref = name_;
+          if (ref instanceof java.lang.String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            name_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+
+        public static final int LOCKNAME_FIELD_NUMBER = 2;
+        private volatile java.lang.Object lockName_;
+        /**
+         * <code>string lockName = 2;</code>
+         */
+        public java.lang.String getLockName() {
+          java.lang.Object ref = lockName_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
+          } else {
+            com.google.protobuf.ByteString bs = 
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            lockName_ = s;
+            return s;
+          }
+        }
+        /**
+         * <code>string lockName = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+            getLockNameBytes() {
+          java.lang.Object ref = lockName_;
+          if (ref instanceof java.lang.String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            lockName_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+
+        public static final int LOCKOWNER_FIELD_NUMBER = 3;
+        private volatile java.lang.Object lockOwner_;
+        /**
+         * <code>string lockOwner = 3;</code>
+         */
+        public java.lang.String getLockOwner() {
+          java.lang.Object ref = lockOwner_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
+          } else {
+            com.google.protobuf.ByteString bs = 
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            lockOwner_ = s;
+            return s;
+          }
+        }
+        /**
+         * <code>string lockOwner = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+            getLockOwnerBytes() {
+          java.lang.Object ref = lockOwner_;
+          if (ref instanceof java.lang.String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            lockOwner_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+
+        public static final int STATE_FIELD_NUMBER = 4;
+        private volatile java.lang.Object state_;
+        /**
+         * <code>string state = 4;</code>
+         */
+        public java.lang.String getState() {
+          java.lang.Object ref = state_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
+          } else {
+            com.google.protobuf.ByteString bs = 
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            state_ = s;
+            return s;
+          }
+        }
+        /**
+         * <code>string state = 4;</code>
+         */
+        public com.google.protobuf.ByteString
+            getStateBytes() {
+          java.lang.Object ref = state_;
+          if (ref instanceof java.lang.String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            state_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+
+        public static final int BLOCKTIME_FIELD_NUMBER = 5;
+        private long blockTime_;
+        /**
+         * <code>int64 blockTime = 5;</code>
+         */
+        public long getBlockTime() {
+          return blockTime_;
+        }
+
+        public static final int WAITTIME_FIELD_NUMBER = 6;
+        private long waitTime_;
+        /**
+         * <code>int64 waitTime = 6;</code>
+         */
+        public long getWaitTime() {
+          return waitTime_;
+        }
+
+        public static final int STACKTRACE_FIELD_NUMBER = 7;
+        private volatile java.lang.Object stackTrace_;
+        /**
+         * <code>string stackTrace = 7;</code>
+         */
+        public java.lang.String getStackTrace() {
+          java.lang.Object ref = stackTrace_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
+          } else {
+            com.google.protobuf.ByteString bs = 
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            stackTrace_ = s;
+            return s;
+          }
+        }
+        /**
+         * <code>string stackTrace = 7;</code>
+         */
+        public com.google.protobuf.ByteString
+            getStackTraceBytes() {
+          java.lang.Object ref = stackTrace_;
+          if (ref instanceof java.lang.String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            stackTrace_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+
+        private byte memoizedIsInitialized = -1;
+        public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return true;
+          if (isInitialized == 0) return false;
+
+          memoizedIsInitialized = 1;
+          return true;
+        }
+
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                            throws java.io.IOException {
+          if (!getNameBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+          }
+          if (!getLockNameBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 2, lockName_);
+          }
+          if (!getLockOwnerBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 3, lockOwner_);
+          }
+          if (!getStateBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 4, state_);
+          }
+          if (blockTime_ != 0L) {
+            output.writeInt64(5, blockTime_);
+          }
+          if (waitTime_ != 0L) {
+            output.writeInt64(6, waitTime_);
+          }
+          if (!getStackTraceBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 7, stackTrace_);
+          }
+          unknownFields.writeTo(output);
+        }
+
+        public int getSerializedSize() {
+          int size = memoizedSize;
+          if (size != -1) return size;
+
+          size = 0;
+          if (!getNameBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+          }
+          if (!getLockNameBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, lockName_);
+          }
+          if (!getLockOwnerBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, lockOwner_);
+          }
+          if (!getStateBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, state_);
+          }
+          if (blockTime_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt64Size(5, blockTime_);
+          }
+          if (waitTime_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt64Size(6, waitTime_);
+          }
+          if (!getStackTraceBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, stackTrace_);
+          }
+          size += unknownFields.getSerializedSize();
+          memoizedSize = size;
+          return size;
+        }
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+          if (obj == this) {
+           return true;
+          }
+          if (!(obj instanceof org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo)) {
+            return super.equals(obj);
+          }
+          org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo other = (org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo) obj;
+
+          boolean result = true;
+          result = result && getName()
+              .equals(other.getName());
+          result = result && getLockName()
+              .equals(other.getLockName());
+          result = result && getLockOwner()
+              .equals(other.getLockOwner());
+          result = result && getState()
+              .equals(other.getState());
+          result = result && (getBlockTime()
+              == other.getBlockTime());
+          result = result && (getWaitTime()
+              == other.getWaitTime());
+          result = result && getStackTrace()
+              .equals(other.getStackTrace());
+          result = result && unknownFields.equals(other.unknownFields);
+          return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+          if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+          }
+          int hash = 41;
+          hash = (19 * hash) + getDescriptor().hashCode();
+          hash = (37 * hash) + NAME_FIELD_NUMBER;
+          hash = (53 * hash) + getName().hashCode();
+          hash = (37 * hash) + LOCKNAME_FIELD_NUMBER;
+          hash = (53 * hash) + getLockName().hashCode();
+          hash = (37 * hash) + LOCKOWNER_FIELD_NUMBER;
+          hash = (53 * hash) + getLockOwner().hashCode();
+          hash = (37 * hash) + STATE_FIELD_NUMBER;
+          hash = (53 * hash) + getState().hashCode();
+          hash = (37 * hash) + BLOCKTIME_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getBlockTime());
+          hash = (37 * hash) + WAITTIME_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getWaitTime());
+          hash = (37 * hash) + STACKTRACE_FIELD_NUMBER;
+          hash = (53 * hash) + getStackTrace().hashCode();
+          hash = (29 * hash) + unknownFields.hashCode();
+          memoizedHashCode = hash;
+          return hash;
+        }
+
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+          return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo prototype) {
+          return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        public Builder toBuilder() {
+          return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          Builder builder = new Builder(parent);
+          return builder;
+        }
+        /**
+         * Protobuf type {@code protocol.NodeInfo.MachineInfo.DeadLockThreadInfo}
+         */
+        public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:protocol.NodeInfo.MachineInfo.DeadLockThreadInfo)
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder {
+          public static final com.google.protobuf.Descriptors.Descriptor
+              getDescriptor() {
+            return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_descriptor;
+          }
+
+          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+              internalGetFieldAccessorTable() {
+            return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                    org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.class, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder.class);
+          }
+
+          // Construct using org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.newBuilder()
+          private Builder() {
+            maybeForceBuilderInitialization();
+          }
+
+          private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+          }
+          public Builder clear() {
+            super.clear();
+            name_ = "";
+
+            lockName_ = "";
+
+            lockOwner_ = "";
+
+            state_ = "";
+
+            blockTime_ = 0L;
+
+            waitTime_ = 0L;
+
+            stackTrace_ = "";
+
+            return this;
+          }
+
+          public com.google.protobuf.Descriptors.Descriptor
+              getDescriptorForType() {
+            return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_descriptor;
+          }
+
+          public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo getDefaultInstanceForType() {
+            return org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.getDefaultInstance();
+          }
+
+          public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo build() {
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+            }
+            return result;
+          }
+
+          public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo buildPartial() {
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo result = new org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo(this);
+            result.name_ = name_;
+            result.lockName_ = lockName_;
+            result.lockOwner_ = lockOwner_;
+            result.state_ = state_;
+            result.blockTime_ = blockTime_;
+            result.waitTime_ = waitTime_;
+            result.stackTrace_ = stackTrace_;
+            onBuilt();
+            return result;
+          }
+
+          public Builder clone() {
+            return (Builder) super.clone();
+          }
+          public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return (Builder) super.setField(field, value);
+          }
+          public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return (Builder) super.clearField(field);
+          }
+          public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return (Builder) super.clearOneof(oneof);
+          }
+          public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
+            return (Builder) super.setRepeatedField(field, index, value);
+          }
+          public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return (Builder) super.addRepeatedField(field, value);
+          }
+          public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo) {
+              return mergeFrom((org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo)other);
+            } else {
+              super.mergeFrom(other);
+              return this;
+            }
+          }
+
+          public Builder mergeFrom(org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo other) {
+            if (other == org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.getDefaultInstance()) return this;
+            if (!other.getName().isEmpty()) {
+              name_ = other.name_;
+              onChanged();
+            }
+            if (!other.getLockName().isEmpty()) {
+              lockName_ = other.lockName_;
+              onChanged();
+            }
+            if (!other.getLockOwner().isEmpty()) {
+              lockOwner_ = other.lockOwner_;
+              onChanged();
+            }
+            if (!other.getState().isEmpty()) {
+              state_ = other.state_;
+              onChanged();
+            }
+            if (other.getBlockTime() != 0L) {
+              setBlockTime(other.getBlockTime());
+            }
+            if (other.getWaitTime() != 0L) {
+              setWaitTime(other.getWaitTime());
+            }
+            if (!other.getStackTrace().isEmpty()) {
+              stackTrace_ = other.stackTrace_;
+              onChanged();
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+          }
+
+          public final boolean isInitialized() {
+            return true;
+          }
+
+          public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo parsedMessage = null;
+            try {
+              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              parsedMessage = (org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo) e.getUnfinishedMessage();
+              throw e.unwrapIOException();
+            } finally {
+              if (parsedMessage != null) {
+                mergeFrom(parsedMessage);
+              }
+            }
+            return this;
+          }
+
+          private java.lang.Object name_ = "";
+          /**
+           * <code>string name = 1;</code>
+           */
+          public java.lang.String getName() {
+            java.lang.Object ref = name_;
+            if (!(ref instanceof java.lang.String)) {
+              com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
+              java.lang.String s = bs.toStringUtf8();
+              name_ = s;
+              return s;
+            } else {
+              return (java.lang.String) ref;
+            }
+          }
+          /**
+           * <code>string name = 1;</code>
+           */
+          public com.google.protobuf.ByteString
+              getNameBytes() {
+            java.lang.Object ref = name_;
+            if (ref instanceof String) {
+              com.google.protobuf.ByteString b = 
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                      (java.lang.String) ref);
+              name_ = b;
+              return b;
+            } else {
+              return (com.google.protobuf.ByteString) ref;
+            }
+          }
+          /**
+           * <code>string name = 1;</code>
+           */
+          public Builder setName(
+              java.lang.String value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  
+            name_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string name = 1;</code>
+           */
+          public Builder clearName() {
+            
+            name_ = getDefaultInstance().getName();
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string name = 1;</code>
+           */
+          public Builder setNameBytes(
+              com.google.protobuf.ByteString value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+            
+            name_ = value;
+            onChanged();
+            return this;
+          }
+
+          private java.lang.Object lockName_ = "";
+          /**
+           * <code>string lockName = 2;</code>
+           */
+          public java.lang.String getLockName() {
+            java.lang.Object ref = lockName_;
+            if (!(ref instanceof java.lang.String)) {
+              com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
+              java.lang.String s = bs.toStringUtf8();
+              lockName_ = s;
+              return s;
+            } else {
+              return (java.lang.String) ref;
+            }
+          }
+          /**
+           * <code>string lockName = 2;</code>
+           */
+          public com.google.protobuf.ByteString
+              getLockNameBytes() {
+            java.lang.Object ref = lockName_;
+            if (ref instanceof String) {
+              com.google.protobuf.ByteString b = 
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                      (java.lang.String) ref);
+              lockName_ = b;
+              return b;
+            } else {
+              return (com.google.protobuf.ByteString) ref;
+            }
+          }
+          /**
+           * <code>string lockName = 2;</code>
+           */
+          public Builder setLockName(
+              java.lang.String value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  
+            lockName_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string lockName = 2;</code>
+           */
+          public Builder clearLockName() {
+            
+            lockName_ = getDefaultInstance().getLockName();
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string lockName = 2;</code>
+           */
+          public Builder setLockNameBytes(
+              com.google.protobuf.ByteString value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+            
+            lockName_ = value;
+            onChanged();
+            return this;
+          }
+
+          private java.lang.Object lockOwner_ = "";
+          /**
+           * <code>string lockOwner = 3;</code>
+           */
+          public java.lang.String getLockOwner() {
+            java.lang.Object ref = lockOwner_;
+            if (!(ref instanceof java.lang.String)) {
+              com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
+              java.lang.String s = bs.toStringUtf8();
+              lockOwner_ = s;
+              return s;
+            } else {
+              return (java.lang.String) ref;
+            }
+          }
+          /**
+           * <code>string lockOwner = 3;</code>
+           */
+          public com.google.protobuf.ByteString
+              getLockOwnerBytes() {
+            java.lang.Object ref = lockOwner_;
+            if (ref instanceof String) {
+              com.google.protobuf.ByteString b = 
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                      (java.lang.String) ref);
+              lockOwner_ = b;
+              return b;
+            } else {
+              return (com.google.protobuf.ByteString) ref;
+            }
+          }
+          /**
+           * <code>string lockOwner = 3;</code>
+           */
+          public Builder setLockOwner(
+              java.lang.String value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  
+            lockOwner_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string lockOwner = 3;</code>
+           */
+          public Builder clearLockOwner() {
+            
+            lockOwner_ = getDefaultInstance().getLockOwner();
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string lockOwner = 3;</code>
+           */
+          public Builder setLockOwnerBytes(
+              com.google.protobuf.ByteString value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+            
+            lockOwner_ = value;
+            onChanged();
+            return this;
+          }
+
+          private java.lang.Object state_ = "";
+          /**
+           * <code>string state = 4;</code>
+           */
+          public java.lang.String getState() {
+            java.lang.Object ref = state_;
+            if (!(ref instanceof java.lang.String)) {
+              com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
+              java.lang.String s = bs.toStringUtf8();
+              state_ = s;
+              return s;
+            } else {
+              return (java.lang.String) ref;
+            }
+          }
+          /**
+           * <code>string state = 4;</code>
+           */
+          public com.google.protobuf.ByteString
+              getStateBytes() {
+            java.lang.Object ref = state_;
+            if (ref instanceof String) {
+              com.google.protobuf.ByteString b = 
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                      (java.lang.String) ref);
+              state_ = b;
+              return b;
+            } else {
+              return (com.google.protobuf.ByteString) ref;
+            }
+          }
+          /**
+           * <code>string state = 4;</code>
+           */
+          public Builder setState(
+              java.lang.String value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  
+            state_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string state = 4;</code>
+           */
+          public Builder clearState() {
+            
+            state_ = getDefaultInstance().getState();
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string state = 4;</code>
+           */
+          public Builder setStateBytes(
+              com.google.protobuf.ByteString value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+            
+            state_ = value;
+            onChanged();
+            return this;
+          }
+
+          private long blockTime_ ;
+          /**
+           * <code>int64 blockTime = 5;</code>
+           */
+          public long getBlockTime() {
+            return blockTime_;
+          }
+          /**
+           * <code>int64 blockTime = 5;</code>
+           */
+          public Builder setBlockTime(long value) {
+            
+            blockTime_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>int64 blockTime = 5;</code>
+           */
+          public Builder clearBlockTime() {
+            
+            blockTime_ = 0L;
+            onChanged();
+            return this;
+          }
+
+          private long waitTime_ ;
+          /**
+           * <code>int64 waitTime = 6;</code>
+           */
+          public long getWaitTime() {
+            return waitTime_;
+          }
+          /**
+           * <code>int64 waitTime = 6;</code>
+           */
+          public Builder setWaitTime(long value) {
+            
+            waitTime_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>int64 waitTime = 6;</code>
+           */
+          public Builder clearWaitTime() {
+            
+            waitTime_ = 0L;
+            onChanged();
+            return this;
+          }
+
+          private java.lang.Object stackTrace_ = "";
+          /**
+           * <code>string stackTrace = 7;</code>
+           */
+          public java.lang.String getStackTrace() {
+            java.lang.Object ref = stackTrace_;
+            if (!(ref instanceof java.lang.String)) {
+              com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
+              java.lang.String s = bs.toStringUtf8();
+              stackTrace_ = s;
+              return s;
+            } else {
+              return (java.lang.String) ref;
+            }
+          }
+          /**
+           * <code>string stackTrace = 7;</code>
+           */
+          public com.google.protobuf.ByteString
+              getStackTraceBytes() {
+            java.lang.Object ref = stackTrace_;
+            if (ref instanceof String) {
+              com.google.protobuf.ByteString b = 
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                      (java.lang.String) ref);
+              stackTrace_ = b;
+              return b;
+            } else {
+              return (com.google.protobuf.ByteString) ref;
+            }
+          }
+          /**
+           * <code>string stackTrace = 7;</code>
+           */
+          public Builder setStackTrace(
+              java.lang.String value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  
+            stackTrace_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string stackTrace = 7;</code>
+           */
+          public Builder clearStackTrace() {
+            
+            stackTrace_ = getDefaultInstance().getStackTrace();
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>string stackTrace = 7;</code>
+           */
+          public Builder setStackTraceBytes(
+              com.google.protobuf.ByteString value) {
+            if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+            
+            stackTrace_ = value;
+            onChanged();
+            return this;
+          }
+          public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFieldsProto3(unknownFields);
+          }
+
+          public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+          }
+
+
+          // @@protoc_insertion_point(builder_scope:protocol.NodeInfo.MachineInfo.DeadLockThreadInfo)
+        }
+
+        // @@protoc_insertion_point(class_scope:protocol.NodeInfo.MachineInfo.DeadLockThreadInfo)
+        private static final org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo DEFAULT_INSTANCE;
+        static {
+          DEFAULT_INSTANCE = new org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo();
+        }
+
+        public static org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo getDefaultInstance() {
+          return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<DeadLockThreadInfo>
+            PARSER = new com.google.protobuf.AbstractParser<DeadLockThreadInfo>() {
+          public DeadLockThreadInfo parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            return new DeadLockThreadInfo(input, extensionRegistry);
+          }
+        };
+
+        public static com.google.protobuf.Parser<DeadLockThreadInfo> parser() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<DeadLockThreadInfo> getParserForType() {
+          return PARSER;
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo getDefaultInstanceForType() {
+          return DEFAULT_INSTANCE;
+        }
+
+      }
+
+      private int bitField0_;
+      public static final int THREADCOUNT_FIELD_NUMBER = 1;
+      private int threadCount_;
+      /**
+       * <code>int32 threadCount = 1;</code>
+       */
+      public int getThreadCount() {
+        return threadCount_;
+      }
+
+      public static final int DEADLOCKTHREADCOUNT_FIELD_NUMBER = 2;
+      private int deadLockThreadCount_;
+      /**
+       * <code>int32 deadLockThreadCount = 2;</code>
+       */
+      public int getDeadLockThreadCount() {
+        return deadLockThreadCount_;
+      }
+
+      public static final int CPUCOUNT_FIELD_NUMBER = 3;
+      private int cpuCount_;
+      /**
+       * <code>int32 cpuCount = 3;</code>
+       */
+      public int getCpuCount() {
+        return cpuCount_;
+      }
+
+      public static final int TOTALMEMORY_FIELD_NUMBER = 4;
+      private long totalMemory_;
+      /**
+       * <code>int64 totalMemory = 4;</code>
+       */
+      public long getTotalMemory() {
+        return totalMemory_;
+      }
+
+      public static final int FREEMEMORY_FIELD_NUMBER = 5;
+      private long freeMemory_;
+      /**
+       * <code>int64 freeMemory = 5;</code>
+       */
+      public long getFreeMemory() {
+        return freeMemory_;
+      }
+
+      public static final int CPURATE_FIELD_NUMBER = 6;
+      private double cpuRate_;
+      /**
+       * <code>double cpuRate = 6;</code>
+       */
+      public double getCpuRate() {
+        return cpuRate_;
+      }
+
+      public static final int JAVAVERSION_FIELD_NUMBER = 7;
+      private volatile java.lang.Object javaVersion_;
+      /**
+       * <code>string javaVersion = 7;</code>
+       */
+      public java.lang.String getJavaVersion() {
+        java.lang.Object ref = javaVersion_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          javaVersion_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string javaVersion = 7;</code>
+       */
+      public com.google.protobuf.ByteString
+          getJavaVersionBytes() {
+        java.lang.Object ref = javaVersion_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          javaVersion_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int OSNAME_FIELD_NUMBER = 8;
+      private volatile java.lang.Object osName_;
+      /**
+       * <code>string osName = 8;</code>
+       */
+      public java.lang.String getOsName() {
+        java.lang.Object ref = osName_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          osName_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string osName = 8;</code>
+       */
+      public com.google.protobuf.ByteString
+          getOsNameBytes() {
+        java.lang.Object ref = osName_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          osName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int JVMTOTALMEMOERY_FIELD_NUMBER = 9;
+      private long jvmTotalMemoery_;
+      /**
+       * <code>int64 jvmTotalMemoery = 9;</code>
+       */
+      public long getJvmTotalMemoery() {
+        return jvmTotalMemoery_;
+      }
+
+      public static final int JVMFREEMEMORY_FIELD_NUMBER = 10;
+      private long jvmFreeMemory_;
+      /**
+       * <code>int64 jvmFreeMemory = 10;</code>
+       */
+      public long getJvmFreeMemory() {
+        return jvmFreeMemory_;
+      }
+
+      public static final int PROCESSCPURATE_FIELD_NUMBER = 11;
+      private double processCpuRate_;
+      /**
+       * <code>double processCpuRate = 11;</code>
+       */
+      public double getProcessCpuRate() {
+        return processCpuRate_;
+      }
+
+      public static final int MEMORYDESCINFOLIST_FIELD_NUMBER = 12;
+      private java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo> memoryDescInfoList_;
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      public java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo> getMemoryDescInfoListList() {
+        return memoryDescInfoList_;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      public java.util.List<? extends org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder> 
+          getMemoryDescInfoListOrBuilderList() {
+        return memoryDescInfoList_;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      public int getMemoryDescInfoListCount() {
+        return memoryDescInfoList_.size();
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo getMemoryDescInfoList(int index) {
+        return memoryDescInfoList_.get(index);
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder getMemoryDescInfoListOrBuilder(
+          int index) {
+        return memoryDescInfoList_.get(index);
+      }
+
+      public static final int DEADLOCKTHREADINFOLIST_FIELD_NUMBER = 13;
+      private java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo> deadLockThreadInfoList_;
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      public java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo> getDeadLockThreadInfoListList() {
+        return deadLockThreadInfoList_;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      public java.util.List<? extends org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder> 
+          getDeadLockThreadInfoListOrBuilderList() {
+        return deadLockThreadInfoList_;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      public int getDeadLockThreadInfoListCount() {
+        return deadLockThreadInfoList_.size();
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo getDeadLockThreadInfoList(int index) {
+        return deadLockThreadInfoList_.get(index);
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder getDeadLockThreadInfoListOrBuilder(
+          int index) {
+        return deadLockThreadInfoList_.get(index);
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (threadCount_ != 0) {
+          output.writeInt32(1, threadCount_);
+        }
+        if (deadLockThreadCount_ != 0) {
+          output.writeInt32(2, deadLockThreadCount_);
+        }
+        if (cpuCount_ != 0) {
+          output.writeInt32(3, cpuCount_);
+        }
+        if (totalMemory_ != 0L) {
+          output.writeInt64(4, totalMemory_);
+        }
+        if (freeMemory_ != 0L) {
+          output.writeInt64(5, freeMemory_);
+        }
+        if (cpuRate_ != 0D) {
+          output.writeDouble(6, cpuRate_);
+        }
+        if (!getJavaVersionBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 7, javaVersion_);
+        }
+        if (!getOsNameBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 8, osName_);
+        }
+        if (jvmTotalMemoery_ != 0L) {
+          output.writeInt64(9, jvmTotalMemoery_);
+        }
+        if (jvmFreeMemory_ != 0L) {
+          output.writeInt64(10, jvmFreeMemory_);
+        }
+        if (processCpuRate_ != 0D) {
+          output.writeDouble(11, processCpuRate_);
+        }
+        for (int i = 0; i < memoryDescInfoList_.size(); i++) {
+          output.writeMessage(12, memoryDescInfoList_.get(i));
+        }
+        for (int i = 0; i < deadLockThreadInfoList_.size(); i++) {
+          output.writeMessage(13, deadLockThreadInfoList_.get(i));
+        }
+        unknownFields.writeTo(output);
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (threadCount_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, threadCount_);
+        }
+        if (deadLockThreadCount_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(2, deadLockThreadCount_);
+        }
+        if (cpuCount_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(3, cpuCount_);
+        }
+        if (totalMemory_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(4, totalMemory_);
+        }
+        if (freeMemory_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(5, freeMemory_);
+        }
+        if (cpuRate_ != 0D) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(6, cpuRate_);
+        }
+        if (!getJavaVersionBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, javaVersion_);
+        }
+        if (!getOsNameBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, osName_);
+        }
+        if (jvmTotalMemoery_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(9, jvmTotalMemoery_);
+        }
+        if (jvmFreeMemory_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt64Size(10, jvmFreeMemory_);
+        }
+        if (processCpuRate_ != 0D) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(11, processCpuRate_);
+        }
+        for (int i = 0; i < memoryDescInfoList_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(12, memoryDescInfoList_.get(i));
+        }
+        for (int i = 0; i < deadLockThreadInfoList_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(13, deadLockThreadInfoList_.get(i));
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof org.tron.protos.Protocol.NodeInfo.MachineInfo)) {
+          return super.equals(obj);
+        }
+        org.tron.protos.Protocol.NodeInfo.MachineInfo other = (org.tron.protos.Protocol.NodeInfo.MachineInfo) obj;
+
+        boolean result = true;
+        result = result && (getThreadCount()
+            == other.getThreadCount());
+        result = result && (getDeadLockThreadCount()
+            == other.getDeadLockThreadCount());
+        result = result && (getCpuCount()
+            == other.getCpuCount());
+        result = result && (getTotalMemory()
+            == other.getTotalMemory());
+        result = result && (getFreeMemory()
+            == other.getFreeMemory());
+        result = result && (
+            java.lang.Double.doubleToLongBits(getCpuRate())
+            == java.lang.Double.doubleToLongBits(
+                other.getCpuRate()));
+        result = result && getJavaVersion()
+            .equals(other.getJavaVersion());
+        result = result && getOsName()
+            .equals(other.getOsName());
+        result = result && (getJvmTotalMemoery()
+            == other.getJvmTotalMemoery());
+        result = result && (getJvmFreeMemory()
+            == other.getJvmFreeMemory());
+        result = result && (
+            java.lang.Double.doubleToLongBits(getProcessCpuRate())
+            == java.lang.Double.doubleToLongBits(
+                other.getProcessCpuRate()));
+        result = result && getMemoryDescInfoListList()
+            .equals(other.getMemoryDescInfoListList());
+        result = result && getDeadLockThreadInfoListList()
+            .equals(other.getDeadLockThreadInfoListList());
+        result = result && unknownFields.equals(other.unknownFields);
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + THREADCOUNT_FIELD_NUMBER;
+        hash = (53 * hash) + getThreadCount();
+        hash = (37 * hash) + DEADLOCKTHREADCOUNT_FIELD_NUMBER;
+        hash = (53 * hash) + getDeadLockThreadCount();
+        hash = (37 * hash) + CPUCOUNT_FIELD_NUMBER;
+        hash = (53 * hash) + getCpuCount();
+        hash = (37 * hash) + TOTALMEMORY_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getTotalMemory());
+        hash = (37 * hash) + FREEMEMORY_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getFreeMemory());
+        hash = (37 * hash) + CPURATE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            java.lang.Double.doubleToLongBits(getCpuRate()));
+        hash = (37 * hash) + JAVAVERSION_FIELD_NUMBER;
+        hash = (53 * hash) + getJavaVersion().hashCode();
+        hash = (37 * hash) + OSNAME_FIELD_NUMBER;
+        hash = (53 * hash) + getOsName().hashCode();
+        hash = (37 * hash) + JVMTOTALMEMOERY_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getJvmTotalMemoery());
+        hash = (37 * hash) + JVMFREEMEMORY_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getJvmFreeMemory());
+        hash = (37 * hash) + PROCESSCPURATE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            java.lang.Double.doubleToLongBits(getProcessCpuRate()));
+        if (getMemoryDescInfoListCount() > 0) {
+          hash = (37 * hash) + MEMORYDESCINFOLIST_FIELD_NUMBER;
+          hash = (53 * hash) + getMemoryDescInfoListList().hashCode();
+        }
+        if (getDeadLockThreadInfoListCount() > 0) {
+          hash = (37 * hash) + DEADLOCKTHREADINFOLIST_FIELD_NUMBER;
+          hash = (53 * hash) + getDeadLockThreadInfoListList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(org.tron.protos.Protocol.NodeInfo.MachineInfo prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code protocol.NodeInfo.MachineInfo}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:protocol.NodeInfo.MachineInfo)
+          org.tron.protos.Protocol.NodeInfo.MachineInfoOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.tron.protos.Protocol.NodeInfo.MachineInfo.class, org.tron.protos.Protocol.NodeInfo.MachineInfo.Builder.class);
+        }
+
+        // Construct using org.tron.protos.Protocol.NodeInfo.MachineInfo.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+            getMemoryDescInfoListFieldBuilder();
+            getDeadLockThreadInfoListFieldBuilder();
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          threadCount_ = 0;
+
+          deadLockThreadCount_ = 0;
+
+          cpuCount_ = 0;
+
+          totalMemory_ = 0L;
+
+          freeMemory_ = 0L;
+
+          cpuRate_ = 0D;
+
+          javaVersion_ = "";
+
+          osName_ = "";
+
+          jvmTotalMemoery_ = 0L;
+
+          jvmFreeMemory_ = 0L;
+
+          processCpuRate_ = 0D;
+
+          if (memoryDescInfoListBuilder_ == null) {
+            memoryDescInfoList_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000800);
+          } else {
+            memoryDescInfoListBuilder_.clear();
+          }
+          if (deadLockThreadInfoListBuilder_ == null) {
+            deadLockThreadInfoList_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00001000);
+          } else {
+            deadLockThreadInfoListBuilder_.clear();
+          }
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_MachineInfo_descriptor;
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo getDefaultInstanceForType() {
+          return org.tron.protos.Protocol.NodeInfo.MachineInfo.getDefaultInstance();
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo build() {
+          org.tron.protos.Protocol.NodeInfo.MachineInfo result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo buildPartial() {
+          org.tron.protos.Protocol.NodeInfo.MachineInfo result = new org.tron.protos.Protocol.NodeInfo.MachineInfo(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          result.threadCount_ = threadCount_;
+          result.deadLockThreadCount_ = deadLockThreadCount_;
+          result.cpuCount_ = cpuCount_;
+          result.totalMemory_ = totalMemory_;
+          result.freeMemory_ = freeMemory_;
+          result.cpuRate_ = cpuRate_;
+          result.javaVersion_ = javaVersion_;
+          result.osName_ = osName_;
+          result.jvmTotalMemoery_ = jvmTotalMemoery_;
+          result.jvmFreeMemory_ = jvmFreeMemory_;
+          result.processCpuRate_ = processCpuRate_;
+          if (memoryDescInfoListBuilder_ == null) {
+            if (((bitField0_ & 0x00000800) == 0x00000800)) {
+              memoryDescInfoList_ = java.util.Collections.unmodifiableList(memoryDescInfoList_);
+              bitField0_ = (bitField0_ & ~0x00000800);
+            }
+            result.memoryDescInfoList_ = memoryDescInfoList_;
+          } else {
+            result.memoryDescInfoList_ = memoryDescInfoListBuilder_.build();
+          }
+          if (deadLockThreadInfoListBuilder_ == null) {
+            if (((bitField0_ & 0x00001000) == 0x00001000)) {
+              deadLockThreadInfoList_ = java.util.Collections.unmodifiableList(deadLockThreadInfoList_);
+              bitField0_ = (bitField0_ & ~0x00001000);
+            }
+            result.deadLockThreadInfoList_ = deadLockThreadInfoList_;
+          } else {
+            result.deadLockThreadInfoList_ = deadLockThreadInfoListBuilder_.build();
+          }
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.tron.protos.Protocol.NodeInfo.MachineInfo) {
+            return mergeFrom((org.tron.protos.Protocol.NodeInfo.MachineInfo)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.tron.protos.Protocol.NodeInfo.MachineInfo other) {
+          if (other == org.tron.protos.Protocol.NodeInfo.MachineInfo.getDefaultInstance()) return this;
+          if (other.getThreadCount() != 0) {
+            setThreadCount(other.getThreadCount());
+          }
+          if (other.getDeadLockThreadCount() != 0) {
+            setDeadLockThreadCount(other.getDeadLockThreadCount());
+          }
+          if (other.getCpuCount() != 0) {
+            setCpuCount(other.getCpuCount());
+          }
+          if (other.getTotalMemory() != 0L) {
+            setTotalMemory(other.getTotalMemory());
+          }
+          if (other.getFreeMemory() != 0L) {
+            setFreeMemory(other.getFreeMemory());
+          }
+          if (other.getCpuRate() != 0D) {
+            setCpuRate(other.getCpuRate());
+          }
+          if (!other.getJavaVersion().isEmpty()) {
+            javaVersion_ = other.javaVersion_;
+            onChanged();
+          }
+          if (!other.getOsName().isEmpty()) {
+            osName_ = other.osName_;
+            onChanged();
+          }
+          if (other.getJvmTotalMemoery() != 0L) {
+            setJvmTotalMemoery(other.getJvmTotalMemoery());
+          }
+          if (other.getJvmFreeMemory() != 0L) {
+            setJvmFreeMemory(other.getJvmFreeMemory());
+          }
+          if (other.getProcessCpuRate() != 0D) {
+            setProcessCpuRate(other.getProcessCpuRate());
+          }
+          if (memoryDescInfoListBuilder_ == null) {
+            if (!other.memoryDescInfoList_.isEmpty()) {
+              if (memoryDescInfoList_.isEmpty()) {
+                memoryDescInfoList_ = other.memoryDescInfoList_;
+                bitField0_ = (bitField0_ & ~0x00000800);
+              } else {
+                ensureMemoryDescInfoListIsMutable();
+                memoryDescInfoList_.addAll(other.memoryDescInfoList_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.memoryDescInfoList_.isEmpty()) {
+              if (memoryDescInfoListBuilder_.isEmpty()) {
+                memoryDescInfoListBuilder_.dispose();
+                memoryDescInfoListBuilder_ = null;
+                memoryDescInfoList_ = other.memoryDescInfoList_;
+                bitField0_ = (bitField0_ & ~0x00000800);
+                memoryDescInfoListBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getMemoryDescInfoListFieldBuilder() : null;
+              } else {
+                memoryDescInfoListBuilder_.addAllMessages(other.memoryDescInfoList_);
+              }
+            }
+          }
+          if (deadLockThreadInfoListBuilder_ == null) {
+            if (!other.deadLockThreadInfoList_.isEmpty()) {
+              if (deadLockThreadInfoList_.isEmpty()) {
+                deadLockThreadInfoList_ = other.deadLockThreadInfoList_;
+                bitField0_ = (bitField0_ & ~0x00001000);
+              } else {
+                ensureDeadLockThreadInfoListIsMutable();
+                deadLockThreadInfoList_.addAll(other.deadLockThreadInfoList_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.deadLockThreadInfoList_.isEmpty()) {
+              if (deadLockThreadInfoListBuilder_.isEmpty()) {
+                deadLockThreadInfoListBuilder_.dispose();
+                deadLockThreadInfoListBuilder_ = null;
+                deadLockThreadInfoList_ = other.deadLockThreadInfoList_;
+                bitField0_ = (bitField0_ & ~0x00001000);
+                deadLockThreadInfoListBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getDeadLockThreadInfoListFieldBuilder() : null;
+              } else {
+                deadLockThreadInfoListBuilder_.addAllMessages(other.deadLockThreadInfoList_);
+              }
+            }
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.tron.protos.Protocol.NodeInfo.MachineInfo parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.tron.protos.Protocol.NodeInfo.MachineInfo) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private int threadCount_ ;
+        /**
+         * <code>int32 threadCount = 1;</code>
+         */
+        public int getThreadCount() {
+          return threadCount_;
+        }
+        /**
+         * <code>int32 threadCount = 1;</code>
+         */
+        public Builder setThreadCount(int value) {
+          
+          threadCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 threadCount = 1;</code>
+         */
+        public Builder clearThreadCount() {
+          
+          threadCount_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int deadLockThreadCount_ ;
+        /**
+         * <code>int32 deadLockThreadCount = 2;</code>
+         */
+        public int getDeadLockThreadCount() {
+          return deadLockThreadCount_;
+        }
+        /**
+         * <code>int32 deadLockThreadCount = 2;</code>
+         */
+        public Builder setDeadLockThreadCount(int value) {
+          
+          deadLockThreadCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 deadLockThreadCount = 2;</code>
+         */
+        public Builder clearDeadLockThreadCount() {
+          
+          deadLockThreadCount_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int cpuCount_ ;
+        /**
+         * <code>int32 cpuCount = 3;</code>
+         */
+        public int getCpuCount() {
+          return cpuCount_;
+        }
+        /**
+         * <code>int32 cpuCount = 3;</code>
+         */
+        public Builder setCpuCount(int value) {
+          
+          cpuCount_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int32 cpuCount = 3;</code>
+         */
+        public Builder clearCpuCount() {
+          
+          cpuCount_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private long totalMemory_ ;
+        /**
+         * <code>int64 totalMemory = 4;</code>
+         */
+        public long getTotalMemory() {
+          return totalMemory_;
+        }
+        /**
+         * <code>int64 totalMemory = 4;</code>
+         */
+        public Builder setTotalMemory(long value) {
+          
+          totalMemory_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 totalMemory = 4;</code>
+         */
+        public Builder clearTotalMemory() {
+          
+          totalMemory_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long freeMemory_ ;
+        /**
+         * <code>int64 freeMemory = 5;</code>
+         */
+        public long getFreeMemory() {
+          return freeMemory_;
+        }
+        /**
+         * <code>int64 freeMemory = 5;</code>
+         */
+        public Builder setFreeMemory(long value) {
+          
+          freeMemory_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 freeMemory = 5;</code>
+         */
+        public Builder clearFreeMemory() {
+          
+          freeMemory_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private double cpuRate_ ;
+        /**
+         * <code>double cpuRate = 6;</code>
+         */
+        public double getCpuRate() {
+          return cpuRate_;
+        }
+        /**
+         * <code>double cpuRate = 6;</code>
+         */
+        public Builder setCpuRate(double value) {
+          
+          cpuRate_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>double cpuRate = 6;</code>
+         */
+        public Builder clearCpuRate() {
+          
+          cpuRate_ = 0D;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object javaVersion_ = "";
+        /**
+         * <code>string javaVersion = 7;</code>
+         */
+        public java.lang.String getJavaVersion() {
+          java.lang.Object ref = javaVersion_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            javaVersion_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string javaVersion = 7;</code>
+         */
+        public com.google.protobuf.ByteString
+            getJavaVersionBytes() {
+          java.lang.Object ref = javaVersion_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            javaVersion_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string javaVersion = 7;</code>
+         */
+        public Builder setJavaVersion(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          javaVersion_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string javaVersion = 7;</code>
+         */
+        public Builder clearJavaVersion() {
+          
+          javaVersion_ = getDefaultInstance().getJavaVersion();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string javaVersion = 7;</code>
+         */
+        public Builder setJavaVersionBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          javaVersion_ = value;
+          onChanged();
+          return this;
+        }
+
+        private java.lang.Object osName_ = "";
+        /**
+         * <code>string osName = 8;</code>
+         */
+        public java.lang.String getOsName() {
+          java.lang.Object ref = osName_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            osName_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string osName = 8;</code>
+         */
+        public com.google.protobuf.ByteString
+            getOsNameBytes() {
+          java.lang.Object ref = osName_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            osName_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string osName = 8;</code>
+         */
+        public Builder setOsName(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          osName_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string osName = 8;</code>
+         */
+        public Builder clearOsName() {
+          
+          osName_ = getDefaultInstance().getOsName();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string osName = 8;</code>
+         */
+        public Builder setOsNameBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          osName_ = value;
+          onChanged();
+          return this;
+        }
+
+        private long jvmTotalMemoery_ ;
+        /**
+         * <code>int64 jvmTotalMemoery = 9;</code>
+         */
+        public long getJvmTotalMemoery() {
+          return jvmTotalMemoery_;
+        }
+        /**
+         * <code>int64 jvmTotalMemoery = 9;</code>
+         */
+        public Builder setJvmTotalMemoery(long value) {
+          
+          jvmTotalMemoery_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 jvmTotalMemoery = 9;</code>
+         */
+        public Builder clearJvmTotalMemoery() {
+          
+          jvmTotalMemoery_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private long jvmFreeMemory_ ;
+        /**
+         * <code>int64 jvmFreeMemory = 10;</code>
+         */
+        public long getJvmFreeMemory() {
+          return jvmFreeMemory_;
+        }
+        /**
+         * <code>int64 jvmFreeMemory = 10;</code>
+         */
+        public Builder setJvmFreeMemory(long value) {
+          
+          jvmFreeMemory_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>int64 jvmFreeMemory = 10;</code>
+         */
+        public Builder clearJvmFreeMemory() {
+          
+          jvmFreeMemory_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        private double processCpuRate_ ;
+        /**
+         * <code>double processCpuRate = 11;</code>
+         */
+        public double getProcessCpuRate() {
+          return processCpuRate_;
+        }
+        /**
+         * <code>double processCpuRate = 11;</code>
+         */
+        public Builder setProcessCpuRate(double value) {
+          
+          processCpuRate_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>double processCpuRate = 11;</code>
+         */
+        public Builder clearProcessCpuRate() {
+          
+          processCpuRate_ = 0D;
+          onChanged();
+          return this;
+        }
+
+        private java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo> memoryDescInfoList_ =
+          java.util.Collections.emptyList();
+        private void ensureMemoryDescInfoListIsMutable() {
+          if (!((bitField0_ & 0x00000800) == 0x00000800)) {
+            memoryDescInfoList_ = new java.util.ArrayList<org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo>(memoryDescInfoList_);
+            bitField0_ |= 0x00000800;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder> memoryDescInfoListBuilder_;
+
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo> getMemoryDescInfoListList() {
+          if (memoryDescInfoListBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(memoryDescInfoList_);
+          } else {
+            return memoryDescInfoListBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public int getMemoryDescInfoListCount() {
+          if (memoryDescInfoListBuilder_ == null) {
+            return memoryDescInfoList_.size();
+          } else {
+            return memoryDescInfoListBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo getMemoryDescInfoList(int index) {
+          if (memoryDescInfoListBuilder_ == null) {
+            return memoryDescInfoList_.get(index);
+          } else {
+            return memoryDescInfoListBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder setMemoryDescInfoList(
+            int index, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo value) {
+          if (memoryDescInfoListBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureMemoryDescInfoListIsMutable();
+            memoryDescInfoList_.set(index, value);
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder setMemoryDescInfoList(
+            int index, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder builderForValue) {
+          if (memoryDescInfoListBuilder_ == null) {
+            ensureMemoryDescInfoListIsMutable();
+            memoryDescInfoList_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder addMemoryDescInfoList(org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo value) {
+          if (memoryDescInfoListBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureMemoryDescInfoListIsMutable();
+            memoryDescInfoList_.add(value);
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder addMemoryDescInfoList(
+            int index, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo value) {
+          if (memoryDescInfoListBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureMemoryDescInfoListIsMutable();
+            memoryDescInfoList_.add(index, value);
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder addMemoryDescInfoList(
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder builderForValue) {
+          if (memoryDescInfoListBuilder_ == null) {
+            ensureMemoryDescInfoListIsMutable();
+            memoryDescInfoList_.add(builderForValue.build());
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder addMemoryDescInfoList(
+            int index, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder builderForValue) {
+          if (memoryDescInfoListBuilder_ == null) {
+            ensureMemoryDescInfoListIsMutable();
+            memoryDescInfoList_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder addAllMemoryDescInfoList(
+            java.lang.Iterable<? extends org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo> values) {
+          if (memoryDescInfoListBuilder_ == null) {
+            ensureMemoryDescInfoListIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, memoryDescInfoList_);
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder clearMemoryDescInfoList() {
+          if (memoryDescInfoListBuilder_ == null) {
+            memoryDescInfoList_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000800);
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public Builder removeMemoryDescInfoList(int index) {
+          if (memoryDescInfoListBuilder_ == null) {
+            ensureMemoryDescInfoListIsMutable();
+            memoryDescInfoList_.remove(index);
+            onChanged();
+          } else {
+            memoryDescInfoListBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder getMemoryDescInfoListBuilder(
+            int index) {
+          return getMemoryDescInfoListFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder getMemoryDescInfoListOrBuilder(
+            int index) {
+          if (memoryDescInfoListBuilder_ == null) {
+            return memoryDescInfoList_.get(index);  } else {
+            return memoryDescInfoListBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public java.util.List<? extends org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder> 
+             getMemoryDescInfoListOrBuilderList() {
+          if (memoryDescInfoListBuilder_ != null) {
+            return memoryDescInfoListBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(memoryDescInfoList_);
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder addMemoryDescInfoListBuilder() {
+          return getMemoryDescInfoListFieldBuilder().addBuilder(
+              org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder addMemoryDescInfoListBuilder(
+            int index) {
+          return getMemoryDescInfoListFieldBuilder().addBuilder(
+              index, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.MemoryDescInfo memoryDescInfoList = 12;</code>
+         */
+        public java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder> 
+             getMemoryDescInfoListBuilderList() {
+          return getMemoryDescInfoListFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder> 
+            getMemoryDescInfoListFieldBuilder() {
+          if (memoryDescInfoListBuilder_ == null) {
+            memoryDescInfoListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfo.MemoryDescInfoOrBuilder>(
+                    memoryDescInfoList_,
+                    ((bitField0_ & 0x00000800) == 0x00000800),
+                    getParentForChildren(),
+                    isClean());
+            memoryDescInfoList_ = null;
+          }
+          return memoryDescInfoListBuilder_;
+        }
+
+        private java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo> deadLockThreadInfoList_ =
+          java.util.Collections.emptyList();
+        private void ensureDeadLockThreadInfoListIsMutable() {
+          if (!((bitField0_ & 0x00001000) == 0x00001000)) {
+            deadLockThreadInfoList_ = new java.util.ArrayList<org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo>(deadLockThreadInfoList_);
+            bitField0_ |= 0x00001000;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder> deadLockThreadInfoListBuilder_;
+
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo> getDeadLockThreadInfoListList() {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(deadLockThreadInfoList_);
+          } else {
+            return deadLockThreadInfoListBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public int getDeadLockThreadInfoListCount() {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            return deadLockThreadInfoList_.size();
+          } else {
+            return deadLockThreadInfoListBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo getDeadLockThreadInfoList(int index) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            return deadLockThreadInfoList_.get(index);
+          } else {
+            return deadLockThreadInfoListBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder setDeadLockThreadInfoList(
+            int index, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo value) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureDeadLockThreadInfoListIsMutable();
+            deadLockThreadInfoList_.set(index, value);
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder setDeadLockThreadInfoList(
+            int index, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder builderForValue) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            ensureDeadLockThreadInfoListIsMutable();
+            deadLockThreadInfoList_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder addDeadLockThreadInfoList(org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo value) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureDeadLockThreadInfoListIsMutable();
+            deadLockThreadInfoList_.add(value);
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder addDeadLockThreadInfoList(
+            int index, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo value) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureDeadLockThreadInfoListIsMutable();
+            deadLockThreadInfoList_.add(index, value);
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder addDeadLockThreadInfoList(
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder builderForValue) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            ensureDeadLockThreadInfoListIsMutable();
+            deadLockThreadInfoList_.add(builderForValue.build());
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder addDeadLockThreadInfoList(
+            int index, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder builderForValue) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            ensureDeadLockThreadInfoListIsMutable();
+            deadLockThreadInfoList_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder addAllDeadLockThreadInfoList(
+            java.lang.Iterable<? extends org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo> values) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            ensureDeadLockThreadInfoListIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, deadLockThreadInfoList_);
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder clearDeadLockThreadInfoList() {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            deadLockThreadInfoList_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00001000);
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public Builder removeDeadLockThreadInfoList(int index) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            ensureDeadLockThreadInfoListIsMutable();
+            deadLockThreadInfoList_.remove(index);
+            onChanged();
+          } else {
+            deadLockThreadInfoListBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder getDeadLockThreadInfoListBuilder(
+            int index) {
+          return getDeadLockThreadInfoListFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder getDeadLockThreadInfoListOrBuilder(
+            int index) {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            return deadLockThreadInfoList_.get(index);  } else {
+            return deadLockThreadInfoListBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public java.util.List<? extends org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder> 
+             getDeadLockThreadInfoListOrBuilderList() {
+          if (deadLockThreadInfoListBuilder_ != null) {
+            return deadLockThreadInfoListBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(deadLockThreadInfoList_);
+          }
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder addDeadLockThreadInfoListBuilder() {
+          return getDeadLockThreadInfoListFieldBuilder().addBuilder(
+              org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder addDeadLockThreadInfoListBuilder(
+            int index) {
+          return getDeadLockThreadInfoListFieldBuilder().addBuilder(
+              index, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .protocol.NodeInfo.MachineInfo.DeadLockThreadInfo deadLockThreadInfoList = 13;</code>
+         */
+        public java.util.List<org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder> 
+             getDeadLockThreadInfoListBuilderList() {
+          return getDeadLockThreadInfoListFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder> 
+            getDeadLockThreadInfoListFieldBuilder() {
+          if (deadLockThreadInfoListBuilder_ == null) {
+            deadLockThreadInfoListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfo.DeadLockThreadInfoOrBuilder>(
+                    deadLockThreadInfoList_,
+                    ((bitField0_ & 0x00001000) == 0x00001000),
+                    getParentForChildren(),
+                    isClean());
+            deadLockThreadInfoList_ = null;
+          }
+          return deadLockThreadInfoListBuilder_;
+        }
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFieldsProto3(unknownFields);
+        }
+
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:protocol.NodeInfo.MachineInfo)
+      }
+
+      // @@protoc_insertion_point(class_scope:protocol.NodeInfo.MachineInfo)
+      private static final org.tron.protos.Protocol.NodeInfo.MachineInfo DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new org.tron.protos.Protocol.NodeInfo.MachineInfo();
+      }
+
+      public static org.tron.protos.Protocol.NodeInfo.MachineInfo getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<MachineInfo>
+          PARSER = new com.google.protobuf.AbstractParser<MachineInfo>() {
+        public MachineInfo parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new MachineInfo(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<MachineInfo> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<MachineInfo> getParserForType() {
+        return PARSER;
+      }
+
+      public org.tron.protos.Protocol.NodeInfo.MachineInfo getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    private int bitField0_;
+    public static final int BEGINSYNCNUM_FIELD_NUMBER = 1;
+    private long beginSyncNum_;
+    /**
+     * <code>int64 beginSyncNum = 1;</code>
+     */
+    public long getBeginSyncNum() {
+      return beginSyncNum_;
+    }
+
+    public static final int BLOCK_FIELD_NUMBER = 2;
+    private volatile java.lang.Object block_;
+    /**
+     * <code>string block = 2;</code>
+     */
+    public java.lang.String getBlock() {
+      java.lang.Object ref = block_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        block_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string block = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getBlockBytes() {
+      java.lang.Object ref = block_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        block_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SOLIDITYBLOCK_FIELD_NUMBER = 3;
+    private volatile java.lang.Object solidityBlock_;
+    /**
+     * <code>string solidityBlock = 3;</code>
+     */
+    public java.lang.String getSolidityBlock() {
+      java.lang.Object ref = solidityBlock_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        solidityBlock_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string solidityBlock = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSolidityBlockBytes() {
+      java.lang.Object ref = solidityBlock_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        solidityBlock_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CURRENTCONNECTCOUNT_FIELD_NUMBER = 4;
+    private int currentConnectCount_;
+    /**
+     * <pre>
+     *connect information
+     * </pre>
+     *
+     * <code>int32 currentConnectCount = 4;</code>
+     */
+    public int getCurrentConnectCount() {
+      return currentConnectCount_;
+    }
+
+    public static final int ACTIVECONNECTCOUNT_FIELD_NUMBER = 5;
+    private int activeConnectCount_;
+    /**
+     * <code>int32 activeConnectCount = 5;</code>
+     */
+    public int getActiveConnectCount() {
+      return activeConnectCount_;
+    }
+
+    public static final int PASSIVECONNECTCOUNT_FIELD_NUMBER = 6;
+    private int passiveConnectCount_;
+    /**
+     * <code>int32 passiveConnectCount = 6;</code>
+     */
+    public int getPassiveConnectCount() {
+      return passiveConnectCount_;
+    }
+
+    public static final int TOTALFLOW_FIELD_NUMBER = 7;
+    private long totalFlow_;
+    /**
+     * <code>int64 totalFlow = 7;</code>
+     */
+    public long getTotalFlow() {
+      return totalFlow_;
+    }
+
+    public static final int PEERINFOLIST_FIELD_NUMBER = 8;
+    private java.util.List<org.tron.protos.Protocol.NodeInfo.PeerInfo> peerInfoList_;
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    public java.util.List<org.tron.protos.Protocol.NodeInfo.PeerInfo> getPeerInfoListList() {
+      return peerInfoList_;
+    }
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    public java.util.List<? extends org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder> 
+        getPeerInfoListOrBuilderList() {
+      return peerInfoList_;
+    }
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    public int getPeerInfoListCount() {
+      return peerInfoList_.size();
+    }
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    public org.tron.protos.Protocol.NodeInfo.PeerInfo getPeerInfoList(int index) {
+      return peerInfoList_.get(index);
+    }
+    /**
+     * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+     */
+    public org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder getPeerInfoListOrBuilder(
+        int index) {
+      return peerInfoList_.get(index);
+    }
+
+    public static final int CONFIGNODEINFO_FIELD_NUMBER = 9;
+    private org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo configNodeInfo_;
+    /**
+     * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+     */
+    public boolean hasConfigNodeInfo() {
+      return configNodeInfo_ != null;
+    }
+    /**
+     * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+     */
+    public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo getConfigNodeInfo() {
+      return configNodeInfo_ == null ? org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.getDefaultInstance() : configNodeInfo_;
+    }
+    /**
+     * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+     */
+    public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfoOrBuilder getConfigNodeInfoOrBuilder() {
+      return getConfigNodeInfo();
+    }
+
+    public static final int MACHINEINFO_FIELD_NUMBER = 10;
+    private org.tron.protos.Protocol.NodeInfo.MachineInfo machineInfo_;
+    /**
+     * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+     */
+    public boolean hasMachineInfo() {
+      return machineInfo_ != null;
+    }
+    /**
+     * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+     */
+    public org.tron.protos.Protocol.NodeInfo.MachineInfo getMachineInfo() {
+      return machineInfo_ == null ? org.tron.protos.Protocol.NodeInfo.MachineInfo.getDefaultInstance() : machineInfo_;
+    }
+    /**
+     * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+     */
+    public org.tron.protos.Protocol.NodeInfo.MachineInfoOrBuilder getMachineInfoOrBuilder() {
+      return getMachineInfo();
+    }
+
+    public static final int CHEATWITNESSINFOMAP_FIELD_NUMBER = 11;
+    private static final class CheatWitnessInfoMapDefaultEntryHolder {
+      static final com.google.protobuf.MapEntry<
+          java.lang.String, java.lang.String> defaultEntry =
+              com.google.protobuf.MapEntry
+              .<java.lang.String, java.lang.String>newDefaultInstance(
+                  org.tron.protos.Protocol.internal_static_protocol_NodeInfo_CheatWitnessInfoMapEntry_descriptor, 
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "",
+                  com.google.protobuf.WireFormat.FieldType.STRING,
+                  "");
+    }
+    private com.google.protobuf.MapField<
+        java.lang.String, java.lang.String> cheatWitnessInfoMap_;
+    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+    internalGetCheatWitnessInfoMap() {
+      if (cheatWitnessInfoMap_ == null) {
+        return com.google.protobuf.MapField.emptyMapField(
+            CheatWitnessInfoMapDefaultEntryHolder.defaultEntry);
+      }
+      return cheatWitnessInfoMap_;
+    }
+
+    public int getCheatWitnessInfoMapCount() {
+      return internalGetCheatWitnessInfoMap().getMap().size();
+    }
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+
+    public boolean containsCheatWitnessInfoMap(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      return internalGetCheatWitnessInfoMap().getMap().containsKey(key);
+    }
+    /**
+     * Use {@link #getCheatWitnessInfoMapMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.String, java.lang.String> getCheatWitnessInfoMap() {
+      return getCheatWitnessInfoMapMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+
+    public java.util.Map<java.lang.String, java.lang.String> getCheatWitnessInfoMapMap() {
+      return internalGetCheatWitnessInfoMap().getMap();
+    }
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+
+    public java.lang.String getCheatWitnessInfoMapOrDefault(
+        java.lang.String key,
+        java.lang.String defaultValue) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetCheatWitnessInfoMap().getMap();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+     */
+
+    public java.lang.String getCheatWitnessInfoMapOrThrow(
+        java.lang.String key) {
+      if (key == null) { throw new java.lang.NullPointerException(); }
+      java.util.Map<java.lang.String, java.lang.String> map =
+          internalGetCheatWitnessInfoMap().getMap();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (beginSyncNum_ != 0L) {
+        output.writeInt64(1, beginSyncNum_);
+      }
+      if (!getBlockBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, block_);
+      }
+      if (!getSolidityBlockBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, solidityBlock_);
+      }
+      if (currentConnectCount_ != 0) {
+        output.writeInt32(4, currentConnectCount_);
+      }
+      if (activeConnectCount_ != 0) {
+        output.writeInt32(5, activeConnectCount_);
+      }
+      if (passiveConnectCount_ != 0) {
+        output.writeInt32(6, passiveConnectCount_);
+      }
+      if (totalFlow_ != 0L) {
+        output.writeInt64(7, totalFlow_);
+      }
+      for (int i = 0; i < peerInfoList_.size(); i++) {
+        output.writeMessage(8, peerInfoList_.get(i));
+      }
+      if (configNodeInfo_ != null) {
+        output.writeMessage(9, getConfigNodeInfo());
+      }
+      if (machineInfo_ != null) {
+        output.writeMessage(10, getMachineInfo());
+      }
+      com.google.protobuf.GeneratedMessageV3
+        .serializeStringMapTo(
+          output,
+          internalGetCheatWitnessInfoMap(),
+          CheatWitnessInfoMapDefaultEntryHolder.defaultEntry,
+          11);
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (beginSyncNum_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, beginSyncNum_);
+      }
+      if (!getBlockBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, block_);
+      }
+      if (!getSolidityBlockBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, solidityBlock_);
+      }
+      if (currentConnectCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, currentConnectCount_);
+      }
+      if (activeConnectCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, activeConnectCount_);
+      }
+      if (passiveConnectCount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, passiveConnectCount_);
+      }
+      if (totalFlow_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, totalFlow_);
+      }
+      for (int i = 0; i < peerInfoList_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, peerInfoList_.get(i));
+      }
+      if (configNodeInfo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, getConfigNodeInfo());
+      }
+      if (machineInfo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, getMachineInfo());
+      }
+      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+           : internalGetCheatWitnessInfoMap().getMap().entrySet()) {
+        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+        cheatWitnessInfoMap__ = CheatWitnessInfoMapDefaultEntryHolder.defaultEntry.newBuilderForType()
+            .setKey(entry.getKey())
+            .setValue(entry.getValue())
+            .build();
+        size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(11, cheatWitnessInfoMap__);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.tron.protos.Protocol.NodeInfo)) {
+        return super.equals(obj);
+      }
+      org.tron.protos.Protocol.NodeInfo other = (org.tron.protos.Protocol.NodeInfo) obj;
+
+      boolean result = true;
+      result = result && (getBeginSyncNum()
+          == other.getBeginSyncNum());
+      result = result && getBlock()
+          .equals(other.getBlock());
+      result = result && getSolidityBlock()
+          .equals(other.getSolidityBlock());
+      result = result && (getCurrentConnectCount()
+          == other.getCurrentConnectCount());
+      result = result && (getActiveConnectCount()
+          == other.getActiveConnectCount());
+      result = result && (getPassiveConnectCount()
+          == other.getPassiveConnectCount());
+      result = result && (getTotalFlow()
+          == other.getTotalFlow());
+      result = result && getPeerInfoListList()
+          .equals(other.getPeerInfoListList());
+      result = result && (hasConfigNodeInfo() == other.hasConfigNodeInfo());
+      if (hasConfigNodeInfo()) {
+        result = result && getConfigNodeInfo()
+            .equals(other.getConfigNodeInfo());
+      }
+      result = result && (hasMachineInfo() == other.hasMachineInfo());
+      if (hasMachineInfo()) {
+        result = result && getMachineInfo()
+            .equals(other.getMachineInfo());
+      }
+      result = result && internalGetCheatWitnessInfoMap().equals(
+          other.internalGetCheatWitnessInfoMap());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + BEGINSYNCNUM_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getBeginSyncNum());
+      hash = (37 * hash) + BLOCK_FIELD_NUMBER;
+      hash = (53 * hash) + getBlock().hashCode();
+      hash = (37 * hash) + SOLIDITYBLOCK_FIELD_NUMBER;
+      hash = (53 * hash) + getSolidityBlock().hashCode();
+      hash = (37 * hash) + CURRENTCONNECTCOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getCurrentConnectCount();
+      hash = (37 * hash) + ACTIVECONNECTCOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getActiveConnectCount();
+      hash = (37 * hash) + PASSIVECONNECTCOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getPassiveConnectCount();
+      hash = (37 * hash) + TOTALFLOW_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getTotalFlow());
+      if (getPeerInfoListCount() > 0) {
+        hash = (37 * hash) + PEERINFOLIST_FIELD_NUMBER;
+        hash = (53 * hash) + getPeerInfoListList().hashCode();
+      }
+      if (hasConfigNodeInfo()) {
+        hash = (37 * hash) + CONFIGNODEINFO_FIELD_NUMBER;
+        hash = (53 * hash) + getConfigNodeInfo().hashCode();
+      }
+      if (hasMachineInfo()) {
+        hash = (37 * hash) + MACHINEINFO_FIELD_NUMBER;
+        hash = (53 * hash) + getMachineInfo().hashCode();
+      }
+      if (!internalGetCheatWitnessInfoMap().getMap().isEmpty()) {
+        hash = (37 * hash) + CHEATWITNESSINFOMAP_FIELD_NUMBER;
+        hash = (53 * hash) + internalGetCheatWitnessInfoMap().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.tron.protos.Protocol.NodeInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.tron.protos.Protocol.NodeInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code protocol.NodeInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:protocol.NodeInfo)
+        org.tron.protos.Protocol.NodeInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_descriptor;
+      }
+
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMapField(
+          int number) {
+        switch (number) {
+          case 11:
+            return internalGetCheatWitnessInfoMap();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      @SuppressWarnings({"rawtypes"})
+      protected com.google.protobuf.MapField internalGetMutableMapField(
+          int number) {
+        switch (number) {
+          case 11:
+            return internalGetMutableCheatWitnessInfoMap();
+          default:
+            throw new RuntimeException(
+                "Invalid map field number: " + number);
+        }
+      }
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.tron.protos.Protocol.NodeInfo.class, org.tron.protos.Protocol.NodeInfo.Builder.class);
+      }
+
+      // Construct using org.tron.protos.Protocol.NodeInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getPeerInfoListFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        beginSyncNum_ = 0L;
+
+        block_ = "";
+
+        solidityBlock_ = "";
+
+        currentConnectCount_ = 0;
+
+        activeConnectCount_ = 0;
+
+        passiveConnectCount_ = 0;
+
+        totalFlow_ = 0L;
+
+        if (peerInfoListBuilder_ == null) {
+          peerInfoList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000080);
+        } else {
+          peerInfoListBuilder_.clear();
+        }
+        if (configNodeInfoBuilder_ == null) {
+          configNodeInfo_ = null;
+        } else {
+          configNodeInfo_ = null;
+          configNodeInfoBuilder_ = null;
+        }
+        if (machineInfoBuilder_ == null) {
+          machineInfo_ = null;
+        } else {
+          machineInfo_ = null;
+          machineInfoBuilder_ = null;
+        }
+        internalGetMutableCheatWitnessInfoMap().clear();
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.tron.protos.Protocol.internal_static_protocol_NodeInfo_descriptor;
+      }
+
+      public org.tron.protos.Protocol.NodeInfo getDefaultInstanceForType() {
+        return org.tron.protos.Protocol.NodeInfo.getDefaultInstance();
+      }
+
+      public org.tron.protos.Protocol.NodeInfo build() {
+        org.tron.protos.Protocol.NodeInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.tron.protos.Protocol.NodeInfo buildPartial() {
+        org.tron.protos.Protocol.NodeInfo result = new org.tron.protos.Protocol.NodeInfo(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.beginSyncNum_ = beginSyncNum_;
+        result.block_ = block_;
+        result.solidityBlock_ = solidityBlock_;
+        result.currentConnectCount_ = currentConnectCount_;
+        result.activeConnectCount_ = activeConnectCount_;
+        result.passiveConnectCount_ = passiveConnectCount_;
+        result.totalFlow_ = totalFlow_;
+        if (peerInfoListBuilder_ == null) {
+          if (((bitField0_ & 0x00000080) == 0x00000080)) {
+            peerInfoList_ = java.util.Collections.unmodifiableList(peerInfoList_);
+            bitField0_ = (bitField0_ & ~0x00000080);
+          }
+          result.peerInfoList_ = peerInfoList_;
+        } else {
+          result.peerInfoList_ = peerInfoListBuilder_.build();
+        }
+        if (configNodeInfoBuilder_ == null) {
+          result.configNodeInfo_ = configNodeInfo_;
+        } else {
+          result.configNodeInfo_ = configNodeInfoBuilder_.build();
+        }
+        if (machineInfoBuilder_ == null) {
+          result.machineInfo_ = machineInfo_;
+        } else {
+          result.machineInfo_ = machineInfoBuilder_.build();
+        }
+        result.cheatWitnessInfoMap_ = internalGetCheatWitnessInfoMap();
+        result.cheatWitnessInfoMap_.makeImmutable();
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.tron.protos.Protocol.NodeInfo) {
+          return mergeFrom((org.tron.protos.Protocol.NodeInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.tron.protos.Protocol.NodeInfo other) {
+        if (other == org.tron.protos.Protocol.NodeInfo.getDefaultInstance()) return this;
+        if (other.getBeginSyncNum() != 0L) {
+          setBeginSyncNum(other.getBeginSyncNum());
+        }
+        if (!other.getBlock().isEmpty()) {
+          block_ = other.block_;
+          onChanged();
+        }
+        if (!other.getSolidityBlock().isEmpty()) {
+          solidityBlock_ = other.solidityBlock_;
+          onChanged();
+        }
+        if (other.getCurrentConnectCount() != 0) {
+          setCurrentConnectCount(other.getCurrentConnectCount());
+        }
+        if (other.getActiveConnectCount() != 0) {
+          setActiveConnectCount(other.getActiveConnectCount());
+        }
+        if (other.getPassiveConnectCount() != 0) {
+          setPassiveConnectCount(other.getPassiveConnectCount());
+        }
+        if (other.getTotalFlow() != 0L) {
+          setTotalFlow(other.getTotalFlow());
+        }
+        if (peerInfoListBuilder_ == null) {
+          if (!other.peerInfoList_.isEmpty()) {
+            if (peerInfoList_.isEmpty()) {
+              peerInfoList_ = other.peerInfoList_;
+              bitField0_ = (bitField0_ & ~0x00000080);
+            } else {
+              ensurePeerInfoListIsMutable();
+              peerInfoList_.addAll(other.peerInfoList_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.peerInfoList_.isEmpty()) {
+            if (peerInfoListBuilder_.isEmpty()) {
+              peerInfoListBuilder_.dispose();
+              peerInfoListBuilder_ = null;
+              peerInfoList_ = other.peerInfoList_;
+              bitField0_ = (bitField0_ & ~0x00000080);
+              peerInfoListBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getPeerInfoListFieldBuilder() : null;
+            } else {
+              peerInfoListBuilder_.addAllMessages(other.peerInfoList_);
+            }
+          }
+        }
+        if (other.hasConfigNodeInfo()) {
+          mergeConfigNodeInfo(other.getConfigNodeInfo());
+        }
+        if (other.hasMachineInfo()) {
+          mergeMachineInfo(other.getMachineInfo());
+        }
+        internalGetMutableCheatWitnessInfoMap().mergeFrom(
+            other.internalGetCheatWitnessInfoMap());
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.tron.protos.Protocol.NodeInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.tron.protos.Protocol.NodeInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private long beginSyncNum_ ;
+      /**
+       * <code>int64 beginSyncNum = 1;</code>
+       */
+      public long getBeginSyncNum() {
+        return beginSyncNum_;
+      }
+      /**
+       * <code>int64 beginSyncNum = 1;</code>
+       */
+      public Builder setBeginSyncNum(long value) {
+        
+        beginSyncNum_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 beginSyncNum = 1;</code>
+       */
+      public Builder clearBeginSyncNum() {
+        
+        beginSyncNum_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object block_ = "";
+      /**
+       * <code>string block = 2;</code>
+       */
+      public java.lang.String getBlock() {
+        java.lang.Object ref = block_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          block_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string block = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getBlockBytes() {
+        java.lang.Object ref = block_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          block_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string block = 2;</code>
+       */
+      public Builder setBlock(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        block_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string block = 2;</code>
+       */
+      public Builder clearBlock() {
+        
+        block_ = getDefaultInstance().getBlock();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string block = 2;</code>
+       */
+      public Builder setBlockBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        block_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object solidityBlock_ = "";
+      /**
+       * <code>string solidityBlock = 3;</code>
+       */
+      public java.lang.String getSolidityBlock() {
+        java.lang.Object ref = solidityBlock_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          solidityBlock_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string solidityBlock = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSolidityBlockBytes() {
+        java.lang.Object ref = solidityBlock_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          solidityBlock_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string solidityBlock = 3;</code>
+       */
+      public Builder setSolidityBlock(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        solidityBlock_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string solidityBlock = 3;</code>
+       */
+      public Builder clearSolidityBlock() {
+        
+        solidityBlock_ = getDefaultInstance().getSolidityBlock();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string solidityBlock = 3;</code>
+       */
+      public Builder setSolidityBlockBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        solidityBlock_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int currentConnectCount_ ;
+      /**
+       * <pre>
+       *connect information
+       * </pre>
+       *
+       * <code>int32 currentConnectCount = 4;</code>
+       */
+      public int getCurrentConnectCount() {
+        return currentConnectCount_;
+      }
+      /**
+       * <pre>
+       *connect information
+       * </pre>
+       *
+       * <code>int32 currentConnectCount = 4;</code>
+       */
+      public Builder setCurrentConnectCount(int value) {
+        
+        currentConnectCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *connect information
+       * </pre>
+       *
+       * <code>int32 currentConnectCount = 4;</code>
+       */
+      public Builder clearCurrentConnectCount() {
+        
+        currentConnectCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int activeConnectCount_ ;
+      /**
+       * <code>int32 activeConnectCount = 5;</code>
+       */
+      public int getActiveConnectCount() {
+        return activeConnectCount_;
+      }
+      /**
+       * <code>int32 activeConnectCount = 5;</code>
+       */
+      public Builder setActiveConnectCount(int value) {
+        
+        activeConnectCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 activeConnectCount = 5;</code>
+       */
+      public Builder clearActiveConnectCount() {
+        
+        activeConnectCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int passiveConnectCount_ ;
+      /**
+       * <code>int32 passiveConnectCount = 6;</code>
+       */
+      public int getPassiveConnectCount() {
+        return passiveConnectCount_;
+      }
+      /**
+       * <code>int32 passiveConnectCount = 6;</code>
+       */
+      public Builder setPassiveConnectCount(int value) {
+        
+        passiveConnectCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 passiveConnectCount = 6;</code>
+       */
+      public Builder clearPassiveConnectCount() {
+        
+        passiveConnectCount_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long totalFlow_ ;
+      /**
+       * <code>int64 totalFlow = 7;</code>
+       */
+      public long getTotalFlow() {
+        return totalFlow_;
+      }
+      /**
+       * <code>int64 totalFlow = 7;</code>
+       */
+      public Builder setTotalFlow(long value) {
+        
+        totalFlow_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 totalFlow = 7;</code>
+       */
+      public Builder clearTotalFlow() {
+        
+        totalFlow_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<org.tron.protos.Protocol.NodeInfo.PeerInfo> peerInfoList_ =
+        java.util.Collections.emptyList();
+      private void ensurePeerInfoListIsMutable() {
+        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+          peerInfoList_ = new java.util.ArrayList<org.tron.protos.Protocol.NodeInfo.PeerInfo>(peerInfoList_);
+          bitField0_ |= 0x00000080;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.tron.protos.Protocol.NodeInfo.PeerInfo, org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder, org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder> peerInfoListBuilder_;
+
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public java.util.List<org.tron.protos.Protocol.NodeInfo.PeerInfo> getPeerInfoListList() {
+        if (peerInfoListBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(peerInfoList_);
+        } else {
+          return peerInfoListBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public int getPeerInfoListCount() {
+        if (peerInfoListBuilder_ == null) {
+          return peerInfoList_.size();
+        } else {
+          return peerInfoListBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.PeerInfo getPeerInfoList(int index) {
+        if (peerInfoListBuilder_ == null) {
+          return peerInfoList_.get(index);
+        } else {
+          return peerInfoListBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder setPeerInfoList(
+          int index, org.tron.protos.Protocol.NodeInfo.PeerInfo value) {
+        if (peerInfoListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePeerInfoListIsMutable();
+          peerInfoList_.set(index, value);
+          onChanged();
+        } else {
+          peerInfoListBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder setPeerInfoList(
+          int index, org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder builderForValue) {
+        if (peerInfoListBuilder_ == null) {
+          ensurePeerInfoListIsMutable();
+          peerInfoList_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          peerInfoListBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder addPeerInfoList(org.tron.protos.Protocol.NodeInfo.PeerInfo value) {
+        if (peerInfoListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePeerInfoListIsMutable();
+          peerInfoList_.add(value);
+          onChanged();
+        } else {
+          peerInfoListBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder addPeerInfoList(
+          int index, org.tron.protos.Protocol.NodeInfo.PeerInfo value) {
+        if (peerInfoListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePeerInfoListIsMutable();
+          peerInfoList_.add(index, value);
+          onChanged();
+        } else {
+          peerInfoListBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder addPeerInfoList(
+          org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder builderForValue) {
+        if (peerInfoListBuilder_ == null) {
+          ensurePeerInfoListIsMutable();
+          peerInfoList_.add(builderForValue.build());
+          onChanged();
+        } else {
+          peerInfoListBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder addPeerInfoList(
+          int index, org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder builderForValue) {
+        if (peerInfoListBuilder_ == null) {
+          ensurePeerInfoListIsMutable();
+          peerInfoList_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          peerInfoListBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder addAllPeerInfoList(
+          java.lang.Iterable<? extends org.tron.protos.Protocol.NodeInfo.PeerInfo> values) {
+        if (peerInfoListBuilder_ == null) {
+          ensurePeerInfoListIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, peerInfoList_);
+          onChanged();
+        } else {
+          peerInfoListBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder clearPeerInfoList() {
+        if (peerInfoListBuilder_ == null) {
+          peerInfoList_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000080);
+          onChanged();
+        } else {
+          peerInfoListBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public Builder removePeerInfoList(int index) {
+        if (peerInfoListBuilder_ == null) {
+          ensurePeerInfoListIsMutable();
+          peerInfoList_.remove(index);
+          onChanged();
+        } else {
+          peerInfoListBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder getPeerInfoListBuilder(
+          int index) {
+        return getPeerInfoListFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder getPeerInfoListOrBuilder(
+          int index) {
+        if (peerInfoListBuilder_ == null) {
+          return peerInfoList_.get(index);  } else {
+          return peerInfoListBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public java.util.List<? extends org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder> 
+           getPeerInfoListOrBuilderList() {
+        if (peerInfoListBuilder_ != null) {
+          return peerInfoListBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(peerInfoList_);
+        }
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder addPeerInfoListBuilder() {
+        return getPeerInfoListFieldBuilder().addBuilder(
+            org.tron.protos.Protocol.NodeInfo.PeerInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder addPeerInfoListBuilder(
+          int index) {
+        return getPeerInfoListFieldBuilder().addBuilder(
+            index, org.tron.protos.Protocol.NodeInfo.PeerInfo.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protocol.NodeInfo.PeerInfo peerInfoList = 8;</code>
+       */
+      public java.util.List<org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder> 
+           getPeerInfoListBuilderList() {
+        return getPeerInfoListFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          org.tron.protos.Protocol.NodeInfo.PeerInfo, org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder, org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder> 
+          getPeerInfoListFieldBuilder() {
+        if (peerInfoListBuilder_ == null) {
+          peerInfoListBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              org.tron.protos.Protocol.NodeInfo.PeerInfo, org.tron.protos.Protocol.NodeInfo.PeerInfo.Builder, org.tron.protos.Protocol.NodeInfo.PeerInfoOrBuilder>(
+                  peerInfoList_,
+                  ((bitField0_ & 0x00000080) == 0x00000080),
+                  getParentForChildren(),
+                  isClean());
+          peerInfoList_ = null;
+        }
+        return peerInfoListBuilder_;
+      }
+
+      private org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo configNodeInfo_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo, org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.Builder, org.tron.protos.Protocol.NodeInfo.ConfigNodeInfoOrBuilder> configNodeInfoBuilder_;
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      public boolean hasConfigNodeInfo() {
+        return configNodeInfoBuilder_ != null || configNodeInfo_ != null;
+      }
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo getConfigNodeInfo() {
+        if (configNodeInfoBuilder_ == null) {
+          return configNodeInfo_ == null ? org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.getDefaultInstance() : configNodeInfo_;
+        } else {
+          return configNodeInfoBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      public Builder setConfigNodeInfo(org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo value) {
+        if (configNodeInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          configNodeInfo_ = value;
+          onChanged();
+        } else {
+          configNodeInfoBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      public Builder setConfigNodeInfo(
+          org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.Builder builderForValue) {
+        if (configNodeInfoBuilder_ == null) {
+          configNodeInfo_ = builderForValue.build();
+          onChanged();
+        } else {
+          configNodeInfoBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      public Builder mergeConfigNodeInfo(org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo value) {
+        if (configNodeInfoBuilder_ == null) {
+          if (configNodeInfo_ != null) {
+            configNodeInfo_ =
+              org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.newBuilder(configNodeInfo_).mergeFrom(value).buildPartial();
+          } else {
+            configNodeInfo_ = value;
+          }
+          onChanged();
+        } else {
+          configNodeInfoBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      public Builder clearConfigNodeInfo() {
+        if (configNodeInfoBuilder_ == null) {
+          configNodeInfo_ = null;
+          onChanged();
+        } else {
+          configNodeInfo_ = null;
+          configNodeInfoBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.Builder getConfigNodeInfoBuilder() {
+        
+        onChanged();
+        return getConfigNodeInfoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.ConfigNodeInfoOrBuilder getConfigNodeInfoOrBuilder() {
+        if (configNodeInfoBuilder_ != null) {
+          return configNodeInfoBuilder_.getMessageOrBuilder();
+        } else {
+          return configNodeInfo_ == null ?
+              org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.getDefaultInstance() : configNodeInfo_;
+        }
+      }
+      /**
+       * <code>.protocol.NodeInfo.ConfigNodeInfo configNodeInfo = 9;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo, org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.Builder, org.tron.protos.Protocol.NodeInfo.ConfigNodeInfoOrBuilder> 
+          getConfigNodeInfoFieldBuilder() {
+        if (configNodeInfoBuilder_ == null) {
+          configNodeInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo, org.tron.protos.Protocol.NodeInfo.ConfigNodeInfo.Builder, org.tron.protos.Protocol.NodeInfo.ConfigNodeInfoOrBuilder>(
+                  getConfigNodeInfo(),
+                  getParentForChildren(),
+                  isClean());
+          configNodeInfo_ = null;
+        }
+        return configNodeInfoBuilder_;
+      }
+
+      private org.tron.protos.Protocol.NodeInfo.MachineInfo machineInfo_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.NodeInfo.MachineInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfoOrBuilder> machineInfoBuilder_;
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      public boolean hasMachineInfo() {
+        return machineInfoBuilder_ != null || machineInfo_ != null;
+      }
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.MachineInfo getMachineInfo() {
+        if (machineInfoBuilder_ == null) {
+          return machineInfo_ == null ? org.tron.protos.Protocol.NodeInfo.MachineInfo.getDefaultInstance() : machineInfo_;
+        } else {
+          return machineInfoBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      public Builder setMachineInfo(org.tron.protos.Protocol.NodeInfo.MachineInfo value) {
+        if (machineInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          machineInfo_ = value;
+          onChanged();
+        } else {
+          machineInfoBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      public Builder setMachineInfo(
+          org.tron.protos.Protocol.NodeInfo.MachineInfo.Builder builderForValue) {
+        if (machineInfoBuilder_ == null) {
+          machineInfo_ = builderForValue.build();
+          onChanged();
+        } else {
+          machineInfoBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      public Builder mergeMachineInfo(org.tron.protos.Protocol.NodeInfo.MachineInfo value) {
+        if (machineInfoBuilder_ == null) {
+          if (machineInfo_ != null) {
+            machineInfo_ =
+              org.tron.protos.Protocol.NodeInfo.MachineInfo.newBuilder(machineInfo_).mergeFrom(value).buildPartial();
+          } else {
+            machineInfo_ = value;
+          }
+          onChanged();
+        } else {
+          machineInfoBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      public Builder clearMachineInfo() {
+        if (machineInfoBuilder_ == null) {
+          machineInfo_ = null;
+          onChanged();
+        } else {
+          machineInfo_ = null;
+          machineInfoBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.MachineInfo.Builder getMachineInfoBuilder() {
+        
+        onChanged();
+        return getMachineInfoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      public org.tron.protos.Protocol.NodeInfo.MachineInfoOrBuilder getMachineInfoOrBuilder() {
+        if (machineInfoBuilder_ != null) {
+          return machineInfoBuilder_.getMessageOrBuilder();
+        } else {
+          return machineInfo_ == null ?
+              org.tron.protos.Protocol.NodeInfo.MachineInfo.getDefaultInstance() : machineInfo_;
+        }
+      }
+      /**
+       * <code>.protocol.NodeInfo.MachineInfo machineInfo = 10;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          org.tron.protos.Protocol.NodeInfo.MachineInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfoOrBuilder> 
+          getMachineInfoFieldBuilder() {
+        if (machineInfoBuilder_ == null) {
+          machineInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              org.tron.protos.Protocol.NodeInfo.MachineInfo, org.tron.protos.Protocol.NodeInfo.MachineInfo.Builder, org.tron.protos.Protocol.NodeInfo.MachineInfoOrBuilder>(
+                  getMachineInfo(),
+                  getParentForChildren(),
+                  isClean());
+          machineInfo_ = null;
+        }
+        return machineInfoBuilder_;
+      }
+
+      private com.google.protobuf.MapField<
+          java.lang.String, java.lang.String> cheatWitnessInfoMap_;
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetCheatWitnessInfoMap() {
+        if (cheatWitnessInfoMap_ == null) {
+          return com.google.protobuf.MapField.emptyMapField(
+              CheatWitnessInfoMapDefaultEntryHolder.defaultEntry);
+        }
+        return cheatWitnessInfoMap_;
+      }
+      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+      internalGetMutableCheatWitnessInfoMap() {
+        onChanged();;
+        if (cheatWitnessInfoMap_ == null) {
+          cheatWitnessInfoMap_ = com.google.protobuf.MapField.newMapField(
+              CheatWitnessInfoMapDefaultEntryHolder.defaultEntry);
+        }
+        if (!cheatWitnessInfoMap_.isMutable()) {
+          cheatWitnessInfoMap_ = cheatWitnessInfoMap_.copy();
+        }
+        return cheatWitnessInfoMap_;
+      }
+
+      public int getCheatWitnessInfoMapCount() {
+        return internalGetCheatWitnessInfoMap().getMap().size();
+      }
+      /**
+       * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+       */
+
+      public boolean containsCheatWitnessInfoMap(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return internalGetCheatWitnessInfoMap().getMap().containsKey(key);
+      }
+      /**
+       * Use {@link #getCheatWitnessInfoMapMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String> getCheatWitnessInfoMap() {
+        return getCheatWitnessInfoMapMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+       */
+
+      public java.util.Map<java.lang.String, java.lang.String> getCheatWitnessInfoMapMap() {
+        return internalGetCheatWitnessInfoMap().getMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+       */
+
+      public java.lang.String getCheatWitnessInfoMapOrDefault(
+          java.lang.String key,
+          java.lang.String defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetCheatWitnessInfoMap().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+       */
+
+      public java.lang.String getCheatWitnessInfoMapOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.String> map =
+            internalGetCheatWitnessInfoMap().getMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+
+      public Builder clearCheatWitnessInfoMap() {
+        internalGetMutableCheatWitnessInfoMap().getMutableMap()
+            .clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+       */
+
+      public Builder removeCheatWitnessInfoMap(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableCheatWitnessInfoMap().getMutableMap()
+            .remove(key);
+        return this;
+      }
+      /**
+       * Use alternate mutation accessors instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.String>
+      getMutableCheatWitnessInfoMap() {
+        return internalGetMutableCheatWitnessInfoMap().getMutableMap();
+      }
+      /**
+       * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+       */
+      public Builder putCheatWitnessInfoMap(
+          java.lang.String key,
+          java.lang.String value) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        internalGetMutableCheatWitnessInfoMap().getMutableMap()
+            .put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;string, string&gt; cheatWitnessInfoMap = 11;</code>
+       */
+
+      public Builder putAllCheatWitnessInfoMap(
+          java.util.Map<java.lang.String, java.lang.String> values) {
+        internalGetMutableCheatWitnessInfoMap().getMutableMap()
+            .putAll(values);
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:protocol.NodeInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:protocol.NodeInfo)
+    private static final org.tron.protos.Protocol.NodeInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.tron.protos.Protocol.NodeInfo();
+    }
+
+    public static org.tron.protos.Protocol.NodeInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<NodeInfo>
+        PARSER = new com.google.protobuf.AbstractParser<NodeInfo>() {
+      public NodeInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new NodeInfo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<NodeInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<NodeInfo> getParserForType() {
+      return PARSER;
+    }
+
+    public org.tron.protos.Protocol.NodeInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_protocol_AccountId_descriptor;
   private static final 
@@ -47796,6 +62049,11 @@ public final class Protocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_protocol_Account_AccountResource_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_Key_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_Key_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_protocol_DelegatedResource_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -47806,10 +62064,10 @@ public final class Protocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_protocol_authority_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_protocol_permission_descriptor;
+    internal_static_protocol_Permission_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_protocol_permission_fieldAccessorTable;
+      internal_static_protocol_Permission_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_protocol_Witness_descriptor;
   private static final 
@@ -47846,6 +62104,11 @@ public final class Protocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_protocol_ResourceReceipt_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_DeferredStage_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_DeferredStage_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_protocol_Transaction_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -47875,6 +62138,11 @@ public final class Protocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_protocol_TransactionInfo_Log_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_DeferredTransaction_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_DeferredTransaction_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_protocol_Transactions_descriptor;
   private static final 
@@ -47985,6 +62253,41 @@ public final class Protocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_protocol_DelegatedResourceAccountIndex_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_NodeInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_NodeInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_NodeInfo_CheatWitnessInfoMapEntry_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_NodeInfo_CheatWitnessInfoMapEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_NodeInfo_PeerInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_NodeInfo_PeerInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_NodeInfo_ConfigNodeInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_NodeInfo_ConfigNodeInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_NodeInfo_MachineInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_NodeInfo_MachineInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -48014,7 +62317,7 @@ public final class Protocol {
       "ken_balance\030\t \001(\003\"\201\001\n\017ChainParameters\022@\n" +
       "\016chainParameter\030\001 \003(\0132(.protocol.ChainPa" +
       "rameters.ChainParameter\032,\n\016ChainParamete" +
-      "r\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\003\"\335\016\n\007Accoun" +
+      "r\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\003\"\360\017\n\007Accoun" +
       "t\022\024\n\014account_name\030\001 \001(\014\022#\n\004type\030\002 \001(\0162\025." +
       "protocol.AccountType\022\017\n\007address\030\003 \001(\014\022\017\n" +
       "\007balance\030\004 \001(\003\022\035\n\005votes\030\005 \003(\0132\016.protocol" +
@@ -48043,201 +62346,278 @@ public final class Protocol {
       "_consume_time\030\025 \001(\003\022 \n\030latest_consume_fr" +
       "ee_time\030\026 \001(\003\022\022\n\naccount_id\030\027 \001(\014\022;\n\020acc" +
       "ount_resource\030\032 \001(\0132!.protocol.Account.A" +
-      "ccountResource\022\020\n\010codeHash\030\036 \001(\014\0325\n\006Froz" +
-      "en\022\026\n\016frozen_balance\030\001 \001(\003\022\023\n\013expire_tim" +
-      "e\030\002 \001(\003\032,\n\nAssetEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va" +
-      "lue\030\002 \001(\003:\0028\001\032.\n\014AssetV2Entry\022\013\n\003key\030\001 \001" +
-      "(\t\022\r\n\005value\030\002 \001(\003:\0028\001\032?\n\035LatestAssetOper" +
-      "ationTimeEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001" +
-      "(\003:\0028\001\032A\n\037LatestAssetOperationTimeV2Entr" +
-      "y\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\003:\0028\001\0328\n\026Fre" +
-      "eAssetNetUsageEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
-      "e\030\002 \001(\003:\0028\001\032:\n\030FreeAssetNetUsageV2Entry\022" +
-      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\003:\0028\001\032\303\002\n\017Acco" +
-      "untResource\022\024\n\014energy_usage\030\001 \001(\003\022;\n\031fro" +
-      "zen_balance_for_energy\030\002 \001(\0132\030.protocol." +
-      "Account.Frozen\022&\n\036latest_consume_time_fo" +
-      "r_energy\030\003 \001(\003\0224\n,acquired_delegated_fro" +
-      "zen_balance_for_energy\030\004 \001(\003\022+\n#delegate" +
-      "d_frozen_balance_for_energy\030\005 \001(\003\022\025\n\rsto" +
-      "rage_limit\030\006 \001(\003\022\025\n\rstorage_usage\030\007 \001(\003\022" +
-      "$\n\034latest_exchange_storage_time\030\010 \001(\003\"\271\001" +
-      "\n\021DelegatedResource\022\014\n\004from\030\001 \001(\014\022\n\n\002to\030" +
-      "\002 \001(\014\022$\n\034frozen_balance_for_bandwidth\030\003 " +
-      "\001(\003\022!\n\031frozen_balance_for_energy\030\004 \001(\003\022!" +
-      "\n\031expire_time_for_bandwidth\030\005 \001(\003\022\036\n\026exp" +
-      "ire_time_for_energy\030\006 \001(\003\"J\n\tauthority\022$" +
-      "\n\007account\030\001 \001(\0132\023.protocol.AccountId\022\027\n\017" +
-      "permission_name\030\002 \001(\014\"2\n\npermission\022$\n\007a" +
-      "ccount\030\001 \001(\0132\023.protocol.AccountId\"\265\001\n\007Wi" +
-      "tness\022\017\n\007address\030\001 \001(\014\022\021\n\tvoteCount\030\002 \001(" +
-      "\003\022\016\n\006pubKey\030\003 \001(\014\022\013\n\003url\030\004 \001(\t\022\025\n\rtotalP" +
-      "roduced\030\005 \001(\003\022\023\n\013totalMissed\030\006 \001(\003\022\026\n\016la" +
-      "testBlockNum\030\007 \001(\003\022\025\n\rlatestSlotNum\030\010 \001(" +
-      "\003\022\016\n\006isJobs\030\t \001(\010\"^\n\005Votes\022\017\n\007address\030\001 " +
-      "\001(\014\022!\n\told_votes\030\002 \003(\0132\016.protocol.Vote\022!" +
-      "\n\tnew_votes\030\003 \003(\0132\016.protocol.Vote\"-\n\010TXO" +
-      "utput\022\r\n\005value\030\001 \001(\003\022\022\n\npubKeyHash\030\002 \001(\014" +
-      "\"x\n\007TXInput\022\'\n\010raw_data\030\001 \001(\0132\025.protocol" +
-      ".TXInput.raw\022\021\n\tsignature\030\004 \001(\014\0321\n\003raw\022\014" +
-      "\n\004txID\030\001 \001(\014\022\014\n\004vout\030\002 \001(\003\022\016\n\006pubKey\030\003 \001" +
-      "(\014\"0\n\tTXOutputs\022#\n\007outputs\030\001 \003(\0132\022.proto" +
-      "col.TXOutput\"\325\001\n\017ResourceReceipt\022\024\n\014ener" +
-      "gy_usage\030\001 \001(\003\022\022\n\nenergy_fee\030\002 \001(\003\022\033\n\023or" +
-      "igin_energy_usage\030\003 \001(\003\022\032\n\022energy_usage_" +
-      "total\030\004 \001(\003\022\021\n\tnet_usage\030\005 \001(\003\022\017\n\007net_fe" +
-      "e\030\006 \001(\003\022;\n\006result\030\007 \001(\0162+.protocol.Trans" +
-      "action.Result.contractResult\"\304\017\n\013Transac" +
-      "tion\022+\n\010raw_data\030\001 \001(\0132\031.protocol.Transa" +
-      "ction.raw\022\021\n\tsignature\030\002 \003(\014\022)\n\003ret\030\005 \003(" +
-      "\0132\034.protocol.Transaction.Result\032\260\007\n\010Cont" +
-      "ract\0229\n\004type\030\001 \001(\0162+.protocol.Transactio" +
-      "n.Contract.ContractType\022\'\n\tparameter\030\002 \001" +
-      "(\0132\024.google.protobuf.Any\022\020\n\010provider\030\003 \001" +
-      "(\014\022\024\n\014ContractName\030\004 \001(\014\"\227\006\n\014ContractTyp" +
-      "e\022\031\n\025AccountCreateContract\020\000\022\024\n\020Transfer" +
-      "Contract\020\001\022\031\n\025TransferAssetContract\020\002\022\025\n" +
-      "\021VoteAssetContract\020\003\022\027\n\023VoteWitnessContr" +
-      "act\020\004\022\031\n\025WitnessCreateContract\020\005\022\026\n\022Asse" +
-      "tIssueContract\020\006\022\031\n\025WitnessUpdateContrac" +
-      "t\020\010\022!\n\035ParticipateAssetIssueContract\020\t\022\031" +
-      "\n\025AccountUpdateContract\020\n\022\031\n\025FreezeBalan" +
-      "ceContract\020\013\022\033\n\027UnfreezeBalanceContract\020" +
-      "\014\022\033\n\027WithdrawBalanceContract\020\r\022\031\n\025Unfree" +
-      "zeAssetContract\020\016\022\027\n\023UpdateAssetContract" +
-      "\020\017\022\032\n\026ProposalCreateContract\020\020\022\033\n\027Propos" +
-      "alApproveContract\020\021\022\032\n\026ProposalDeleteCon" +
-      "tract\020\022\022\030\n\024SetAccountIdContract\020\023\022\022\n\016Cus" +
-      "tomContract\020\024\022\027\n\023CreateSmartContract\020\036\022\030" +
-      "\n\024TriggerSmartContract\020\037\022\017\n\013GetContract\020" +
-      " \022\031\n\025UpdateSettingContract\020!\022\032\n\026Exchange" +
-      "CreateContract\020)\022\032\n\026ExchangeInjectContra" +
-      "ct\020*\022\034\n\030ExchangeWithdrawContract\020+\022\037\n\033Ex" +
-      "changeTransactionContract\020,\022\035\n\031UpdateEne" +
-      "rgyLimitContract\020-\032\227\005\n\006Result\022\013\n\003fee\030\001 \001" +
-      "(\003\022.\n\003ret\030\002 \001(\0162!.protocol.Transaction.R" +
-      "esult.code\022@\n\013contractRet\030\003 \001(\0162+.protoc" +
-      "ol.Transaction.Result.contractResult\022\024\n\014" +
-      "assetIssueID\030\016 \001(\t\022\027\n\017withdraw_amount\030\017 " +
-      "\001(\003\022\027\n\017unfreeze_amount\030\020 \001(\003\022 \n\030exchange" +
-      "_received_amount\030\022 \001(\003\022&\n\036exchange_injec" +
-      "t_another_amount\030\023 \001(\003\022(\n exchange_withd" +
-      "raw_another_amount\030\024 \001(\003\022\023\n\013exchange_id\030" +
-      "\025 \001(\003\"\036\n\004code\022\n\n\006SUCESS\020\000\022\n\n\006FAILED\020\001\"\234\002" +
-      "\n\016contractResult\022\013\n\007DEFAULT\020\000\022\013\n\007SUCCESS" +
-      "\020\001\022\n\n\006REVERT\020\002\022\030\n\024BAD_JUMP_DESTINATION\020\003" +
-      "\022\021\n\rOUT_OF_MEMORY\020\004\022\030\n\024PRECOMPILED_CONTR" +
-      "ACT\020\005\022\023\n\017STACK_TOO_SMALL\020\006\022\023\n\017STACK_TOO_" +
-      "LARGE\020\007\022\025\n\021ILLEGAL_OPERATION\020\010\022\022\n\016STACK_" +
-      "OVERFLOW\020\t\022\021\n\rOUT_OF_ENERGY\020\n\022\017\n\013OUT_OF_" +
-      "TIME\020\013\022\027\n\023JVM_STACK_OVER_FLOW\020\014\022\013\n\007UNKNO" +
-      "WN\020\r\032\374\001\n\003raw\022\027\n\017ref_block_bytes\030\001 \001(\014\022\025\n" +
-      "\rref_block_num\030\003 \001(\003\022\026\n\016ref_block_hash\030\004" +
-      " \001(\014\022\022\n\nexpiration\030\010 \001(\003\022\"\n\005auths\030\t \003(\0132" +
-      "\023.protocol.authority\022\014\n\004data\030\n \001(\014\0220\n\010co" +
-      "ntract\030\013 \003(\0132\036.protocol.Transaction.Cont" +
-      "ract\022\017\n\007scripts\030\014 \001(\014\022\021\n\ttimestamp\030\016 \001(\003" +
-      "\022\021\n\tfee_limit\030\022 \001(\003\"\212\005\n\017TransactionInfo\022" +
-      "\n\n\002id\030\001 \001(\014\022\013\n\003fee\030\002 \001(\003\022\023\n\013blockNumber\030" +
-      "\003 \001(\003\022\026\n\016blockTimeStamp\030\004 \001(\003\022\026\n\016contrac" +
-      "tResult\030\005 \003(\014\022\030\n\020contract_address\030\006 \001(\014\022" +
-      "*\n\007receipt\030\007 \001(\0132\031.protocol.ResourceRece" +
-      "ipt\022*\n\003log\030\010 \003(\0132\035.protocol.TransactionI" +
-      "nfo.Log\022.\n\006result\030\t \001(\0162\036.protocol.Trans" +
-      "actionInfo.code\022\022\n\nresMessage\030\n \001(\014\022\024\n\014a" +
-      "ssetIssueID\030\016 \001(\t\022\027\n\017withdraw_amount\030\017 \001" +
-      "(\003\022\027\n\017unfreeze_amount\030\020 \001(\003\022<\n\025internal_" +
-      "transactions\030\021 \003(\0132\035.protocol.InternalTr" +
-      "ansaction\022 \n\030exchange_received_amount\030\022 " +
-      "\001(\003\022&\n\036exchange_inject_another_amount\030\023 " +
-      "\001(\003\022(\n exchange_withdraw_another_amount\030" +
-      "\024 \001(\003\022\023\n\013exchange_id\030\025 \001(\003\0324\n\003Log\022\017\n\007add" +
-      "ress\030\001 \001(\014\022\016\n\006topics\030\002 \003(\014\022\014\n\004data\030\003 \001(\014" +
-      "\"\036\n\004code\022\n\n\006SUCESS\020\000\022\n\n\006FAILED\020\001\";\n\014Tran" +
-      "sactions\022+\n\014transactions\030\001 \003(\0132\025.protoco" +
-      "l.Transaction\"Q\n\017TransactionSign\022*\n\013tran" +
-      "saction\030\001 \001(\0132\025.protocol.Transaction\022\022\n\n" +
-      "privateKey\030\002 \001(\014\"\346\001\n\013BlockHeader\022+\n\010raw_" +
-      "data\030\001 \001(\0132\031.protocol.BlockHeader.raw\022\031\n" +
-      "\021witness_signature\030\002 \001(\014\032\216\001\n\003raw\022\021\n\ttime" +
-      "stamp\030\001 \001(\003\022\022\n\ntxTrieRoot\030\002 \001(\014\022\022\n\nparen" +
-      "tHash\030\003 \001(\014\022\016\n\006number\030\007 \001(\003\022\022\n\nwitness_i" +
-      "d\030\010 \001(\003\022\027\n\017witness_address\030\t \001(\014\022\017\n\007vers" +
-      "ion\030\n \001(\005\"a\n\005Block\022+\n\014transactions\030\001 \003(\013" +
-      "2\025.protocol.Transaction\022+\n\014block_header\030" +
-      "\002 \001(\0132\025.protocol.BlockHeader\"|\n\016ChainInv" +
-      "entory\022-\n\003ids\030\001 \003(\0132 .protocol.ChainInve" +
-      "ntory.BlockId\022\022\n\nremain_num\030\002 \001(\003\032\'\n\007Blo" +
-      "ckId\022\014\n\004hash\030\001 \001(\014\022\016\n\006number\030\002 \001(\003\"\277\001\n\016B" +
-      "lockInventory\022-\n\003ids\030\001 \003(\0132 .protocol.Bl" +
-      "ockInventory.BlockId\022+\n\004type\030\002 \001(\0162\035.pro" +
-      "tocol.BlockInventory.Type\032\'\n\007BlockId\022\014\n\004" +
-      "hash\030\001 \001(\014\022\016\n\006number\030\002 \001(\003\"(\n\004Type\022\010\n\004SY" +
-      "NC\020\000\022\013\n\007ADVTISE\020\001\022\t\n\005FETCH\020\002\"n\n\tInventor" +
-      "y\022/\n\004type\030\001 \001(\0162!.protocol.Inventory.Inv" +
-      "entoryType\022\013\n\003ids\030\002 \003(\014\"#\n\rInventoryType" +
-      "\022\007\n\003TRX\020\000\022\t\n\005BLOCK\020\001\"\345\001\n\005Items\022&\n\004type\030\001" +
-      " \001(\0162\030.protocol.Items.ItemType\022\037\n\006blocks" +
-      "\030\002 \003(\0132\017.protocol.Block\022,\n\rblock_headers" +
-      "\030\003 \003(\0132\025.protocol.BlockHeader\022+\n\014transac" +
-      "tions\030\004 \003(\0132\025.protocol.Transaction\"8\n\010It" +
-      "emType\022\007\n\003ERR\020\000\022\007\n\003TRX\020\001\022\t\n\005BLOCK\020\002\022\017\n\013B" +
-      "LOCKHEADER\020\003\"4\n\021DynamicProperties\022\037\n\027las" +
-      "t_solidity_block_num\030\001 \001(\003\"9\n\021Disconnect" +
-      "Message\022$\n\006reason\030\001 \001(\0162\024.protocol.Reaso" +
-      "nCode\"\240\002\n\014HelloMessage\022 \n\004from\030\001 \001(\0132\022.p" +
-      "rotocol.Endpoint\022\017\n\007version\030\002 \001(\005\022\021\n\ttim" +
-      "estamp\030\003 \001(\003\0226\n\016genesisBlockId\030\004 \001(\0132\036.p" +
-      "rotocol.HelloMessage.BlockId\0224\n\014solidBlo" +
-      "ckId\030\005 \001(\0132\036.protocol.HelloMessage.Block" +
-      "Id\0223\n\013headBlockId\030\006 \001(\0132\036.protocol.Hello" +
-      "Message.BlockId\032\'\n\007BlockId\022\014\n\004hash\030\001 \001(\014" +
-      "\022\016\n\006number\030\002 \001(\003\"\336\006\n\rSmartContract\022\026\n\016or" +
-      "igin_address\030\001 \001(\014\022\030\n\020contract_address\030\002" +
-      " \001(\014\022(\n\003abi\030\003 \001(\0132\033.protocol.SmartContra" +
-      "ct.ABI\022\020\n\010bytecode\030\004 \001(\014\022\022\n\ncall_value\030\005" +
-      " \001(\003\022%\n\035consume_user_resource_percent\030\006 " +
-      "\001(\003\022\014\n\004name\030\007 \001(\t\022\033\n\023origin_energy_limit" +
-      "\030\010 \001(\003\032\370\004\n\003ABI\0221\n\006entrys\030\001 \003(\0132!.protoco" +
-      "l.SmartContract.ABI.Entry\032\275\004\n\005Entry\022\021\n\ta" +
-      "nonymous\030\001 \001(\010\022\020\n\010constant\030\002 \001(\010\022\014\n\004name" +
-      "\030\003 \001(\t\0227\n\006inputs\030\004 \003(\0132\'.protocol.SmartC" +
-      "ontract.ABI.Entry.Param\0228\n\007outputs\030\005 \003(\013" +
-      "2\'.protocol.SmartContract.ABI.Entry.Para" +
-      "m\0229\n\004type\030\006 \001(\0162+.protocol.SmartContract" +
-      ".ABI.Entry.EntryType\022\017\n\007payable\030\007 \001(\010\022N\n" +
-      "\017stateMutability\030\010 \001(\01625.protocol.SmartC" +
-      "ontract.ABI.Entry.StateMutabilityType\0324\n" +
-      "\005Param\022\017\n\007indexed\030\001 \001(\010\022\014\n\004name\030\002 \001(\t\022\014\n" +
-      "\004type\030\003 \001(\t\"Y\n\tEntryType\022\024\n\020UnknownEntry" +
-      "Type\020\000\022\017\n\013Constructor\020\001\022\014\n\010Function\020\002\022\t\n" +
-      "\005Event\020\003\022\014\n\010Fallback\020\004\"a\n\023StateMutabilit" +
-      "yType\022\031\n\025UnknownMutabilityType\020\000\022\010\n\004Pure" +
-      "\020\001\022\010\n\004View\020\002\022\016\n\nNonpayable\020\003\022\013\n\007Payable\020" +
-      "\004\"\360\001\n\023InternalTransaction\022\014\n\004hash\030\001 \001(\014\022" +
-      "\026\n\016caller_address\030\002 \001(\014\022\032\n\022transferTo_ad" +
-      "dress\030\003 \001(\014\022B\n\rcallValueInfo\030\004 \003(\0132+.pro" +
-      "tocol.InternalTransaction.CallValueInfo\022" +
-      "\014\n\004note\030\005 \001(\014\022\020\n\010rejected\030\006 \001(\010\0323\n\rCallV" +
-      "alueInfo\022\021\n\tcallValue\030\001 \001(\003\022\017\n\007tokenId\030\002" +
-      " \001(\t\"Z\n\035DelegatedResourceAccountIndex\022\017\n" +
-      "\007account\030\001 \001(\014\022\024\n\014fromAccounts\030\002 \003(\014\022\022\n\n" +
-      "toAccounts\030\003 \003(\014*7\n\013AccountType\022\n\n\006Norma" +
-      "l\020\000\022\016\n\nAssetIssue\020\001\022\014\n\010Contract\020\002*\307\003\n\nRe" +
-      "asonCode\022\r\n\tREQUESTED\020\000\022\020\n\014BAD_PROTOCOL\020" +
-      "\002\022\022\n\016TOO_MANY_PEERS\020\004\022\022\n\016DUPLICATE_PEER\020" +
-      "\005\022\031\n\025INCOMPATIBLE_PROTOCOL\020\006\022\021\n\rNULL_IDE" +
-      "NTITY\020\007\022\020\n\014PEER_QUITING\020\010\022\027\n\023UNEXPECTED_" +
-      "IDENTITY\020\t\022\022\n\016LOCAL_IDENTITY\020\n\022\020\n\014PING_T" +
-      "IMEOUT\020\013\022\017\n\013USER_REASON\020\020\022\t\n\005RESET\020\021\022\r\n\t" +
-      "SYNC_FAIL\020\022\022\016\n\nFETCH_FAIL\020\023\022\n\n\006BAD_TX\020\024\022" +
-      "\r\n\tBAD_BLOCK\020\025\022\n\n\006FORKED\020\026\022\016\n\nUNLINKABLE" +
-      "\020\027\022\030\n\024INCOMPATIBLE_VERSION\020\030\022\026\n\022INCOMPAT" +
-      "IBLE_CHAIN\020\031\022\014\n\010TIME_OUT\020 \022\020\n\014CONNECT_FA" +
-      "IL\020!\022\037\n\033TOO_MANY_PEERS_WITH_SAME_IP\020\"\022\014\n" +
-      "\007UNKNOWN\020\377\001BF\n\017org.tron.protosB\010Protocol" +
-      "Z)github.com/tronprotocol/grpc-gateway/c" +
-      "oreb\006proto3"
+      "ccountResource\022\020\n\010codeHash\030\036 \001(\014\022.\n\020owne" +
+      "r_permission\030\037 \001(\0132\024.protocol.Permission" +
+      "\0220\n\022witness_permission\030  \001(\0132\024.protocol." +
+      "Permission\022/\n\021active_permission\030! \003(\0132\024." +
+      "protocol.Permission\0325\n\006Frozen\022\026\n\016frozen_" +
+      "balance\030\001 \001(\003\022\023\n\013expire_time\030\002 \001(\003\032,\n\nAs" +
+      "setEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\003:\0028\001" +
+      "\032.\n\014AssetV2Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002" +
+      " \001(\003:\0028\001\032?\n\035LatestAssetOperationTimeEntr" +
+      "y\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\003:\0028\001\032A\n\037Lat" +
+      "estAssetOperationTimeV2Entry\022\013\n\003key\030\001 \001(" +
+      "\t\022\r\n\005value\030\002 \001(\003:\0028\001\0328\n\026FreeAssetNetUsag" +
+      "eEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\003:\0028\001\032:" +
+      "\n\030FreeAssetNetUsageV2Entry\022\013\n\003key\030\001 \001(\t\022" +
+      "\r\n\005value\030\002 \001(\003:\0028\001\032\303\002\n\017AccountResource\022\024" +
+      "\n\014energy_usage\030\001 \001(\003\022;\n\031frozen_balance_f" +
+      "or_energy\030\002 \001(\0132\030.protocol.Account.Froze" +
+      "n\022&\n\036latest_consume_time_for_energy\030\003 \001(" +
+      "\003\0224\n,acquired_delegated_frozen_balance_f" +
+      "or_energy\030\004 \001(\003\022+\n#delegated_frozen_bala" +
+      "nce_for_energy\030\005 \001(\003\022\025\n\rstorage_limit\030\006 " +
+      "\001(\003\022\025\n\rstorage_usage\030\007 \001(\003\022$\n\034latest_exc" +
+      "hange_storage_time\030\010 \001(\003\"&\n\003Key\022\017\n\007addre" +
+      "ss\030\001 \001(\014\022\016\n\006weight\030\002 \001(\003\"\271\001\n\021DelegatedRe" +
+      "source\022\014\n\004from\030\001 \001(\014\022\n\n\002to\030\002 \001(\014\022$\n\034froz" +
+      "en_balance_for_bandwidth\030\003 \001(\003\022!\n\031frozen" +
+      "_balance_for_energy\030\004 \001(\003\022!\n\031expire_time" +
+      "_for_bandwidth\030\005 \001(\003\022\036\n\026expire_time_for_" +
+      "energy\030\006 \001(\003\"J\n\tauthority\022$\n\007account\030\001 \001" +
+      "(\0132\023.protocol.AccountId\022\027\n\017permission_na" +
+      "me\030\002 \001(\014\"\361\001\n\nPermission\0221\n\004type\030\001 \001(\0162#." +
+      "protocol.Permission.PermissionType\022\n\n\002id" +
+      "\030\002 \001(\005\022\027\n\017permission_name\030\003 \001(\t\022\021\n\tthres" +
+      "hold\030\004 \001(\003\022\021\n\tparent_id\030\005 \001(\005\022\022\n\noperati" +
+      "ons\030\006 \001(\014\022\033\n\004keys\030\007 \003(\0132\r.protocol.Key\"4" +
+      "\n\016PermissionType\022\t\n\005Owner\020\000\022\013\n\007Witness\020\001" +
+      "\022\n\n\006Active\020\002\"\265\001\n\007Witness\022\017\n\007address\030\001 \001(" +
+      "\014\022\021\n\tvoteCount\030\002 \001(\003\022\016\n\006pubKey\030\003 \001(\014\022\013\n\003" +
+      "url\030\004 \001(\t\022\025\n\rtotalProduced\030\005 \001(\003\022\023\n\013tota" +
+      "lMissed\030\006 \001(\003\022\026\n\016latestBlockNum\030\007 \001(\003\022\025\n" +
+      "\rlatestSlotNum\030\010 \001(\003\022\016\n\006isJobs\030\t \001(\010\"^\n\005" +
+      "Votes\022\017\n\007address\030\001 \001(\014\022!\n\told_votes\030\002 \003(" +
+      "\0132\016.protocol.Vote\022!\n\tnew_votes\030\003 \003(\0132\016.p" +
+      "rotocol.Vote\"-\n\010TXOutput\022\r\n\005value\030\001 \001(\003\022" +
+      "\022\n\npubKeyHash\030\002 \001(\014\"x\n\007TXInput\022\'\n\010raw_da" +
+      "ta\030\001 \001(\0132\025.protocol.TXInput.raw\022\021\n\tsigna" +
+      "ture\030\004 \001(\014\0321\n\003raw\022\014\n\004txID\030\001 \001(\014\022\014\n\004vout\030" +
+      "\002 \001(\003\022\016\n\006pubKey\030\003 \001(\014\"0\n\tTXOutputs\022#\n\007ou" +
+      "tputs\030\001 \003(\0132\022.protocol.TXOutput\"\325\001\n\017Reso" +
+      "urceReceipt\022\024\n\014energy_usage\030\001 \001(\003\022\022\n\nene" +
+      "rgy_fee\030\002 \001(\003\022\033\n\023origin_energy_usage\030\003 \001" +
+      "(\003\022\032\n\022energy_usage_total\030\004 \001(\003\022\021\n\tnet_us" +
+      "age\030\005 \001(\003\022\017\n\007net_fee\030\006 \001(\003\022;\n\006result\030\007 \001" +
+      "(\0162+.protocol.Transaction.Result.contrac" +
+      "tResult\"4\n\rDeferredStage\022\024\n\014delaySeconds" +
+      "\030\001 \001(\003\022\r\n\005stage\030\002 \001(\005\"\202\021\n\013Transaction\022+\n" +
+      "\010raw_data\030\001 \001(\0132\031.protocol.Transaction.r" +
+      "aw\022\021\n\tsignature\030\002 \003(\014\022)\n\003ret\030\005 \003(\0132\034.pro" +
+      "tocol.Transaction.Result\032\251\010\n\010Contract\0229\n" +
+      "\004type\030\001 \001(\0162+.protocol.Transaction.Contr" +
+      "act.ContractType\022\'\n\tparameter\030\002 \001(\0132\024.go" +
+      "ogle.protobuf.Any\022\020\n\010provider\030\003 \001(\014\022\024\n\014C" +
+      "ontractName\030\004 \001(\014\022\025\n\rPermission_id\030\005 \001(\005" +
+      "\"\371\006\n\014ContractType\022\031\n\025AccountCreateContra" +
+      "ct\020\000\022\024\n\020TransferContract\020\001\022\031\n\025TransferAs" +
+      "setContract\020\002\022\025\n\021VoteAssetContract\020\003\022\027\n\023" +
+      "VoteWitnessContract\020\004\022\031\n\025WitnessCreateCo" +
+      "ntract\020\005\022\026\n\022AssetIssueContract\020\006\022\031\n\025Witn" +
+      "essUpdateContract\020\010\022!\n\035ParticipateAssetI" +
+      "ssueContract\020\t\022\031\n\025AccountUpdateContract\020" +
+      "\n\022\031\n\025FreezeBalanceContract\020\013\022\033\n\027Unfreeze" +
+      "BalanceContract\020\014\022\033\n\027WithdrawBalanceCont" +
+      "ract\020\r\022\031\n\025UnfreezeAssetContract\020\016\022\027\n\023Upd" +
+      "ateAssetContract\020\017\022\032\n\026ProposalCreateCont" +
+      "ract\020\020\022\033\n\027ProposalApproveContract\020\021\022\032\n\026P" +
+      "roposalDeleteContract\020\022\022\030\n\024SetAccountIdC" +
+      "ontract\020\023\022\022\n\016CustomContract\020\024\022\027\n\023CreateS" +
+      "martContract\020\036\022\030\n\024TriggerSmartContract\020\037" +
+      "\022\017\n\013GetContract\020 \022\031\n\025UpdateSettingContra" +
+      "ct\020!\022\032\n\026ExchangeCreateContract\020)\022\032\n\026Exch" +
+      "angeInjectContract\020*\022\034\n\030ExchangeWithdraw" +
+      "Contract\020+\022\037\n\033ExchangeTransactionContrac" +
+      "t\020,\022\035\n\031UpdateEnergyLimitContract\020-\022#\n\037Ac" +
+      "countPermissionUpdateContract\020.\022%\n!Cance" +
+      "lDeferredTransactionContract\020/\022\024\n\020ClearA" +
+      "BIContract\0200\032\254\005\n\006Result\022\013\n\003fee\030\001 \001(\003\022.\n\003" +
+      "ret\030\002 \001(\0162!.protocol.Transaction.Result." +
+      "code\022@\n\013contractRet\030\003 \001(\0162+.protocol.Tra" +
+      "nsaction.Result.contractResult\022\024\n\014assetI" +
+      "ssueID\030\016 \001(\t\022\027\n\017withdraw_amount\030\017 \001(\003\022\027\n" +
+      "\017unfreeze_amount\030\020 \001(\003\022 \n\030exchange_recei" +
+      "ved_amount\030\022 \001(\003\022&\n\036exchange_inject_anot" +
+      "her_amount\030\023 \001(\003\022(\n exchange_withdraw_an" +
+      "other_amount\030\024 \001(\003\022\023\n\013exchange_id\030\025 \001(\003\"" +
+      "\036\n\004code\022\n\n\006SUCESS\020\000\022\n\n\006FAILED\020\001\"\261\002\n\016cont" +
+      "ractResult\022\013\n\007DEFAULT\020\000\022\013\n\007SUCCESS\020\001\022\n\n\006" +
+      "REVERT\020\002\022\030\n\024BAD_JUMP_DESTINATION\020\003\022\021\n\rOU" +
+      "T_OF_MEMORY\020\004\022\030\n\024PRECOMPILED_CONTRACT\020\005\022" +
+      "\023\n\017STACK_TOO_SMALL\020\006\022\023\n\017STACK_TOO_LARGE\020" +
+      "\007\022\025\n\021ILLEGAL_OPERATION\020\010\022\022\n\016STACK_OVERFL" +
+      "OW\020\t\022\021\n\rOUT_OF_ENERGY\020\n\022\017\n\013OUT_OF_TIME\020\013" +
+      "\022\027\n\023JVM_STACK_OVER_FLOW\020\014\022\013\n\007UNKNOWN\020\r\022\023" +
+      "\n\017TRANSFER_FAILED\020\016\032\254\002\n\003raw\022\027\n\017ref_block" +
+      "_bytes\030\001 \001(\014\022\025\n\rref_block_num\030\003 \001(\003\022\026\n\016r" +
+      "ef_block_hash\030\004 \001(\014\022\022\n\nexpiration\030\010 \001(\003\022" +
+      "\"\n\005auths\030\t \003(\0132\023.protocol.authority\022\014\n\004d" +
+      "ata\030\n \001(\014\0220\n\010contract\030\013 \003(\0132\036.protocol.T" +
+      "ransaction.Contract\022\017\n\007scripts\030\014 \001(\014\022\021\n\t" +
+      "timestamp\030\016 \001(\003\022\021\n\tfee_limit\030\022 \001(\003\022.\n\rde" +
+      "ferredStage\030\023 \001(\0132\027.protocol.DeferredSta" +
+      "ge\"\212\005\n\017TransactionInfo\022\n\n\002id\030\001 \001(\014\022\013\n\003fe" +
+      "e\030\002 \001(\003\022\023\n\013blockNumber\030\003 \001(\003\022\026\n\016blockTim" +
+      "eStamp\030\004 \001(\003\022\026\n\016contractResult\030\005 \003(\014\022\030\n\020" +
+      "contract_address\030\006 \001(\014\022*\n\007receipt\030\007 \001(\0132" +
+      "\031.protocol.ResourceReceipt\022*\n\003log\030\010 \003(\0132" +
+      "\035.protocol.TransactionInfo.Log\022.\n\006result" +
+      "\030\t \001(\0162\036.protocol.TransactionInfo.code\022\022" +
+      "\n\nresMessage\030\n \001(\014\022\024\n\014assetIssueID\030\016 \001(\t" +
+      "\022\027\n\017withdraw_amount\030\017 \001(\003\022\027\n\017unfreeze_am" +
+      "ount\030\020 \001(\003\022<\n\025internal_transactions\030\021 \003(" +
+      "\0132\035.protocol.InternalTransaction\022 \n\030exch" +
+      "ange_received_amount\030\022 \001(\003\022&\n\036exchange_i" +
+      "nject_another_amount\030\023 \001(\003\022(\n exchange_w" +
+      "ithdraw_another_amount\030\024 \001(\003\022\023\n\013exchange" +
+      "_id\030\025 \001(\003\0324\n\003Log\022\017\n\007address\030\001 \001(\014\022\016\n\006top" +
+      "ics\030\002 \003(\014\022\014\n\004data\030\003 \001(\014\"\036\n\004code\022\n\n\006SUCES" +
+      "S\020\000\022\n\n\006FAILED\020\001\"\333\001\n\023DeferredTransaction\022" +
+      "\025\n\rtransactionId\030\001 \001(\014\022\023\n\013publishTime\030\002 " +
+      "\001(\003\022\024\n\014delaySeconds\030\003 \001(\003\022\022\n\ndelayUntil\030" +
+      "\004 \001(\003\022\022\n\nexpiration\030\005 \001(\003\022\025\n\rsenderAddre" +
+      "ss\030\006 \001(\014\022\027\n\017receiverAddress\030\007 \001(\014\022*\n\013tra" +
+      "nsaction\030\010 \001(\0132\025.protocol.Transaction\";\n" +
+      "\014Transactions\022+\n\014transactions\030\001 \003(\0132\025.pr" +
+      "otocol.Transaction\"Q\n\017TransactionSign\022*\n" +
+      "\013transaction\030\001 \001(\0132\025.protocol.Transactio" +
+      "n\022\022\n\nprivateKey\030\002 \001(\014\"\200\002\n\013BlockHeader\022+\n" +
+      "\010raw_data\030\001 \001(\0132\031.protocol.BlockHeader.r" +
+      "aw\022\031\n\021witness_signature\030\002 \001(\014\032\250\001\n\003raw\022\021\n" +
+      "\ttimestamp\030\001 \001(\003\022\022\n\ntxTrieRoot\030\002 \001(\014\022\022\n\n" +
+      "parentHash\030\003 \001(\014\022\016\n\006number\030\007 \001(\003\022\022\n\nwitn" +
+      "ess_id\030\010 \001(\003\022\027\n\017witness_address\030\t \001(\014\022\017\n" +
+      "\007version\030\n \001(\005\022\030\n\020accountStateRoot\030\013 \001(\014" +
+      "\"a\n\005Block\022+\n\014transactions\030\001 \003(\0132\025.protoc" +
+      "ol.Transaction\022+\n\014block_header\030\002 \001(\0132\025.p" +
+      "rotocol.BlockHeader\"|\n\016ChainInventory\022-\n" +
+      "\003ids\030\001 \003(\0132 .protocol.ChainInventory.Blo" +
+      "ckId\022\022\n\nremain_num\030\002 \001(\003\032\'\n\007BlockId\022\014\n\004h" +
+      "ash\030\001 \001(\014\022\016\n\006number\030\002 \001(\003\"\277\001\n\016BlockInven" +
+      "tory\022-\n\003ids\030\001 \003(\0132 .protocol.BlockInvent" +
+      "ory.BlockId\022+\n\004type\030\002 \001(\0162\035.protocol.Blo" +
+      "ckInventory.Type\032\'\n\007BlockId\022\014\n\004hash\030\001 \001(" +
+      "\014\022\016\n\006number\030\002 \001(\003\"(\n\004Type\022\010\n\004SYNC\020\000\022\013\n\007A" +
+      "DVTISE\020\001\022\t\n\005FETCH\020\002\"n\n\tInventory\022/\n\004type" +
+      "\030\001 \001(\0162!.protocol.Inventory.InventoryTyp" +
+      "e\022\013\n\003ids\030\002 \003(\014\"#\n\rInventoryType\022\007\n\003TRX\020\000" +
+      "\022\t\n\005BLOCK\020\001\"\345\001\n\005Items\022&\n\004type\030\001 \001(\0162\030.pr" +
+      "otocol.Items.ItemType\022\037\n\006blocks\030\002 \003(\0132\017." +
+      "protocol.Block\022,\n\rblock_headers\030\003 \003(\0132\025." +
+      "protocol.BlockHeader\022+\n\014transactions\030\004 \003" +
+      "(\0132\025.protocol.Transaction\"8\n\010ItemType\022\007\n" +
+      "\003ERR\020\000\022\007\n\003TRX\020\001\022\t\n\005BLOCK\020\002\022\017\n\013BLOCKHEADE" +
+      "R\020\003\"4\n\021DynamicProperties\022\037\n\027last_solidit" +
+      "y_block_num\030\001 \001(\003\"9\n\021DisconnectMessage\022$" +
+      "\n\006reason\030\001 \001(\0162\024.protocol.ReasonCode\"\240\002\n" +
+      "\014HelloMessage\022 \n\004from\030\001 \001(\0132\022.protocol.E" +
+      "ndpoint\022\017\n\007version\030\002 \001(\005\022\021\n\ttimestamp\030\003 " +
+      "\001(\003\0226\n\016genesisBlockId\030\004 \001(\0132\036.protocol.H" +
+      "elloMessage.BlockId\0224\n\014solidBlockId\030\005 \001(" +
+      "\0132\036.protocol.HelloMessage.BlockId\0223\n\013hea" +
+      "dBlockId\030\006 \001(\0132\036.protocol.HelloMessage.B" +
+      "lockId\032\'\n\007BlockId\022\014\n\004hash\030\001 \001(\014\022\016\n\006numbe" +
+      "r\030\002 \001(\003\"\361\006\n\rSmartContract\022\026\n\016origin_addr" +
+      "ess\030\001 \001(\014\022\030\n\020contract_address\030\002 \001(\014\022(\n\003a" +
+      "bi\030\003 \001(\0132\033.protocol.SmartContract.ABI\022\020\n" +
+      "\010bytecode\030\004 \001(\014\022\022\n\ncall_value\030\005 \001(\003\022%\n\035c" +
+      "onsume_user_resource_percent\030\006 \001(\003\022\014\n\004na" +
+      "me\030\007 \001(\t\022\033\n\023origin_energy_limit\030\010 \001(\003\022\021\n" +
+      "\tcode_hash\030\t \001(\014\032\370\004\n\003ABI\0221\n\006entrys\030\001 \003(\013" +
+      "2!.protocol.SmartContract.ABI.Entry\032\275\004\n\005" +
+      "Entry\022\021\n\tanonymous\030\001 \001(\010\022\020\n\010constant\030\002 \001" +
+      "(\010\022\014\n\004name\030\003 \001(\t\0227\n\006inputs\030\004 \003(\0132\'.proto" +
+      "col.SmartContract.ABI.Entry.Param\0228\n\007out" +
+      "puts\030\005 \003(\0132\'.protocol.SmartContract.ABI." +
+      "Entry.Param\0229\n\004type\030\006 \001(\0162+.protocol.Sma" +
+      "rtContract.ABI.Entry.EntryType\022\017\n\007payabl" +
+      "e\030\007 \001(\010\022N\n\017stateMutability\030\010 \001(\01625.proto" +
+      "col.SmartContract.ABI.Entry.StateMutabil" +
+      "ityType\0324\n\005Param\022\017\n\007indexed\030\001 \001(\010\022\014\n\004nam" +
+      "e\030\002 \001(\t\022\014\n\004type\030\003 \001(\t\"Y\n\tEntryType\022\024\n\020Un" +
+      "knownEntryType\020\000\022\017\n\013Constructor\020\001\022\014\n\010Fun" +
+      "ction\020\002\022\t\n\005Event\020\003\022\014\n\010Fallback\020\004\"a\n\023Stat" +
+      "eMutabilityType\022\031\n\025UnknownMutabilityType" +
+      "\020\000\022\010\n\004Pure\020\001\022\010\n\004View\020\002\022\016\n\nNonpayable\020\003\022\013" +
+      "\n\007Payable\020\004\"\360\001\n\023InternalTransaction\022\014\n\004h" +
+      "ash\030\001 \001(\014\022\026\n\016caller_address\030\002 \001(\014\022\032\n\022tra" +
+      "nsferTo_address\030\003 \001(\014\022B\n\rcallValueInfo\030\004" +
+      " \003(\0132+.protocol.InternalTransaction.Call" +
+      "ValueInfo\022\014\n\004note\030\005 \001(\014\022\020\n\010rejected\030\006 \001(" +
+      "\010\0323\n\rCallValueInfo\022\021\n\tcallValue\030\001 \001(\003\022\017\n" +
+      "\007tokenId\030\002 \001(\t\"Z\n\035DelegatedResourceAccou" +
+      "ntIndex\022\017\n\007account\030\001 \001(\014\022\024\n\014fromAccounts" +
+      "\030\002 \003(\014\022\022\n\ntoAccounts\030\003 \003(\014\"\240\021\n\010NodeInfo\022" +
+      "\024\n\014beginSyncNum\030\001 \001(\003\022\r\n\005block\030\002 \001(\t\022\025\n\r" +
+      "solidityBlock\030\003 \001(\t\022\033\n\023currentConnectCou" +
+      "nt\030\004 \001(\005\022\032\n\022activeConnectCount\030\005 \001(\005\022\033\n\023" +
+      "passiveConnectCount\030\006 \001(\005\022\021\n\ttotalFlow\030\007" +
+      " \001(\003\0221\n\014peerInfoList\030\010 \003(\0132\033.protocol.No" +
+      "deInfo.PeerInfo\0229\n\016configNodeInfo\030\t \001(\0132" +
+      "!.protocol.NodeInfo.ConfigNodeInfo\0223\n\013ma" +
+      "chineInfo\030\n \001(\0132\036.protocol.NodeInfo.Mach" +
+      "ineInfo\022H\n\023cheatWitnessInfoMap\030\013 \003(\0132+.p" +
+      "rotocol.NodeInfo.CheatWitnessInfoMapEntr" +
+      "y\032:\n\030CheatWitnessInfoMapEntry\022\013\n\003key\030\001 \001" +
+      "(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032\315\004\n\010PeerInfo\022\025\n\rla" +
+      "stSyncBlock\030\001 \001(\t\022\021\n\tremainNum\030\002 \001(\003\022\033\n\023" +
+      "lastBlockUpdateTime\030\003 \001(\003\022\020\n\010syncFlag\030\004 " +
+      "\001(\010\022\037\n\027headBlockTimeWeBothHave\030\005 \001(\003\022\030\n\020" +
+      "needSyncFromPeer\030\006 \001(\010\022\026\n\016needSyncFromUs" +
+      "\030\007 \001(\010\022\014\n\004host\030\010 \001(\t\022\014\n\004port\030\t \001(\005\022\016\n\006no" +
+      "deId\030\n \001(\t\022\023\n\013connectTime\030\013 \001(\003\022\022\n\navgLa" +
+      "tency\030\014 \001(\001\022\027\n\017syncToFetchSize\030\r \001(\005\022\036\n\026" +
+      "syncToFetchSizePeekNum\030\016 \001(\003\022\036\n\026syncBloc" +
+      "kRequestedSize\030\017 \001(\005\022\025\n\runFetchSynNum\030\020 " +
+      "\001(\003\022\027\n\017blockInPorcSize\030\021 \001(\005\022\033\n\023headBloc" +
+      "kWeBothHave\030\022 \001(\t\022\020\n\010isActive\030\023 \001(\010\022\r\n\005s" +
+      "core\030\024 \001(\005\022\021\n\tnodeCount\030\025 \001(\005\022\016\n\006inFlow\030" +
+      "\026 \001(\003\022\027\n\017disconnectTimes\030\027 \001(\005\022\035\n\025localD" +
+      "isconnectReason\030\030 \001(\t\022\036\n\026remoteDisconnec" +
+      "tReason\030\031 \001(\t\032\345\003\n\016ConfigNodeInfo\022\023\n\013code" +
+      "Version\030\001 \001(\t\022\022\n\np2pVersion\030\002 \001(\t\022\022\n\nlis" +
+      "tenPort\030\003 \001(\005\022\026\n\016discoverEnable\030\004 \001(\010\022\026\n" +
+      "\016activeNodeSize\030\005 \001(\005\022\027\n\017passiveNodeSize" +
+      "\030\006 \001(\005\022\024\n\014sendNodeSize\030\007 \001(\005\022\027\n\017maxConne" +
+      "ctCount\030\010 \001(\005\022\035\n\025sameIpMaxConnectCount\030\t" +
+      " \001(\005\022\030\n\020backupListenPort\030\n \001(\005\022\030\n\020backup" +
+      "MemberSize\030\013 \001(\005\022\026\n\016backupPriority\030\014 \001(\005" +
+      "\022\021\n\tdbVersion\030\r \001(\005\022\034\n\024minParticipationR" +
+      "ate\030\016 \001(\005\022\027\n\017supportConstant\030\017 \001(\010\022\024\n\014mi" +
+      "nTimeRatio\030\020 \001(\001\022\024\n\014maxTimeRatio\030\021 \001(\001\022 " +
+      "\n\030allowCreationOfContracts\030\022 \001(\003\022\033\n\023allo" +
+      "wAdaptiveEnergy\030\023 \001(\003\032\215\005\n\013MachineInfo\022\023\n" +
+      "\013threadCount\030\001 \001(\005\022\033\n\023deadLockThreadCoun" +
+      "t\030\002 \001(\005\022\020\n\010cpuCount\030\003 \001(\005\022\023\n\013totalMemory" +
+      "\030\004 \001(\003\022\022\n\nfreeMemory\030\005 \001(\003\022\017\n\007cpuRate\030\006 " +
+      "\001(\001\022\023\n\013javaVersion\030\007 \001(\t\022\016\n\006osName\030\010 \001(\t" +
+      "\022\027\n\017jvmTotalMemoery\030\t \001(\003\022\025\n\rjvmFreeMemo" +
+      "ry\030\n \001(\003\022\026\n\016processCpuRate\030\013 \001(\001\022I\n\022memo" +
+      "ryDescInfoList\030\014 \003(\0132-.protocol.NodeInfo" +
+      ".MachineInfo.MemoryDescInfo\022Q\n\026deadLockT" +
+      "hreadInfoList\030\r \003(\01321.protocol.NodeInfo." +
+      "MachineInfo.DeadLockThreadInfo\032c\n\016Memory" +
+      "DescInfo\022\014\n\004name\030\001 \001(\t\022\020\n\010initSize\030\002 \001(\003" +
+      "\022\017\n\007useSize\030\003 \001(\003\022\017\n\007maxSize\030\004 \001(\003\022\017\n\007us" +
+      "eRate\030\005 \001(\001\032\217\001\n\022DeadLockThreadInfo\022\014\n\004na" +
+      "me\030\001 \001(\t\022\020\n\010lockName\030\002 \001(\t\022\021\n\tlockOwner\030" +
+      "\003 \001(\t\022\r\n\005state\030\004 \001(\t\022\021\n\tblockTime\030\005 \001(\003\022" +
+      "\020\n\010waitTime\030\006 \001(\003\022\022\n\nstackTrace\030\007 \001(\t*7\n" +
+      "\013AccountType\022\n\n\006Normal\020\000\022\016\n\nAssetIssue\020\001" +
+      "\022\014\n\010Contract\020\002*\307\003\n\nReasonCode\022\r\n\tREQUEST" +
+      "ED\020\000\022\020\n\014BAD_PROTOCOL\020\002\022\022\n\016TOO_MANY_PEERS" +
+      "\020\004\022\022\n\016DUPLICATE_PEER\020\005\022\031\n\025INCOMPATIBLE_P" +
+      "ROTOCOL\020\006\022\021\n\rNULL_IDENTITY\020\007\022\020\n\014PEER_QUI" +
+      "TING\020\010\022\027\n\023UNEXPECTED_IDENTITY\020\t\022\022\n\016LOCAL" +
+      "_IDENTITY\020\n\022\020\n\014PING_TIMEOUT\020\013\022\017\n\013USER_RE" +
+      "ASON\020\020\022\t\n\005RESET\020\021\022\r\n\tSYNC_FAIL\020\022\022\016\n\nFETC" +
+      "H_FAIL\020\023\022\n\n\006BAD_TX\020\024\022\r\n\tBAD_BLOCK\020\025\022\n\n\006F" +
+      "ORKED\020\026\022\016\n\nUNLINKABLE\020\027\022\030\n\024INCOMPATIBLE_" +
+      "VERSION\020\030\022\026\n\022INCOMPATIBLE_CHAIN\020\031\022\014\n\010TIM" +
+      "E_OUT\020 \022\020\n\014CONNECT_FAIL\020!\022\037\n\033TOO_MANY_PE" +
+      "ERS_WITH_SAME_IP\020\"\022\014\n\007UNKNOWN\020\377\001BF\n\017org." +
+      "tron.protosB\010ProtocolZ)github.com/tronpr" +
+      "otocol/grpc-gateway/coreb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -48300,7 +62680,7 @@ public final class Protocol {
     internal_static_protocol_Account_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Account_descriptor,
-        new java.lang.String[] { "AccountName", "Type", "Address", "Balance", "Votes", "Asset", "AssetV2", "Frozen", "NetUsage", "AcquiredDelegatedFrozenBalanceForBandwidth", "DelegatedFrozenBalanceForBandwidth", "CreateTime", "LatestOprationTime", "Allowance", "LatestWithdrawTime", "Code", "IsWitness", "IsCommittee", "FrozenSupply", "AssetIssuedName", "AssetIssuedID", "LatestAssetOperationTime", "LatestAssetOperationTimeV2", "FreeNetUsage", "FreeAssetNetUsage", "FreeAssetNetUsageV2", "LatestConsumeTime", "LatestConsumeFreeTime", "AccountId", "AccountResource", "CodeHash", });
+        new java.lang.String[] { "AccountName", "Type", "Address", "Balance", "Votes", "Asset", "AssetV2", "Frozen", "NetUsage", "AcquiredDelegatedFrozenBalanceForBandwidth", "DelegatedFrozenBalanceForBandwidth", "CreateTime", "LatestOprationTime", "Allowance", "LatestWithdrawTime", "Code", "IsWitness", "IsCommittee", "FrozenSupply", "AssetIssuedName", "AssetIssuedID", "LatestAssetOperationTime", "LatestAssetOperationTimeV2", "FreeNetUsage", "FreeAssetNetUsage", "FreeAssetNetUsageV2", "LatestConsumeTime", "LatestConsumeFreeTime", "AccountId", "AccountResource", "CodeHash", "OwnerPermission", "WitnessPermission", "ActivePermission", });
     internal_static_protocol_Account_Frozen_descriptor =
       internal_static_protocol_Account_descriptor.getNestedTypes().get(0);
     internal_static_protocol_Account_Frozen_fieldAccessorTable = new
@@ -48349,44 +62729,50 @@ public final class Protocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Account_AccountResource_descriptor,
         new java.lang.String[] { "EnergyUsage", "FrozenBalanceForEnergy", "LatestConsumeTimeForEnergy", "AcquiredDelegatedFrozenBalanceForEnergy", "DelegatedFrozenBalanceForEnergy", "StorageLimit", "StorageUsage", "LatestExchangeStorageTime", });
-    internal_static_protocol_DelegatedResource_descriptor =
+    internal_static_protocol_Key_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_protocol_Key_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_Key_descriptor,
+        new java.lang.String[] { "Address", "Weight", });
+    internal_static_protocol_DelegatedResource_descriptor =
+      getDescriptor().getMessageTypes().get(7);
     internal_static_protocol_DelegatedResource_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_DelegatedResource_descriptor,
         new java.lang.String[] { "From", "To", "FrozenBalanceForBandwidth", "FrozenBalanceForEnergy", "ExpireTimeForBandwidth", "ExpireTimeForEnergy", });
     internal_static_protocol_authority_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_protocol_authority_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_authority_descriptor,
         new java.lang.String[] { "Account", "PermissionName", });
-    internal_static_protocol_permission_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_protocol_permission_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_protocol_permission_descriptor,
-        new java.lang.String[] { "Account", });
-    internal_static_protocol_Witness_descriptor =
+    internal_static_protocol_Permission_descriptor =
       getDescriptor().getMessageTypes().get(9);
+    internal_static_protocol_Permission_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_Permission_descriptor,
+        new java.lang.String[] { "Type", "Id", "PermissionName", "Threshold", "ParentId", "Operations", "Keys", });
+    internal_static_protocol_Witness_descriptor =
+      getDescriptor().getMessageTypes().get(10);
     internal_static_protocol_Witness_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Witness_descriptor,
         new java.lang.String[] { "Address", "VoteCount", "PubKey", "Url", "TotalProduced", "TotalMissed", "LatestBlockNum", "LatestSlotNum", "IsJobs", });
     internal_static_protocol_Votes_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_protocol_Votes_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Votes_descriptor,
         new java.lang.String[] { "Address", "OldVotes", "NewVotes", });
     internal_static_protocol_TXOutput_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_protocol_TXOutput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TXOutput_descriptor,
         new java.lang.String[] { "Value", "PubKeyHash", });
     internal_static_protocol_TXInput_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_protocol_TXInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TXInput_descriptor,
@@ -48398,19 +62784,25 @@ public final class Protocol {
         internal_static_protocol_TXInput_raw_descriptor,
         new java.lang.String[] { "TxID", "Vout", "PubKey", });
     internal_static_protocol_TXOutputs_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_protocol_TXOutputs_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TXOutputs_descriptor,
         new java.lang.String[] { "Outputs", });
     internal_static_protocol_ResourceReceipt_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_protocol_ResourceReceipt_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_ResourceReceipt_descriptor,
         new java.lang.String[] { "EnergyUsage", "EnergyFee", "OriginEnergyUsage", "EnergyUsageTotal", "NetUsage", "NetFee", "Result", });
+    internal_static_protocol_DeferredStage_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_protocol_DeferredStage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_DeferredStage_descriptor,
+        new java.lang.String[] { "DelaySeconds", "Stage", });
     internal_static_protocol_Transaction_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_protocol_Transaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Transaction_descriptor,
@@ -48420,7 +62812,7 @@ public final class Protocol {
     internal_static_protocol_Transaction_Contract_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Transaction_Contract_descriptor,
-        new java.lang.String[] { "Type", "Parameter", "Provider", "ContractName", });
+        new java.lang.String[] { "Type", "Parameter", "Provider", "ContractName", "PermissionId", });
     internal_static_protocol_Transaction_Result_descriptor =
       internal_static_protocol_Transaction_descriptor.getNestedTypes().get(1);
     internal_static_protocol_Transaction_Result_fieldAccessorTable = new
@@ -48432,9 +62824,9 @@ public final class Protocol {
     internal_static_protocol_Transaction_raw_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Transaction_raw_descriptor,
-        new java.lang.String[] { "RefBlockBytes", "RefBlockNum", "RefBlockHash", "Expiration", "Auths", "Data", "Contract", "Scripts", "Timestamp", "FeeLimit", });
+        new java.lang.String[] { "RefBlockBytes", "RefBlockNum", "RefBlockHash", "Expiration", "Auths", "Data", "Contract", "Scripts", "Timestamp", "FeeLimit", "DeferredStage", });
     internal_static_protocol_TransactionInfo_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_protocol_TransactionInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TransactionInfo_descriptor,
@@ -48445,20 +62837,26 @@ public final class Protocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TransactionInfo_Log_descriptor,
         new java.lang.String[] { "Address", "Topics", "Data", });
+    internal_static_protocol_DeferredTransaction_descriptor =
+      getDescriptor().getMessageTypes().get(19);
+    internal_static_protocol_DeferredTransaction_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_DeferredTransaction_descriptor,
+        new java.lang.String[] { "TransactionId", "PublishTime", "DelaySeconds", "DelayUntil", "Expiration", "SenderAddress", "ReceiverAddress", "Transaction", });
     internal_static_protocol_Transactions_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_protocol_Transactions_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Transactions_descriptor,
         new java.lang.String[] { "Transactions", });
     internal_static_protocol_TransactionSign_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_protocol_TransactionSign_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TransactionSign_descriptor,
         new java.lang.String[] { "Transaction", "PrivateKey", });
     internal_static_protocol_BlockHeader_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_protocol_BlockHeader_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_BlockHeader_descriptor,
@@ -48468,15 +62866,15 @@ public final class Protocol {
     internal_static_protocol_BlockHeader_raw_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_BlockHeader_raw_descriptor,
-        new java.lang.String[] { "Timestamp", "TxTrieRoot", "ParentHash", "Number", "WitnessId", "WitnessAddress", "Version", });
+        new java.lang.String[] { "Timestamp", "TxTrieRoot", "ParentHash", "Number", "WitnessId", "WitnessAddress", "Version", "AccountStateRoot", });
     internal_static_protocol_Block_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_protocol_Block_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Block_descriptor,
         new java.lang.String[] { "Transactions", "BlockHeader", });
     internal_static_protocol_ChainInventory_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_protocol_ChainInventory_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_ChainInventory_descriptor,
@@ -48488,7 +62886,7 @@ public final class Protocol {
         internal_static_protocol_ChainInventory_BlockId_descriptor,
         new java.lang.String[] { "Hash", "Number", });
     internal_static_protocol_BlockInventory_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_protocol_BlockInventory_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_BlockInventory_descriptor,
@@ -48500,31 +62898,31 @@ public final class Protocol {
         internal_static_protocol_BlockInventory_BlockId_descriptor,
         new java.lang.String[] { "Hash", "Number", });
     internal_static_protocol_Inventory_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_protocol_Inventory_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Inventory_descriptor,
         new java.lang.String[] { "Type", "Ids", });
     internal_static_protocol_Items_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_protocol_Items_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Items_descriptor,
         new java.lang.String[] { "Type", "Blocks", "BlockHeaders", "Transactions", });
     internal_static_protocol_DynamicProperties_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_protocol_DynamicProperties_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_DynamicProperties_descriptor,
         new java.lang.String[] { "LastSolidityBlockNum", });
     internal_static_protocol_DisconnectMessage_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_protocol_DisconnectMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_DisconnectMessage_descriptor,
         new java.lang.String[] { "Reason", });
     internal_static_protocol_HelloMessage_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_protocol_HelloMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_HelloMessage_descriptor,
@@ -48536,11 +62934,11 @@ public final class Protocol {
         internal_static_protocol_HelloMessage_BlockId_descriptor,
         new java.lang.String[] { "Hash", "Number", });
     internal_static_protocol_SmartContract_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_protocol_SmartContract_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_SmartContract_descriptor,
-        new java.lang.String[] { "OriginAddress", "ContractAddress", "Abi", "Bytecode", "CallValue", "ConsumeUserResourcePercent", "Name", "OriginEnergyLimit", });
+        new java.lang.String[] { "OriginAddress", "ContractAddress", "Abi", "Bytecode", "CallValue", "ConsumeUserResourcePercent", "Name", "OriginEnergyLimit", "CodeHash", });
     internal_static_protocol_SmartContract_ABI_descriptor =
       internal_static_protocol_SmartContract_descriptor.getNestedTypes().get(0);
     internal_static_protocol_SmartContract_ABI_fieldAccessorTable = new
@@ -48560,7 +62958,7 @@ public final class Protocol {
         internal_static_protocol_SmartContract_ABI_Entry_Param_descriptor,
         new java.lang.String[] { "Indexed", "Name", "Type", });
     internal_static_protocol_InternalTransaction_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_protocol_InternalTransaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_InternalTransaction_descriptor,
@@ -48572,11 +62970,53 @@ public final class Protocol {
         internal_static_protocol_InternalTransaction_CallValueInfo_descriptor,
         new java.lang.String[] { "CallValue", "TokenId", });
     internal_static_protocol_DelegatedResourceAccountIndex_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(33);
     internal_static_protocol_DelegatedResourceAccountIndex_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_DelegatedResourceAccountIndex_descriptor,
         new java.lang.String[] { "Account", "FromAccounts", "ToAccounts", });
+    internal_static_protocol_NodeInfo_descriptor =
+      getDescriptor().getMessageTypes().get(34);
+    internal_static_protocol_NodeInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_NodeInfo_descriptor,
+        new java.lang.String[] { "BeginSyncNum", "Block", "SolidityBlock", "CurrentConnectCount", "ActiveConnectCount", "PassiveConnectCount", "TotalFlow", "PeerInfoList", "ConfigNodeInfo", "MachineInfo", "CheatWitnessInfoMap", });
+    internal_static_protocol_NodeInfo_CheatWitnessInfoMapEntry_descriptor =
+      internal_static_protocol_NodeInfo_descriptor.getNestedTypes().get(0);
+    internal_static_protocol_NodeInfo_CheatWitnessInfoMapEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_NodeInfo_CheatWitnessInfoMapEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_protocol_NodeInfo_PeerInfo_descriptor =
+      internal_static_protocol_NodeInfo_descriptor.getNestedTypes().get(1);
+    internal_static_protocol_NodeInfo_PeerInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_NodeInfo_PeerInfo_descriptor,
+        new java.lang.String[] { "LastSyncBlock", "RemainNum", "LastBlockUpdateTime", "SyncFlag", "HeadBlockTimeWeBothHave", "NeedSyncFromPeer", "NeedSyncFromUs", "Host", "Port", "NodeId", "ConnectTime", "AvgLatency", "SyncToFetchSize", "SyncToFetchSizePeekNum", "SyncBlockRequestedSize", "UnFetchSynNum", "BlockInPorcSize", "HeadBlockWeBothHave", "IsActive", "Score", "NodeCount", "InFlow", "DisconnectTimes", "LocalDisconnectReason", "RemoteDisconnectReason", });
+    internal_static_protocol_NodeInfo_ConfigNodeInfo_descriptor =
+      internal_static_protocol_NodeInfo_descriptor.getNestedTypes().get(2);
+    internal_static_protocol_NodeInfo_ConfigNodeInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_NodeInfo_ConfigNodeInfo_descriptor,
+        new java.lang.String[] { "CodeVersion", "P2PVersion", "ListenPort", "DiscoverEnable", "ActiveNodeSize", "PassiveNodeSize", "SendNodeSize", "MaxConnectCount", "SameIpMaxConnectCount", "BackupListenPort", "BackupMemberSize", "BackupPriority", "DbVersion", "MinParticipationRate", "SupportConstant", "MinTimeRatio", "MaxTimeRatio", "AllowCreationOfContracts", "AllowAdaptiveEnergy", });
+    internal_static_protocol_NodeInfo_MachineInfo_descriptor =
+      internal_static_protocol_NodeInfo_descriptor.getNestedTypes().get(3);
+    internal_static_protocol_NodeInfo_MachineInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_NodeInfo_MachineInfo_descriptor,
+        new java.lang.String[] { "ThreadCount", "DeadLockThreadCount", "CpuCount", "TotalMemory", "FreeMemory", "CpuRate", "JavaVersion", "OsName", "JvmTotalMemoery", "JvmFreeMemory", "ProcessCpuRate", "MemoryDescInfoList", "DeadLockThreadInfoList", });
+    internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_descriptor =
+      internal_static_protocol_NodeInfo_MachineInfo_descriptor.getNestedTypes().get(0);
+    internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_NodeInfo_MachineInfo_MemoryDescInfo_descriptor,
+        new java.lang.String[] { "Name", "InitSize", "UseSize", "MaxSize", "UseRate", });
+    internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_descriptor =
+      internal_static_protocol_NodeInfo_MachineInfo_descriptor.getNestedTypes().get(1);
+    internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_protocol_NodeInfo_MachineInfo_DeadLockThreadInfo_descriptor,
+        new java.lang.String[] { "Name", "LockName", "LockOwner", "State", "BlockTime", "WaitTime", "StackTrace", });
     com.google.protobuf.AnyProto.getDescriptor();
     org.tron.protos.Discover.getDescriptor();
   }

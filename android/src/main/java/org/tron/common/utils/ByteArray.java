@@ -18,7 +18,6 @@
 
 package org.tron.common.utils;
 
-
 import org.spongycastle.util.encoders.Hex;
 
 import java.math.BigInteger;
@@ -69,5 +68,20 @@ public class ByteArray {
 
     public static byte[] fromLong(long val) {
         return ByteBuffer.allocate(8).putLong(val).array();
+    }
+
+    /**
+     * Generate a subarray of a given byte array.
+     *
+     * @param input the input byte array
+     * @param start the start index
+     * @param end the end index
+     * @return a subarray of <tt>input</tt>, ranging from <tt>start</tt> (inclusively) to <tt>end</tt>
+     * (exclusively)
+     */
+    public static byte[] subArray(byte[] input, int start, int end) {
+        byte[] result = new byte[end - start];
+        System.arraycopy(input, start, result, 0, end - start);
+        return result;
     }
 }

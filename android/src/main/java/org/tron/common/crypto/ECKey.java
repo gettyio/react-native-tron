@@ -18,13 +18,30 @@
 
 package org.tron.common.crypto;
 
-import org.tron.common.crypto.jce.ECKeyAgreement;
-import org.tron.common.crypto.jce.ECKeyFactory;
-import org.tron.common.crypto.jce.ECKeyPairGenerator;
-import org.tron.common.crypto.jce.ECSignatureFactory;
-import org.tron.common.crypto.jce.TronCastleProvider;
-import org.tron.common.utils.ByteUtil;
+import static org.tron.common.utils.BIUtil.isLessThan;
+import static org.tron.common.utils.ByteUtil.bigIntegerToBytes;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.security.InvalidKeyException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.Provider;
+import java.security.PublicKey;
+import java.security.SecureRandom;
+import java.security.Signature;
+import java.security.SignatureException;
+import java.security.interfaces.ECPrivateKey;
+import java.security.interfaces.ECPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import javax.annotation.Nullable;
+import javax.crypto.KeyAgreement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.spongycastle.asn1.ASN1InputStream;
 import org.spongycastle.asn1.ASN1Integer;
 import org.spongycastle.asn1.DLSequence;
@@ -53,30 +70,12 @@ import org.spongycastle.math.ec.ECPoint;
 import org.spongycastle.util.BigIntegers;
 import org.spongycastle.util.encoders.Base64;
 import org.spongycastle.util.encoders.Hex;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.math.BigInteger;
-import java.nio.charset.Charset;
-import java.security.InvalidKeyException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.Provider;
-import java.security.PublicKey;
-import java.security.SecureRandom;
-import java.security.Signature;
-import java.security.SignatureException;
-import java.security.interfaces.ECPrivateKey;
-import java.security.interfaces.ECPublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
-
-import javax.annotation.Nullable;
-import javax.crypto.KeyAgreement;
-
-import static org.tron.common.utils.BIUtil.isLessThan;
-import static org.tron.common.utils.ByteUtil.bigIntegerToBytes;
+import org.tron.common.crypto.jce.ECKeyAgreement;
+import org.tron.common.crypto.jce.ECKeyFactory;
+import org.tron.common.crypto.jce.ECKeyPairGenerator;
+import org.tron.common.crypto.jce.ECSignatureFactory;
+import org.tron.common.crypto.jce.TronCastleProvider;
+import org.tron.common.utils.ByteUtil;
 
 public class ECKey implements Serializable {
 
@@ -92,6 +91,7 @@ public class ECKey implements Serializable {
    * https://github.com/bitcoin/bips/blob/master/bip-0062.mediawiki #Low_S_values_in_signatures
    */
   public static final BigInteger HALF_CURVE_ORDER;
+  private static final Logger logger = LoggerFactory.getLogger(ECKey.class);
   private static final BigInteger SECP256K1N = new BigInteger
       ("fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141", 16);
   private static final SecureRandom secureRandom;
@@ -168,9 +168,6 @@ public class ECKey implements Serializable {
   public ECKey(SecureRandom secureRandom) {
     this(TronCastleProvider.getInstance(), secureRandom);
   }
-
-
-
 
   /**
    * Pair a private key with a public EC point. <p> All private key operations will use the
@@ -300,7 +297,7 @@ public class ECKey implements Serializable {
    * @return -
    */
   public static ECKey fromPrivateAndPrecalculatedPublic(BigInteger priv,
-                                                        ECPoint pub) {
+      ECPoint pub) {
     return new ECKey(priv, pub);
   }
 
@@ -430,7 +427,7 @@ public class ECKey implements Serializable {
 
   public static byte[] signatureToKeyBytes(byte[] messageHash,
       ECDSASignature sig) throws
-          SignatureException {
+      SignatureException {
     check(messageHash.length == 32, "messageHash argument has length " +
         messageHash.length);
     int header = sig.v;
@@ -476,7 +473,7 @@ public class ECKey implements Serializable {
    */
   public static byte[] signatureToAddress(byte[] messageHash,
       ECDSASignature sig) throws
-          SignatureException {
+      SignatureException {
     return computeAddress(signatureToKeyBytes(messageHash, sig));
   }
 
@@ -530,6 +527,7 @@ public class ECKey implements Serializable {
       // specially crafted signatures.
       // Those signatures are inherently invalid/attack sigs so we just
       // fail them here rather than crash the thread.
+      logger.error("Caught NPE inside bouncy castle", npe);
       return false;
     }
   }
@@ -680,7 +678,7 @@ public class ECKey implements Serializable {
    */
   @Nullable
   public static ECKey recoverFromSignature(int recId, ECDSASignature sig,
-                                           byte[] messageHash) {
+      byte[] messageHash) {
     final byte[] pubBytes = recoverPubBytesFromSignature(recId, sig,
         messageHash);
     if (pubBytes == null) {
@@ -936,7 +934,7 @@ public class ECKey implements Serializable {
             /* lastPhase */ true);
         return new BigInteger(1, agreement.generateSecret());
       } catch (IllegalStateException | InvalidKeyException |
-              InvalidKeySpecException ex) {
+          InvalidKeySpecException ex) {
         throw new RuntimeException("ECDH key agreement failure", ex);
       }
     }
@@ -1104,7 +1102,7 @@ public class ECKey implements Serializable {
     }
 
     public static boolean validateComponents(BigInteger r, BigInteger s,
-                                             byte v) {
+        byte v) {
 
       if (v != 27 && v != 28) {
         return false;
@@ -1196,8 +1194,8 @@ public class ECKey implements Serializable {
           : this.v;
 
       return ByteUtil.merge(
-          bigIntegerToBytes(this.r, 32),
-          bigIntegerToBytes(this.s, 32),
+          ByteUtil.bigIntegerToBytes(this.r, 32),
+          ByteUtil.bigIntegerToBytes(this.s, 32),
           new byte[]{fixedV});
     }
 

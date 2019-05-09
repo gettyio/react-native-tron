@@ -1,0 +1,64 @@
+{
+  "name": "RNTron",
+  "version": "1.0.0",
+  "summary": "React Native Tron Library",
+  "description": "React Native Tron Library",
+  "homepage": "https://getty.io",
+  "license": "MIT",
+  "authors": {
+    "Brandon Holland": "bholland@brandon-holland.com"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source": {
+    "git": "https://github.com/gettyio/react-native-tron.git"
+  },
+  "source_files": [
+    "RNTron/*.{h,m}",
+    "RNTron/Categories/*.{h,m}"
+  ],
+  "requires_arc": true,
+  "dependencies": {
+    "React": [
+
+    ],
+    "TrezorCrypto": [
+
+    ],
+    "NSData+FastHex": [
+
+    ]
+  },
+  "pod_target_xcconfig": {
+    "GCC_PREPROCESSOR_DEFINITIONS": "$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1",
+    "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES": "YES"
+  },
+  "subspecs": [
+    {
+      "name": "Messages",
+      "source_files": "RNTron/**/*.pbobjc.{h,m}",
+      "header_mappings_dir": "RNTron",
+      "requires_arc": false,
+      "dependencies": {
+        "Protobuf": [
+
+        ]
+      }
+    },
+    {
+      "name": "Services",
+      "source_files": "RNTron/**/*.pbrpc.{h,m}",
+      "header_mappings_dir": "RNTron",
+      "requires_arc": true,
+      "dependencies": {
+        "gRPC-ProtoRPC": [
+          "1.12.0"
+        ],
+        "RNTron/Messages": [
+
+        ]
+      }
+    }
+  ]
+}
