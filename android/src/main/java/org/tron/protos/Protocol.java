@@ -21988,521 +21988,6 @@ public final class Protocol {
 
   }
 
-  public interface DeferredStageOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:protocol.DeferredStage)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int64 delaySeconds = 1;</code>
-     */
-    long getDelaySeconds();
-
-    /**
-     * <code>int32 stage = 2;</code>
-     */
-    int getStage();
-  }
-  /**
-   * Protobuf type {@code protocol.DeferredStage}
-   */
-  public  static final class DeferredStage extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:protocol.DeferredStage)
-      DeferredStageOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use DeferredStage.newBuilder() to construct.
-    private DeferredStage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private DeferredStage() {
-      delaySeconds_ = 0L;
-      stage_ = 0;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DeferredStage(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-
-              delaySeconds_ = input.readInt64();
-              break;
-            }
-            case 16: {
-
-              stage_ = input.readInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              org.tron.protos.Protocol.DeferredStage.class, org.tron.protos.Protocol.DeferredStage.Builder.class);
-    }
-
-    public static final int DELAYSECONDS_FIELD_NUMBER = 1;
-    private long delaySeconds_;
-    /**
-     * <code>int64 delaySeconds = 1;</code>
-     */
-    public long getDelaySeconds() {
-      return delaySeconds_;
-    }
-
-    public static final int STAGE_FIELD_NUMBER = 2;
-    private int stage_;
-    /**
-     * <code>int32 stage = 2;</code>
-     */
-    public int getStage() {
-      return stage_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (delaySeconds_ != 0L) {
-        output.writeInt64(1, delaySeconds_);
-      }
-      if (stage_ != 0) {
-        output.writeInt32(2, stage_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (delaySeconds_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, delaySeconds_);
-      }
-      if (stage_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, stage_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof org.tron.protos.Protocol.DeferredStage)) {
-        return super.equals(obj);
-      }
-      org.tron.protos.Protocol.DeferredStage other = (org.tron.protos.Protocol.DeferredStage) obj;
-
-      boolean result = true;
-      result = result && (getDelaySeconds()
-          == other.getDelaySeconds());
-      result = result && (getStage()
-          == other.getStage());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + DELAYSECONDS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getDelaySeconds());
-      hash = (37 * hash) + STAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getStage();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static org.tron.protos.Protocol.DeferredStage parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(org.tron.protos.Protocol.DeferredStage prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code protocol.DeferredStage}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:protocol.DeferredStage)
-        org.tron.protos.Protocol.DeferredStageOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                org.tron.protos.Protocol.DeferredStage.class, org.tron.protos.Protocol.DeferredStage.Builder.class);
-      }
-
-      // Construct using org.tron.protos.Protocol.DeferredStage.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        delaySeconds_ = 0L;
-
-        stage_ = 0;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.tron.protos.Protocol.internal_static_protocol_DeferredStage_descriptor;
-      }
-
-      public org.tron.protos.Protocol.DeferredStage getDefaultInstanceForType() {
-        return org.tron.protos.Protocol.DeferredStage.getDefaultInstance();
-      }
-
-      public org.tron.protos.Protocol.DeferredStage build() {
-        org.tron.protos.Protocol.DeferredStage result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public org.tron.protos.Protocol.DeferredStage buildPartial() {
-        org.tron.protos.Protocol.DeferredStage result = new org.tron.protos.Protocol.DeferredStage(this);
-        result.delaySeconds_ = delaySeconds_;
-        result.stage_ = stage_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.tron.protos.Protocol.DeferredStage) {
-          return mergeFrom((org.tron.protos.Protocol.DeferredStage)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(org.tron.protos.Protocol.DeferredStage other) {
-        if (other == org.tron.protos.Protocol.DeferredStage.getDefaultInstance()) return this;
-        if (other.getDelaySeconds() != 0L) {
-          setDelaySeconds(other.getDelaySeconds());
-        }
-        if (other.getStage() != 0) {
-          setStage(other.getStage());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        org.tron.protos.Protocol.DeferredStage parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.tron.protos.Protocol.DeferredStage) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private long delaySeconds_ ;
-      /**
-       * <code>int64 delaySeconds = 1;</code>
-       */
-      public long getDelaySeconds() {
-        return delaySeconds_;
-      }
-      /**
-       * <code>int64 delaySeconds = 1;</code>
-       */
-      public Builder setDelaySeconds(long value) {
-        
-        delaySeconds_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 delaySeconds = 1;</code>
-       */
-      public Builder clearDelaySeconds() {
-        
-        delaySeconds_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private int stage_ ;
-      /**
-       * <code>int32 stage = 2;</code>
-       */
-      public int getStage() {
-        return stage_;
-      }
-      /**
-       * <code>int32 stage = 2;</code>
-       */
-      public Builder setStage(int value) {
-        
-        stage_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 stage = 2;</code>
-       */
-      public Builder clearStage() {
-        
-        stage_ = 0;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:protocol.DeferredStage)
-    }
-
-    // @@protoc_insertion_point(class_scope:protocol.DeferredStage)
-    private static final org.tron.protos.Protocol.DeferredStage DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new org.tron.protos.Protocol.DeferredStage();
-    }
-
-    public static org.tron.protos.Protocol.DeferredStage getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<DeferredStage>
-        PARSER = new com.google.protobuf.AbstractParser<DeferredStage>() {
-      public DeferredStage parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DeferredStage(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<DeferredStage> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<DeferredStage> getParserForType() {
-      return PARSER;
-    }
-
-    public org.tron.protos.Protocol.DeferredStage getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface TransactionOrBuilder extends
       // @@protoc_insertion_point(interface_extends:protocol.Transaction)
       com.google.protobuf.MessageOrBuilder {
@@ -22957,14 +22442,6 @@ public final class Protocol {
          * <code>AccountPermissionUpdateContract = 46;</code>
          */
         AccountPermissionUpdateContract(46),
-        /**
-         * <code>CancelDeferredTransactionContract = 47;</code>
-         */
-        CancelDeferredTransactionContract(47),
-        /**
-         * <code>ClearABIContract = 48;</code>
-         */
-        ClearABIContract(48),
         UNRECOGNIZED(-1),
         ;
 
@@ -23094,14 +22571,6 @@ public final class Protocol {
          * <code>AccountPermissionUpdateContract = 46;</code>
          */
         public static final int AccountPermissionUpdateContract_VALUE = 46;
-        /**
-         * <code>CancelDeferredTransactionContract = 47;</code>
-         */
-        public static final int CancelDeferredTransactionContract_VALUE = 47;
-        /**
-         * <code>ClearABIContract = 48;</code>
-         */
-        public static final int ClearABIContract_VALUE = 48;
 
 
         public final int getNumber() {
@@ -23152,8 +22621,6 @@ public final class Protocol {
             case 44: return ExchangeTransactionContract;
             case 45: return UpdateEnergyLimitContract;
             case 46: return AccountPermissionUpdateContract;
-            case 47: return CancelDeferredTransactionContract;
-            case 48: return ClearABIContract;
             default: return null;
           }
         }
@@ -24285,10 +23752,6 @@ public final class Protocol {
          * <code>UNKNOWN = 13;</code>
          */
         UNKNOWN(13),
-        /**
-         * <code>TRANSFER_FAILED = 14;</code>
-         */
-        TRANSFER_FAILED(14),
         UNRECOGNIZED(-1),
         ;
 
@@ -24348,10 +23811,6 @@ public final class Protocol {
          * <code>UNKNOWN = 13;</code>
          */
         public static final int UNKNOWN_VALUE = 13;
-        /**
-         * <code>TRANSFER_FAILED = 14;</code>
-         */
-        public static final int TRANSFER_FAILED_VALUE = 14;
 
 
         public final int getNumber() {
@@ -24386,7 +23845,6 @@ public final class Protocol {
             case 11: return OUT_OF_TIME;
             case 12: return JVM_STACK_OVER_FLOW;
             case 13: return UNKNOWN;
-            case 14: return TRANSFER_FAILED;
             default: return null;
           }
         }
@@ -25515,19 +24973,6 @@ public final class Protocol {
        * <code>int64 fee_limit = 18;</code>
        */
       long getFeeLimit();
-
-      /**
-       * <code>.protocol.DeferredStage deferredStage = 19;</code>
-       */
-      boolean hasDeferredStage();
-      /**
-       * <code>.protocol.DeferredStage deferredStage = 19;</code>
-       */
-      org.tron.protos.Protocol.DeferredStage getDeferredStage();
-      /**
-       * <code>.protocol.DeferredStage deferredStage = 19;</code>
-       */
-      org.tron.protos.Protocol.DeferredStageOrBuilder getDeferredStageOrBuilder();
     }
     /**
      * Protobuf type {@code protocol.Transaction.raw}
@@ -25641,19 +25086,6 @@ public final class Protocol {
               case 144: {
 
                 feeLimit_ = input.readInt64();
-                break;
-              }
-              case 154: {
-                org.tron.protos.Protocol.DeferredStage.Builder subBuilder = null;
-                if (deferredStage_ != null) {
-                  subBuilder = deferredStage_.toBuilder();
-                }
-                deferredStage_ = input.readMessage(org.tron.protos.Protocol.DeferredStage.parser(), extensionRegistry);
-                if (subBuilder != null) {
-                  subBuilder.mergeFrom(deferredStage_);
-                  deferredStage_ = subBuilder.buildPartial();
-                }
-
                 break;
               }
             }
@@ -25857,27 +25289,6 @@ public final class Protocol {
         return feeLimit_;
       }
 
-      public static final int DEFERREDSTAGE_FIELD_NUMBER = 19;
-      private org.tron.protos.Protocol.DeferredStage deferredStage_;
-      /**
-       * <code>.protocol.DeferredStage deferredStage = 19;</code>
-       */
-      public boolean hasDeferredStage() {
-        return deferredStage_ != null;
-      }
-      /**
-       * <code>.protocol.DeferredStage deferredStage = 19;</code>
-       */
-      public org.tron.protos.Protocol.DeferredStage getDeferredStage() {
-        return deferredStage_ == null ? org.tron.protos.Protocol.DeferredStage.getDefaultInstance() : deferredStage_;
-      }
-      /**
-       * <code>.protocol.DeferredStage deferredStage = 19;</code>
-       */
-      public org.tron.protos.Protocol.DeferredStageOrBuilder getDeferredStageOrBuilder() {
-        return getDeferredStage();
-      }
-
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -25919,9 +25330,6 @@ public final class Protocol {
         }
         if (feeLimit_ != 0L) {
           output.writeInt64(18, feeLimit_);
-        }
-        if (deferredStage_ != null) {
-          output.writeMessage(19, getDeferredStage());
         }
         unknownFields.writeTo(output);
       }
@@ -25971,10 +25379,6 @@ public final class Protocol {
           size += com.google.protobuf.CodedOutputStream
             .computeInt64Size(18, feeLimit_);
         }
-        if (deferredStage_ != null) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(19, getDeferredStage());
-        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -26011,11 +25415,6 @@ public final class Protocol {
             == other.getTimestamp());
         result = result && (getFeeLimit()
             == other.getFeeLimit());
-        result = result && (hasDeferredStage() == other.hasDeferredStage());
-        if (hasDeferredStage()) {
-          result = result && getDeferredStage()
-              .equals(other.getDeferredStage());
-        }
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -26055,10 +25454,6 @@ public final class Protocol {
         hash = (37 * hash) + FEE_LIMIT_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
             getFeeLimit());
-        if (hasDeferredStage()) {
-          hash = (37 * hash) + DEFERREDSTAGE_FIELD_NUMBER;
-          hash = (53 * hash) + getDeferredStage().hashCode();
-        }
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -26218,12 +25613,6 @@ public final class Protocol {
 
           feeLimit_ = 0L;
 
-          if (deferredStageBuilder_ == null) {
-            deferredStage_ = null;
-          } else {
-            deferredStage_ = null;
-            deferredStageBuilder_ = null;
-          }
           return this;
         }
 
@@ -26274,11 +25663,6 @@ public final class Protocol {
           result.scripts_ = scripts_;
           result.timestamp_ = timestamp_;
           result.feeLimit_ = feeLimit_;
-          if (deferredStageBuilder_ == null) {
-            result.deferredStage_ = deferredStage_;
-          } else {
-            result.deferredStage_ = deferredStageBuilder_.build();
-          }
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -26396,9 +25780,6 @@ public final class Protocol {
           }
           if (other.getFeeLimit() != 0L) {
             setFeeLimit(other.getFeeLimit());
-          }
-          if (other.hasDeferredStage()) {
-            mergeDeferredStage(other.getDeferredStage());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -27222,123 +26603,6 @@ public final class Protocol {
           feeLimit_ = 0L;
           onChanged();
           return this;
-        }
-
-        private org.tron.protos.Protocol.DeferredStage deferredStage_ = null;
-        private com.google.protobuf.SingleFieldBuilderV3<
-            org.tron.protos.Protocol.DeferredStage, org.tron.protos.Protocol.DeferredStage.Builder, org.tron.protos.Protocol.DeferredStageOrBuilder> deferredStageBuilder_;
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        public boolean hasDeferredStage() {
-          return deferredStageBuilder_ != null || deferredStage_ != null;
-        }
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        public org.tron.protos.Protocol.DeferredStage getDeferredStage() {
-          if (deferredStageBuilder_ == null) {
-            return deferredStage_ == null ? org.tron.protos.Protocol.DeferredStage.getDefaultInstance() : deferredStage_;
-          } else {
-            return deferredStageBuilder_.getMessage();
-          }
-        }
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        public Builder setDeferredStage(org.tron.protos.Protocol.DeferredStage value) {
-          if (deferredStageBuilder_ == null) {
-            if (value == null) {
-              throw new NullPointerException();
-            }
-            deferredStage_ = value;
-            onChanged();
-          } else {
-            deferredStageBuilder_.setMessage(value);
-          }
-
-          return this;
-        }
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        public Builder setDeferredStage(
-            org.tron.protos.Protocol.DeferredStage.Builder builderForValue) {
-          if (deferredStageBuilder_ == null) {
-            deferredStage_ = builderForValue.build();
-            onChanged();
-          } else {
-            deferredStageBuilder_.setMessage(builderForValue.build());
-          }
-
-          return this;
-        }
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        public Builder mergeDeferredStage(org.tron.protos.Protocol.DeferredStage value) {
-          if (deferredStageBuilder_ == null) {
-            if (deferredStage_ != null) {
-              deferredStage_ =
-                org.tron.protos.Protocol.DeferredStage.newBuilder(deferredStage_).mergeFrom(value).buildPartial();
-            } else {
-              deferredStage_ = value;
-            }
-            onChanged();
-          } else {
-            deferredStageBuilder_.mergeFrom(value);
-          }
-
-          return this;
-        }
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        public Builder clearDeferredStage() {
-          if (deferredStageBuilder_ == null) {
-            deferredStage_ = null;
-            onChanged();
-          } else {
-            deferredStage_ = null;
-            deferredStageBuilder_ = null;
-          }
-
-          return this;
-        }
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        public org.tron.protos.Protocol.DeferredStage.Builder getDeferredStageBuilder() {
-          
-          onChanged();
-          return getDeferredStageFieldBuilder().getBuilder();
-        }
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        public org.tron.protos.Protocol.DeferredStageOrBuilder getDeferredStageOrBuilder() {
-          if (deferredStageBuilder_ != null) {
-            return deferredStageBuilder_.getMessageOrBuilder();
-          } else {
-            return deferredStage_ == null ?
-                org.tron.protos.Protocol.DeferredStage.getDefaultInstance() : deferredStage_;
-          }
-        }
-        /**
-         * <code>.protocol.DeferredStage deferredStage = 19;</code>
-         */
-        private com.google.protobuf.SingleFieldBuilderV3<
-            org.tron.protos.Protocol.DeferredStage, org.tron.protos.Protocol.DeferredStage.Builder, org.tron.protos.Protocol.DeferredStageOrBuilder> 
-            getDeferredStageFieldBuilder() {
-          if (deferredStageBuilder_ == null) {
-            deferredStageBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                org.tron.protos.Protocol.DeferredStage, org.tron.protos.Protocol.DeferredStage.Builder, org.tron.protos.Protocol.DeferredStageOrBuilder>(
-                    getDeferredStage(),
-                    getParentForChildren(),
-                    isClean());
-            deferredStage_ = null;
-          }
-          return deferredStageBuilder_;
         }
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -31630,1042 +30894,6 @@ public final class Protocol {
 
   }
 
-  public interface DeferredTransactionOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:protocol.DeferredTransaction)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bytes transactionId = 1;</code>
-     */
-    com.google.protobuf.ByteString getTransactionId();
-
-    /**
-     * <code>int64 publishTime = 2;</code>
-     */
-    long getPublishTime();
-
-    /**
-     * <code>int64 delaySeconds = 3;</code>
-     */
-    long getDelaySeconds();
-
-    /**
-     * <code>int64 delayUntil = 4;</code>
-     */
-    long getDelayUntil();
-
-    /**
-     * <code>int64 expiration = 5;</code>
-     */
-    long getExpiration();
-
-    /**
-     * <code>bytes senderAddress = 6;</code>
-     */
-    com.google.protobuf.ByteString getSenderAddress();
-
-    /**
-     * <code>bytes receiverAddress = 7;</code>
-     */
-    com.google.protobuf.ByteString getReceiverAddress();
-
-    /**
-     * <code>.protocol.Transaction transaction = 8;</code>
-     */
-    boolean hasTransaction();
-    /**
-     * <code>.protocol.Transaction transaction = 8;</code>
-     */
-    org.tron.protos.Protocol.Transaction getTransaction();
-    /**
-     * <code>.protocol.Transaction transaction = 8;</code>
-     */
-    org.tron.protos.Protocol.TransactionOrBuilder getTransactionOrBuilder();
-  }
-  /**
-   * Protobuf type {@code protocol.DeferredTransaction}
-   */
-  public  static final class DeferredTransaction extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:protocol.DeferredTransaction)
-      DeferredTransactionOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use DeferredTransaction.newBuilder() to construct.
-    private DeferredTransaction(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private DeferredTransaction() {
-      transactionId_ = com.google.protobuf.ByteString.EMPTY;
-      publishTime_ = 0L;
-      delaySeconds_ = 0L;
-      delayUntil_ = 0L;
-      expiration_ = 0L;
-      senderAddress_ = com.google.protobuf.ByteString.EMPTY;
-      receiverAddress_ = com.google.protobuf.ByteString.EMPTY;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DeferredTransaction(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-
-              transactionId_ = input.readBytes();
-              break;
-            }
-            case 16: {
-
-              publishTime_ = input.readInt64();
-              break;
-            }
-            case 24: {
-
-              delaySeconds_ = input.readInt64();
-              break;
-            }
-            case 32: {
-
-              delayUntil_ = input.readInt64();
-              break;
-            }
-            case 40: {
-
-              expiration_ = input.readInt64();
-              break;
-            }
-            case 50: {
-
-              senderAddress_ = input.readBytes();
-              break;
-            }
-            case 58: {
-
-              receiverAddress_ = input.readBytes();
-              break;
-            }
-            case 66: {
-              org.tron.protos.Protocol.Transaction.Builder subBuilder = null;
-              if (transaction_ != null) {
-                subBuilder = transaction_.toBuilder();
-              }
-              transaction_ = input.readMessage(org.tron.protos.Protocol.Transaction.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(transaction_);
-                transaction_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              org.tron.protos.Protocol.DeferredTransaction.class, org.tron.protos.Protocol.DeferredTransaction.Builder.class);
-    }
-
-    public static final int TRANSACTIONID_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString transactionId_;
-    /**
-     * <code>bytes transactionId = 1;</code>
-     */
-    public com.google.protobuf.ByteString getTransactionId() {
-      return transactionId_;
-    }
-
-    public static final int PUBLISHTIME_FIELD_NUMBER = 2;
-    private long publishTime_;
-    /**
-     * <code>int64 publishTime = 2;</code>
-     */
-    public long getPublishTime() {
-      return publishTime_;
-    }
-
-    public static final int DELAYSECONDS_FIELD_NUMBER = 3;
-    private long delaySeconds_;
-    /**
-     * <code>int64 delaySeconds = 3;</code>
-     */
-    public long getDelaySeconds() {
-      return delaySeconds_;
-    }
-
-    public static final int DELAYUNTIL_FIELD_NUMBER = 4;
-    private long delayUntil_;
-    /**
-     * <code>int64 delayUntil = 4;</code>
-     */
-    public long getDelayUntil() {
-      return delayUntil_;
-    }
-
-    public static final int EXPIRATION_FIELD_NUMBER = 5;
-    private long expiration_;
-    /**
-     * <code>int64 expiration = 5;</code>
-     */
-    public long getExpiration() {
-      return expiration_;
-    }
-
-    public static final int SENDERADDRESS_FIELD_NUMBER = 6;
-    private com.google.protobuf.ByteString senderAddress_;
-    /**
-     * <code>bytes senderAddress = 6;</code>
-     */
-    public com.google.protobuf.ByteString getSenderAddress() {
-      return senderAddress_;
-    }
-
-    public static final int RECEIVERADDRESS_FIELD_NUMBER = 7;
-    private com.google.protobuf.ByteString receiverAddress_;
-    /**
-     * <code>bytes receiverAddress = 7;</code>
-     */
-    public com.google.protobuf.ByteString getReceiverAddress() {
-      return receiverAddress_;
-    }
-
-    public static final int TRANSACTION_FIELD_NUMBER = 8;
-    private org.tron.protos.Protocol.Transaction transaction_;
-    /**
-     * <code>.protocol.Transaction transaction = 8;</code>
-     */
-    public boolean hasTransaction() {
-      return transaction_ != null;
-    }
-    /**
-     * <code>.protocol.Transaction transaction = 8;</code>
-     */
-    public org.tron.protos.Protocol.Transaction getTransaction() {
-      return transaction_ == null ? org.tron.protos.Protocol.Transaction.getDefaultInstance() : transaction_;
-    }
-    /**
-     * <code>.protocol.Transaction transaction = 8;</code>
-     */
-    public org.tron.protos.Protocol.TransactionOrBuilder getTransactionOrBuilder() {
-      return getTransaction();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!transactionId_.isEmpty()) {
-        output.writeBytes(1, transactionId_);
-      }
-      if (publishTime_ != 0L) {
-        output.writeInt64(2, publishTime_);
-      }
-      if (delaySeconds_ != 0L) {
-        output.writeInt64(3, delaySeconds_);
-      }
-      if (delayUntil_ != 0L) {
-        output.writeInt64(4, delayUntil_);
-      }
-      if (expiration_ != 0L) {
-        output.writeInt64(5, expiration_);
-      }
-      if (!senderAddress_.isEmpty()) {
-        output.writeBytes(6, senderAddress_);
-      }
-      if (!receiverAddress_.isEmpty()) {
-        output.writeBytes(7, receiverAddress_);
-      }
-      if (transaction_ != null) {
-        output.writeMessage(8, getTransaction());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!transactionId_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, transactionId_);
-      }
-      if (publishTime_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, publishTime_);
-      }
-      if (delaySeconds_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, delaySeconds_);
-      }
-      if (delayUntil_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, delayUntil_);
-      }
-      if (expiration_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, expiration_);
-      }
-      if (!senderAddress_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, senderAddress_);
-      }
-      if (!receiverAddress_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(7, receiverAddress_);
-      }
-      if (transaction_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(8, getTransaction());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof org.tron.protos.Protocol.DeferredTransaction)) {
-        return super.equals(obj);
-      }
-      org.tron.protos.Protocol.DeferredTransaction other = (org.tron.protos.Protocol.DeferredTransaction) obj;
-
-      boolean result = true;
-      result = result && getTransactionId()
-          .equals(other.getTransactionId());
-      result = result && (getPublishTime()
-          == other.getPublishTime());
-      result = result && (getDelaySeconds()
-          == other.getDelaySeconds());
-      result = result && (getDelayUntil()
-          == other.getDelayUntil());
-      result = result && (getExpiration()
-          == other.getExpiration());
-      result = result && getSenderAddress()
-          .equals(other.getSenderAddress());
-      result = result && getReceiverAddress()
-          .equals(other.getReceiverAddress());
-      result = result && (hasTransaction() == other.hasTransaction());
-      if (hasTransaction()) {
-        result = result && getTransaction()
-            .equals(other.getTransaction());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TRANSACTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + getTransactionId().hashCode();
-      hash = (37 * hash) + PUBLISHTIME_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getPublishTime());
-      hash = (37 * hash) + DELAYSECONDS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getDelaySeconds());
-      hash = (37 * hash) + DELAYUNTIL_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getDelayUntil());
-      hash = (37 * hash) + EXPIRATION_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getExpiration());
-      hash = (37 * hash) + SENDERADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getSenderAddress().hashCode();
-      hash = (37 * hash) + RECEIVERADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getReceiverAddress().hashCode();
-      if (hasTransaction()) {
-        hash = (37 * hash) + TRANSACTION_FIELD_NUMBER;
-        hash = (53 * hash) + getTransaction().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static org.tron.protos.Protocol.DeferredTransaction parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(org.tron.protos.Protocol.DeferredTransaction prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code protocol.DeferredTransaction}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:protocol.DeferredTransaction)
-        org.tron.protos.Protocol.DeferredTransactionOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                org.tron.protos.Protocol.DeferredTransaction.class, org.tron.protos.Protocol.DeferredTransaction.Builder.class);
-      }
-
-      // Construct using org.tron.protos.Protocol.DeferredTransaction.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        transactionId_ = com.google.protobuf.ByteString.EMPTY;
-
-        publishTime_ = 0L;
-
-        delaySeconds_ = 0L;
-
-        delayUntil_ = 0L;
-
-        expiration_ = 0L;
-
-        senderAddress_ = com.google.protobuf.ByteString.EMPTY;
-
-        receiverAddress_ = com.google.protobuf.ByteString.EMPTY;
-
-        if (transactionBuilder_ == null) {
-          transaction_ = null;
-        } else {
-          transaction_ = null;
-          transactionBuilder_ = null;
-        }
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return org.tron.protos.Protocol.internal_static_protocol_DeferredTransaction_descriptor;
-      }
-
-      public org.tron.protos.Protocol.DeferredTransaction getDefaultInstanceForType() {
-        return org.tron.protos.Protocol.DeferredTransaction.getDefaultInstance();
-      }
-
-      public org.tron.protos.Protocol.DeferredTransaction build() {
-        org.tron.protos.Protocol.DeferredTransaction result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public org.tron.protos.Protocol.DeferredTransaction buildPartial() {
-        org.tron.protos.Protocol.DeferredTransaction result = new org.tron.protos.Protocol.DeferredTransaction(this);
-        result.transactionId_ = transactionId_;
-        result.publishTime_ = publishTime_;
-        result.delaySeconds_ = delaySeconds_;
-        result.delayUntil_ = delayUntil_;
-        result.expiration_ = expiration_;
-        result.senderAddress_ = senderAddress_;
-        result.receiverAddress_ = receiverAddress_;
-        if (transactionBuilder_ == null) {
-          result.transaction_ = transaction_;
-        } else {
-          result.transaction_ = transactionBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof org.tron.protos.Protocol.DeferredTransaction) {
-          return mergeFrom((org.tron.protos.Protocol.DeferredTransaction)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(org.tron.protos.Protocol.DeferredTransaction other) {
-        if (other == org.tron.protos.Protocol.DeferredTransaction.getDefaultInstance()) return this;
-        if (other.getTransactionId() != com.google.protobuf.ByteString.EMPTY) {
-          setTransactionId(other.getTransactionId());
-        }
-        if (other.getPublishTime() != 0L) {
-          setPublishTime(other.getPublishTime());
-        }
-        if (other.getDelaySeconds() != 0L) {
-          setDelaySeconds(other.getDelaySeconds());
-        }
-        if (other.getDelayUntil() != 0L) {
-          setDelayUntil(other.getDelayUntil());
-        }
-        if (other.getExpiration() != 0L) {
-          setExpiration(other.getExpiration());
-        }
-        if (other.getSenderAddress() != com.google.protobuf.ByteString.EMPTY) {
-          setSenderAddress(other.getSenderAddress());
-        }
-        if (other.getReceiverAddress() != com.google.protobuf.ByteString.EMPTY) {
-          setReceiverAddress(other.getReceiverAddress());
-        }
-        if (other.hasTransaction()) {
-          mergeTransaction(other.getTransaction());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        org.tron.protos.Protocol.DeferredTransaction parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.tron.protos.Protocol.DeferredTransaction) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.google.protobuf.ByteString transactionId_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes transactionId = 1;</code>
-       */
-      public com.google.protobuf.ByteString getTransactionId() {
-        return transactionId_;
-      }
-      /**
-       * <code>bytes transactionId = 1;</code>
-       */
-      public Builder setTransactionId(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        transactionId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes transactionId = 1;</code>
-       */
-      public Builder clearTransactionId() {
-        
-        transactionId_ = getDefaultInstance().getTransactionId();
-        onChanged();
-        return this;
-      }
-
-      private long publishTime_ ;
-      /**
-       * <code>int64 publishTime = 2;</code>
-       */
-      public long getPublishTime() {
-        return publishTime_;
-      }
-      /**
-       * <code>int64 publishTime = 2;</code>
-       */
-      public Builder setPublishTime(long value) {
-        
-        publishTime_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 publishTime = 2;</code>
-       */
-      public Builder clearPublishTime() {
-        
-        publishTime_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private long delaySeconds_ ;
-      /**
-       * <code>int64 delaySeconds = 3;</code>
-       */
-      public long getDelaySeconds() {
-        return delaySeconds_;
-      }
-      /**
-       * <code>int64 delaySeconds = 3;</code>
-       */
-      public Builder setDelaySeconds(long value) {
-        
-        delaySeconds_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 delaySeconds = 3;</code>
-       */
-      public Builder clearDelaySeconds() {
-        
-        delaySeconds_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private long delayUntil_ ;
-      /**
-       * <code>int64 delayUntil = 4;</code>
-       */
-      public long getDelayUntil() {
-        return delayUntil_;
-      }
-      /**
-       * <code>int64 delayUntil = 4;</code>
-       */
-      public Builder setDelayUntil(long value) {
-        
-        delayUntil_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 delayUntil = 4;</code>
-       */
-      public Builder clearDelayUntil() {
-        
-        delayUntil_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private long expiration_ ;
-      /**
-       * <code>int64 expiration = 5;</code>
-       */
-      public long getExpiration() {
-        return expiration_;
-      }
-      /**
-       * <code>int64 expiration = 5;</code>
-       */
-      public Builder setExpiration(long value) {
-        
-        expiration_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 expiration = 5;</code>
-       */
-      public Builder clearExpiration() {
-        
-        expiration_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString senderAddress_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes senderAddress = 6;</code>
-       */
-      public com.google.protobuf.ByteString getSenderAddress() {
-        return senderAddress_;
-      }
-      /**
-       * <code>bytes senderAddress = 6;</code>
-       */
-      public Builder setSenderAddress(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        senderAddress_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes senderAddress = 6;</code>
-       */
-      public Builder clearSenderAddress() {
-        
-        senderAddress_ = getDefaultInstance().getSenderAddress();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString receiverAddress_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes receiverAddress = 7;</code>
-       */
-      public com.google.protobuf.ByteString getReceiverAddress() {
-        return receiverAddress_;
-      }
-      /**
-       * <code>bytes receiverAddress = 7;</code>
-       */
-      public Builder setReceiverAddress(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        receiverAddress_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes receiverAddress = 7;</code>
-       */
-      public Builder clearReceiverAddress() {
-        
-        receiverAddress_ = getDefaultInstance().getReceiverAddress();
-        onChanged();
-        return this;
-      }
-
-      private org.tron.protos.Protocol.Transaction transaction_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          org.tron.protos.Protocol.Transaction, org.tron.protos.Protocol.Transaction.Builder, org.tron.protos.Protocol.TransactionOrBuilder> transactionBuilder_;
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      public boolean hasTransaction() {
-        return transactionBuilder_ != null || transaction_ != null;
-      }
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      public org.tron.protos.Protocol.Transaction getTransaction() {
-        if (transactionBuilder_ == null) {
-          return transaction_ == null ? org.tron.protos.Protocol.Transaction.getDefaultInstance() : transaction_;
-        } else {
-          return transactionBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      public Builder setTransaction(org.tron.protos.Protocol.Transaction value) {
-        if (transactionBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          transaction_ = value;
-          onChanged();
-        } else {
-          transactionBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      public Builder setTransaction(
-          org.tron.protos.Protocol.Transaction.Builder builderForValue) {
-        if (transactionBuilder_ == null) {
-          transaction_ = builderForValue.build();
-          onChanged();
-        } else {
-          transactionBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      public Builder mergeTransaction(org.tron.protos.Protocol.Transaction value) {
-        if (transactionBuilder_ == null) {
-          if (transaction_ != null) {
-            transaction_ =
-              org.tron.protos.Protocol.Transaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
-          } else {
-            transaction_ = value;
-          }
-          onChanged();
-        } else {
-          transactionBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      public Builder clearTransaction() {
-        if (transactionBuilder_ == null) {
-          transaction_ = null;
-          onChanged();
-        } else {
-          transaction_ = null;
-          transactionBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      public org.tron.protos.Protocol.Transaction.Builder getTransactionBuilder() {
-        
-        onChanged();
-        return getTransactionFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      public org.tron.protos.Protocol.TransactionOrBuilder getTransactionOrBuilder() {
-        if (transactionBuilder_ != null) {
-          return transactionBuilder_.getMessageOrBuilder();
-        } else {
-          return transaction_ == null ?
-              org.tron.protos.Protocol.Transaction.getDefaultInstance() : transaction_;
-        }
-      }
-      /**
-       * <code>.protocol.Transaction transaction = 8;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          org.tron.protos.Protocol.Transaction, org.tron.protos.Protocol.Transaction.Builder, org.tron.protos.Protocol.TransactionOrBuilder> 
-          getTransactionFieldBuilder() {
-        if (transactionBuilder_ == null) {
-          transactionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              org.tron.protos.Protocol.Transaction, org.tron.protos.Protocol.Transaction.Builder, org.tron.protos.Protocol.TransactionOrBuilder>(
-                  getTransaction(),
-                  getParentForChildren(),
-                  isClean());
-          transaction_ = null;
-        }
-        return transactionBuilder_;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:protocol.DeferredTransaction)
-    }
-
-    // @@protoc_insertion_point(class_scope:protocol.DeferredTransaction)
-    private static final org.tron.protos.Protocol.DeferredTransaction DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new org.tron.protos.Protocol.DeferredTransaction();
-    }
-
-    public static org.tron.protos.Protocol.DeferredTransaction getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<DeferredTransaction>
-        PARSER = new com.google.protobuf.AbstractParser<DeferredTransaction>() {
-      public DeferredTransaction parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DeferredTransaction(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<DeferredTransaction> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<DeferredTransaction> getParserForType() {
-      return PARSER;
-    }
-
-    public org.tron.protos.Protocol.DeferredTransaction getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface TransactionsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:protocol.Transactions)
       com.google.protobuf.MessageOrBuilder {
@@ -34225,11 +32453,6 @@ public final class Protocol {
        * <code>int32 version = 10;</code>
        */
       int getVersion();
-
-      /**
-       * <code>bytes accountStateRoot = 11;</code>
-       */
-      com.google.protobuf.ByteString getAccountStateRoot();
     }
     /**
      * Protobuf type {@code protocol.BlockHeader.raw}
@@ -34251,7 +32474,6 @@ public final class Protocol {
         witnessId_ = 0L;
         witnessAddress_ = com.google.protobuf.ByteString.EMPTY;
         version_ = 0;
-        accountStateRoot_ = com.google.protobuf.ByteString.EMPTY;
       }
 
       @java.lang.Override
@@ -34318,11 +32540,6 @@ public final class Protocol {
               case 80: {
 
                 version_ = input.readInt32();
-                break;
-              }
-              case 90: {
-
-                accountStateRoot_ = input.readBytes();
                 break;
               }
             }
@@ -34417,15 +32634,6 @@ public final class Protocol {
         return version_;
       }
 
-      public static final int ACCOUNTSTATEROOT_FIELD_NUMBER = 11;
-      private com.google.protobuf.ByteString accountStateRoot_;
-      /**
-       * <code>bytes accountStateRoot = 11;</code>
-       */
-      public com.google.protobuf.ByteString getAccountStateRoot() {
-        return accountStateRoot_;
-      }
-
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
@@ -34458,9 +32666,6 @@ public final class Protocol {
         }
         if (version_ != 0) {
           output.writeInt32(10, version_);
-        }
-        if (!accountStateRoot_.isEmpty()) {
-          output.writeBytes(11, accountStateRoot_);
         }
         unknownFields.writeTo(output);
       }
@@ -34498,10 +32703,6 @@ public final class Protocol {
           size += com.google.protobuf.CodedOutputStream
             .computeInt32Size(10, version_);
         }
-        if (!accountStateRoot_.isEmpty()) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(11, accountStateRoot_);
-        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -34532,8 +32733,6 @@ public final class Protocol {
             .equals(other.getWitnessAddress());
         result = result && (getVersion()
             == other.getVersion());
-        result = result && getAccountStateRoot()
-            .equals(other.getAccountStateRoot());
         result = result && unknownFields.equals(other.unknownFields);
         return result;
       }
@@ -34562,8 +32761,6 @@ public final class Protocol {
         hash = (53 * hash) + getWitnessAddress().hashCode();
         hash = (37 * hash) + VERSION_FIELD_NUMBER;
         hash = (53 * hash) + getVersion();
-        hash = (37 * hash) + ACCOUNTSTATEROOT_FIELD_NUMBER;
-        hash = (53 * hash) + getAccountStateRoot().hashCode();
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -34707,8 +32904,6 @@ public final class Protocol {
 
           version_ = 0;
 
-          accountStateRoot_ = com.google.protobuf.ByteString.EMPTY;
-
           return this;
         }
 
@@ -34738,7 +32933,6 @@ public final class Protocol {
           result.witnessId_ = witnessId_;
           result.witnessAddress_ = witnessAddress_;
           result.version_ = version_;
-          result.accountStateRoot_ = accountStateRoot_;
           onBuilt();
           return result;
         }
@@ -34800,9 +32994,6 @@ public final class Protocol {
           }
           if (other.getVersion() != 0) {
             setVersion(other.getVersion());
-          }
-          if (other.getAccountStateRoot() != com.google.protobuf.ByteString.EMPTY) {
-            setAccountStateRoot(other.getAccountStateRoot());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -35033,35 +33224,6 @@ public final class Protocol {
         public Builder clearVersion() {
           
           version_ = 0;
-          onChanged();
-          return this;
-        }
-
-        private com.google.protobuf.ByteString accountStateRoot_ = com.google.protobuf.ByteString.EMPTY;
-        /**
-         * <code>bytes accountStateRoot = 11;</code>
-         */
-        public com.google.protobuf.ByteString getAccountStateRoot() {
-          return accountStateRoot_;
-        }
-        /**
-         * <code>bytes accountStateRoot = 11;</code>
-         */
-        public Builder setAccountStateRoot(com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
-          accountStateRoot_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>bytes accountStateRoot = 11;</code>
-         */
-        public Builder clearAccountStateRoot() {
-          
-          accountStateRoot_ = getDefaultInstance().getAccountStateRoot();
           onChanged();
           return this;
         }
@@ -44684,11 +42846,6 @@ public final class Protocol {
      * <code>int64 origin_energy_limit = 8;</code>
      */
     long getOriginEnergyLimit();
-
-    /**
-     * <code>bytes code_hash = 9;</code>
-     */
-    com.google.protobuf.ByteString getCodeHash();
   }
   /**
    * Protobuf type {@code protocol.SmartContract}
@@ -44710,7 +42867,6 @@ public final class Protocol {
       consumeUserResourcePercent_ = 0L;
       name_ = "";
       originEnergyLimit_ = 0L;
-      codeHash_ = com.google.protobuf.ByteString.EMPTY;
     }
 
     @java.lang.Override
@@ -44791,11 +42947,6 @@ public final class Protocol {
             case 64: {
 
               originEnergyLimit_ = input.readInt64();
-              break;
-            }
-            case 74: {
-
-              codeHash_ = input.readBytes();
               break;
             }
           }
@@ -48340,15 +46491,6 @@ public final class Protocol {
       return originEnergyLimit_;
     }
 
-    public static final int CODE_HASH_FIELD_NUMBER = 9;
-    private com.google.protobuf.ByteString codeHash_;
-    /**
-     * <code>bytes code_hash = 9;</code>
-     */
-    public com.google.protobuf.ByteString getCodeHash() {
-      return codeHash_;
-    }
-
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -48384,9 +46526,6 @@ public final class Protocol {
       }
       if (originEnergyLimit_ != 0L) {
         output.writeInt64(8, originEnergyLimit_);
-      }
-      if (!codeHash_.isEmpty()) {
-        output.writeBytes(9, codeHash_);
       }
       unknownFields.writeTo(output);
     }
@@ -48427,10 +46566,6 @@ public final class Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(8, originEnergyLimit_);
       }
-      if (!codeHash_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(9, codeHash_);
-      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -48466,8 +46601,6 @@ public final class Protocol {
           .equals(other.getName());
       result = result && (getOriginEnergyLimit()
           == other.getOriginEnergyLimit());
-      result = result && getCodeHash()
-          .equals(other.getCodeHash());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -48500,8 +46633,6 @@ public final class Protocol {
       hash = (37 * hash) + ORIGIN_ENERGY_LIMIT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getOriginEnergyLimit());
-      hash = (37 * hash) + CODE_HASH_FIELD_NUMBER;
-      hash = (53 * hash) + getCodeHash().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -48651,8 +46782,6 @@ public final class Protocol {
 
         originEnergyLimit_ = 0L;
 
-        codeHash_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
       }
 
@@ -48687,7 +46816,6 @@ public final class Protocol {
         result.consumeUserResourcePercent_ = consumeUserResourcePercent_;
         result.name_ = name_;
         result.originEnergyLimit_ = originEnergyLimit_;
-        result.codeHash_ = codeHash_;
         onBuilt();
         return result;
       }
@@ -48753,9 +46881,6 @@ public final class Protocol {
         }
         if (other.getOriginEnergyLimit() != 0L) {
           setOriginEnergyLimit(other.getOriginEnergyLimit());
-        }
-        if (other.getCodeHash() != com.google.protobuf.ByteString.EMPTY) {
-          setCodeHash(other.getCodeHash());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -49131,35 +47256,6 @@ public final class Protocol {
       public Builder clearOriginEnergyLimit() {
         
         originEnergyLimit_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString codeHash_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes code_hash = 9;</code>
-       */
-      public com.google.protobuf.ByteString getCodeHash() {
-        return codeHash_;
-      }
-      /**
-       * <code>bytes code_hash = 9;</code>
-       */
-      public Builder setCodeHash(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        codeHash_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes code_hash = 9;</code>
-       */
-      public Builder clearCodeHash() {
-        
-        codeHash_ = getDefaultInstance().getCodeHash();
         onChanged();
         return this;
       }
@@ -62104,11 +60200,6 @@ public final class Protocol {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_protocol_ResourceReceipt_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_protocol_DeferredStage_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_protocol_DeferredStage_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_protocol_Transaction_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -62138,11 +60229,6 @@ public final class Protocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_protocol_TransactionInfo_Log_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_protocol_DeferredTransaction_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_protocol_DeferredTransaction_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_protocol_Transactions_descriptor;
   private static final 
@@ -62400,224 +60486,213 @@ public final class Protocol {
       "(\003\022\032\n\022energy_usage_total\030\004 \001(\003\022\021\n\tnet_us" +
       "age\030\005 \001(\003\022\017\n\007net_fee\030\006 \001(\003\022;\n\006result\030\007 \001" +
       "(\0162+.protocol.Transaction.Result.contrac" +
-      "tResult\"4\n\rDeferredStage\022\024\n\014delaySeconds" +
-      "\030\001 \001(\003\022\r\n\005stage\030\002 \001(\005\"\202\021\n\013Transaction\022+\n" +
-      "\010raw_data\030\001 \001(\0132\031.protocol.Transaction.r" +
-      "aw\022\021\n\tsignature\030\002 \003(\014\022)\n\003ret\030\005 \003(\0132\034.pro" +
-      "tocol.Transaction.Result\032\251\010\n\010Contract\0229\n" +
-      "\004type\030\001 \001(\0162+.protocol.Transaction.Contr" +
-      "act.ContractType\022\'\n\tparameter\030\002 \001(\0132\024.go" +
-      "ogle.protobuf.Any\022\020\n\010provider\030\003 \001(\014\022\024\n\014C" +
-      "ontractName\030\004 \001(\014\022\025\n\rPermission_id\030\005 \001(\005" +
-      "\"\371\006\n\014ContractType\022\031\n\025AccountCreateContra" +
-      "ct\020\000\022\024\n\020TransferContract\020\001\022\031\n\025TransferAs" +
-      "setContract\020\002\022\025\n\021VoteAssetContract\020\003\022\027\n\023" +
-      "VoteWitnessContract\020\004\022\031\n\025WitnessCreateCo" +
-      "ntract\020\005\022\026\n\022AssetIssueContract\020\006\022\031\n\025Witn" +
-      "essUpdateContract\020\010\022!\n\035ParticipateAssetI" +
-      "ssueContract\020\t\022\031\n\025AccountUpdateContract\020" +
-      "\n\022\031\n\025FreezeBalanceContract\020\013\022\033\n\027Unfreeze" +
-      "BalanceContract\020\014\022\033\n\027WithdrawBalanceCont" +
-      "ract\020\r\022\031\n\025UnfreezeAssetContract\020\016\022\027\n\023Upd" +
-      "ateAssetContract\020\017\022\032\n\026ProposalCreateCont" +
-      "ract\020\020\022\033\n\027ProposalApproveContract\020\021\022\032\n\026P" +
-      "roposalDeleteContract\020\022\022\030\n\024SetAccountIdC" +
-      "ontract\020\023\022\022\n\016CustomContract\020\024\022\027\n\023CreateS" +
-      "martContract\020\036\022\030\n\024TriggerSmartContract\020\037" +
-      "\022\017\n\013GetContract\020 \022\031\n\025UpdateSettingContra" +
-      "ct\020!\022\032\n\026ExchangeCreateContract\020)\022\032\n\026Exch" +
-      "angeInjectContract\020*\022\034\n\030ExchangeWithdraw" +
-      "Contract\020+\022\037\n\033ExchangeTransactionContrac" +
-      "t\020,\022\035\n\031UpdateEnergyLimitContract\020-\022#\n\037Ac" +
-      "countPermissionUpdateContract\020.\022%\n!Cance" +
-      "lDeferredTransactionContract\020/\022\024\n\020ClearA" +
-      "BIContract\0200\032\254\005\n\006Result\022\013\n\003fee\030\001 \001(\003\022.\n\003" +
-      "ret\030\002 \001(\0162!.protocol.Transaction.Result." +
-      "code\022@\n\013contractRet\030\003 \001(\0162+.protocol.Tra" +
-      "nsaction.Result.contractResult\022\024\n\014assetI" +
-      "ssueID\030\016 \001(\t\022\027\n\017withdraw_amount\030\017 \001(\003\022\027\n" +
-      "\017unfreeze_amount\030\020 \001(\003\022 \n\030exchange_recei" +
-      "ved_amount\030\022 \001(\003\022&\n\036exchange_inject_anot" +
-      "her_amount\030\023 \001(\003\022(\n exchange_withdraw_an" +
-      "other_amount\030\024 \001(\003\022\023\n\013exchange_id\030\025 \001(\003\"" +
-      "\036\n\004code\022\n\n\006SUCESS\020\000\022\n\n\006FAILED\020\001\"\261\002\n\016cont" +
-      "ractResult\022\013\n\007DEFAULT\020\000\022\013\n\007SUCCESS\020\001\022\n\n\006" +
-      "REVERT\020\002\022\030\n\024BAD_JUMP_DESTINATION\020\003\022\021\n\rOU" +
-      "T_OF_MEMORY\020\004\022\030\n\024PRECOMPILED_CONTRACT\020\005\022" +
-      "\023\n\017STACK_TOO_SMALL\020\006\022\023\n\017STACK_TOO_LARGE\020" +
-      "\007\022\025\n\021ILLEGAL_OPERATION\020\010\022\022\n\016STACK_OVERFL" +
-      "OW\020\t\022\021\n\rOUT_OF_ENERGY\020\n\022\017\n\013OUT_OF_TIME\020\013" +
-      "\022\027\n\023JVM_STACK_OVER_FLOW\020\014\022\013\n\007UNKNOWN\020\r\022\023" +
-      "\n\017TRANSFER_FAILED\020\016\032\254\002\n\003raw\022\027\n\017ref_block" +
-      "_bytes\030\001 \001(\014\022\025\n\rref_block_num\030\003 \001(\003\022\026\n\016r" +
-      "ef_block_hash\030\004 \001(\014\022\022\n\nexpiration\030\010 \001(\003\022" +
-      "\"\n\005auths\030\t \003(\0132\023.protocol.authority\022\014\n\004d" +
-      "ata\030\n \001(\014\0220\n\010contract\030\013 \003(\0132\036.protocol.T" +
-      "ransaction.Contract\022\017\n\007scripts\030\014 \001(\014\022\021\n\t" +
-      "timestamp\030\016 \001(\003\022\021\n\tfee_limit\030\022 \001(\003\022.\n\rde" +
-      "ferredStage\030\023 \001(\0132\027.protocol.DeferredSta" +
-      "ge\"\212\005\n\017TransactionInfo\022\n\n\002id\030\001 \001(\014\022\013\n\003fe" +
-      "e\030\002 \001(\003\022\023\n\013blockNumber\030\003 \001(\003\022\026\n\016blockTim" +
-      "eStamp\030\004 \001(\003\022\026\n\016contractResult\030\005 \003(\014\022\030\n\020" +
-      "contract_address\030\006 \001(\014\022*\n\007receipt\030\007 \001(\0132" +
-      "\031.protocol.ResourceReceipt\022*\n\003log\030\010 \003(\0132" +
-      "\035.protocol.TransactionInfo.Log\022.\n\006result" +
-      "\030\t \001(\0162\036.protocol.TransactionInfo.code\022\022" +
-      "\n\nresMessage\030\n \001(\014\022\024\n\014assetIssueID\030\016 \001(\t" +
-      "\022\027\n\017withdraw_amount\030\017 \001(\003\022\027\n\017unfreeze_am" +
-      "ount\030\020 \001(\003\022<\n\025internal_transactions\030\021 \003(" +
-      "\0132\035.protocol.InternalTransaction\022 \n\030exch" +
-      "ange_received_amount\030\022 \001(\003\022&\n\036exchange_i" +
-      "nject_another_amount\030\023 \001(\003\022(\n exchange_w" +
-      "ithdraw_another_amount\030\024 \001(\003\022\023\n\013exchange" +
-      "_id\030\025 \001(\003\0324\n\003Log\022\017\n\007address\030\001 \001(\014\022\016\n\006top" +
-      "ics\030\002 \003(\014\022\014\n\004data\030\003 \001(\014\"\036\n\004code\022\n\n\006SUCES" +
-      "S\020\000\022\n\n\006FAILED\020\001\"\333\001\n\023DeferredTransaction\022" +
-      "\025\n\rtransactionId\030\001 \001(\014\022\023\n\013publishTime\030\002 " +
-      "\001(\003\022\024\n\014delaySeconds\030\003 \001(\003\022\022\n\ndelayUntil\030" +
-      "\004 \001(\003\022\022\n\nexpiration\030\005 \001(\003\022\025\n\rsenderAddre" +
-      "ss\030\006 \001(\014\022\027\n\017receiverAddress\030\007 \001(\014\022*\n\013tra" +
-      "nsaction\030\010 \001(\0132\025.protocol.Transaction\";\n" +
-      "\014Transactions\022+\n\014transactions\030\001 \003(\0132\025.pr" +
-      "otocol.Transaction\"Q\n\017TransactionSign\022*\n" +
-      "\013transaction\030\001 \001(\0132\025.protocol.Transactio" +
-      "n\022\022\n\nprivateKey\030\002 \001(\014\"\200\002\n\013BlockHeader\022+\n" +
-      "\010raw_data\030\001 \001(\0132\031.protocol.BlockHeader.r" +
-      "aw\022\031\n\021witness_signature\030\002 \001(\014\032\250\001\n\003raw\022\021\n" +
-      "\ttimestamp\030\001 \001(\003\022\022\n\ntxTrieRoot\030\002 \001(\014\022\022\n\n" +
-      "parentHash\030\003 \001(\014\022\016\n\006number\030\007 \001(\003\022\022\n\nwitn" +
-      "ess_id\030\010 \001(\003\022\027\n\017witness_address\030\t \001(\014\022\017\n" +
-      "\007version\030\n \001(\005\022\030\n\020accountStateRoot\030\013 \001(\014" +
-      "\"a\n\005Block\022+\n\014transactions\030\001 \003(\0132\025.protoc" +
-      "ol.Transaction\022+\n\014block_header\030\002 \001(\0132\025.p" +
-      "rotocol.BlockHeader\"|\n\016ChainInventory\022-\n" +
-      "\003ids\030\001 \003(\0132 .protocol.ChainInventory.Blo" +
-      "ckId\022\022\n\nremain_num\030\002 \001(\003\032\'\n\007BlockId\022\014\n\004h" +
-      "ash\030\001 \001(\014\022\016\n\006number\030\002 \001(\003\"\277\001\n\016BlockInven" +
-      "tory\022-\n\003ids\030\001 \003(\0132 .protocol.BlockInvent" +
-      "ory.BlockId\022+\n\004type\030\002 \001(\0162\035.protocol.Blo" +
-      "ckInventory.Type\032\'\n\007BlockId\022\014\n\004hash\030\001 \001(" +
-      "\014\022\016\n\006number\030\002 \001(\003\"(\n\004Type\022\010\n\004SYNC\020\000\022\013\n\007A" +
-      "DVTISE\020\001\022\t\n\005FETCH\020\002\"n\n\tInventory\022/\n\004type" +
-      "\030\001 \001(\0162!.protocol.Inventory.InventoryTyp" +
-      "e\022\013\n\003ids\030\002 \003(\014\"#\n\rInventoryType\022\007\n\003TRX\020\000" +
-      "\022\t\n\005BLOCK\020\001\"\345\001\n\005Items\022&\n\004type\030\001 \001(\0162\030.pr" +
-      "otocol.Items.ItemType\022\037\n\006blocks\030\002 \003(\0132\017." +
-      "protocol.Block\022,\n\rblock_headers\030\003 \003(\0132\025." +
-      "protocol.BlockHeader\022+\n\014transactions\030\004 \003" +
-      "(\0132\025.protocol.Transaction\"8\n\010ItemType\022\007\n" +
-      "\003ERR\020\000\022\007\n\003TRX\020\001\022\t\n\005BLOCK\020\002\022\017\n\013BLOCKHEADE" +
-      "R\020\003\"4\n\021DynamicProperties\022\037\n\027last_solidit" +
-      "y_block_num\030\001 \001(\003\"9\n\021DisconnectMessage\022$" +
-      "\n\006reason\030\001 \001(\0162\024.protocol.ReasonCode\"\240\002\n" +
-      "\014HelloMessage\022 \n\004from\030\001 \001(\0132\022.protocol.E" +
-      "ndpoint\022\017\n\007version\030\002 \001(\005\022\021\n\ttimestamp\030\003 " +
-      "\001(\003\0226\n\016genesisBlockId\030\004 \001(\0132\036.protocol.H" +
-      "elloMessage.BlockId\0224\n\014solidBlockId\030\005 \001(" +
-      "\0132\036.protocol.HelloMessage.BlockId\0223\n\013hea" +
-      "dBlockId\030\006 \001(\0132\036.protocol.HelloMessage.B" +
-      "lockId\032\'\n\007BlockId\022\014\n\004hash\030\001 \001(\014\022\016\n\006numbe" +
-      "r\030\002 \001(\003\"\361\006\n\rSmartContract\022\026\n\016origin_addr" +
-      "ess\030\001 \001(\014\022\030\n\020contract_address\030\002 \001(\014\022(\n\003a" +
-      "bi\030\003 \001(\0132\033.protocol.SmartContract.ABI\022\020\n" +
-      "\010bytecode\030\004 \001(\014\022\022\n\ncall_value\030\005 \001(\003\022%\n\035c" +
-      "onsume_user_resource_percent\030\006 \001(\003\022\014\n\004na" +
-      "me\030\007 \001(\t\022\033\n\023origin_energy_limit\030\010 \001(\003\022\021\n" +
-      "\tcode_hash\030\t \001(\014\032\370\004\n\003ABI\0221\n\006entrys\030\001 \003(\013" +
-      "2!.protocol.SmartContract.ABI.Entry\032\275\004\n\005" +
-      "Entry\022\021\n\tanonymous\030\001 \001(\010\022\020\n\010constant\030\002 \001" +
-      "(\010\022\014\n\004name\030\003 \001(\t\0227\n\006inputs\030\004 \003(\0132\'.proto" +
-      "col.SmartContract.ABI.Entry.Param\0228\n\007out" +
-      "puts\030\005 \003(\0132\'.protocol.SmartContract.ABI." +
-      "Entry.Param\0229\n\004type\030\006 \001(\0162+.protocol.Sma" +
-      "rtContract.ABI.Entry.EntryType\022\017\n\007payabl" +
-      "e\030\007 \001(\010\022N\n\017stateMutability\030\010 \001(\01625.proto" +
-      "col.SmartContract.ABI.Entry.StateMutabil" +
-      "ityType\0324\n\005Param\022\017\n\007indexed\030\001 \001(\010\022\014\n\004nam" +
-      "e\030\002 \001(\t\022\014\n\004type\030\003 \001(\t\"Y\n\tEntryType\022\024\n\020Un" +
-      "knownEntryType\020\000\022\017\n\013Constructor\020\001\022\014\n\010Fun" +
-      "ction\020\002\022\t\n\005Event\020\003\022\014\n\010Fallback\020\004\"a\n\023Stat" +
-      "eMutabilityType\022\031\n\025UnknownMutabilityType" +
-      "\020\000\022\010\n\004Pure\020\001\022\010\n\004View\020\002\022\016\n\nNonpayable\020\003\022\013" +
-      "\n\007Payable\020\004\"\360\001\n\023InternalTransaction\022\014\n\004h" +
-      "ash\030\001 \001(\014\022\026\n\016caller_address\030\002 \001(\014\022\032\n\022tra" +
-      "nsferTo_address\030\003 \001(\014\022B\n\rcallValueInfo\030\004" +
-      " \003(\0132+.protocol.InternalTransaction.Call" +
-      "ValueInfo\022\014\n\004note\030\005 \001(\014\022\020\n\010rejected\030\006 \001(" +
-      "\010\0323\n\rCallValueInfo\022\021\n\tcallValue\030\001 \001(\003\022\017\n" +
-      "\007tokenId\030\002 \001(\t\"Z\n\035DelegatedResourceAccou" +
-      "ntIndex\022\017\n\007account\030\001 \001(\014\022\024\n\014fromAccounts" +
-      "\030\002 \003(\014\022\022\n\ntoAccounts\030\003 \003(\014\"\240\021\n\010NodeInfo\022" +
-      "\024\n\014beginSyncNum\030\001 \001(\003\022\r\n\005block\030\002 \001(\t\022\025\n\r" +
-      "solidityBlock\030\003 \001(\t\022\033\n\023currentConnectCou" +
-      "nt\030\004 \001(\005\022\032\n\022activeConnectCount\030\005 \001(\005\022\033\n\023" +
-      "passiveConnectCount\030\006 \001(\005\022\021\n\ttotalFlow\030\007" +
-      " \001(\003\0221\n\014peerInfoList\030\010 \003(\0132\033.protocol.No" +
-      "deInfo.PeerInfo\0229\n\016configNodeInfo\030\t \001(\0132" +
-      "!.protocol.NodeInfo.ConfigNodeInfo\0223\n\013ma" +
-      "chineInfo\030\n \001(\0132\036.protocol.NodeInfo.Mach" +
-      "ineInfo\022H\n\023cheatWitnessInfoMap\030\013 \003(\0132+.p" +
-      "rotocol.NodeInfo.CheatWitnessInfoMapEntr" +
-      "y\032:\n\030CheatWitnessInfoMapEntry\022\013\n\003key\030\001 \001" +
-      "(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032\315\004\n\010PeerInfo\022\025\n\rla" +
-      "stSyncBlock\030\001 \001(\t\022\021\n\tremainNum\030\002 \001(\003\022\033\n\023" +
-      "lastBlockUpdateTime\030\003 \001(\003\022\020\n\010syncFlag\030\004 " +
-      "\001(\010\022\037\n\027headBlockTimeWeBothHave\030\005 \001(\003\022\030\n\020" +
-      "needSyncFromPeer\030\006 \001(\010\022\026\n\016needSyncFromUs" +
-      "\030\007 \001(\010\022\014\n\004host\030\010 \001(\t\022\014\n\004port\030\t \001(\005\022\016\n\006no" +
-      "deId\030\n \001(\t\022\023\n\013connectTime\030\013 \001(\003\022\022\n\navgLa" +
-      "tency\030\014 \001(\001\022\027\n\017syncToFetchSize\030\r \001(\005\022\036\n\026" +
-      "syncToFetchSizePeekNum\030\016 \001(\003\022\036\n\026syncBloc" +
-      "kRequestedSize\030\017 \001(\005\022\025\n\runFetchSynNum\030\020 " +
-      "\001(\003\022\027\n\017blockInPorcSize\030\021 \001(\005\022\033\n\023headBloc" +
-      "kWeBothHave\030\022 \001(\t\022\020\n\010isActive\030\023 \001(\010\022\r\n\005s" +
-      "core\030\024 \001(\005\022\021\n\tnodeCount\030\025 \001(\005\022\016\n\006inFlow\030" +
-      "\026 \001(\003\022\027\n\017disconnectTimes\030\027 \001(\005\022\035\n\025localD" +
-      "isconnectReason\030\030 \001(\t\022\036\n\026remoteDisconnec" +
-      "tReason\030\031 \001(\t\032\345\003\n\016ConfigNodeInfo\022\023\n\013code" +
-      "Version\030\001 \001(\t\022\022\n\np2pVersion\030\002 \001(\t\022\022\n\nlis" +
-      "tenPort\030\003 \001(\005\022\026\n\016discoverEnable\030\004 \001(\010\022\026\n" +
-      "\016activeNodeSize\030\005 \001(\005\022\027\n\017passiveNodeSize" +
-      "\030\006 \001(\005\022\024\n\014sendNodeSize\030\007 \001(\005\022\027\n\017maxConne" +
-      "ctCount\030\010 \001(\005\022\035\n\025sameIpMaxConnectCount\030\t" +
-      " \001(\005\022\030\n\020backupListenPort\030\n \001(\005\022\030\n\020backup" +
-      "MemberSize\030\013 \001(\005\022\026\n\016backupPriority\030\014 \001(\005" +
-      "\022\021\n\tdbVersion\030\r \001(\005\022\034\n\024minParticipationR" +
-      "ate\030\016 \001(\005\022\027\n\017supportConstant\030\017 \001(\010\022\024\n\014mi" +
-      "nTimeRatio\030\020 \001(\001\022\024\n\014maxTimeRatio\030\021 \001(\001\022 " +
-      "\n\030allowCreationOfContracts\030\022 \001(\003\022\033\n\023allo" +
-      "wAdaptiveEnergy\030\023 \001(\003\032\215\005\n\013MachineInfo\022\023\n" +
-      "\013threadCount\030\001 \001(\005\022\033\n\023deadLockThreadCoun" +
-      "t\030\002 \001(\005\022\020\n\010cpuCount\030\003 \001(\005\022\023\n\013totalMemory" +
-      "\030\004 \001(\003\022\022\n\nfreeMemory\030\005 \001(\003\022\017\n\007cpuRate\030\006 " +
-      "\001(\001\022\023\n\013javaVersion\030\007 \001(\t\022\016\n\006osName\030\010 \001(\t" +
-      "\022\027\n\017jvmTotalMemoery\030\t \001(\003\022\025\n\rjvmFreeMemo" +
-      "ry\030\n \001(\003\022\026\n\016processCpuRate\030\013 \001(\001\022I\n\022memo" +
-      "ryDescInfoList\030\014 \003(\0132-.protocol.NodeInfo" +
-      ".MachineInfo.MemoryDescInfo\022Q\n\026deadLockT" +
-      "hreadInfoList\030\r \003(\01321.protocol.NodeInfo." +
-      "MachineInfo.DeadLockThreadInfo\032c\n\016Memory" +
-      "DescInfo\022\014\n\004name\030\001 \001(\t\022\020\n\010initSize\030\002 \001(\003" +
-      "\022\017\n\007useSize\030\003 \001(\003\022\017\n\007maxSize\030\004 \001(\003\022\017\n\007us" +
-      "eRate\030\005 \001(\001\032\217\001\n\022DeadLockThreadInfo\022\014\n\004na" +
-      "me\030\001 \001(\t\022\020\n\010lockName\030\002 \001(\t\022\021\n\tlockOwner\030" +
-      "\003 \001(\t\022\r\n\005state\030\004 \001(\t\022\021\n\tblockTime\030\005 \001(\003\022" +
-      "\020\n\010waitTime\030\006 \001(\003\022\022\n\nstackTrace\030\007 \001(\t*7\n" +
-      "\013AccountType\022\n\n\006Normal\020\000\022\016\n\nAssetIssue\020\001" +
-      "\022\014\n\010Contract\020\002*\307\003\n\nReasonCode\022\r\n\tREQUEST" +
-      "ED\020\000\022\020\n\014BAD_PROTOCOL\020\002\022\022\n\016TOO_MANY_PEERS" +
-      "\020\004\022\022\n\016DUPLICATE_PEER\020\005\022\031\n\025INCOMPATIBLE_P" +
-      "ROTOCOL\020\006\022\021\n\rNULL_IDENTITY\020\007\022\020\n\014PEER_QUI" +
-      "TING\020\010\022\027\n\023UNEXPECTED_IDENTITY\020\t\022\022\n\016LOCAL" +
-      "_IDENTITY\020\n\022\020\n\014PING_TIMEOUT\020\013\022\017\n\013USER_RE" +
-      "ASON\020\020\022\t\n\005RESET\020\021\022\r\n\tSYNC_FAIL\020\022\022\016\n\nFETC" +
-      "H_FAIL\020\023\022\n\n\006BAD_TX\020\024\022\r\n\tBAD_BLOCK\020\025\022\n\n\006F" +
-      "ORKED\020\026\022\016\n\nUNLINKABLE\020\027\022\030\n\024INCOMPATIBLE_" +
-      "VERSION\020\030\022\026\n\022INCOMPATIBLE_CHAIN\020\031\022\014\n\010TIM" +
-      "E_OUT\020 \022\020\n\014CONNECT_FAIL\020!\022\037\n\033TOO_MANY_PE" +
-      "ERS_WITH_SAME_IP\020\"\022\014\n\007UNKNOWN\020\377\001BF\n\017org." +
-      "tron.protosB\010ProtocolZ)github.com/tronpr" +
-      "otocol/grpc-gateway/coreb\006proto3"
+      "tResult\"\200\020\n\013Transaction\022+\n\010raw_data\030\001 \001(" +
+      "\0132\031.protocol.Transaction.raw\022\021\n\tsignatur" +
+      "e\030\002 \003(\014\022)\n\003ret\030\005 \003(\0132\034.protocol.Transact" +
+      "ion.Result\032\354\007\n\010Contract\0229\n\004type\030\001 \001(\0162+." +
+      "protocol.Transaction.Contract.ContractTy" +
+      "pe\022\'\n\tparameter\030\002 \001(\0132\024.google.protobuf." +
+      "Any\022\020\n\010provider\030\003 \001(\014\022\024\n\014ContractName\030\004 " +
+      "\001(\014\022\025\n\rPermission_id\030\005 \001(\005\"\274\006\n\014ContractT" +
+      "ype\022\031\n\025AccountCreateContract\020\000\022\024\n\020Transf" +
+      "erContract\020\001\022\031\n\025TransferAssetContract\020\002\022" +
+      "\025\n\021VoteAssetContract\020\003\022\027\n\023VoteWitnessCon" +
+      "tract\020\004\022\031\n\025WitnessCreateContract\020\005\022\026\n\022As" +
+      "setIssueContract\020\006\022\031\n\025WitnessUpdateContr" +
+      "act\020\010\022!\n\035ParticipateAssetIssueContract\020\t" +
+      "\022\031\n\025AccountUpdateContract\020\n\022\031\n\025FreezeBal" +
+      "anceContract\020\013\022\033\n\027UnfreezeBalanceContrac" +
+      "t\020\014\022\033\n\027WithdrawBalanceContract\020\r\022\031\n\025Unfr" +
+      "eezeAssetContract\020\016\022\027\n\023UpdateAssetContra" +
+      "ct\020\017\022\032\n\026ProposalCreateContract\020\020\022\033\n\027Prop" +
+      "osalApproveContract\020\021\022\032\n\026ProposalDeleteC" +
+      "ontract\020\022\022\030\n\024SetAccountIdContract\020\023\022\022\n\016C" +
+      "ustomContract\020\024\022\027\n\023CreateSmartContract\020\036" +
+      "\022\030\n\024TriggerSmartContract\020\037\022\017\n\013GetContrac" +
+      "t\020 \022\031\n\025UpdateSettingContract\020!\022\032\n\026Exchan" +
+      "geCreateContract\020)\022\032\n\026ExchangeInjectCont" +
+      "ract\020*\022\034\n\030ExchangeWithdrawContract\020+\022\037\n\033" +
+      "ExchangeTransactionContract\020,\022\035\n\031UpdateE" +
+      "nergyLimitContract\020-\022#\n\037AccountPermissio" +
+      "nUpdateContract\020.\032\227\005\n\006Result\022\013\n\003fee\030\001 \001(" +
+      "\003\022.\n\003ret\030\002 \001(\0162!.protocol.Transaction.Re" +
+      "sult.code\022@\n\013contractRet\030\003 \001(\0162+.protoco" +
+      "l.Transaction.Result.contractResult\022\024\n\014a" +
+      "ssetIssueID\030\016 \001(\t\022\027\n\017withdraw_amount\030\017 \001" +
+      "(\003\022\027\n\017unfreeze_amount\030\020 \001(\003\022 \n\030exchange_" +
+      "received_amount\030\022 \001(\003\022&\n\036exchange_inject" +
+      "_another_amount\030\023 \001(\003\022(\n exchange_withdr" +
+      "aw_another_amount\030\024 \001(\003\022\023\n\013exchange_id\030\025" +
+      " \001(\003\"\036\n\004code\022\n\n\006SUCESS\020\000\022\n\n\006FAILED\020\001\"\234\002\n" +
+      "\016contractResult\022\013\n\007DEFAULT\020\000\022\013\n\007SUCCESS\020" +
+      "\001\022\n\n\006REVERT\020\002\022\030\n\024BAD_JUMP_DESTINATION\020\003\022" +
+      "\021\n\rOUT_OF_MEMORY\020\004\022\030\n\024PRECOMPILED_CONTRA" +
+      "CT\020\005\022\023\n\017STACK_TOO_SMALL\020\006\022\023\n\017STACK_TOO_L" +
+      "ARGE\020\007\022\025\n\021ILLEGAL_OPERATION\020\010\022\022\n\016STACK_O" +
+      "VERFLOW\020\t\022\021\n\rOUT_OF_ENERGY\020\n\022\017\n\013OUT_OF_T" +
+      "IME\020\013\022\027\n\023JVM_STACK_OVER_FLOW\020\014\022\013\n\007UNKNOW" +
+      "N\020\r\032\374\001\n\003raw\022\027\n\017ref_block_bytes\030\001 \001(\014\022\025\n\r" +
+      "ref_block_num\030\003 \001(\003\022\026\n\016ref_block_hash\030\004 " +
+      "\001(\014\022\022\n\nexpiration\030\010 \001(\003\022\"\n\005auths\030\t \003(\0132\023" +
+      ".protocol.authority\022\014\n\004data\030\n \001(\014\0220\n\010con" +
+      "tract\030\013 \003(\0132\036.protocol.Transaction.Contr" +
+      "act\022\017\n\007scripts\030\014 \001(\014\022\021\n\ttimestamp\030\016 \001(\003\022" +
+      "\021\n\tfee_limit\030\022 \001(\003\"\212\005\n\017TransactionInfo\022\n" +
+      "\n\002id\030\001 \001(\014\022\013\n\003fee\030\002 \001(\003\022\023\n\013blockNumber\030\003" +
+      " \001(\003\022\026\n\016blockTimeStamp\030\004 \001(\003\022\026\n\016contract" +
+      "Result\030\005 \003(\014\022\030\n\020contract_address\030\006 \001(\014\022*" +
+      "\n\007receipt\030\007 \001(\0132\031.protocol.ResourceRecei" +
+      "pt\022*\n\003log\030\010 \003(\0132\035.protocol.TransactionIn" +
+      "fo.Log\022.\n\006result\030\t \001(\0162\036.protocol.Transa" +
+      "ctionInfo.code\022\022\n\nresMessage\030\n \001(\014\022\024\n\014as" +
+      "setIssueID\030\016 \001(\t\022\027\n\017withdraw_amount\030\017 \001(" +
+      "\003\022\027\n\017unfreeze_amount\030\020 \001(\003\022<\n\025internal_t" +
+      "ransactions\030\021 \003(\0132\035.protocol.InternalTra" +
+      "nsaction\022 \n\030exchange_received_amount\030\022 \001" +
+      "(\003\022&\n\036exchange_inject_another_amount\030\023 \001" +
+      "(\003\022(\n exchange_withdraw_another_amount\030\024" +
+      " \001(\003\022\023\n\013exchange_id\030\025 \001(\003\0324\n\003Log\022\017\n\007addr" +
+      "ess\030\001 \001(\014\022\016\n\006topics\030\002 \003(\014\022\014\n\004data\030\003 \001(\014\"" +
+      "\036\n\004code\022\n\n\006SUCESS\020\000\022\n\n\006FAILED\020\001\";\n\014Trans" +
+      "actions\022+\n\014transactions\030\001 \003(\0132\025.protocol" +
+      ".Transaction\"Q\n\017TransactionSign\022*\n\013trans" +
+      "action\030\001 \001(\0132\025.protocol.Transaction\022\022\n\np" +
+      "rivateKey\030\002 \001(\014\"\346\001\n\013BlockHeader\022+\n\010raw_d" +
+      "ata\030\001 \001(\0132\031.protocol.BlockHeader.raw\022\031\n\021" +
+      "witness_signature\030\002 \001(\014\032\216\001\n\003raw\022\021\n\ttimes" +
+      "tamp\030\001 \001(\003\022\022\n\ntxTrieRoot\030\002 \001(\014\022\022\n\nparent" +
+      "Hash\030\003 \001(\014\022\016\n\006number\030\007 \001(\003\022\022\n\nwitness_id" +
+      "\030\010 \001(\003\022\027\n\017witness_address\030\t \001(\014\022\017\n\007versi" +
+      "on\030\n \001(\005\"a\n\005Block\022+\n\014transactions\030\001 \003(\0132" +
+      "\025.protocol.Transaction\022+\n\014block_header\030\002" +
+      " \001(\0132\025.protocol.BlockHeader\"|\n\016ChainInve" +
+      "ntory\022-\n\003ids\030\001 \003(\0132 .protocol.ChainInven" +
+      "tory.BlockId\022\022\n\nremain_num\030\002 \001(\003\032\'\n\007Bloc" +
+      "kId\022\014\n\004hash\030\001 \001(\014\022\016\n\006number\030\002 \001(\003\"\277\001\n\016Bl" +
+      "ockInventory\022-\n\003ids\030\001 \003(\0132 .protocol.Blo" +
+      "ckInventory.BlockId\022+\n\004type\030\002 \001(\0162\035.prot" +
+      "ocol.BlockInventory.Type\032\'\n\007BlockId\022\014\n\004h" +
+      "ash\030\001 \001(\014\022\016\n\006number\030\002 \001(\003\"(\n\004Type\022\010\n\004SYN" +
+      "C\020\000\022\013\n\007ADVTISE\020\001\022\t\n\005FETCH\020\002\"n\n\tInventory" +
+      "\022/\n\004type\030\001 \001(\0162!.protocol.Inventory.Inve" +
+      "ntoryType\022\013\n\003ids\030\002 \003(\014\"#\n\rInventoryType\022" +
+      "\007\n\003TRX\020\000\022\t\n\005BLOCK\020\001\"\345\001\n\005Items\022&\n\004type\030\001 " +
+      "\001(\0162\030.protocol.Items.ItemType\022\037\n\006blocks\030" +
+      "\002 \003(\0132\017.protocol.Block\022,\n\rblock_headers\030" +
+      "\003 \003(\0132\025.protocol.BlockHeader\022+\n\014transact" +
+      "ions\030\004 \003(\0132\025.protocol.Transaction\"8\n\010Ite" +
+      "mType\022\007\n\003ERR\020\000\022\007\n\003TRX\020\001\022\t\n\005BLOCK\020\002\022\017\n\013BL" +
+      "OCKHEADER\020\003\"4\n\021DynamicProperties\022\037\n\027last" +
+      "_solidity_block_num\030\001 \001(\003\"9\n\021DisconnectM" +
+      "essage\022$\n\006reason\030\001 \001(\0162\024.protocol.Reason" +
+      "Code\"\240\002\n\014HelloMessage\022 \n\004from\030\001 \001(\0132\022.pr" +
+      "otocol.Endpoint\022\017\n\007version\030\002 \001(\005\022\021\n\ttime" +
+      "stamp\030\003 \001(\003\0226\n\016genesisBlockId\030\004 \001(\0132\036.pr" +
+      "otocol.HelloMessage.BlockId\0224\n\014solidBloc" +
+      "kId\030\005 \001(\0132\036.protocol.HelloMessage.BlockI" +
+      "d\0223\n\013headBlockId\030\006 \001(\0132\036.protocol.HelloM" +
+      "essage.BlockId\032\'\n\007BlockId\022\014\n\004hash\030\001 \001(\014\022" +
+      "\016\n\006number\030\002 \001(\003\"\336\006\n\rSmartContract\022\026\n\016ori" +
+      "gin_address\030\001 \001(\014\022\030\n\020contract_address\030\002 " +
+      "\001(\014\022(\n\003abi\030\003 \001(\0132\033.protocol.SmartContrac" +
+      "t.ABI\022\020\n\010bytecode\030\004 \001(\014\022\022\n\ncall_value\030\005 " +
+      "\001(\003\022%\n\035consume_user_resource_percent\030\006 \001" +
+      "(\003\022\014\n\004name\030\007 \001(\t\022\033\n\023origin_energy_limit\030" +
+      "\010 \001(\003\032\370\004\n\003ABI\0221\n\006entrys\030\001 \003(\0132!.protocol" +
+      ".SmartContract.ABI.Entry\032\275\004\n\005Entry\022\021\n\tan" +
+      "onymous\030\001 \001(\010\022\020\n\010constant\030\002 \001(\010\022\014\n\004name\030" +
+      "\003 \001(\t\0227\n\006inputs\030\004 \003(\0132\'.protocol.SmartCo" +
+      "ntract.ABI.Entry.Param\0228\n\007outputs\030\005 \003(\0132" +
+      "\'.protocol.SmartContract.ABI.Entry.Param" +
+      "\0229\n\004type\030\006 \001(\0162+.protocol.SmartContract." +
+      "ABI.Entry.EntryType\022\017\n\007payable\030\007 \001(\010\022N\n\017" +
+      "stateMutability\030\010 \001(\01625.protocol.SmartCo" +
+      "ntract.ABI.Entry.StateMutabilityType\0324\n\005" +
+      "Param\022\017\n\007indexed\030\001 \001(\010\022\014\n\004name\030\002 \001(\t\022\014\n\004" +
+      "type\030\003 \001(\t\"Y\n\tEntryType\022\024\n\020UnknownEntryT" +
+      "ype\020\000\022\017\n\013Constructor\020\001\022\014\n\010Function\020\002\022\t\n\005" +
+      "Event\020\003\022\014\n\010Fallback\020\004\"a\n\023StateMutability" +
+      "Type\022\031\n\025UnknownMutabilityType\020\000\022\010\n\004Pure\020" +
+      "\001\022\010\n\004View\020\002\022\016\n\nNonpayable\020\003\022\013\n\007Payable\020\004" +
+      "\"\360\001\n\023InternalTransaction\022\014\n\004hash\030\001 \001(\014\022\026" +
+      "\n\016caller_address\030\002 \001(\014\022\032\n\022transferTo_add" +
+      "ress\030\003 \001(\014\022B\n\rcallValueInfo\030\004 \003(\0132+.prot" +
+      "ocol.InternalTransaction.CallValueInfo\022\014" +
+      "\n\004note\030\005 \001(\014\022\020\n\010rejected\030\006 \001(\010\0323\n\rCallVa" +
+      "lueInfo\022\021\n\tcallValue\030\001 \001(\003\022\017\n\007tokenId\030\002 " +
+      "\001(\t\"Z\n\035DelegatedResourceAccountIndex\022\017\n\007" +
+      "account\030\001 \001(\014\022\024\n\014fromAccounts\030\002 \003(\014\022\022\n\nt" +
+      "oAccounts\030\003 \003(\014\"\240\021\n\010NodeInfo\022\024\n\014beginSyn" +
+      "cNum\030\001 \001(\003\022\r\n\005block\030\002 \001(\t\022\025\n\rsolidityBlo" +
+      "ck\030\003 \001(\t\022\033\n\023currentConnectCount\030\004 \001(\005\022\032\n" +
+      "\022activeConnectCount\030\005 \001(\005\022\033\n\023passiveConn" +
+      "ectCount\030\006 \001(\005\022\021\n\ttotalFlow\030\007 \001(\003\0221\n\014pee" +
+      "rInfoList\030\010 \003(\0132\033.protocol.NodeInfo.Peer" +
+      "Info\0229\n\016configNodeInfo\030\t \001(\0132!.protocol." +
+      "NodeInfo.ConfigNodeInfo\0223\n\013machineInfo\030\n" +
+      " \001(\0132\036.protocol.NodeInfo.MachineInfo\022H\n\023" +
+      "cheatWitnessInfoMap\030\013 \003(\0132+.protocol.Nod" +
+      "eInfo.CheatWitnessInfoMapEntry\032:\n\030CheatW" +
+      "itnessInfoMapEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value" +
+      "\030\002 \001(\t:\0028\001\032\315\004\n\010PeerInfo\022\025\n\rlastSyncBlock" +
+      "\030\001 \001(\t\022\021\n\tremainNum\030\002 \001(\003\022\033\n\023lastBlockUp" +
+      "dateTime\030\003 \001(\003\022\020\n\010syncFlag\030\004 \001(\010\022\037\n\027head" +
+      "BlockTimeWeBothHave\030\005 \001(\003\022\030\n\020needSyncFro" +
+      "mPeer\030\006 \001(\010\022\026\n\016needSyncFromUs\030\007 \001(\010\022\014\n\004h" +
+      "ost\030\010 \001(\t\022\014\n\004port\030\t \001(\005\022\016\n\006nodeId\030\n \001(\t\022" +
+      "\023\n\013connectTime\030\013 \001(\003\022\022\n\navgLatency\030\014 \001(\001" +
+      "\022\027\n\017syncToFetchSize\030\r \001(\005\022\036\n\026syncToFetch" +
+      "SizePeekNum\030\016 \001(\003\022\036\n\026syncBlockRequestedS" +
+      "ize\030\017 \001(\005\022\025\n\runFetchSynNum\030\020 \001(\003\022\027\n\017bloc" +
+      "kInPorcSize\030\021 \001(\005\022\033\n\023headBlockWeBothHave" +
+      "\030\022 \001(\t\022\020\n\010isActive\030\023 \001(\010\022\r\n\005score\030\024 \001(\005\022" +
+      "\021\n\tnodeCount\030\025 \001(\005\022\016\n\006inFlow\030\026 \001(\003\022\027\n\017di" +
+      "sconnectTimes\030\027 \001(\005\022\035\n\025localDisconnectRe" +
+      "ason\030\030 \001(\t\022\036\n\026remoteDisconnectReason\030\031 \001" +
+      "(\t\032\345\003\n\016ConfigNodeInfo\022\023\n\013codeVersion\030\001 \001" +
+      "(\t\022\022\n\np2pVersion\030\002 \001(\t\022\022\n\nlistenPort\030\003 \001" +
+      "(\005\022\026\n\016discoverEnable\030\004 \001(\010\022\026\n\016activeNode" +
+      "Size\030\005 \001(\005\022\027\n\017passiveNodeSize\030\006 \001(\005\022\024\n\014s" +
+      "endNodeSize\030\007 \001(\005\022\027\n\017maxConnectCount\030\010 \001" +
+      "(\005\022\035\n\025sameIpMaxConnectCount\030\t \001(\005\022\030\n\020bac" +
+      "kupListenPort\030\n \001(\005\022\030\n\020backupMemberSize\030" +
+      "\013 \001(\005\022\026\n\016backupPriority\030\014 \001(\005\022\021\n\tdbVersi" +
+      "on\030\r \001(\005\022\034\n\024minParticipationRate\030\016 \001(\005\022\027" +
+      "\n\017supportConstant\030\017 \001(\010\022\024\n\014minTimeRatio\030" +
+      "\020 \001(\001\022\024\n\014maxTimeRatio\030\021 \001(\001\022 \n\030allowCrea" +
+      "tionOfContracts\030\022 \001(\003\022\033\n\023allowAdaptiveEn" +
+      "ergy\030\023 \001(\003\032\215\005\n\013MachineInfo\022\023\n\013threadCoun" +
+      "t\030\001 \001(\005\022\033\n\023deadLockThreadCount\030\002 \001(\005\022\020\n\010" +
+      "cpuCount\030\003 \001(\005\022\023\n\013totalMemory\030\004 \001(\003\022\022\n\nf" +
+      "reeMemory\030\005 \001(\003\022\017\n\007cpuRate\030\006 \001(\001\022\023\n\013java" +
+      "Version\030\007 \001(\t\022\016\n\006osName\030\010 \001(\t\022\027\n\017jvmTota" +
+      "lMemoery\030\t \001(\003\022\025\n\rjvmFreeMemory\030\n \001(\003\022\026\n" +
+      "\016processCpuRate\030\013 \001(\001\022I\n\022memoryDescInfoL" +
+      "ist\030\014 \003(\0132-.protocol.NodeInfo.MachineInf" +
+      "o.MemoryDescInfo\022Q\n\026deadLockThreadInfoLi" +
+      "st\030\r \003(\01321.protocol.NodeInfo.MachineInfo" +
+      ".DeadLockThreadInfo\032c\n\016MemoryDescInfo\022\014\n" +
+      "\004name\030\001 \001(\t\022\020\n\010initSize\030\002 \001(\003\022\017\n\007useSize" +
+      "\030\003 \001(\003\022\017\n\007maxSize\030\004 \001(\003\022\017\n\007useRate\030\005 \001(\001" +
+      "\032\217\001\n\022DeadLockThreadInfo\022\014\n\004name\030\001 \001(\t\022\020\n" +
+      "\010lockName\030\002 \001(\t\022\021\n\tlockOwner\030\003 \001(\t\022\r\n\005st" +
+      "ate\030\004 \001(\t\022\021\n\tblockTime\030\005 \001(\003\022\020\n\010waitTime" +
+      "\030\006 \001(\003\022\022\n\nstackTrace\030\007 \001(\t*7\n\013AccountTyp" +
+      "e\022\n\n\006Normal\020\000\022\016\n\nAssetIssue\020\001\022\014\n\010Contrac" +
+      "t\020\002*\307\003\n\nReasonCode\022\r\n\tREQUESTED\020\000\022\020\n\014BAD" +
+      "_PROTOCOL\020\002\022\022\n\016TOO_MANY_PEERS\020\004\022\022\n\016DUPLI" +
+      "CATE_PEER\020\005\022\031\n\025INCOMPATIBLE_PROTOCOL\020\006\022\021" +
+      "\n\rNULL_IDENTITY\020\007\022\020\n\014PEER_QUITING\020\010\022\027\n\023U" +
+      "NEXPECTED_IDENTITY\020\t\022\022\n\016LOCAL_IDENTITY\020\n" +
+      "\022\020\n\014PING_TIMEOUT\020\013\022\017\n\013USER_REASON\020\020\022\t\n\005R" +
+      "ESET\020\021\022\r\n\tSYNC_FAIL\020\022\022\016\n\nFETCH_FAIL\020\023\022\n\n" +
+      "\006BAD_TX\020\024\022\r\n\tBAD_BLOCK\020\025\022\n\n\006FORKED\020\026\022\016\n\n" +
+      "UNLINKABLE\020\027\022\030\n\024INCOMPATIBLE_VERSION\020\030\022\026" +
+      "\n\022INCOMPATIBLE_CHAIN\020\031\022\014\n\010TIME_OUT\020 \022\020\n\014" +
+      "CONNECT_FAIL\020!\022\037\n\033TOO_MANY_PEERS_WITH_SA" +
+      "ME_IP\020\"\022\014\n\007UNKNOWN\020\377\001BF\n\017org.tron.protos" +
+      "B\010ProtocolZ)github.com/tronprotocol/grpc" +
+      "-gateway/coreb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -62795,14 +60870,8 @@ public final class Protocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_ResourceReceipt_descriptor,
         new java.lang.String[] { "EnergyUsage", "EnergyFee", "OriginEnergyUsage", "EnergyUsageTotal", "NetUsage", "NetFee", "Result", });
-    internal_static_protocol_DeferredStage_descriptor =
-      getDescriptor().getMessageTypes().get(16);
-    internal_static_protocol_DeferredStage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_protocol_DeferredStage_descriptor,
-        new java.lang.String[] { "DelaySeconds", "Stage", });
     internal_static_protocol_Transaction_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_protocol_Transaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Transaction_descriptor,
@@ -62824,9 +60893,9 @@ public final class Protocol {
     internal_static_protocol_Transaction_raw_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Transaction_raw_descriptor,
-        new java.lang.String[] { "RefBlockBytes", "RefBlockNum", "RefBlockHash", "Expiration", "Auths", "Data", "Contract", "Scripts", "Timestamp", "FeeLimit", "DeferredStage", });
+        new java.lang.String[] { "RefBlockBytes", "RefBlockNum", "RefBlockHash", "Expiration", "Auths", "Data", "Contract", "Scripts", "Timestamp", "FeeLimit", });
     internal_static_protocol_TransactionInfo_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_protocol_TransactionInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TransactionInfo_descriptor,
@@ -62837,26 +60906,20 @@ public final class Protocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TransactionInfo_Log_descriptor,
         new java.lang.String[] { "Address", "Topics", "Data", });
-    internal_static_protocol_DeferredTransaction_descriptor =
-      getDescriptor().getMessageTypes().get(19);
-    internal_static_protocol_DeferredTransaction_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_protocol_DeferredTransaction_descriptor,
-        new java.lang.String[] { "TransactionId", "PublishTime", "DelaySeconds", "DelayUntil", "Expiration", "SenderAddress", "ReceiverAddress", "Transaction", });
     internal_static_protocol_Transactions_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_protocol_Transactions_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Transactions_descriptor,
         new java.lang.String[] { "Transactions", });
     internal_static_protocol_TransactionSign_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_protocol_TransactionSign_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_TransactionSign_descriptor,
         new java.lang.String[] { "Transaction", "PrivateKey", });
     internal_static_protocol_BlockHeader_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_protocol_BlockHeader_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_BlockHeader_descriptor,
@@ -62866,15 +60929,15 @@ public final class Protocol {
     internal_static_protocol_BlockHeader_raw_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_BlockHeader_raw_descriptor,
-        new java.lang.String[] { "Timestamp", "TxTrieRoot", "ParentHash", "Number", "WitnessId", "WitnessAddress", "Version", "AccountStateRoot", });
+        new java.lang.String[] { "Timestamp", "TxTrieRoot", "ParentHash", "Number", "WitnessId", "WitnessAddress", "Version", });
     internal_static_protocol_Block_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_protocol_Block_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Block_descriptor,
         new java.lang.String[] { "Transactions", "BlockHeader", });
     internal_static_protocol_ChainInventory_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_protocol_ChainInventory_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_ChainInventory_descriptor,
@@ -62886,7 +60949,7 @@ public final class Protocol {
         internal_static_protocol_ChainInventory_BlockId_descriptor,
         new java.lang.String[] { "Hash", "Number", });
     internal_static_protocol_BlockInventory_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_protocol_BlockInventory_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_BlockInventory_descriptor,
@@ -62898,31 +60961,31 @@ public final class Protocol {
         internal_static_protocol_BlockInventory_BlockId_descriptor,
         new java.lang.String[] { "Hash", "Number", });
     internal_static_protocol_Inventory_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_protocol_Inventory_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Inventory_descriptor,
         new java.lang.String[] { "Type", "Ids", });
     internal_static_protocol_Items_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_protocol_Items_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_Items_descriptor,
         new java.lang.String[] { "Type", "Blocks", "BlockHeaders", "Transactions", });
     internal_static_protocol_DynamicProperties_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_protocol_DynamicProperties_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_DynamicProperties_descriptor,
         new java.lang.String[] { "LastSolidityBlockNum", });
     internal_static_protocol_DisconnectMessage_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_protocol_DisconnectMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_DisconnectMessage_descriptor,
         new java.lang.String[] { "Reason", });
     internal_static_protocol_HelloMessage_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_protocol_HelloMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_HelloMessage_descriptor,
@@ -62934,11 +60997,11 @@ public final class Protocol {
         internal_static_protocol_HelloMessage_BlockId_descriptor,
         new java.lang.String[] { "Hash", "Number", });
     internal_static_protocol_SmartContract_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_protocol_SmartContract_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_SmartContract_descriptor,
-        new java.lang.String[] { "OriginAddress", "ContractAddress", "Abi", "Bytecode", "CallValue", "ConsumeUserResourcePercent", "Name", "OriginEnergyLimit", "CodeHash", });
+        new java.lang.String[] { "OriginAddress", "ContractAddress", "Abi", "Bytecode", "CallValue", "ConsumeUserResourcePercent", "Name", "OriginEnergyLimit", });
     internal_static_protocol_SmartContract_ABI_descriptor =
       internal_static_protocol_SmartContract_descriptor.getNestedTypes().get(0);
     internal_static_protocol_SmartContract_ABI_fieldAccessorTable = new
@@ -62958,7 +61021,7 @@ public final class Protocol {
         internal_static_protocol_SmartContract_ABI_Entry_Param_descriptor,
         new java.lang.String[] { "Indexed", "Name", "Type", });
     internal_static_protocol_InternalTransaction_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_protocol_InternalTransaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_InternalTransaction_descriptor,
@@ -62970,13 +61033,13 @@ public final class Protocol {
         internal_static_protocol_InternalTransaction_CallValueInfo_descriptor,
         new java.lang.String[] { "CallValue", "TokenId", });
     internal_static_protocol_DelegatedResourceAccountIndex_descriptor =
-      getDescriptor().getMessageTypes().get(33);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_protocol_DelegatedResourceAccountIndex_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_DelegatedResourceAccountIndex_descriptor,
         new java.lang.String[] { "Account", "FromAccounts", "ToAccounts", });
     internal_static_protocol_NodeInfo_descriptor =
-      getDescriptor().getMessageTypes().get(34);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_protocol_NodeInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_protocol_NodeInfo_descriptor,
