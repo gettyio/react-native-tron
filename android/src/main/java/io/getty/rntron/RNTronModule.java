@@ -1,6 +1,7 @@
 
 package io.getty.rntron;
 
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -124,7 +125,29 @@ public class RNTronModule extends ReactContextBaseJavaModule {
     }).start();
   }
 
-  @ReactMethod
+    @ReactMethod
+    public void buildTriggerSmartContract2(final String ownerPrivateKey,
+                                          String strTransaction,
+                                          final Promise promise)
+    {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    JSONObject result = TronWallet.buildTriggerSmartContract2(ownerPrivateKey, strTransaction);
+                    promise.resolve(result.toJSONString());
+
+                } catch(Exception e) {
+                    System.out.println("Error: "+e.getMessage());
+                    e.printStackTrace();
+                    promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
+                }
+            }
+        }).start();
+    }
+
+
+    @ReactMethod
   public void buildTriggerSmartContract(final String ownerPrivateKey,
                                           String contractAddress,
                                           String callValueStr, String methodStr, String argsStr, String tokenValueStr, String tokenId, final Promise promise)
@@ -133,9 +156,8 @@ public class RNTronModule extends ReactContextBaseJavaModule {
       public void run() {
         try {
 
-          String result = TronWallet.buildTriggerSmartContract(ownerPrivateKey, contractAddress, callValueStr, methodStr, argsStr, tokenValueStr, tokenId);
-
-          promise.resolve(result);
+          JSONObject result = TronWallet.buildTriggerSmartContract(ownerPrivateKey, contractAddress, callValueStr, methodStr, argsStr, tokenValueStr, tokenId);
+          promise.resolve(result.toJSONString());
 
         } catch(Exception e) {
           System.out.println("Error: "+e.getMessage());
