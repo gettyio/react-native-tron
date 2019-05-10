@@ -133,7 +133,8 @@ public class RNTronModule extends ReactContextBaseJavaModule {
       public void run() {
         try {
 
-          boolean result = TronWallet.buildTriggerSmartContract(ownerPrivateKey, contractAddress, callValueStr, methodStr, argsStr, tokenValueStr, tokenId);
+          String result = TronWallet.buildTriggerSmartContract(ownerPrivateKey, contractAddress, callValueStr, methodStr, argsStr, tokenValueStr, tokenId);
+
           promise.resolve(result);
 
         } catch(Exception e) {

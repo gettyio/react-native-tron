@@ -1,7 +1,5 @@
 package io.getty.rntron;
 
-import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.WritableMap;
 import com.google.protobuf.ByteString;
 
 import org.spongycastle.util.encoders.Hex;
@@ -15,6 +13,7 @@ import org.tron.common.utils.ByteArray;
 import org.tron.common.utils.TransactionUtils;
 import org.tron.protos.Contract;
 import org.tron.protos.Protocol;
+import org.tron.common.utils.Utils;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -162,7 +161,9 @@ public class TronWallet {
         return transaction;
     }
 
-    public static boolean buildTriggerSmartContract(String ownerPrivateKey, String contractAddress, String callValueStr, String methodStr, String argsStr, String tokenValueStr, String tokenId) {
+    public static String buildTriggerSmartContract(String ownerPrivateKey, String contractAddress, String callValueStr, String methodStr, String argsStr, String tokenValueStr, String tokenId) {
+        String returnMessage;
+
         byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
         ECKey key = ECKey.fromPrivate(ownerPrivateKeyBytes);
 
@@ -205,7 +206,8 @@ public class TronWallet {
             System.out.println("Code = " + transactionExtention.getResult().getCode());
             System.out
                     .println("Message = " + transactionExtention.getResult().getMessage().toStringUtf8());
-            return false;
+            returnMessage = "false";
+            return returnMessage;
         }
 
         Protocol.Transaction transaction = transactionExtention.getTransaction();
@@ -218,7 +220,8 @@ public class TronWallet {
             System.out.println(":" + ByteArray
                     .toStr(transactionExtention.getResult().getMessage().toByteArray()));
             System.out.println("Result:" + Hex.toHexString(result));
-            return true;
+            returnMessage = "true";
+            return returnMessage;
         }
 
         GrpcAPI.TransactionExtention.Builder texBuilder = GrpcAPI.TransactionExtention.newBuilder();
@@ -243,7 +246,8 @@ public class TronWallet {
         transactionExtention = texBuilder.build();
 
         if (transactionExtention == null) {
-            return false;
+            returnMessage = "false";
+            return returnMessage;
         }
 
         GrpcAPI.Return ret = transactionExtention.getResult();
@@ -251,18 +255,29 @@ public class TronWallet {
         if (!ret.getResult()) {
             System.out.println("Code = " + ret.getCode());
             System.out.println("Message = " + ret.getMessage().toStringUtf8());
-            return false;
+            returnMessage = "false";
+            return returnMessage;
         }
 
         transaction = transactionExtention.getTransaction();
 
         if (transaction == null || transaction.getRawData().getContractCount() == 0) {
             System.out.println("Transaction is empty");
-            return false;
+            returnMessage = "false";
+            return returnMessage;
         }
         System.out.println(
                 "Receive txid = " + ByteArray.toHexString(transactionExtention.getTxid().toByteArray()));
         transaction = TronWallet._sign(ownerPrivateKey, transaction);
-        return client.broadcastTransaction(transaction);
+        byte[] signedTransactionBytes = transaction.toByteArray();
+        String encodedSignedTransaction = ByteArray.toHexString(signedTransactionBytes).toUpperCase();
+
+        String[] signatures = new String[transaction.getSignatureCount()];
+        for (int i = 0; i < transaction.getSignatureCount(); i++) {
+            signatures[i] = TransactionUtils.getHexFromByteString(transaction.getSignature(i));
+            System.out.println(TransactionUtils.getHexFromByteString(transaction.getSignature(i)));
+        }
+
+        return Utils.printTransaction(transaction);
     }
 }

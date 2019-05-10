@@ -16,10 +16,7 @@
 package org.tron.common.utils;
 
 import com.google.protobuf.ByteString;
-import java.security.SignatureException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tron.common.crypto.ECKey;
@@ -27,7 +24,11 @@ import org.tron.common.crypto.ECKey.ECDSASignature;
 import org.tron.common.crypto.Sha256Hash;
 import org.tron.core.exception.CancelException;
 import org.tron.protos.Protocol.Transaction;
-import org.tron.protos.Protocol.Transaction.Contract;
+
+import java.security.SignatureException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class TransactionUtils {
 
@@ -132,6 +133,18 @@ public class TransactionUtils {
     ECDSASignature signature = ECDSASignature.fromComponents(r, s, v);
     return signature.toBase64();
   }
+
+  public static String getHexFromByteString(ByteString sign) {
+    byte[] r = sign.substring(0, 32).toByteArray();
+    byte[] s = sign.substring(32, 64).toByteArray();
+    byte v = sign.byteAt(64);
+    if (v < 27) {
+      v += 27; //revId -> v
+    }
+    ECDSASignature signature = ECDSASignature.fromComponents(r, s, v);
+    return signature.toHex();
+  }
+
 
   /*
    * 1. check hash
