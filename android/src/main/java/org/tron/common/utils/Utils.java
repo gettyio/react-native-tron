@@ -40,6 +40,7 @@ import org.tron.api.GrpcAPI.TransactionList;
 import org.tron.api.GrpcAPI.TransactionListExtention;
 import org.tron.api.GrpcAPI.TransactionSignWeight;
 import org.tron.api.GrpcAPI.WitnessList;
+import org.tron.common.crypto.Hash;
 import org.tron.common.crypto.Sha256Hash;
 import org.tron.protos.Contract.AccountCreateContract;
 import org.tron.protos.Contract.AccountPermissionUpdateContract;
@@ -110,6 +111,17 @@ public class Utils {
 
   public static SecureRandom getRandom() {
     return random;
+  }
+
+  public static String parseMethod(String methodSign, String input) {
+    byte[] selector = new byte[4];
+    System.arraycopy(Hash.sha3(methodSign.getBytes()), 0, selector, 0, 4);
+    //System.out.println(methodSign + ":" + Hex.toHexString(selector));
+    if (input.length() == 0) {
+      return Hex.toHexString(selector);
+    }
+
+    return Hex.toHexString(selector) + input;
   }
 
   public static byte[] getBytes(char[] chars) {

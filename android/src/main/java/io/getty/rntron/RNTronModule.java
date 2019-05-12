@@ -125,39 +125,34 @@ public class RNTronModule extends ReactContextBaseJavaModule {
     }).start();
   }
 
-    @ReactMethod
-    public void buildTriggerSmartContract2(final String ownerPrivateKey,
-                                          String strTransaction,
-                                          final Promise promise)
-    {
-        new Thread(new Runnable() {
-            public void run() {
-                try {
+//    @ReactMethod
+//    public void signSmartContractTransaction(final String ownerPrivateKey, String payload, final Promise promise)
+//    {
+//        new Thread(new Runnable() {
+//            public void run() {
+//                try {
+//
+//                    JSONObject result = TronWallet.buildTriggerSmartContract2(ownerPrivateKey, strTransaction);
+//                    promise.resolve(result.toJSONString());
+//
+//                } catch(Exception e) {
+//                    System.out.println("Error: "+e.getMessage());
+//                    e.printStackTrace();
+//                    promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
+//                }
+//            }
+//        }).start();
+//    }
 
-                    JSONObject result = TronWallet.buildTriggerSmartContract2(ownerPrivateKey, strTransaction);
-                    promise.resolve(result.toJSONString());
-
-                } catch(Exception e) {
-                    System.out.println("Error: "+e.getMessage());
-                    e.printStackTrace();
-                    promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
-                }
-            }
-        }).start();
-    }
-
-
-    @ReactMethod
-  public void buildTriggerSmartContract(final String ownerPrivateKey,
-                                          String contractAddress,
-                                          String callValueStr, String methodStr, String argsStr, String tokenValueStr, String tokenId, final Promise promise)
+  @ReactMethod
+  public void buildTriggerSmartContract(final String payload, final Promise promise)
   {
     new Thread(new Runnable() {
       public void run() {
         try {
 
-          JSONObject result = TronWallet.buildTriggerSmartContract(ownerPrivateKey, contractAddress, callValueStr, methodStr, argsStr, tokenValueStr, tokenId);
-          promise.resolve(result.toJSONString());
+          JSONObject unsignedTriggerSmartContractTransaction = TronWallet.buildTriggerSmartContract(payload);
+          promise.resolve(unsignedTriggerSmartContractTransaction.toJSONString());
 
         } catch(Exception e) {
           System.out.println("Error: "+e.getMessage());

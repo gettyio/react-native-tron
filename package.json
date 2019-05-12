@@ -1,6 +1,6 @@
 
 {
-  "name": "@gettyio/react-native-tron",
+  "name": "react-native-tron",
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
