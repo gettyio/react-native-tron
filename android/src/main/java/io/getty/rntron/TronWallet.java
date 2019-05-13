@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
 import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -307,6 +308,10 @@ public class TronWallet {
         return stringArray;
     }
 
+    public static Protocol.Transaction packTransaction(String payload) throws JsonFormat.ParseException {
+        return Utils.packTransaction(payload, false);
+    }
+
     public static JSONObject buildTriggerSmartContract(String payload) {
 
 
@@ -315,17 +320,14 @@ public class TronWallet {
         String contractAddress = contractObject.getString("contractAddress");
         String functionSelector = contractObject.getString("functionSelector");
 
-        String feeLimitString = contractObject.getJSONObject("options").getString("feeLimit");
         String callValueString = contractObject.getJSONObject("options").getString("callValue");
-        String userFeePercentage = contractObject.getJSONObject("options").getString("userFeePercentage");
-        String from = contractObject.getJSONObject("options").getString("from");
-        //String shouldPollResponse = contractObject.getJSONObject("options").getString("shouldPollResponse");
+//        String from = contractObject.getJSONObject("options").getString("from");
+//        String shouldPollResponse = contractObject.getJSONObject("options").getString("shouldPollResponse");
         String tokenValueString = contractObject.getJSONObject("options").getString("tokenValue");
         String tokenIdString = contractObject.getJSONObject("options").getString("tokenId");
         String issuerAddress = contractObject.getString("issuerAddress");
         JSONArray parameters = contractObject.getJSONArray("parameters");
 
-        Long feeLimit = Long.parseLong(feeLimitString);
         Long callValue = Long.parseLong(callValueString);
 
         Contract.TriggerSmartContract.Builder builder = Contract.TriggerSmartContract.newBuilder();

@@ -155,7 +155,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
           promise.resolve(unsignedTriggerSmartContractTransaction.toJSONString());
 
         } catch(Exception e) {
-          System.out.println("Error: "+e.getMessage());
+          //System.out.println("Error: "+e.getMessage());
           e.printStackTrace();
           promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
         }

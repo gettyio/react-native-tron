@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.tron.common.crypto.ECKey;
 import org.tron.common.utils.ByteArray;
 import org.tron.common.utils.JsonFormat;
+import org.tron.common.utils.Utils;
+import org.tron.protos.Protocol;
 import org.tron.protos.Protocol.Transaction;
 
 import java.util.Arrays;
@@ -22,7 +24,7 @@ public class AbstractSignTests {
     {
             try {
                 String test = "zebra";
-                System.out.println(test);
+                ///System.out.println(test);
 
                 byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(privateKey);
                 ECKey ownerKey = ECKey.fromPrivate(ownerPrivateKeyBytes);
@@ -120,34 +122,34 @@ public class AbstractSignTests {
                 "    }";
 
 
-        JSONObject contractParamsTronWatchMarketTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronWatchMarket);
+//        JSONObject contractParamsTronWatchMarketTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronWatchMarket);
+//        System.out.println(contractParamsTronWatchMarketTransaction.toJSONString());
+//
+//
+//        JSONObject contractParamsTrobetTRXTransaction = TronWallet.buildTriggerSmartContract(contractParamsTrobetTRX);
+//        System.out.println(contractParamsTrobetTRXTransaction.toJSONString());
+//
+//
 
-        System.out.println(contractParamsTronWatchMarketTransaction.toJSONString());
-
-
-        JSONObject contractParamsTrobetTRXTransaction = TronWallet.buildTriggerSmartContract(contractParamsTrobetTRX);
-
-        System.out.println(contractParamsTrobetTRXTransaction.toJSONString());
-
+//
+//
+//        JSONObject contractParamsTronbetMySeedTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronbetMySeed);
+//        System.out.println(contractParamsTronbetMySeedTransaction.toJSONString());
+//
+//        JSONObject contractParamsTronbetGetStakeInfoByAddressTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronbetGetStakeInfoByAddress);
+//        System.out.println(contractParamsTronbetGetStakeInfoByAddressTransaction.toJSONString());
+//
+//        JSONObject contractParamsTronbetGetStakeInfoByAddressBase58Transaction = TronWallet.buildTriggerSmartContract(contractParamsTronbetGetStakeInfoByAddressBase58);
+//
+//        String contractJsonString = contractParamsTronbetGetStakeInfoByAddressBase58Transaction.toJSONString();
+//        System.out.println(contractParamsTronbetGetStakeInfoByAddressBase58Transaction.toJSONString());
 
         JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronbetBTT);
 
-        System.out.println(contractParamsTronbetBTTTransaction.toJSONString());
+        Protocol.Transaction transaction = TronWallet.packTransaction(contractParamsTronbetBTTTransaction.toJSONString());
 
-
-        JSONObject contractParamsTronbetMySeedTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronbetMySeed);
-
-        System.out.println("FROM BASE 58 TO HEX: "+ contractParamsTronbetMySeedTransaction.toJSONString());
-
-        JSONObject contractParamsTronbetGetStakeInfoByAddressTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronbetGetStakeInfoByAddress);
-
-        System.out.println("FROM BASE 64 TO HEX: "+ contractParamsTronbetGetStakeInfoByAddressTransaction.toJSONString());
-
-        JSONObject contractParamsTronbetGetStakeInfoByAddressBase58Transaction = TronWallet.buildTriggerSmartContract(contractParamsTronbetGetStakeInfoByAddressBase58);
-
-        System.out.println("FROM BASE 58 TO HEX: "+ contractParamsTronbetGetStakeInfoByAddressBase58Transaction.toJSONString());
-
-
+        System.out.println(contractParamsTronbetBTTTransaction);
+        System.out.println(Utils.printTransactionToJSON(transaction, false));
 
 //        String transaction = "74726f6e626574";
 //        String transaction = "0A8F010A022DBE220823653663EFAA2AC940E7BAB382A82D52152053656E742066726F6D2054726F6E57616C6C65745A57080B12530A32747970652E676F6F676C65617069732E636F6D2F70726F746F636F6C2E467265657A6542616C616E6365436F6E7472616374121D0A1541C46D47F7CD8D4E7C91E6A5128441378822971C5D10C0843D18037080BCC180F0FDD4CD15";
