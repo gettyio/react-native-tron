@@ -5,6 +5,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.junit.Test;
 import org.tron.common.crypto.ECKey;
+import org.tron.common.crypto.Sha256Hash;
 import org.tron.common.utils.ByteArray;
 import org.tron.common.utils.JsonFormat;
 import org.tron.common.utils.Utils;
@@ -170,18 +171,43 @@ public class AbstractSignTests {
                 "    \"raw_data_hex\": \"0a027fd42208796764811a9791d54090de949bab2d5ab301081f12ae010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412790a1541756bf73fc5d7042aaa4a4b8488befc777a2581351215412ec5f63da00583085d4c2c5e8ec3c8d17bde5e281880ade2042244a3082be900000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000001709497919bab2d9001809bee02\"\n" +
                 "  }";
 
-        JSONObject contractObject = JSONObject.parseObject(tronbet);
 
-        Protocol.Transaction transaction = TronWallet.packTransaction(tronbet);
+        String tx1 =
+                "  {\n" +
+                "    \"txID\": \"7c357f08d8f593abc56a41eab2fc2413f9eefa90be62aae022d936acce99e1eb\",\n" +
+                "    \"raw_data\": {\n" +
+                "      \"contract\": [\n" +
+                "        {\n" +
+                "          \"parameter\": {\n" +
+                "            \"value\": {\n" +
+                "              \"data\": \"a3082be900000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000001\",\n" +
+                "              \"owner_address\": \"4188d71a698ca1f64aeeabbec77232e0092b38d51d\",\n" +
+                "              \"contract_address\": \"412ec5f63da00583085d4c2c5e8ec3c8d17bde5e28\",\n" +
+                "              \"call_value\": 10000000\n" +
+                "            },\n" +
+                "            \"type_url\": \"type.googleapis.com/protocol.TriggerSmartContract\"\n" +
+                "          },\n" +
+                "          \"type\": \"TriggerSmartContract\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"ref_block_bytes\": \"8b63\",\n" +
+                "      \"ref_block_hash\": \"3268876297d60e3f\",\n" +
+                "      \"expiration\": 1557797022000,\n" +
+                "      \"fee_limit\": 6000000,\n" +
+                "      \"timestamp\": 1557796966378\n" +
+                "    },\n" +
+                "    \"raw_data_hex\": \"0a028b6322083268876297d60e3f40b0d2c09fab2d5ab301081f12ae010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412790a154188d71a698ca1f64aeeabbec77232e0092b38d51d1215412ec5f63da00583085d4c2c5e8ec3c8d17bde5e281880ade2042244a3082be90000000000000000000000000000000000000000000000000000000000000009000000000000000000000000000000000000000000000000000000000000000170ea9fbd9fab2d9001809bee02\"\n" +
+                "  }\n";
+
+        JSONObject contractObject = JSONObject.parseObject(tx1);
+
+        Protocol.Transaction transaction = TronWallet.packTransaction(tx1);
         String timestamp = contractObject.getJSONObject("raw_data").getString("timestamp");
 
-        System.out.println(timestamp);
+        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, transaction, timestamp);
 
-        Protocol.Transaction _transaction = TronWallet.setTimestamp(transaction, timestamp);
-
-        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, _transaction);
-
-        System.out.println("UNSIGNED: "+contractObject);
+        System.out.println("TIMSTAMP: "+timestamp);
+        System.out.println("UNSIGNED: "+tx1);
         System.out.println("SIGNED: "+Utils.printTransactionToJSON(signedTransaction, false));
 
 
