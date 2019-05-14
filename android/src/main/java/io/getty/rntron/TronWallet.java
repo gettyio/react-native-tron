@@ -16,7 +16,11 @@ import org.spongycastle.util.encoders.Hex;
 import org.tron.api.GrpcAPI;
 import org.tron.api.GrpcClient;
 import org.tron.common.crypto.ECKey;
+import org.tron.common.crypto.ECKeyPair;
+import org.tron.common.crypto.Hash;
+import org.tron.common.crypto.Numeric;
 import org.tron.common.crypto.Sha256Hash;
+import org.tron.common.crypto.Sign;
 import org.tron.common.utils.AbiUtil;
 import org.tron.common.utils.Base58;
 import org.tron.common.utils.ByteArray;
@@ -27,6 +31,7 @@ import org.tron.core.Constant;
 import org.tron.protos.Contract;
 import org.tron.protos.Protocol;
 
+import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -201,28 +206,64 @@ public class TronWallet {
 //    }
 
 
-    public static String signString(final String ownerPrivateKey, final String hexString) {
+    public static String signString(final String ownerPrivateKey, final String hexString, boolean needToHash) {
         try
         {
-            String newHex = hexString.replace("0x", Constant.ADD_PRE_FIX_STRING_MAINNET);
+//            String newHex = hexString.replace("0x", Constant.ADD_PRE_FIX_STRING_MAINNET);
+//
+//            //Get key
+//            byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
+//            byte[] transactionBytes = ByteArray.fromHexString(newHex);
+//            byte[] hash = Sha256Hash.hash(transactionBytes);
+//
+//            ECKey ownerKey = ECKey.fromPrivate(ownerPrivateKeyBytes);
+//
+//            ECKey.ECDSASignature signature = ownerKey.sign(hash);
+//            ByteString bsSign = ByteString.copyFrom(signature.toByteArray());
+//
+//            return "0x"+ByteArray.toHexString(bsSign.toByteArray());
 
-            //Get key
+            byte[] message = ByteArray.fromHexString(hexString);
             byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
-            byte[] transactionBytes = ByteArray.fromHexString(newHex);
-            byte[] hash = Sha256Hash.hash(transactionBytes);
+            ECKeyPair keyPair = ECKeyPair.create(ownerPrivateKeyBytes);
 
-            ECKey ownerKey = ECKey.fromPrivate(ownerPrivateKeyBytes);
+            BigInteger publicKey = keyPair.getPublicKey();
+            byte[] messageHash;
+            if (needToHash) {
+                messageHash = Hash.sha3(message);
+            } else {
+                messageHash = message;
+            }
 
-            ECKey.ECDSASignature signature = ownerKey.sign(hash);
-            ByteString bsSign = ByteString.copyFrom(signature.toByteArray());
+            ECKey.ECDSASignature sig = keyPair.sign(messageHash);
+            // Now we have to work backwards to figure out the recId needed to recover the signature.
+            int recId = -1;
+            for (int i = 0; i < 4; i++) {
+                BigInteger k = Sign.recoverFromSignature(i, sig, messageHash);
+                if (k != null && k.equals(publicKey)) {
+                    recId = i;
+                    break;
+                }
+            }
+            if (recId == -1) {
+                throw new RuntimeException(
+                        "Could not construct a recoverable key. Are your credentials valid?");
+            }
 
-            return "0x"+ByteArray.toHexString(bsSign.toByteArray());
+            int headerByte = recId + 27;
+
+            // 1 header + 32 bytes for R + 32 bytes for S
+            byte v = (byte) headerByte;
+            byte[] r = Numeric.toBytesPadded(sig.r, 32);
+            byte[] s = Numeric.toBytesPadded(sig.s, 32);
+
+            return "0x"+ sig.toHex();
         }
 
         catch(Exception e)
         {
             System.out.println("Error: "+e.getMessage());
-            return "Error: "+e.getMessage();
+            return null;
         }
     }
 
