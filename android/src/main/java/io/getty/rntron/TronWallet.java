@@ -193,10 +193,21 @@ public class TronWallet {
         }
     }
 
+    public static Protocol.Transaction setExpirationTime(Protocol.Transaction transaction, String timestamp) {
+        if (transaction.getSignatureCount() == 0) {
+            long expirationTime =  Long.parseLong(timestamp);
+            Protocol.Transaction.Builder builder = transaction.toBuilder();
+            org.tron.protos.Protocol.Transaction.raw.Builder rowBuilder = transaction.getRawData()
+                    .toBuilder();
+            rowBuilder.setExpiration(expirationTime);
+            builder.setRawData(rowBuilder.build());
+            return builder.build();
+        }
+        return transaction;
+    }
+
     public static Protocol.Transaction setTimestamp(Protocol.Transaction transaction, String timestamp) {
         long currentTime = Long.parseLong(timestamp);
-
-        System.out.println(currentTime);
         Protocol.Transaction.Builder builder = transaction.toBuilder();
         org.tron.protos.Protocol.Transaction.raw.Builder rowBuilder = transaction.getRawData()
                 .toBuilder();
@@ -205,7 +216,7 @@ public class TronWallet {
         return builder.build();
     }
 
-    public static Protocol.Transaction _sign(final String ownerPrivateKey, final Protocol.Transaction _transaction) {
+    public static Protocol.Transaction _sign(final String ownerPrivateKey, String timestamp, final Protocol.Transaction _transaction) {
         Protocol.Transaction transaction = null;
         //Get key
         byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
@@ -218,7 +229,7 @@ public class TronWallet {
         }
 
         //Set timestamp and sign transaction
-        transaction = TransactionUtils.setTimestamp(_transaction);
+        transaction = setTimestamp(_transaction, timestamp);
         transaction = TransactionUtils.sign(transaction, ownerKey);
         return transaction;
     }

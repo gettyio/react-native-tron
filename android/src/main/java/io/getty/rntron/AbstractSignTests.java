@@ -1,5 +1,6 @@
 package io.getty.rntron;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.junit.Test;
@@ -170,11 +171,80 @@ public class AbstractSignTests {
 //        String contractJsonString = contractParamsTronbetGetStakeInfoByAddressBase58Transaction.toJSONString();
 //        System.out.println(contractParamsTronbetGetStakeInfoByAddressBase58Transaction.toJSONString());
 
-//        JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract(tronbetGambling);
+        String tronbet = "{\n" +
+                "    \"txID\": \"cc7cda9510b2594a197c51d6815a2067a92330641d4b39db5ebba9be31eed4ca\",\n" +
+                "    \"raw_data\": {\n" +
+                "      \"contract\": [\n" +
+                "        {\n" +
+                "          \"parameter\": {\n" +
+                "            \"value\": {\n" +
+                "              \"data\": \"a3082be900000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000001\",\n" +
+                "              \"owner_address\": \"41756bf73fc5d7042aaa4a4b8488befc777a258135\",\n" +
+                "              \"contract_address\": \"412ec5f63da00583085d4c2c5e8ec3c8d17bde5e28\",\n" +
+                "              \"call_value\": 10000000\n" +
+                "            },\n" +
+                "            \"type_url\": \"type.googleapis.com/protocol.TriggerSmartContract\"\n" +
+                "          },\n" +
+                "          \"type\": \"TriggerSmartContract\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"ref_block_bytes\": \"7fd4\",\n" +
+                "      \"ref_block_hash\": \"796764811a9791d5\",\n" +
+                "      \"expiration\": 1557787914000,\n" +
+                "      \"fee_limit\": 6000000,\n" +
+                "      \"timestamp\": 1557787855764\n" +
+                "    },\n" +
+                "    \"raw_data_hex\": \"0a027fd42208796764811a9791d54090de949bab2d5ab301081f12ae010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412790a1541756bf73fc5d7042aaa4a4b8488befc777a2581351215412ec5f63da00583085d4c2c5e8ec3c8d17bde5e281880ade2042244a3082be900000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000001709497919bab2d9001809bee02\"\n" +
+                "  }";
 
-        Protocol.Transaction transaction = TronWallet.packTransaction(tronbetGambling);
-        System.out.println(tronbetGambling);
-        System.out.println(Utils.printTransactionToJSON(transaction, false));
+
+        String tx1 =
+                "  {\n" +
+                "    \"txID\": \"7c357f08d8f593abc56a41eab2fc2413f9eefa90be62aae022d936acce99e1eb\",\n" +
+                "    \"raw_data\": {\n" +
+                "      \"contract\": [\n" +
+                "        {\n" +
+                "          \"parameter\": {\n" +
+                "            \"value\": {\n" +
+                "              \"data\": \"a3082be900000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000001\",\n" +
+                "              \"owner_address\": \"4188d71a698ca1f64aeeabbec77232e0092b38d51d\",\n" +
+                "              \"contract_address\": \"412ec5f63da00583085d4c2c5e8ec3c8d17bde5e28\",\n" +
+                "              \"call_value\": 10000000\n" +
+                "            },\n" +
+                "            \"type_url\": \"type.googleapis.com/protocol.TriggerSmartContract\"\n" +
+                "          },\n" +
+                "          \"type\": \"TriggerSmartContract\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"ref_block_bytes\": \"8b63\",\n" +
+                "      \"ref_block_hash\": \"3268876297d60e3f\",\n" +
+                "      \"expiration\": 1557797022000,\n" +
+                "      \"fee_limit\": 6000000,\n" +
+                "      \"timestamp\": 1557796966378\n" +
+                "    },\n" +
+                "    \"raw_data_hex\": \"0a028b6322083268876297d60e3f40b0d2c09fab2d5ab301081f12ae010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412790a154188d71a698ca1f64aeeabbec77232e0092b38d51d1215412ec5f63da00583085d4c2c5e8ec3c8d17bde5e281880ade2042244a3082be90000000000000000000000000000000000000000000000000000000000000009000000000000000000000000000000000000000000000000000000000000000170ea9fbd9fab2d9001809bee02\"\n" +
+                "  }\n";
+
+        JSONObject contractObject = JSONObject.parseObject(tx1);
+
+        Protocol.Transaction transaction = TronWallet.packTransaction(tx1);
+        String timestamp = contractObject.getJSONObject("raw_data").getString("timestamp");
+
+        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, transaction, timestamp);
+
+        System.out.println("TIMSTAMP: "+timestamp);
+        System.out.println("UNSIGNED: "+tx1);
+        System.out.println("SIGNED: "+Utils.printTransactionToJSON(signedTransaction, false));
+
+
+        //JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract("");
+
+//        Protocol.Transaction transaction = TronWallet.packTransaction(tronbet);
+//
+//        Protocol.Transaction signedTransaction = TronWallet._sign("5d585f25d609baf62ca1f96687285406a64694f9a5c352c98cf198f3098bbcda", transaction);
+//
+//        //System.out.println(contractParamsTronbetBTTTransaction);
+//        System.out.println(Utils.printTransactionToJSON(signedTransaction, false));
 
 //        JSONObject contractObject = JSONObject.parseObject(tronbetGambling);
 
