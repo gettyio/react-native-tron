@@ -185,8 +185,11 @@ public class TransactionUtils {
     ECDSASignature signature = myKey.sign(hash);
     ByteString bsSign = ByteString.copyFrom(signature.toByteArray());
     transactionBuilderSigned.addSignature(bsSign);
-    transaction = transactionBuilderSigned.build();
+
     return transaction;
+
+//    transaction = transactionBuilderSigned.build();
+//    return transaction;
   }
 
   public static Transaction setTimestamp(Transaction transaction) {
@@ -194,6 +197,7 @@ public class TransactionUtils {
     Transaction.Builder builder = transaction.toBuilder();
     org.tron.protos.Protocol.Transaction.raw.Builder rowBuilder = transaction.getRawData()
         .toBuilder();
+
     rowBuilder.setTimestamp(currentTime);
     builder.setRawData(rowBuilder.build());
     return builder.build();

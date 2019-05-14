@@ -1,6 +1,5 @@
 package io.getty.rntron;
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.junit.Test;
@@ -122,6 +121,33 @@ public class AbstractSignTests {
                 "    }";
 
 
+        String tronbetGambling = "{\n" +
+                "    \"txID\": \"cc7cda9510b2594a197c51d6815a2067a92330641d4b39db5ebba9be31eed4ca\",\n" +
+                "    \"raw_data\": {\n" +
+                "      \"contract\": [\n" +
+                "        {\n" +
+                "          \"parameter\": {\n" +
+                "            \"value\": {\n" +
+                "              \"data\": \"a3082be900000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000001\",\n" +
+                "              \"owner_address\": \"41756bf73fc5d7042aaa4a4b8488befc777a258135\",\n" +
+                "              \"contract_address\": \"412ec5f63da00583085d4c2c5e8ec3c8d17bde5e28\",\n" +
+                "              \"call_value\": 10000000\n" +
+                "            },\n" +
+                "            \"type_url\": \"type.googleapis.com/protocol.TriggerSmartContract\"\n" +
+                "          },\n" +
+                "          \"type\": \"TriggerSmartContract\"\n" +
+                "        }\n" +
+                "      ],\n" +
+                "      \"ref_block_bytes\": \"7fd4\",\n" +
+                "      \"ref_block_hash\": \"796764811a9791d5\",\n" +
+                "      \"expiration\": 1557787914000,\n" +
+                "      \"fee_limit\": 6000000,\n" +
+                "      \"timestamp\": 1557787855764\n" +
+                "    },\n" +
+                "    \"raw_data_hex\": \"0a027fd42208796764811a9791d54090de949bab2d5ab301081f12ae010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412790a1541756bf73fc5d7042aaa4a4b8488befc777a2581351215412ec5f63da00583085d4c2c5e8ec3c8d17bde5e281880ade2042244a3082be900000000000000000000000000000000000000000000000000000000000000090000000000000000000000000000000000000000000000000000000000000001709497919bab2d9001809bee02\"\n" +
+                "  }";
+
+
 //        JSONObject contractParamsTronWatchMarketTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronWatchMarket);
 //        System.out.println(contractParamsTronWatchMarketTransaction.toJSONString());
 //
@@ -144,12 +170,23 @@ public class AbstractSignTests {
 //        String contractJsonString = contractParamsTronbetGetStakeInfoByAddressBase58Transaction.toJSONString();
 //        System.out.println(contractParamsTronbetGetStakeInfoByAddressBase58Transaction.toJSONString());
 
-        JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract(contractParamsTronbetBTT);
+//        JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract(tronbetGambling);
 
-        Protocol.Transaction transaction = TronWallet.packTransaction(contractParamsTronbetBTTTransaction.toJSONString());
-
-        System.out.println(contractParamsTronbetBTTTransaction);
+        Protocol.Transaction transaction = TronWallet.packTransaction(tronbetGambling);
+        System.out.println(tronbetGambling);
         System.out.println(Utils.printTransactionToJSON(transaction, false));
+
+//        JSONObject contractObject = JSONObject.parseObject(tronbetGambling);
+
+//        String timestamp = contractObject.getJSONObject("raw_data").getString("timestamp");
+//        System.out.println(timestamp);
+//        transaction = TronWallet.setTimestamp(transaction, "1557787855764");
+
+        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, transaction);
+
+        System.out.println(Utils.printTransactionToJSON(signedTransaction, false));
+
+
 
 //        String transaction = "74726f6e626574";
 //        String transaction = "0A8F010A022DBE220823653663EFAA2AC940E7BAB382A82D52152053656E742066726F6D2054726F6E57616C6C65745A57080B12530A32747970652E676F6F676C65617069732E636F6D2F70726F746F636F6C2E467265657A6542616C616E6365436F6E7472616374121D0A1541C46D47F7CD8D4E7C91E6A5128441378822971C5D10C0843D18037080BCC180F0FDD4CD15";

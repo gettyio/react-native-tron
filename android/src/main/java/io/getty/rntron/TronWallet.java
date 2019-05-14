@@ -1,13 +1,8 @@
 package io.getty.rntron;
 
-import android.text.TextUtils;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonObject;
-import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -30,10 +25,7 @@ import org.tron.protos.Protocol;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -199,6 +191,18 @@ public class TronWallet {
             System.out.println("Error: "+e.getMessage());
             return "Error: "+e.getMessage();
         }
+    }
+
+    public static Protocol.Transaction setTimestamp(Protocol.Transaction transaction, String timestamp) {
+        long currentTime = Long.parseLong(timestamp);
+
+        System.out.println(currentTime);
+        Protocol.Transaction.Builder builder = transaction.toBuilder();
+        org.tron.protos.Protocol.Transaction.raw.Builder rowBuilder = transaction.getRawData()
+                .toBuilder();
+        rowBuilder.setTimestamp(currentTime);
+        builder.setRawData(rowBuilder.build());
+        return builder.build();
     }
 
     public static Protocol.Transaction _sign(final String ownerPrivateKey, final Protocol.Transaction _transaction) {
