@@ -159,6 +159,65 @@ public class TronWallet {
         return mnemonic.toString();
     }
 
+//    public static Transaction sign(Transaction transaction, ECKey myKey) {
+//        Transaction.Builder transactionBuilderSigned = transaction.toBuilder();
+//        byte[] hash = Sha256Hash.hash(transaction.getRawData().toByteArray());
+//
+//        ECDSASignature signature = myKey.sign(hash);
+//        ByteString bsSign = ByteString.copyFrom(signature.toByteArray());
+//        transactionBuilderSigned.addSignature(bsSign);
+//        transaction = transactionBuilderSigned.build();
+//        return transaction;
+//    }
+
+
+//    static signString(message, privateKey, useTronHeader = true) {
+//        message = message.replace(/^0x/,'');
+//        const signingKey = new SigningKey(privateKey);
+//        const messageBytes = [
+//            ...toUtf8Bytes(useTronHeader ? TRX_MESSAGE_HEADER : ETH_MESSAGE_HEADER),
+//            ...utils.code.hexStr2byteArray(message)
+//        ];
+//
+//        const messageDigest = keccak256(messageBytes);
+//        const signature = signingKey.signDigest(messageDigest);
+//
+//        const signatureHex = [
+//        '0x',
+//                signature.r.substring(2),
+//                signature.s.substring(2),
+//                Number(signature.v).toString(16)
+//        ].join('');
+//
+//        return signatureHex
+//    }
+
+
+    public static String signString(final String ownerPrivateKey, final String hexString) {
+        try
+        {
+            String newHex = hexString.replace("0x", Constant.ADD_PRE_FIX_STRING_MAINNET);
+
+            //Get key
+            byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
+            byte[] transactionBytes = ByteArray.fromHexString(newHex);
+            byte[] hash = Sha256Hash.hash(transactionBytes);
+
+            ECKey ownerKey = ECKey.fromPrivate(ownerPrivateKeyBytes);
+
+            ECKey.ECDSASignature signature = ownerKey.sign(hash);
+            ByteString bsSign = ByteString.copyFrom(signature.toByteArray());
+
+            return "0x"+ByteArray.toHexString(bsSign.toByteArray());
+        }
+
+        catch(Exception e)
+        {
+            System.out.println("Error: "+e.getMessage());
+            return "Error: "+e.getMessage();
+        }
+    }
+
     public static String _sign(final String ownerPrivateKey, final String encodedTransaction) {
         try
         {

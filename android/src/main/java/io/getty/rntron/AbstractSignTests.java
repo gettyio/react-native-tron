@@ -236,6 +236,9 @@ public class AbstractSignTests {
         System.out.println("UNSIGNED: "+tx1);
         System.out.println("SIGNED: "+Utils.printTransactionToJSON(signedTransaction, false));
 
+        String signedString = TronWallet.signString(privateKey, "74726f6e626574");
+
+        System.out.println(">>>>>>>>>>> : "+signedString);
 
         //JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract("");
 
