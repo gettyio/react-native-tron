@@ -9,6 +9,9 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 
+import org.tron.common.utils.Utils;
+import org.tron.protos.Protocol;
+
 import io.github.novacrypto.bip39.MnemonicValidator;
 import io.github.novacrypto.bip39.Validation.InvalidChecksumException;
 import io.github.novacrypto.bip39.Validation.InvalidWordCountException;
@@ -125,24 +128,26 @@ public class RNTronModule extends ReactContextBaseJavaModule {
     }).start();
   }
 
-//    @ReactMethod
-//    public void signSmartContractTransaction(final String ownerPrivateKey, String payload, final Promise promise)
-//    {
-//        new Thread(new Runnable() {
-//            public void run() {
-//                try {
-//
-//                    JSONObject result = TronWallet.buildTriggerSmartContract2(ownerPrivateKey, strTransaction);
-//                    promise.resolve(result.toJSONString());
-//
-//                } catch(Exception e) {
-//                    System.out.println("Error: "+e.getMessage());
-//                    e.printStackTrace();
-//                    promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
-//                }
-//            }
-//        }).start();
-//    }
+    @ReactMethod
+    public void signTransaction2(final String ownerPrivateKey, String transaction, final Promise promise)
+    {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    Protocol.Transaction _transaction = TronWallet.packTransaction(transaction);
+                    Protocol.Transaction _signedTransaction = TronWallet._sign(ownerPrivateKey, _transaction);
+                    JSONObject result = Utils.printTransactionToJSON(_signedTransaction, false);
+                    promise.resolve(result.toJSONString());
+
+                } catch(Exception e) {
+                    System.out.println("Error: "+e.getMessage());
+                    e.printStackTrace();
+                    promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
+                }
+            }
+        }).start();
+    }
 
   @ReactMethod
   public void buildTriggerSmartContract(final String payload, final Promise promise)
