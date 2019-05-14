@@ -128,6 +128,25 @@ public class RNTronModule extends ReactContextBaseJavaModule {
     }).start();
   }
 
+  @ReactMethod
+  public void signString(final String ownerPrivateKey, String hexString, final Promise promise)
+  {
+    new Thread(new Runnable() {
+      public void run() {
+        try {
+
+          String result = TronWallet.signString(ownerPrivateKey, hexString);
+          promise.resolve(result);
+
+        } catch(Exception e) {
+          System.out.println("Error: "+e.getMessage());
+          e.printStackTrace();
+          promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
+        }
+      }
+    }).start();
+  }
+
     @ReactMethod
     public void signTransaction2(final String ownerPrivateKey, String transaction, final Promise promise)
     {
