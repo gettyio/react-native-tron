@@ -230,7 +230,7 @@ public class AbstractSignTests {
         Protocol.Transaction transaction = TronWallet.packTransaction(tx1);
         String timestamp = contractObject.getJSONObject("raw_data").getString("timestamp");
 
-        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, transaction, timestamp);
+        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, timestamp, transaction);
 
         System.out.println("TIMSTAMP: "+timestamp);
         System.out.println("UNSIGNED: "+tx1);
