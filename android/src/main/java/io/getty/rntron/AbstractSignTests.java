@@ -225,20 +225,19 @@ public class AbstractSignTests {
                 "    \"raw_data_hex\": \"0a028b6322083268876297d60e3f40b0d2c09fab2d5ab301081f12ae010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412790a154188d71a698ca1f64aeeabbec77232e0092b38d51d1215412ec5f63da00583085d4c2c5e8ec3c8d17bde5e281880ade2042244a3082be90000000000000000000000000000000000000000000000000000000000000009000000000000000000000000000000000000000000000000000000000000000170ea9fbd9fab2d9001809bee02\"\n" +
                 "  }\n";
 
-        JSONObject contractObject = JSONObject.parseObject(tx1);
+        JSONObject contractObject = JSONObject.parseObject(tronbetGambling);
 
-        Protocol.Transaction transaction = TronWallet.packTransaction(tx1);
+        Protocol.Transaction transaction = TronWallet.packTransaction(tronbetGambling);
         String timestamp = contractObject.getJSONObject("raw_data").getString("timestamp");
 
         Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, timestamp, transaction);
 
-        System.out.println("TIMSTAMP: "+timestamp);
         System.out.println("UNSIGNED: "+tx1);
         System.out.println("SIGNED: "+Utils.printTransactionToJSON(signedTransaction, false));
-
-        String signedString = TronWallet.signString(privateKey, "74726f6e626574");
-
-        System.out.println(">>>>>>>>>>> : "+signedString);
+//
+//        String signedString = TronWallet.signString(privateKey, "74726f6e626574");
+//
+//        System.out.println(">>>>>>>>>>> : "+signedString);
 
         //JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract("");
 
@@ -255,7 +254,7 @@ public class AbstractSignTests {
 //        System.out.println(timestamp);
 //        transaction = TronWallet.setTimestamp(transaction, "1557787855764");
 
-        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, transaction);
+//        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, transaction);
 
         System.out.println(Utils.printTransactionToJSON(signedTransaction, false));
 

@@ -160,8 +160,8 @@ public class RNTronModule extends ReactContextBaseJavaModule {
                   String timestamp = contractObject.getJSONObject("raw_data").getString("timestamp");
 
                   Protocol.Transaction _signedTransaction = TronWallet._sign(ownerPrivateKey, timestamp, unsignedTransaction); //TODO
-                    JSONObject result = Utils.printTransactionToJSON(_signedTransaction, false);
-                    promise.resolve(result.toJSONString());
+                  JSONObject result = Utils.printTransactionToJSON(_signedTransaction, false);
+                  promise.resolve(result.toJSONString());
 
                 } catch(Exception e) {
                     System.out.println("Error: "+e.getMessage());

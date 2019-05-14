@@ -11,6 +11,7 @@ import org.spongycastle.util.encoders.Hex;
 import org.tron.api.GrpcAPI;
 import org.tron.api.GrpcClient;
 import org.tron.common.crypto.ECKey;
+import org.tron.common.crypto.Hash;
 import org.tron.common.crypto.Sha256Hash;
 import org.tron.common.utils.AbiUtil;
 import org.tron.common.utils.Base58;
@@ -22,6 +23,7 @@ import org.tron.core.Constant;
 import org.tron.protos.Contract;
 import org.tron.protos.Protocol;
 
+import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -275,6 +277,40 @@ public class TronWallet {
         return builder.build();
     }
 
+    public static SignatureData signMessage(byte[] message, ECKeyPair keyPair, boolean needToHash) {
+        BigInteger publicKey = keyPair.getPublicKey();
+        byte[] messageHash;
+        if (needToHash) {
+            messageHash = Hash.sha3(message);
+        } else {
+            messageHash = message;
+        }
+
+        ECKey.ECDSASignature sig = keyPair.sign(messageHash);
+        // Now we have to work backwards to figure out the recId needed to recover the signature.
+        int recId = -1;
+        for (int i = 0; i < 4; i++) {
+            BigInteger k = ECKey.recoverFromSignature(i, sig, messageHash);
+            if (k != null && k.equals(publicKey)) {
+                recId = i;
+                break;
+            }
+        }
+        if (recId == -1) {
+            throw new RuntimeException(
+                    "Could not construct a recoverable key. Are your credentials valid?");
+        }
+
+        int headerByte = recId + 27;
+
+        // 1 header + 32 bytes for R + 32 bytes for S
+        byte v = (byte) headerByte;
+        byte[] r = Numeric.toBytesPadded(sig.r, 32);
+        byte[] s = Numeric.toBytesPadded(sig.s, 32);
+
+        return new SignatureData(v, r, s);
+    }
+
     public static Protocol.Transaction _sign(final String ownerPrivateKey, String timestamp, final Protocol.Transaction _transaction) {
         Protocol.Transaction transaction = null;
         //Get key
@@ -290,6 +326,9 @@ public class TronWallet {
         //Set timestamp and sign transaction
         transaction = setTimestamp(_transaction, timestamp);
         transaction = TransactionUtils.sign(transaction, ownerKey);
+
+        System.out.println("HEY IM HERE!");
+        System.out.println(Utils.printTransactionToJSON(transaction, false));
         return transaction;
     }
 //    //        bfdeaf18e8d44515a4749a5ebdfeede9d67a396a9284ea582eac287952a4ce67

@@ -186,10 +186,8 @@ public class TransactionUtils {
     ByteString bsSign = ByteString.copyFrom(signature.toByteArray());
     transactionBuilderSigned.addSignature(bsSign);
 
+    transaction = transactionBuilderSigned.build();
     return transaction;
-
-//    transaction = transactionBuilderSigned.build();
-//    return transaction;
   }
 
   public static Transaction setTimestamp(Transaction transaction) {
