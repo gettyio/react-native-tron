@@ -237,7 +237,7 @@ public class AbiUtil {
 
     @Override
     byte[] encode(String value) {
-      byte[] address = TronWallet.decodeFromBase58Check(value);
+      byte[] address = TronWallet._decode58Check(value);
       return new DataWord(address).getData();
     }
 

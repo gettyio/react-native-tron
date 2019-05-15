@@ -14,6 +14,7 @@ import org.spongycastle.util.encoders.Hex;
 import org.tron.api.GrpcAPI;
 import org.tron.api.GrpcClient;
 import org.tron.common.crypto.ECKey;
+import org.tron.common.crypto.Hash;
 import org.tron.common.crypto.Sha256Hash;
 import org.tron.common.crypto.cryptohash.Keccak256;
 import org.tron.common.utils.AbiUtil;
@@ -53,23 +54,6 @@ public class TronWallet {
     private static byte addressPreFixByte = Constant.ADD_PRE_FIX_BYTE_MAINNET;
     public static final Pattern HEXADECIMAL_PATTERN = Pattern.compile("\\p{XDigit}+");
 
-    public static byte[] decodeFromBase58Check(String addressBase58) {
-        if (StringUtils.isEmpty(addressBase58)) {
-            System.out.println("Warning: Address is empty !!");
-            return null;
-        }
-        byte[] address = _decode58Check(addressBase58);
-        if (address == null) {
-            return null;
-        }
-
-        if (!addressValid(address)) {
-            return null;
-        }
-
-        return address;
-    }
-
     public static byte[] _decode58Check(String input)
     {
         byte[] decodeCheck = Base58.decode(input);
@@ -78,8 +62,8 @@ public class TronWallet {
 
         byte[] decodeData = new byte[decodeCheck.length - 4];
         System.arraycopy(decodeCheck, 0, decodeData, 0, decodeData.length);
-        byte[] hash0 = Sha256Hash.hash(decodeData);
-        byte[] hash1 = Sha256Hash.hash(hash0);
+        byte[] hash0 = Hash.sha256(decodeData);
+        byte[] hash1 = Hash.sha256(hash0);
         if (hash1[0] == decodeCheck[decodeData.length] &&
                 hash1[1] == decodeCheck[decodeData.length + 1] &&
                 hash1[2] == decodeCheck[decodeData.length + 2] &&
@@ -88,6 +72,17 @@ public class TronWallet {
 
         return null;
     }
+
+    public static String _encode58Check(byte[] input)
+    {
+        byte[] hash0 = Hash.sha256(input);
+        byte[] hash1 = Hash.sha256(hash0);
+        byte[] inputCheck = new byte[input.length + 4];
+        System.arraycopy(input, 0, inputCheck, 0, input.length);
+        System.arraycopy(hash1, 0, inputCheck, input.length, 4);
+        return Base58.encode(inputCheck);
+    }
+
 
     public static boolean addressValid(byte[] address) {
         if (ArrayUtils.isEmpty(address)) {
@@ -105,16 +100,6 @@ public class TronWallet {
         }
         //Other rule;
         return true;
-    }
-
-    public static String _encode58Check(byte[] input)
-    {
-        byte[] hash0 = Sha256Hash.hash(input);
-        byte[] hash1 = Sha256Hash.hash(hash0);
-        byte[] inputCheck = new byte[input.length + 4];
-        System.arraycopy(input, 0, inputCheck, 0, input.length);
-        System.arraycopy(hash1, 0, inputCheck, input.length, 4);
-        return Base58.encode(inputCheck);
     }
 
     public static String addressFromPk(final String privateKey) {
@@ -510,7 +495,7 @@ public class TronWallet {
                 }
 
                 if (_message == "Base58check") {
-                    byte[] parsedValueBytes = TronWallet.decodeFromBase58Check(_value);
+                    byte[] parsedValueBytes = TronWallet._decode58Check(_value);
                     String parsedValueString = ByteArray.toHexString(parsedValueBytes);
                     parameterList.add(parsedValueString);
                 }

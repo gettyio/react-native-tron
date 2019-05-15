@@ -215,6 +215,10 @@ public class AbstractSignTests {
         System.out.println(">>>>>>>>>>> IN : "+"0x"+signedString);
         System.out.println(">>>>>>>>>>> OUT: "+signedHexHypersnakesString);
 
+
+        String mnemonic = TronWallet.generateMnemonic();
+        String[] keypair = TronWallet.generateKeypair(mnemonic, 0, false);
+        System.out.println("Mnemonic: "+ keypair[1] );
         //JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract("");
 
 //        Protocol.Transaction transaction = TronWallet.packTransaction(tronbet);
