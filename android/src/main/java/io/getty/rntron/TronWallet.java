@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.protobuf.ByteString;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.bouncycastle.asn1.ASN1InputStream;
 import org.bouncycastle.asn1.ASN1Integer;
 import org.bouncycastle.asn1.DLSequence;
@@ -15,7 +14,6 @@ import org.tron.api.GrpcAPI;
 import org.tron.api.GrpcClient;
 import org.tron.common.crypto.ECKey;
 import org.tron.common.crypto.Hash;
-import org.tron.common.crypto.Sha256Hash;
 import org.tron.common.crypto.cryptohash.Keccak256;
 import org.tron.common.utils.AbiUtil;
 import org.tron.common.utils.Base58;
@@ -243,11 +241,20 @@ public class TronWallet {
             ECKey _key = ECKey.fromPrivate(ownerPrivateKeyBytes);
             ECKey.ECDSASignature _signature =_key.sign(messageDigest);
 
-            System.out.println("SIG R: "+Hex.toHexString(_signature.r.toByteArray()).substring(2));
+            System.out.println("SIG R: "+Hex.toHexString(_signature.r.toByteArray()).length());
+            System.out.println("SIG R: "+Hex.toHexString(_signature.r.toByteArray()));
+            System.out.println("SIG S: "+Hex.toHexString(_signature.s.toByteArray()).length());
             System.out.println("SIG S: "+Hex.toHexString(_signature.s.toByteArray()));
 
+            String hexR = Hex.toHexString(_signature.r.toByteArray());
+            String hexS = Hex.toHexString(_signature.s.toByteArray());
+            String hexV = Integer.toString(_signature.v, 16);
 
-            return Hex.toHexString(_signature.r.toByteArray()).substring(2) + Hex.toHexString(_signature.s.toByteArray()) + Integer.toString(_signature.v, 16);
+            if (hexR.length() == 66) {
+                hexR = hexR.substring(2);
+            }
+
+            return hexR + hexS + hexV;
         }
 
         catch(Exception e)
