@@ -1,13 +1,8 @@
 package io.getty.rntron;
 
-import android.text.TextUtils;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonObject;
-import com.google.protobuf.Any;
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -19,12 +14,7 @@ import org.spongycastle.util.encoders.Hex;
 import org.tron.api.GrpcAPI;
 import org.tron.api.GrpcClient;
 import org.tron.common.crypto.ECKey;
-import org.tron.common.crypto.ECKeyPair;
-import org.tron.common.crypto.Hash;
-import org.tron.common.crypto.Numeric;
 import org.tron.common.crypto.Sha256Hash;
-import org.tron.common.crypto.Sign;
-import org.tron.common.crypto.cryptohash.DigestEngine;
 import org.tron.common.crypto.cryptohash.Keccak256;
 import org.tron.common.utils.AbiUtil;
 import org.tron.common.utils.Base58;
@@ -36,16 +26,11 @@ import org.tron.core.Constant;
 import org.tron.protos.Contract;
 import org.tron.protos.Protocol;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -253,7 +238,7 @@ public class TronWallet {
         try
         {
 
-            String pk = "823444567002A15DAD5313B9B7C135FAE940F0394214DDFD68CD2B35447C11CB";
+            String pk = ownerPrivateKey;
 
             byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(pk);
 
