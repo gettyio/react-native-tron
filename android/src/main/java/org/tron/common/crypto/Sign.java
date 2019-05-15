@@ -1,5 +1,7 @@
 package org.tron.common.crypto;
 
+import org.bouncycastle.asn1.ASN1Integer;
+import org.bouncycastle.asn1.DERSequenceGenerator;
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.asn1.x9.X9IntegerConverter;
 import org.bouncycastle.crypto.ec.CustomNamedCurves;
@@ -9,6 +11,8 @@ import org.bouncycastle.math.ec.ECPoint;
 import org.bouncycastle.math.ec.FixedPointCombMultiplier;
 import org.bouncycastle.math.ec.custom.sec.SecP256K1Curve;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SignatureException;
 import java.util.Arrays;
@@ -43,11 +47,11 @@ public class Sign {
         return Hash.sha3(result);
     }
 
-    public static SignatureData signPrefixedMessage(byte[] message, ECKeyPair keyPair) {
+    public static SignatureData signPrefixedMessage(byte[] message, ECKeyPair keyPair) throws IOException {
         return signMessage(getEthereumMessageHash(message), keyPair, false);
     }
 
-    public static SignatureData signMessage(byte[] message, ECKeyPair keyPair) {
+    public static SignatureData signMessage(byte[] message, ECKeyPair keyPair) throws IOException {
         return signMessage(message, keyPair, true);
     }
 
@@ -86,8 +90,19 @@ public class Sign {
         return result;
     }
 
+    public static ByteArrayOutputStream encodeToDER(byte[] r, byte[] s) throws IOException {
+        // Usually 70-72 bytes.
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(72);
+        DERSequenceGenerator seq = new DERSequenceGenerator(bos);
+        seq.addObject(new ASN1Integer(r));
+        seq.addObject(new ASN1Integer(s));
+        seq.close();
+        return bos;
+    }
 
-    public static SignatureData signMessage(byte[] message, ECKeyPair keyPair, boolean needToHash) {
+
+
+    public static SignatureData signMessage(byte[] message, ECKeyPair keyPair, boolean needToHash) throws IOException {
         BigInteger publicKey = keyPair.getPublicKey();
         byte[] messageHash;
         if (needToHash) {
@@ -241,7 +256,7 @@ public class Sign {
         return signedMessageHashToKey(getEthereumMessageHash(message), signatureData);
     }
 
-    static BigInteger signedMessageHashToKey(
+    public static BigInteger signedMessageHashToKey(
             byte[] messageHash, SignatureData signatureData) throws SignatureException {
 
         byte[] r = signatureData.getR();

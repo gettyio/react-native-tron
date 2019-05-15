@@ -46,7 +46,7 @@ public class AbstractSignTests {
 
     @Test
     public void invoke() throws InvalidProtocolBufferException, JsonFormat.ParseException {
-        String privateKey = "5d585f25d609baf62ca1f96687285406a64694f9a5c352c98cf198f3098bbcda";
+        String privateKey = "823444567002A15DAB5313B9B7C135FAE940F0394214DDFD68CD2B35447C11CB";
         String contractParamsTrobetTRX = "\n" +
                 "{\"contractAddress\":\"41b2b9efe94cc9f548c2ee1755b217606db7521dcd\",\"functionSelector\":\"getStakeInfoByAddress(address)\",\"options\":{\"feeLimit\":1000000,\"callValue\":0},\"parameters\":[{\"type\":\"address\",\"value\":\"4183d4d7a6260a6689afb8d1b0b87be10b71c8e26a\"}],\"callback\":false}";
 
@@ -199,20 +199,25 @@ public class AbstractSignTests {
                 "    \"raw_data_hex\": \"0a028b6322083268876297d60e3f40b0d2c09fab2d5ab301081f12ae010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412790a154188d71a698ca1f64aeeabbec77232e0092b38d51d1215412ec5f63da00583085d4c2c5e8ec3c8d17bde5e281880ade2042244a3082be90000000000000000000000000000000000000000000000000000000000000009000000000000000000000000000000000000000000000000000000000000000170ea9fbd9fab2d9001809bee02\"\n" +
                 "  }\n";
 
-        JSONObject contractObject = JSONObject.parseObject(tx1);
+//        JSONObject contractObject = JSONObject.parseObject(tx1);
+//
+//        Protocol.Transaction transaction = TronWallet.packTransaction(tx1);
+//        String timestamp = contractObject.getJSONObject("raw_data").getString("timestamp");
+//
+//        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, timestamp, transaction);
+//
+//        System.out.println("TIMSTAMP: "+timestamp);
+//        System.out.println("UNSIGNED: "+tx1);
+//        System.out.println("SIGNED: "+Utils.printTransactionToJSON(signedTransaction, false));
+//
 
-        Protocol.Transaction transaction = TronWallet.packTransaction(tx1);
-        String timestamp = contractObject.getJSONObject("raw_data").getString("timestamp");
+        String hexHypersnakesString = "396332304857777074433649504b5944744d644772706f4c6678796e472b4477786833386356464969544c36415a34506e7134535034664754773262567a6442684d7739784c5350507045";
+        String signedHexHypersnakesString = "0xce481a62efb360930a17521de991f0d4d0cf98ab4240df05341ef6515a13ed9426f4994daefd20431e1a5cd9554f4b4feeeb156fc50a14163d403efd9d849d051b";
 
-        Protocol.Transaction signedTransaction = TronWallet._sign(privateKey, timestamp, transaction);
+        String signedString = TronWallet.signString(privateKey, hexHypersnakesString, false);
 
-        System.out.println("TIMSTAMP: "+timestamp);
-        System.out.println("UNSIGNED: "+tx1);
-        System.out.println("SIGNED: "+Utils.printTransactionToJSON(signedTransaction, false));
-
-        String signedString = TronWallet.signString(privateKey, "74726f6e626574", true);
-
-        System.out.println(">>>>>>>>>>> : "+signedString);
+        System.out.println(">>>>>>>>>>> IN : "+"0x"+signedString);
+        System.out.println(">>>>>>>>>>> OUT: "+signedHexHypersnakesString);
 
         //JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract("");
 

@@ -11,6 +11,9 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.bouncycastle.asn1.ASN1InputStream;
+import org.bouncycastle.asn1.ASN1Integer;
+import org.bouncycastle.asn1.DLSequence;
 import org.spongycastle.util.encoders.Base64;
 import org.spongycastle.util.encoders.Hex;
 import org.tron.api.GrpcAPI;
@@ -21,6 +24,8 @@ import org.tron.common.crypto.Hash;
 import org.tron.common.crypto.Numeric;
 import org.tron.common.crypto.Sha256Hash;
 import org.tron.common.crypto.Sign;
+import org.tron.common.crypto.cryptohash.DigestEngine;
+import org.tron.common.crypto.cryptohash.Keccak256;
 import org.tron.common.utils.AbiUtil;
 import org.tron.common.utils.Base58;
 import org.tron.common.utils.ByteArray;
@@ -31,6 +36,8 @@ import org.tron.core.Constant;
 import org.tron.protos.Contract;
 import org.tron.protos.Protocol;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -55,6 +62,7 @@ public class TronWallet {
 
     private static String FULL_NODE_URL = "grpc-fullnode.tronwallet.me:50051";
     private static String SOLIDITY_NODE_URL = "grpc-solidity-node.tronwallet.me:50061";
+    private static String TRX_MESSAGE_HEADER = "\u0019TRON Signed Message:\n32";
 
     private static String addressPreFixString = Constant.ADD_PRE_FIX_STRING_MAINNET;  //default testnet
     private static byte addressPreFixByte = Constant.ADD_PRE_FIX_BYTE_MAINNET;
@@ -205,59 +213,71 @@ public class TronWallet {
 //        return signatureHex
 //    }
 
+    public static ECKey.ECDSASignature decodeFromDER(byte[] bytes) {
+        ASN1InputStream decoder = null;
+        try {
+            decoder = new ASN1InputStream(bytes);
+            DLSequence seq = (DLSequence) decoder.readObject();
+            if (seq == null) {
+                throw new RuntimeException("Reached past end of ASN.1 " +
+                        "stream.");
+            }
+            ASN1Integer r, s;
+            try {
+                r = (ASN1Integer) seq.getObjectAt(0);
+                s = (ASN1Integer) seq.getObjectAt(1);
+            } catch (ClassCastException e) {
+                throw new IllegalArgumentException(e);
+            }
+            // OpenSSL deviates from the DER spec by interpreting these
+            // values as unsigned, though they should not be
+            // Thus, we always use the positive versions. See:
+            // http://r6.ca/blog/20111119T211504Z.html
+            return new ECKey.ECDSASignature(r.getPositiveValue(), s
+                    .getPositiveValue());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (decoder != null) {
+                try {
+                    decoder.close();
+                } catch (IOException x) {
+                }
+            }
+        }
+    }
+
+
 
     public static String signString(final String ownerPrivateKey, final String hexString, boolean needToHash) {
         try
         {
-//            String newHex = hexString.replace("0x", Constant.ADD_PRE_FIX_STRING_MAINNET);
-//
-//            //Get key
-//            byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
-//            byte[] transactionBytes = ByteArray.fromHexString(newHex);
-//            byte[] hash = Sha256Hash.hash(transactionBytes);
-//
-//            ECKey ownerKey = ECKey.fromPrivate(ownerPrivateKeyBytes);
-//
-//            ECKey.ECDSASignature signature = ownerKey.sign(hash);
-//            ByteString bsSign = ByteString.copyFrom(signature.toByteArray());
-//
-//            return "0x"+ByteArray.toHexString(bsSign.toByteArray());
+
+            String pk = "823444567002A15DAD5313B9B7C135FAE940F0394214DDFD68CD2B35447C11CB";
+
+            byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(pk);
 
             byte[] message = ByteArray.fromHexString(hexString);
-            byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
-            ECKeyPair keyPair = ECKeyPair.create(ownerPrivateKeyBytes);
+            byte[] headerBytes = TRX_MESSAGE_HEADER.getBytes("UTF-8");
 
-            BigInteger publicKey = keyPair.getPublicKey();
-            byte[] messageHash;
-            if (needToHash) {
-                messageHash = Hash.sha3(message);
-            } else {
-                messageHash = message;
-            }
+            byte[] completeMessage = new byte[message.length + headerBytes.length];
+            System.arraycopy(headerBytes, 0, completeMessage, 0, headerBytes.length);
+            System.arraycopy(message, 0, completeMessage, headerBytes.length, message.length);
 
-            ECKey.ECDSASignature sig = keyPair.sign(messageHash);
-            // Now we have to work backwards to figure out the recId needed to recover the signature.
-            int recId = -1;
-            for (int i = 0; i < 4; i++) {
-                BigInteger k = Sign.recoverFromSignature(i, sig, messageHash);
-                if (k != null && k.equals(publicKey)) {
-                    recId = i;
-                    break;
-                }
-            }
-            if (recId == -1) {
-                throw new RuntimeException(
-                        "Could not construct a recoverable key. Are your credentials valid?");
-            }
+            Keccak256 digest =  new Keccak256();
+            digest.update(completeMessage);
+            byte[] messageDigest = digest.digest();
 
-            int headerByte = recId + 27;
+            System.out.println("HASH: "+ Hex.toHexString(messageDigest));
 
-            // 1 header + 32 bytes for R + 32 bytes for S
-            byte v = (byte) headerByte;
-            byte[] r = Numeric.toBytesPadded(sig.r, 32);
-            byte[] s = Numeric.toBytesPadded(sig.s, 32);
+            ECKey _key = ECKey.fromPrivate(ownerPrivateKeyBytes);
+            ECKey.ECDSASignature _signature =_key.sign(messageDigest);
 
-            return "0x"+ sig.toHex();
+            System.out.println("SIG R: "+Hex.toHexString(_signature.r.toByteArray()).substring(2));
+            System.out.println("SIG S: "+Hex.toHexString(_signature.s.toByteArray()));
+
+
+            return Hex.toHexString(_signature.r.toByteArray()).substring(2) + Hex.toHexString(_signature.s.toByteArray()) + Integer.toString(_signature.v, 16);
         }
 
         catch(Exception e)
@@ -341,76 +361,6 @@ public class TronWallet {
         transaction = TransactionUtils.sign(transaction, ownerKey);
         return transaction;
     }
-//    //        bfdeaf18e8d44515a4749a5ebdfeede9d67a396a9284ea582eac287952a4ce67
-//    public static JSONObject buildTriggerSmartContract2(String ownerPrivateKey, String stringTransaction) throws JsonFormat.ParseException {
-//        Protocol.Transaction tr = Utils.packTransaction(stringTransaction, false);
-//
-//        byte[] rawDataBytes = ByteArray.fromHexString("0a022c372208f91fb13c67bc4cc040b0e59f9daa2d5ab301081f12ae010a31747970652e676f6f676c65617069732e636f6d2f70726f746f636f6c2e54726967676572536d617274436f6e747261637412790a1541756bf73fc5d7042aaa4a4b8488befc777a2581351215412ec5f63da00583085d4c2c5e8ec3c8d17bde5e281880ade2042244a3082be90000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000170bea09c9daa2d9001809bee02");
-//        ByteString rawDataByteString = ByteString.copyFrom(rawDataBytes);
-//
-//        Contract.TriggerSmartContract.Builder build = Contract.TriggerSmartContract.newBuilder();
-//        GrpcAPI.TransactionExtention.Builder trxExtBuilder = GrpcAPI.TransactionExtention.newBuilder();
-//        GrpcAPI.Return.Builder retBuilder = GrpcAPI.Return.newBuilder();
-//        boolean visible = false;
-//
-//        try {
-//            String contract = stringTransaction;
-//            JsonFormat.merge(contract, build, visible);
-//
-//            JSONObject jsonObject = JSONObject.parseObject(contract);
-//            String selector = jsonObject.getString("function_selector");
-//            String parameter = jsonObject.getString("parameter");
-//            String data = Utils.parseMethod(selector, parameter);
-//            build.setData(ByteString.copyFrom(ByteArray.fromHexString(data)));
-//            build.setCallTokenValue(jsonObject.getLongValue("call_token_value"));
-//            build.setTokenId(jsonObject.getLongValue("token_id"));
-//            build.setCallValue(jsonObject.getLongValue("call_value"));
-//            long feeLimit = jsonObject.getLongValue("fee_limit");
-//
-//
-//            GrpcAPI.TransactionExtention.Builder txBuilder = GrpcAPI.TransactionExtention.newBuilder();
-//            Protocol.Transaction.Builder rawBuilder = Protocol.Transaction.newBuilder();
-//
-//
-//            rawBuilder.setFeeLimit(feeLimit);
-//            txBuilder.setRawData(rawBuilder);
-//
-//            Protocol.Transaction newTx2 = txBuilder.build();
-//
-//            Protocol.Transaction newTx = Protocol.Transaction.newBuilder()
-//                    .setRawData(
-//                            Protocol
-//                                    .Transaction
-//                                    .raw
-//                                    .newBuilder()
-//                                    .setTimestamp(1557523796030L)
-//                                    .setRefBlockBytes(ByteString.copyFromUtf8("2c37"))
-//                                    .setRefBlockHash(ByteString.copyFromUtf8("f91fb13c67bc4cc0"))
-//                                    .setExpiration(1557523854000L)
-//                                    .setFeeLimit(6000000L)
-//                                    .addContract(
-//                                            Protocol.Transaction.Contract.newBuilder()
-//                                                    .setType(Protocol.Transaction.Contract.ContractType.TriggerSmartContract)
-//                                                    .setParameter(Any.pack(newTx2))
-//                                                    .build())
-//                                    .build()
-//                    )
-//                    .build();
-//
-//            tr = TronWallet._sign(ownerPrivateKey, tr);
-//
-//
-//        } catch (ContractValidateException e) {
-//            retBuilder.setResult(false).setCode(response_code.CONTRACT_VALIDATE_ERROR)
-//                    .setMessage(ByteString.copyFromUtf8(e.getMessage()));
-//        } catch (Exception e) {
-//            retBuilder.setResult(false).setCode(response_code.OTHER_ERROR)
-//                    .setMessage(ByteString.copyFromUtf8(e.getClass() + " : " + e.getMessage()));
-//        }
-//
-//
-//        return Utils.printTransactionToJSON(tr, true);
-//    }
 
     public boolean isHexadecimal(String input) {
         final Matcher matcher = HEXADECIMAL_PATTERN.matcher(input);
@@ -476,7 +426,6 @@ public class TronWallet {
             builder.setCallTokenValue(tokenValue);
 
         } else {
-            System.out.println("paramInput: "+paramInput);
             byte[] input = Hex.decode(AbiUtil.parseMethod(functionSelector, paramInput, true));
 
             builder.setOwnerAddress(ByteString.copyFrom(issuerAddressBytes));
@@ -495,310 +444,6 @@ public class TronWallet {
         Protocol.Transaction unsignedTransaction = transactionExtention.getTransaction();
 
         return Utils.printTransactionToJSON(unsignedTransaction, false);
-
-//
-//        if (transactionExtention == null || !transactionExtention.getResult().getResult()) {
-//            System.out.println("RPC create call trx failed!");
-//            System.out.println("Code = " + transactionExtention.getResult().getCode());
-//            System.out
-//                    .println("Message = " + transactionExtention.getResult().getMessage().toStringUtf8());
-//            return null;
-//        }
-//        Protocol.Transaction transaction = transactionExtention.getTransaction();
-//        if (transaction.getRetCount() != 0
-//                && transactionExtention.getConstantResult(0) != null
-//                && transactionExtention.getResult() != null) {
-//            byte[] result = transactionExtention.getConstantResult(0).toByteArray();
-//            System.out.println("message:" + transaction.getRet(0).getRet());
-//            System.out.println(":" + ByteArray
-//                    .toStr(transactionExtention.getResult().getMessage().toByteArray()));
-//            System.out.println("Result:" + Hex.toHexString(result));
-//            return null;
-//        }
-//
-//        final GrpcAPI.TransactionExtention.Builder texBuilder = GrpcAPI.TransactionExtention.newBuilder();
-//        Protocol.Transaction.Builder transBuilder = Protocol.Transaction.newBuilder();
-//        Protocol.Transaction.raw.Builder rawBuilder = transactionExtention.getTransaction().getRawData()
-//                .toBuilder();
-//        rawBuilder.setFeeLimit(feeLimit);
-//        transBuilder.setRawData(rawBuilder);
-//        for (int i = 0; i < transactionExtention.getTransaction().getSignatureCount(); i++) {
-//            ByteString s = transactionExtention.getTransaction().getSignature(i);
-//            transBuilder.setSignature(i, s);
-//        }
-//        for (int i = 0; i < transactionExtention.getTransaction().getRetCount(); i++) {
-//            Protocol.Transaction.Result r = transactionExtention.getTransaction().getRet(i);
-//            transBuilder.setRet(i, r);
-//        }
-//        texBuilder.setTransaction(transBuilder);
-//        texBuilder.setResult(transactionExtention.getResult());
-//        texBuilder.setTxid(transactionExtention.getTxid());
-//        transactionExtention = texBuilder.build();
-//        if (transactionExtention == null) {
-//            return null;
-//        }
-//        GrpcAPI.Return ret = transactionExtention.getResult();
-//        if (!ret.getResult()) {
-//            System.out.println("Code = " + ret.getCode());
-//            System.out.println("Message = " + ret.getMessage().toStringUtf8());
-//            return null;
-//        }
-//        transaction = transactionExtention.getTransaction();
-//        if (transaction == null || transaction.getRawData().getContractCount() == 0) {
-//            System.out.println("Transaction is empty");
-//            return null;
-//        }
-//        System.out.println(
-//                "trigger txid = " + ByteArray.toHexString(Sha256Hash.hash(transaction.getRawData()
-//                        .toByteArray())));
-////        transaction = signTransaction(transaction, blockingStubFull, permissionKeyString);
-////
-////        broadcastTransaction(transaction, blockingStubFull);
-//        return transaction;
-
-//        JSONObject contractObject = JSONObject.parseObject(payload);
-//
-//        String contractAddress = contractObject.getString("contractAddress");
-//        String functionSelector = contractObject.getString("functionSelector");
-//
-//        String feeLimitString = contractObject.getJSONObject("options").getString("feeLimit");
-//        String callValueString = contractObject.getJSONObject("options").getString("callValue");
-//        String issuerAddress = contractObject.getString("issuerAddress");
-//
-//        Long feeLimit = Long.parseLong(feeLimitString);
-//        Long callValue = Long.parseLong(callValueString);
-//
-//        byte[] contractAddressBytes = ByteArray.fromHexString(contractAddress);
-//        byte[] issuerAddressBytes = ByteArray.fromHexString(issuerAddress);
-//
-//
-//        JSONArray parameters = contractObject.getJSONArray("parameters");
-//
-//        String paramInput = getInputString(parameters);
-//
-//        byte[] input = Hex.decode(AbiUtil.parseMethod(functionSelector, paramInput, true));
-//
-//        Contract.TriggerSmartContract.Builder builder = Contract.TriggerSmartContract.newBuilder();
-//
-//        builder.setOwnerAddress(ByteString.copyFrom(issuerAddressBytes));
-//        builder.setContractAddress(ByteString.copyFrom(contractAddressBytes));
-//        builder.setData(ByteString.copyFrom(input));
-//        builder.setCallValue(callValue);
-//
-//        Contract.TriggerSmartContract contract = builder.build();
-//
-//        GrpcClient client = new GrpcClient(FULL_NODE_URL, SOLIDITY_NODE_URL);
-//
-//        GrpcAPI.TransactionExtention transactionExtention;
-////    if (isConstant) {
-////      transactionExtention = client.triggerConstantContract(contract);
-////    } else {
-////      transactionExtention = client.triggerContract(contract);
-////    }
-//        transactionExtention = client.triggerContract(contract);
-//
-//        if (transactionExtention == null || !transactionExtention.getResult().getResult()) {
-//            System.out.println("RPC create call trx failed!");
-//            System.out.println("Code = " + transactionExtention.getResult().getCode());
-//            System.out.println("Message = " + transactionExtention.getResult().getMessage().toStringUtf8());
-//
-//            Map map = new HashMap();
-//            map.put("status", "false");
-//            return new JSONObject(map);
-//        }
-//
-//        Protocol.Transaction transaction = transactionExtention.getTransaction();
-//        // for constant
-//        if (transaction.getRetCount() != 0 &&
-//                transactionExtention.getConstantResult(0) != null &&
-//                transactionExtention.getResult() != null) {
-//            byte[] result = transactionExtention.getConstantResult(0).toByteArray();
-//            System.out.println("message:" + transaction.getRet(0).getRet());
-//            System.out.println(":" + ByteArray
-//                    .toStr(transactionExtention.getResult().getMessage().toByteArray()));
-//            System.out.println("Result:" + Hex.toHexString(result));
-//            Map map = new HashMap();
-//            map.put("status", "true");
-//            return new JSONObject(map);
-////            return returnMessage;
-//        }
-//
-//        GrpcAPI.TransactionExtention.Builder texBuilder = GrpcAPI.TransactionExtention.newBuilder();
-//        Protocol.Transaction.Builder transBuilder = Protocol.Transaction.newBuilder();
-//        Protocol.Transaction.raw.Builder rawBuilder = transactionExtention.getTransaction().getRawData().toBuilder();
-//        rawBuilder.setFeeLimit(6000000);
-//        transBuilder.setRawData(rawBuilder);
-//
-//        for (int i = 0; i < transactionExtention.getTransaction().getSignatureCount(); i++) {
-//            ByteString s = transactionExtention.getTransaction().getSignature(i);
-//            transBuilder.setSignature(i, s);
-//        }
-//
-//        for (int i = 0; i < transactionExtention.getTransaction().getRetCount(); i++) {
-//            Protocol.Transaction.Result r = transactionExtention.getTransaction().getRet(i);
-//            transBuilder.setRet(i, r);
-//        }
-//
-//        texBuilder.setTransaction(transBuilder);
-//        texBuilder.setResult(transactionExtention.getResult());
-//        texBuilder.setTxid(transactionExtention.getTxid());
-//        transactionExtention = texBuilder.build();
-//
-//        if (transactionExtention == null) {
-//            Map map = new HashMap();
-//            map.put("status", "false");
-//            return new JSONObject(map);
-//        }
-//
-//        GrpcAPI.Return ret = transactionExtention.getResult();
-//
-//        if (!ret.getResult()) {
-//            System.out.println("Code = " + ret.getCode());
-//            System.out.println("Message = " + ret.getMessage().toStringUtf8());
-//            Map map = new HashMap();
-//            map.put("status", "false");
-//            return new JSONObject(map);
-//        }
-//
-//        transaction = transactionExtention.getTransaction();
-//
-//        if (transaction == null || transaction.getRawData().getContractCount() == 0) {
-//            System.out.println("Transaction is empty");
-//            Map map = new HashMap();
-//            map.put("status", "false");
-//            return new JSONObject(map);
-//        }
-////        System.out.println(
-////                "Receive txid = " + ByteArray.toHexString(transactionExtention.getTxid().toByteArray()));
-////        transaction = TronWallet._sign(ownerPrivateKey, transaction);
-////        byte[] signedTransactionBytes = transaction.toByteArray();
-////        String encodedSignedTransaction = ByteArray.toHexString(signedTransactionBytes).toUpperCase();
-////
-////        String[] signatures = new String[transaction.getSignatureCount()];
-////        for (int i = 0; i < transaction.getSignatureCount(); i++) {
-////            signatures[i] = TransactionUtils.getHexFromByteString(transaction.getSignature(i));
-////            System.out.println(TransactionUtils.getHexFromByteString(transaction.getSignature(i)));
-////        }
-//
-//        return Utils.printTransactionToJSON(transaction, false);
-// String ownerPrivateKey, String contractAddress, String callValueStr, String methodStr, String argsStr, String tokenValueStr, String tokenId
-
-//        byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(ownerPrivateKey);
-//        ECKey key = ECKey.fromPrivate(ownerPrivateKeyBytes);
-//{"contractAddress":"41b2b9efe94cc9f548c2ee1755b217606db7521dcd","functionSelector":"getStakeInfoByAddress(address)","options":{"feeLimit":1000000,"callValue":0}
-// ,"parameters":[{"type":"address","value":"4183d4d7a6260a6689afb8d1b0b87be10b71c8e26a"}],"callback":false}
-//        //Get public address
-//        byte[] addressBytes = key.getAddress();
-//        byte[] contractAddressBytes = TronWallet._decode58Check(contractAddress);
-//        byte[] input = Hex.decode(AbiUtil.parseMethod(methodStr, argsStr, false));
-//
-//        Long callValue = Long.parseLong(callValueStr);
-//        Long tokenValue = Long.parseLong(tokenValueStr);
-//
-//        Contract.TriggerSmartContract.Builder builder = Contract.TriggerSmartContract.newBuilder();
-////
-//        builder.setOwnerAddress(ByteString.copyFrom(addressBytes));
-//        builder.setContractAddress(ByteString.copyFrom(contractAddressBytes));
-//        builder.setData(ByteString.copyFrom(input));
-//        builder.setCallValue(callValue);
-
-//        if (tokenId != null && tokenId != "") {
-//            builder.setCallTokenValue(tokenValue);
-//            builder.setTokenId(Long.parseLong(tokenId));
-//        }
-//
-//        Contract.TriggerSmartContract contract = builder.build();
-//
-//        System.out.println(contract);
-//
-//        GrpcClient client = new GrpcClient(FULL_NODE_URL, SOLIDITY_NODE_URL);
-//
-//        GrpcAPI.TransactionExtention transactionExtention;
-////    if (isConstant) {
-////      transactionExtention = client.triggerConstantContract(contract);
-////    } else {
-////      transactionExtention = client.triggerContract(contract);
-////    }
-//        transactionExtention = client.triggerContract(contract);
-//
-//        if (transactionExtention == null || !transactionExtention.getResult().getResult()) {
-//            System.out.println("RPC create call trx failed!");
-//            System.out.println("Code = " + transactionExtention.getResult().getCode());
-//            System.out
-//                    .println("Message = " + transactionExtention.getResult().getMessage().toStringUtf8());
-//            returnMessage = "false";
-////            return returnMessage;
-//        }
-//
-//        Protocol.Transaction transaction = transactionExtention.getTransaction();
-//        // for constant
-//        if (transaction.getRetCount() != 0 &&
-//                transactionExtention.getConstantResult(0) != null &&
-//                transactionExtention.getResult() != null) {
-//            byte[] result = transactionExtention.getConstantResult(0).toByteArray();
-//            System.out.println("message:" + transaction.getRet(0).getRet());
-//            System.out.println(":" + ByteArray
-//                    .toStr(transactionExtention.getResult().getMessage().toByteArray()));
-//            System.out.println("Result:" + Hex.toHexString(result));
-//            returnMessage = "true";
-////            return returnMessage;
-//        }
-//
-//        GrpcAPI.TransactionExtention.Builder texBuilder = GrpcAPI.TransactionExtention.newBuilder();
-//        Protocol.Transaction.Builder transBuilder = Protocol.Transaction.newBuilder();
-//        Protocol.Transaction.raw.Builder rawBuilder = transactionExtention.getTransaction().getRawData().toBuilder();
-//        rawBuilder.setFeeLimit(6000000);
-//        transBuilder.setRawData(rawBuilder);
-//
-//        for (int i = 0; i < transactionExtention.getTransaction().getSignatureCount(); i++) {
-//            ByteString s = transactionExtention.getTransaction().getSignature(i);
-//            transBuilder.setSignature(i, s);
-//        }
-//
-//        for (int i = 0; i < transactionExtention.getTransaction().getRetCount(); i++) {
-//            Protocol.Transaction.Result r = transactionExtention.getTransaction().getRet(i);
-//            transBuilder.setRet(i, r);
-//        }
-//
-//        texBuilder.setTransaction(transBuilder);
-//        texBuilder.setResult(transactionExtention.getResult());
-//        texBuilder.setTxid(transactionExtention.getTxid());
-//        transactionExtention = texBuilder.build();
-//
-//        if (transactionExtention == null) {
-//            returnMessage = "false";
-////            return returnMessage;
-//        }
-//
-//        GrpcAPI.Return ret = transactionExtention.getResult();
-//
-//        if (!ret.getResult()) {
-//            System.out.println("Code = " + ret.getCode());
-//            System.out.println("Message = " + ret.getMessage().toStringUtf8());
-//            returnMessage = "false";
-////            return returnMessage;
-//        }
-//
-//        transaction = transactionExtention.getTransaction();
-//
-//        if (transaction == null || transaction.getRawData().getContractCount() == 0) {
-//            System.out.println("Transaction is empty");
-//            returnMessage = "false";
-////            return returnMessage;
-//        }
-//        System.out.println(
-//                "Receive txid = " + ByteArray.toHexString(transactionExtention.getTxid().toByteArray()));
-//        transaction = TronWallet._sign(ownerPrivateKey, transaction);
-//        byte[] signedTransactionBytes = transaction.toByteArray();
-//        String encodedSignedTransaction = ByteArray.toHexString(signedTransactionBytes).toUpperCase();
-//
-//        String[] signatures = new String[transaction.getSignatureCount()];
-//        for (int i = 0; i < transaction.getSignatureCount(); i++) {
-//            signatures[i] = TransactionUtils.getHexFromByteString(transaction.getSignature(i));
-//            System.out.println(TransactionUtils.getHexFromByteString(transaction.getSignature(i)));
-//        }
-//
-//        return Utils.printTransactionToJSON(transaction, false);
     }
 
     public static JSONObject validAddress(String input) {

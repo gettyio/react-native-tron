@@ -17,47 +17,22 @@
  */
 
 package org.tron.common.crypto;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.tron.common.crypto.jce.TronCastleProvider;
-import org.tron.common.utils.ByteArray;
-
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.Provider;
-import java.security.Security;
 
-import static java.util.Arrays.copyOfRange;
+import org.bouncycastle.crypto.digests.RIPEMD160Digest;
+import org.bouncycastle.crypto.digests.SHA512Digest;
+import org.bouncycastle.crypto.macs.HMac;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.jcajce.provider.digest.Keccak;
 
+/**
+ * Cryptographic hash functions.
+ */
 public class Hash {
 
-  private static final Logger LOG = LoggerFactory.getLogger(Hash.class);
-  private static final Provider CRYPTO_PROVIDER;
-
-  private static final String HASH_256_ALGORITHM_NAME;
-  private static final String HASH_512_ALGORITHM_NAME;
-
-  static {
-    Security.addProvider(TronCastleProvider.getInstance());
-    CRYPTO_PROVIDER = Security.getProvider("SC");
-    HASH_256_ALGORITHM_NAME = "TRON-KECCAK-256";
-    HASH_512_ALGORITHM_NAME = "TRON-KECCAK-512";
-  }
-
-  public static byte[] sha3(byte[] input) {
-    MessageDigest digest;
-    try {
-      digest = MessageDigest.getInstance(HASH_256_ALGORITHM_NAME,
-          CRYPTO_PROVIDER);
-      digest.update(input);
-      return digest.digest();
-    } catch (NoSuchAlgorithmException e) {
-      LOG.error("Can't find such algorithm", e);
-      throw new RuntimeException(e);
-    }
-
-  }
+  private Hash() { }
 
   /**
    * Keccak-256 hash function.
@@ -66,70 +41,76 @@ public class Hash {
    * @return hash value as hex encoded string
    */
   public static String sha3(String hexInput) {
-    byte[] bytes = ByteArray.fromHexString(hexInput);
+    byte[] bytes = Numeric.hexStringToByteArray(hexInput);
     byte[] result = sha3(bytes);
-    return ByteArray.toHexString(result);
-  }
-
-
-  public static byte[] sha3(byte[] input1, byte[] input2) {
-    MessageDigest digest;
-    try {
-      digest = MessageDigest.getInstance(HASH_256_ALGORITHM_NAME,
-          CRYPTO_PROVIDER);
-      digest.update(input1, 0, input1.length);
-      digest.update(input2, 0, input2.length);
-      return digest.digest();
-    } catch (NoSuchAlgorithmException e) {
-      LOG.error("Can't find such algorithm", e);
-      throw new RuntimeException(e);
-    }
+    return Numeric.toHexString(result);
   }
 
   /**
-   * hashing chunk of the data
+   * Keccak-256 hash function.
    *
-   * @param input - data for hash
-   * @param start - start of hashing chunk
-   * @param length - length of hashing chunk
-   * @return - keccak hash of the chunk
+   * @param input binary encoded input data
+   * @param offset of start of data
+   * @param length of data
+   * @return hash value
    */
-  public static byte[] sha3(byte[] input, int start, int length) {
-    MessageDigest digest;
-    try {
-      digest = MessageDigest.getInstance(HASH_256_ALGORITHM_NAME,
-          CRYPTO_PROVIDER);
-      digest.update(input, start, length);
-      return digest.digest();
-    } catch (NoSuchAlgorithmException e) {
-      LOG.error("Can't find such algorithm", e);
-      throw new RuntimeException(e);
-    }
-  }
-
-  public static byte[] sha512(byte[] input) {
-    MessageDigest digest;
-    try {
-      digest = MessageDigest.getInstance(HASH_512_ALGORITHM_NAME,
-          CRYPTO_PROVIDER);
-      digest.update(input);
-      return digest.digest();
-    } catch (NoSuchAlgorithmException e) {
-      LOG.error("Can't find such algorithm", e);
-      throw new RuntimeException(e);
-    }
+  public static byte[] sha3(byte[] input, int offset, int length) {
+    Keccak.DigestKeccak kecc = new Keccak.Digest256();
+    kecc.update(input, offset, length);
+    return kecc.digest();
   }
 
   /**
-   * Calculates RIGTMOST160(SHA3(input)). This is used in address calculations. *
+   * Keccak-256 hash function.
    *
-   * @param input - data
-   * @return - add_pre_fix + 20 right bytes of the hash keccak of the data
+   * @param input binary encoded input data
+   * @return hash value
    */
-  public static byte[] sha3omit12(byte[] input) {
-    byte[] hash = sha3(input);
-    byte[] address = copyOfRange(hash, 11, hash.length);
-    address[0] = 0x41;
-    return address;
+  public static byte[] sha3(byte[] input) {
+    return sha3(input, 0, input.length);
+  }
+
+  /**
+   * Keccak-256 hash function that operates on a UTF-8 encoded String.
+   *
+   * @param utf8String UTF-8 encoded string
+   * @return hash value as hex encoded string
+   */
+  public static String sha3String(String utf8String) {
+    return Numeric.toHexString(sha3(utf8String.getBytes(StandardCharsets.UTF_8)));
+  }
+
+  /**
+   * Generates SHA-256 digest for the given {@code input}.
+   *
+   * @param input The input to digest
+   * @return The hash value for the given input
+   * @throws RuntimeException If we couldn't find any SHA-256 provider
+   */
+  public static byte[] sha256(byte[] input) {
+    try {
+      MessageDigest digest = MessageDigest.getInstance("SHA-256");
+      return digest.digest(input);
+    } catch (NoSuchAlgorithmException e) {
+      throw new RuntimeException("Couldn't find a SHA-256 provider", e);
+    }
+  }
+
+  public static byte[] hmacSha512(byte[] key, byte[] input) {
+    HMac hMac = new HMac(new SHA512Digest());
+    hMac.init(new KeyParameter(key));
+    hMac.update(input, 0, input.length);
+    byte[] out = new byte[64];
+    hMac.doFinal(out, 0);
+    return out;
+  }
+
+  public static byte[] sha256hash160(byte[] input) {
+    byte[] sha256 = sha256(input);
+    RIPEMD160Digest digest = new RIPEMD160Digest();
+    digest.update(sha256, 0, sha256.length);
+    byte[] out = new byte[20];
+    digest.doFinal(out, 0);
+    return out;
   }
 }
