@@ -27,13 +27,13 @@ public class AbstractSignTests {
                 ECKey ownerKey = ECKey.fromPrivate(ownerPrivateKeyBytes);
 
                 byte[] transactionBytes = ByteArray.fromHexString(transaction);
-                System.out.println(Arrays.toString(transactionBytes));
+                // System.out.println(Arrays.toString(transactionBytes));
 
 
                 Transaction tr = parseFrom(transactionBytes);
 
 
-                System.out.println(privateKey);
+                // System.out.println(privateKey);
             } catch(Exception e) {
 //              System.out.println("Failed to sign transaction");
 //              System.out.println(e.getMessage());
@@ -218,7 +218,7 @@ public class AbstractSignTests {
 
         String mnemonic = TronWallet.generateMnemonic();
         String[] keypair = TronWallet.generateKeypair(mnemonic, 0, false);
-        System.out.println("Mnemonic: "+ keypair[1] );
+        // System.out.println("Mnemonic: "+ keypair[1] );
         //JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract("");
 
 //        Protocol.Transaction transaction = TronWallet.packTransaction(tronbet);
