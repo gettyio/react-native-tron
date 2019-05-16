@@ -139,8 +139,6 @@ public class RNTronModule extends ReactContextBaseJavaModule {
           promise.resolve(result);
 
         } catch(Exception e) {
-          System.out.println("Error: "+e.getMessage());
-          e.printStackTrace();
           promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
         }
       }
@@ -164,8 +162,6 @@ public class RNTronModule extends ReactContextBaseJavaModule {
                   promise.resolve("0x" + result.toJSONString());
 
                 } catch(Exception e) {
-                    System.out.println("Error: "+e.getMessage());
-                    e.printStackTrace();
                     promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
                 }
             }
@@ -184,7 +180,6 @@ public class RNTronModule extends ReactContextBaseJavaModule {
 
         } catch(Exception e) {
           //System.out.println("Error: "+e.getMessage());
-          e.printStackTrace();
           promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
         }
       }
