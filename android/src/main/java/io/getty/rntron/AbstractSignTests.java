@@ -8,8 +8,6 @@ import org.tron.common.utils.ByteArray;
 import org.tron.common.utils.JsonFormat;
 import org.tron.protos.Protocol.Transaction;
 
-import java.util.Arrays;
-
 import static org.tron.protos.Protocol.Transaction.parseFrom;
 
 public class AbstractSignTests {
