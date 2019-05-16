@@ -159,7 +159,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
 
                   Protocol.Transaction _signedTransaction = TronWallet._sign(ownerPrivateKey, timestamp, unsignedTransaction); //TODO
                   JSONObject result = Utils.printTransactionToJSON(_signedTransaction, false);
-                  promise.resolve("0x" + result.toJSONString());
+                  promise.resolve(result.toJSONString());
 
                 } catch(Exception e) {
                     promise.reject("Failed to triggerCallContract transaction", e.getMessage(), e);
