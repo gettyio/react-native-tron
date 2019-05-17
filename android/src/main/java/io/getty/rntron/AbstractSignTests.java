@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.tron.common.crypto.ECKey;
 import org.tron.common.utils.ByteArray;
 import org.tron.common.utils.JsonFormat;
+import org.tron.common.utils.Utils;
+import org.tron.protos.Protocol;
 import org.tron.protos.Protocol.Transaction;
 
 import static org.tron.protos.Protocol.Transaction.parseFrom;
@@ -219,12 +221,12 @@ public class AbstractSignTests {
         // System.out.println("Mnemonic: "+ keypair[1] );
         //JSONObject contractParamsTronbetBTTTransaction = TronWallet.buildTriggerSmartContract("");
 
-//        Protocol.Transaction transaction = TronWallet.packTransaction(tronbet);
+        Protocol.Transaction transaction = TronWallet.packTransaction(tronbet);
 //
-//        Protocol.Transaction signedTransaction = TronWallet._sign("5d585f25d609baf62ca1f96687285406a64694f9a5c352c98cf198f3098bbcda", transaction);
-//
-//        //System.out.println(contractParamsTronbetBTTTransaction);
-//        System.out.println(Utils.printTransactionToJSON(signedTransaction, false));
+        //Protocol.Transaction signedTransaction = TronWallet.si("5d585f25d609baf62ca1f96687285406a64694f9a5c352c98cf198f3098bbcda", transaction);
+
+        //System.out.println(contractParamsTronbetBTTTransaction);
+        System.out.println(Utils.printTransactionToJSON(transaction, false));
 
 //        String transaction = "74726f6e626574";
 //        String transaction = "0A8F010A022DBE220823653663EFAA2AC940E7BAB382A82D52152053656E742066726F6D2054726F6E57616C6C65745A57080B12530A32747970652E676F6F676C65617069732E636F6D2F70726F746F636F6C2E467265657A6542616C616E6365436F6E7472616374121D0A1541C46D47F7CD8D4E7C91E6A5128441378822971C5D10C0843D18037080BCC180F0FDD4CD15";
