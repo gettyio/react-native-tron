@@ -256,9 +256,12 @@ public class Utils {
         JSONObject jsonTransaction = JSONObject.parseObject(JsonFormat.printToString(transaction,
                 selfType));
         JSONArray contracts = new JSONArray();
-        transaction.getRawData().getContractList().stream().forEach(contract -> {
+
+        List<Contract> contractList = transaction.getRawData().getContractList();
+        for (int i = 0; i < contractList.size(); i++) {
             try {
                 JSONObject contractJson = null;
+                Contract contract = contractList.get(i);
                 Any contractParameter = contract.getParameter();
                 switch (contract.getType()) {
                     case AccountCreateContract:
@@ -452,7 +455,9 @@ public class Utils {
             } catch (InvalidProtocolBufferException e) {
                 System.out.println(e.getMessage());
             }
-        });
+        }
+
+
 
         JSONObject rawData = JSONObject.parseObject(jsonTransaction.get("raw_data").toString());
         rawData.put("contract", contracts);
