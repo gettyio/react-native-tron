@@ -65,6 +65,5 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
     implementation "org.apache.commons:commons-collections4:4.0"
     implementation 'org.apache.commons:commons-lang3:3.6'
-    implementation 'net.sourceforge.streamsupport:streamsupport:1.7.0'
-//    implementation group: 'com.google.api.grpc', name: 'googleapis-common-protos', version: '0.0.3'
+
 }
