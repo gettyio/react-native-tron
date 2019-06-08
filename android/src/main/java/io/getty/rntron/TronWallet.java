@@ -241,11 +241,6 @@ public class TronWallet {
             ECKey _key = ECKey.fromPrivate(ownerPrivateKeyBytes);
             ECKey.ECDSASignature _signature =_key.sign(messageDigest);
 
-            System.out.println("SIG R: "+Hex.toHexString(_signature.r.toByteArray()).length());
-            System.out.println("SIG R: "+Hex.toHexString(_signature.r.toByteArray()));
-            System.out.println("SIG S: "+Hex.toHexString(_signature.s.toByteArray()).length());
-            System.out.println("SIG S: "+Hex.toHexString(_signature.s.toByteArray()));
-
             String hexR = Hex.toHexString(_signature.r.toByteArray());
             String hexS = Hex.toHexString(_signature.s.toByteArray());
             String hexV = Integer.toString(_signature.v, 16);
@@ -351,7 +346,6 @@ public class TronWallet {
             int length = jsonArray.toArray().length;
             stringArray = new String[length];
             for (int i = 0; i < length; i++) {
-                System.out.println(" >>> "+ jsonArray.getString(i));
                 stringArray[i] = jsonArray.getString(i);
             }
         }
