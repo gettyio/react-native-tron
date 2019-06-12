@@ -66,6 +66,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
     implementation "org.apache.commons:commons-collections4:4.0"
     implementation 'org.apache.commons:commons-lang3:3.6'
+    implementation 'commons-codec:commons-codec:1.6'
     implementation 'com.trustwallet.walletcore:walletcore:0.10.0'
 
 }

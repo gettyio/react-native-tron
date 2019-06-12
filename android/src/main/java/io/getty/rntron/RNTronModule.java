@@ -27,7 +27,7 @@ import io.github.novacrypto.bip39.wordlists.English;
 import io.realm.Realm;
 import io.realm.exceptions.RealmException;
 
-public class RNTronModule extends ReactContextBaseJavaModule {
+class RNTronModule extends ReactContextBaseJavaModule {
 
   private static final String TAG = "RNTronModule";
 
@@ -73,20 +73,13 @@ public class RNTronModule extends ReactContextBaseJavaModule {
 
 
   @ReactMethod
-  public void createAccount(final String pin, ReadableMap readableMap, final Promise promise) {
+  public void createAccount(final String pin, final Promise promise) {
     new Thread(new Runnable() {
       @Override
       public void run() {
         try {
-
-          if(readableMap.isNull("name")) {
-            throw new IllegalArgumentException("name is required");
-          }
-
-
           String mnemonic = TronWallet.generateMnemonic();
           String[] keypair = TronWallet.generateKeypair(mnemonic, 0, false);
-          String name = readableMap.getString("name");
 
           final UserSecret user = new UserSecret();
           user.setAddress(keypair[0]);
@@ -95,11 +88,13 @@ public class RNTronModule extends ReactContextBaseJavaModule {
           user.setAddress(keypair[2]);
           user.setConfirmed(true);
 
-          rnSecurity.add(pin, user);
-          Log.i(TAG, readableMap.toString());
-          Log.i(TAG, pin);
-          promise.resolve(readableMap.toString());
+          WritableMap generatedAccount = Arguments.createMap();
+          generatedAccount.putString("address", keypair[0]);
+          generatedAccount.putString("publicKey", keypair[2]);
 
+          rnSecurity.add(pin, user);
+          Log.i(TAG, pin);
+          promise.resolve(generatedAccount);
 
         } catch (RealmException e) {
           promise.reject(e);
@@ -109,12 +104,9 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void generateMnemonic(final Promise promise)
-  {
-    new Thread(new Runnable()
-    {
-      public void run()
-      {
+  public void generateMnemonic(final Promise promise) {
+    new Thread(new Runnable() {
+      public void run() {
         try {
           String mnemonic = TronWallet.generateMnemonic();
           promise.resolve(mnemonic);
@@ -127,12 +119,9 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void validateMnemonic(final String mnemonic, final Promise promise)
-  {
-    new Thread(new Runnable()
-    {
-      public void run()
-      {
+  public void validateMnemonic(final String mnemonic, final Promise promise) {
+    new Thread(new Runnable() {
+      public void run() {
         try {
           MnemonicValidator
                   .ofWordList(English.INSTANCE)
@@ -154,17 +143,10 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void generateKeypair(final String mnemonics,
-                              final int vaultNumber,
-                              final boolean testnet,
-                              final Promise promise)
-  {
-    new Thread(new Runnable()
-    {
-      public void run()
-      {
-        try
-        {
+  public void generateKeypair(final String mnemonics, final int vaultNumber, final boolean testnet, final Promise promise) {
+    new Thread(new Runnable() {
+      public void run() {
+        try {
           String[] keypair = TronWallet.generateKeypair(mnemonics, vaultNumber, testnet);
 
           WritableMap generatedAccount = Arguments.createMap();
@@ -174,9 +156,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
           generatedAccount.putString("password", keypair[3]);
 
           promise.resolve(generatedAccount);
-        }
-        catch(Exception e)
-        {
+        } catch(Exception e) {
           promise.reject("Failed to generate account", "Native exception thrown", e);
         }
       }
@@ -184,8 +164,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void addressFromPk(final String ownerPrivateKey, final Promise promise)
-  {
+  public void addressFromPk(final String ownerPrivateKey, final Promise promise) {
     new Thread(new Runnable() {
       public void run() {
         try {
@@ -199,8 +178,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void signString(final String ownerPrivateKey, String hexString, final Promise promise)
-  {
+  public void signString(final String ownerPrivateKey, String hexString, final Promise promise) {
     new Thread(new Runnable() {
       public void run() {
         try {
@@ -216,8 +194,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
     @ReactMethod
-    public void signTransaction2(final String ownerPrivateKey, String transaction, final Promise promise)
-    {
+    public void signTransaction2(final String ownerPrivateKey, String transaction, final Promise promise) {
         new Thread(new Runnable() {
             public void run() {
                 try {
@@ -240,8 +217,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
     }
 
   @ReactMethod
-  public void buildTriggerSmartContract(final String payload, final Promise promise)
-  {
+  public void buildTriggerSmartContract(final String payload, final Promise promise) {
     new Thread(new Runnable() {
       public void run() {
         try {
@@ -258,8 +234,7 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void signTransaction(final String ownerPrivateKey, final String encodedTransaction, final Promise promise)
-  {
+  public void signTransaction(final String ownerPrivateKey, final String encodedTransaction, final Promise promise) {
     new Thread(new Runnable() {
       public void run() {
         try {

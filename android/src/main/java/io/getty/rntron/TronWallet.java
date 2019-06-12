@@ -26,6 +26,7 @@ import org.tron.protos.Contract;
 import org.tron.protos.Protocol;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -226,7 +227,7 @@ public class TronWallet {
             byte[] ownerPrivateKeyBytes = ByteArray.fromHexString(pk);
 
             byte[] message = ByteArray.fromHexString(hexString);
-            byte[] headerBytes = TRX_MESSAGE_HEADER.getBytes("UTF-8");
+            byte[] headerBytes = TRX_MESSAGE_HEADER.getBytes(StandardCharsets.UTF_8);
 
             byte[] completeMessage = new byte[message.length + headerBytes.length];
             System.arraycopy(headerBytes, 0, completeMessage, 0, headerBytes.length);
