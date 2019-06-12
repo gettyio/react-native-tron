@@ -1,25 +1,35 @@
 
 package io.getty.rntron;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 
 import org.tron.common.utils.Utils;
 import org.tron.protos.Protocol;
 
+import io.getty.rntron.security.RNTronSecurity;
+import io.getty.rntron.security.model.UserSecret;
 import io.github.novacrypto.bip39.MnemonicValidator;
 import io.github.novacrypto.bip39.Validation.InvalidChecksumException;
 import io.github.novacrypto.bip39.Validation.InvalidWordCountException;
 import io.github.novacrypto.bip39.Validation.UnexpectedWhiteSpaceException;
 import io.github.novacrypto.bip39.Validation.WordNotFoundException;
 import io.github.novacrypto.bip39.wordlists.English;
+import io.realm.Realm;
+import io.realm.exceptions.RealmException;
 
 public class RNTronModule extends ReactContextBaseJavaModule {
+
+  private static final String TAG = "RNTronModule";
 
   private static final int DECODED_PUBKEY_LENGTH = 21;
   private static final int MAINNET_PREFIX_BYTE = 0x41;
@@ -27,15 +37,75 @@ public class RNTronModule extends ReactContextBaseJavaModule {
   private static final int PRIVATE_KEY_LENGTH = 64;
 
   private final ReactApplicationContext reactContext;
+  private final RNTronSecurity rnSecurity;
 
   public RNTronModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
+
+    Realm.init(reactContext);
+    this.rnSecurity = new RNTronSecurity(reactContext);
+
+    LifecycleEventListener listener = new LifecycleEventListener() {
+
+      @Override
+      public void onHostResume() {
+      }
+
+      @Override
+      public void onHostPause() {
+
+      }
+
+
+      @Override
+      public void onHostDestroy() {
+//        rnSecurity.close();
+      }
+    };
+    reactContext.addLifecycleEventListener(listener);
   }
 
   @Override
   public String getName() {
     return "RNTron";
+  }
+
+
+  @ReactMethod
+  public void createAccount(final String pin, ReadableMap readableMap, final Promise promise) {
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        try {
+
+          if(readableMap.isNull("name")) {
+            throw new IllegalArgumentException("name is required");
+          }
+
+
+          String mnemonic = TronWallet.generateMnemonic();
+          String[] keypair = TronWallet.generateKeypair(mnemonic, 0, false);
+          String name = readableMap.getString("name");
+
+          final UserSecret user = new UserSecret();
+          user.setAddress(keypair[0]);
+          user.setMnemonic(mnemonic);
+          user.setPrivateKey(keypair[1]);
+          user.setAddress(keypair[2]);
+          user.setConfirmed(true);
+
+          rnSecurity.add(pin, user);
+          Log.i(TAG, readableMap.toString());
+          Log.i(TAG, pin);
+          promise.resolve(readableMap.toString());
+
+
+        } catch (RealmException e) {
+          promise.reject(e);
+        }
+      }
+    }).start();
   }
 
   @ReactMethod

@@ -32,6 +32,13 @@ export default class App extends Component {
       password: generatedKeypair.password,
       mnemonics: mnemonics
     });
+
+    try {
+      const a = await RNTron.createAccount('111111', { name: 'account 1' })
+      console.warn(a)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   render() {
