@@ -17,6 +17,6 @@
   "author": "",
   "license": "LGPL-3.0",
   "peerDependencies": {
-    "react-native": "^0.59.8"
+    "react-native": "^0.59.10"
   }
 }
