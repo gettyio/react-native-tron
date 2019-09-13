@@ -9,7 +9,7 @@
 #import "TronSignature.h"
 
 #import <TrezorCrypto/TrezorCrypto.h>
-#import <NSData+FastHex/NSData+FastHex.h>
+#import "Categories/NSData+FastHex.h"
 #import "Categories/NSString+Base58.h"
 #include "memzero.h"
 

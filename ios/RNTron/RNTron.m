@@ -4,8 +4,7 @@
 #import <RxLibrary/GRXWriter+Immediate.h>
 #import <RxLibrary/GRXWriter+Transformations.h>
 
-#import <NSData+FastHex/NSData+FastHex.h>
-
+#import "Categories/NSData+FastHex.h"
 #import "Categories/NSString+Base58.h"
 #import "TronSignature.h"
 
