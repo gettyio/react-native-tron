@@ -48,9 +48,9 @@ dependencies {
     implementation group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
-    implementation group: 'io.grpc', name: 'grpc-netty', version: '1.9.0'
-    implementation group: 'io.grpc', name: 'grpc-protobuf', version: '1.9.0'
-    implementation group: 'io.grpc', name: 'grpc-stub', version: '1.9.0'
+    implementation group: 'io.grpc', name: 'grpc-netty', version: '1.26.0'
+    implementation group: 'io.grpc', name: 'grpc-protobuf', version: '1.26.0'
+    implementation group: 'io.grpc', name: 'grpc-stub', version: '1.26.0'
     implementation group: 'com.googlecode.protobuf-java-format', name: 'protobuf-java-format', version: '1.4'
 
     implementation "com.madgag.spongycastle:core:1.58.0.0"
